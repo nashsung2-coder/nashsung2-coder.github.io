@@ -3,52 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="一個能由 GitHub 直接更新的個人網站。" />
+    <meta name="description" content="宋嵐緒的個人檔案：凌極世界、制度選擇與可被檢視的工作紀錄。" />
     <meta name="theme-color" content="#102A43" />
     <link rel="icon" href="assets/images/field-notes-logo.png" type="image/png" />
     <link rel="stylesheet" href="assets/css/site.css" />
-    <title>你的名字 — Field Notes</title>
+    <title>宋嵐緒 — Field Notes</title>
   </head>
   <body>
-    <header class="archive-header">
-      <a class="archive-mark" href="#top" aria-label="回到頁首"><img src="assets/images/field-notes-logo.png" alt="折頁與座標點標記" /><span>NASH / FIELD NOTES</span></a>
-      <div class="archive-header-meta"><span>VOLUME 01</span><i></i><span>nashsung2-coder</span></div>
-    </header>
-
+    <header class="archive-header"><a class="archive-mark" href="#top"><img src="assets/images/field-notes-logo.png" alt="折頁與座標點標記" /><span>SONG / FIELD NOTES</span></a><nav class="archive-nav"><a href="#about">關於</a><a href="#cestylon">凌極世界</a><a href="#works">作品</a><a href="#contact">聯絡</a></nav><div class="archive-header-meta"><span>VOLUME 01</span><i></i><span>OPEN RECORD</span></div><button class="nav-toggle" type="button" id="menu-toggle" aria-label="開啟選單">☰</button></header>
+    <nav class="mobile-nav" id="mobile-nav"><a href="#about"><span>01</span>關於</a><a href="#cestylon"><span>02</span>凌極世界</a><a href="#works"><span>03</span>作品</a><a href="#contact"><span>04</span>聯絡</a></nav>
     <main id="top">
-      <section class="archive-hero" aria-labelledby="hero-title">
-        <div class="hero-copy"><p class="eyebrow"><b>01</b> / START HERE</p><h1>把正在累積的事，<em>留下</em>可回看的線索。</h1><p>我把瀏覽器裡反覆推敲的頁面、旅途中停下來的光線，和剛開始的程式，一起收進這裡。每次提交，都是往檔案裡添上一張新頁。</p><a class="archive-cta" href="#guide">查看更新方式 <span>↓</span></a></div>
-        <figure class="hero-image-wrap"><img src="assets/images/hero.jpg" alt="桌上的筆記本、攝影作品與文具" /><figcaption><b>ARCHIVE 01</b> / 你的起點可以從一張照片開始</figcaption></figure>
-      </section>
-
-      <section class="archive-grid about-section" id="about" aria-labelledby="about-title">
-        <aside class="section-index"><b>02</b><span>ABOUT</span></aside>
-        <div class="section-main"><p class="section-kicker">SHORT INTRODUCTION</p><h2 id="about-title">這裡是<span>Nash 的</span>頁邊註記。</h2><p>一個從 GitHub 長出來的個人檔案。它收集正在搭建的網頁、留在硬碟裡的照片，以及還沒有完全想清楚、但值得先寫下來的方向。</p></div>
-        <div class="note-stack"><div class="note-card">ORIGIN / TAIWAN</div><div class="note-card"><i></i> FILED FROM GITHUB</div></div>
-      </section>
-
-      <section class="archive-grid work-section" id="work" aria-labelledby="work-title">
-        <aside class="section-index"><b>03</b><span>SELECTED<br />WORK</span></aside>
-        <div class="work-heading"><p class="section-kicker">THINGS I AM MAKING</p><h2 id="work-title">一些正在成形的<br /><em>作品與想法。</em></h2></div>
-        <article class="project-feature"><a class="image-link" href="new-page.html"><img src="assets/images/project.jpg" alt="紙張、繪圖與深藍布料的編輯式靜物" /><span>↗</span></a><div class="project-meta"><span>2026 — ONGOING</span><span>PERSONAL ARCHIVE</span></div><h3>把碎片整理成可被看見的路徑。</h3><p>從一個版面的草圖、幾行還沒寫完的程式，到一段想保留下來的光線。這裡收錄正在進行中的頁面，而不是完成後才回頭整理的履歷。</p></article>
-      </section>
-
-      <section class="archive-grid gallery-section" id="notes" aria-labelledby="notes-title">
-        <aside class="section-index"><b>04</b><span>PHOTO<br />NOTES</span></aside>
-        <div class="gallery-intro"><p class="section-kicker">VISUAL FIELD NOTES</p><h2 id="notes-title">最近留存的<br />幾個畫面。</h2><p>照片先進 <code>assets/images/</code>，圖說再慢慢補上。每一張影像都可以是下一個 HTML 頁面的開頭。</p></div>
-        <figure class="gallery-wide"><img src="assets/images/gallery.jpg" alt="通往海面的寧靜水泥階梯" /><figcaption><b>NOTE 14</b> / 沿著光線向下</figcaption></figure>
-        <figure class="gallery-tall"><img src="assets/images/detail.jpg" alt="有紅色封蠟與聯絡表的紙本檔案" /><figcaption><b>NOTE 15</b> / 留下細節</figcaption></figure>
-      </section>
-
-      <section class="archive-grid guide-section" id="guide" aria-labelledby="guide-title">
-        <aside class="section-index"><b>05</b><span>UPDATE<br />GUIDE</span></aside>
-        <div class="guide-copy"><p class="section-kicker">EDIT. COMMIT. PUBLISH.</p><h2 id="guide-title">不用額外部署，<br /><strong>只要更新檔案。</strong></h2></div>
-        <div class="guide-steps"><div><b>1</b><p>在 GitHub 網頁中編輯 <code>index.html</code>，或上傳新的 HTML 頁面。</p></div><div><b>2</b><p>把照片上傳到 <code>assets/images/</code>，再將圖片路徑填入頁面。</p></div><div><b>3</b><p>按下 Commit changes。網站會在背景自動更新，不需要手動執行任何指令。</p></div></div>
-      </section>
-
-      <section class="contact-section" id="contact" aria-labelledby="contact-title"><p class="eyebrow"><b>06</b> / MARGIN NOTE — OPEN</p><h2 id="contact-title">如果你也在收集路徑，<br /><em>歡迎留下頁碼。</em></h2><p class="contact-note">這份檔案的原稿公開放在 GitHub。你可以從程式、提交紀錄與下一次更新，讀到它正在往哪裡走。</p><div class="contact-links"><a href="https://github.com/nashsung2-coder" target="_blank" rel="noreferrer">◉ GITHUB / nashsung2-coder ↗</a><a href="https://github.com/nashsung2-coder/nashsung2-coder.github.io" target="_blank" rel="noreferrer">▤ READ THE SOURCE ↗</a></div></section>
-    </main>
-    <footer class="archive-footer"><span>NASH / FIELD NOTES</span><span>FILED VIA GITHUB PAGES</span><span>VOLUME 01</span></footer>
-    <script src="assets/js/site.js"></script>
+      <section class="archive-hero"><div class="hero-copy"><p class="eyebrow"><b>00</b> / PERSONAL DOSSIER</p><div class="identity-row"><img src="assets/images/avatar-circle.png" alt="拿著扳手的橘色小熊插圖" /><span>SONG LAN-XU<br />宋嵐緒</span></div><h1>把選擇的可能，<em>留給</em>每一個人。</h1><p>我曾經擅長符合標準，後來開始追問：那些標準是誰定的？這裡記錄我如何從被肯定的路徑，走向正在建造的凌極世界。</p><a class="archive-cta" href="#about">讀取這份檔案 ↓</a></div><figure class="hero-image-wrap"><img src="assets/images/hero.jpg" alt="桌上的筆記本、攝影作品與文具" /><figcaption><b>FILE 00</b> / 從一個問題開始整理世界</figcaption></figure></section>
+      <section class="archive-grid about-section" id="about"><aside class="section-index"><b>01</b><span>ABOUT<br />THE TURN</span></aside><div class="section-main"><p class="section-kicker">FROM APPROVAL TO QUESTIONS</p><h2>我曾經很會<br /><span>符合標準。</span></h2><div class="narrative-copy"><p>學業、競賽與各種肯定，曾經讓我相信只要走對既有路徑，就能抵達想像中的位置。那份開心是真的；後來浮現的不對勁，也是真的。</p><p>我開始發現，自己擅長的是符合期待，而不是認真追問期待從哪裡來。停下來不是放棄，而是重新想清楚：我到底想做什麼。</p></div></div><blockquote class="margin-quote"><span>ANNOTATION</span><p>「我不否定那些獎項；我只是決定，不再只把自己活成別人期待的樣子。」</p></blockquote></section>
+      <section class="archive-grid audit-section"><aside class="section-index"><b>02</b><span>OPEN<br />RECORD</span></aside><div class="audit-heading"><p class="section-kicker">A PERSONAL COMMITMENT</p><h2>永遠可審計。<br /><em>永遠可被修正。</em></h2></div><div class="audit-copy"><p>我不保證會成功，也知道失敗的可能很大。但我承諾把規則、決定與修正留下痕跡；如果有一天我錯了，願意被指出來，也願意回頭修改。</p><div class="audit-marker"><i></i> INCLUDING MYSELF</div></div></section>
+      <section class="archive-grid cestylon-section" id="cestylon"><aside class="section-index"><b>03</b><span>CESTYLON<br />WORLD</span></aside><div class="cestylon-intro"><p class="section-kicker">A LONG-TERM EXPERIMENT — SINCE 2024</p><h2>凌極世界，<br /><em>讓制度也有選項。</em></h2><p>這不是一間已經完成的公司，而是一個長期實驗：與其由少數人設計唯一正確的制度，不如讓不同制度同時存在、互相競爭，讓每個人能自己選擇。</p></div><figure class="cestylon-figure"><img src="assets/images/project.jpg" alt="紙張、繪圖與深藍布料的編輯式靜物" /><figcaption><b>STUDY 03</b> / 從白皮書到可被嘗試的基礎設施</figcaption></figure><div class="four-streets"><article><span>街道 / 01</span><h3>貢獻</h3><p>為別人做得越多，能換取的資源越多；努力被記錄，善意被回報。</p></article><article><span>街道 / 02</span><h3>需求</h3><p>人活著本身就是價值，資源依需求分配，不必先證明自己有用。</p></article><article><span>街道 / 03</span><h3>抽籤</h3><p>用隨機性做重大決定，讓權力不容易集中在少數人手上。</p></article><article><span>街道 / 04</span><h3>市場</h3><p>市場可以運作，但獲益越多的人，承擔的公共責任也越重。</p></article></div><p class="cestylon-close">沒有哪一條街是唯一正確。因為選擇本身，才是價值所在。</p></section>
+      <section class="archive-grid notes-section"><aside class="section-index"><b>04</b><span>FIELD<br />NOTES</span></aside><div class="gallery-intro"><p class="section-kicker">WORKING NOTES, NOT FINAL ANSWERS</p><h2>我還在學，<br />也還在<span>修正。</span></h2><p>白皮書、工具包、系統與實體空間都還在規劃中。現在沒有可以假裝已完成的答案，只有可以公開檢視的工作痕跡。</p></div><figure class="gallery-wide"><img src="assets/images/gallery.jpg" alt="通往海面的寧靜水泥階梯" /><figcaption><b>NOTE 14</b> / 路還很長，但已經開始走</figcaption></figure><figure class="gallery-tall"><img src="assets/images/detail.jpg" alt="有紅色封蠟與聯絡表的紙本檔案" /><figcaption><b>NOTE 15</b> / 把未完成的事留下索引</figcaption></figure></section>
+      <section class="archive-grid works-section" id="works"><aside class="section-index"><b>05</b><span>SELECTED<br />WORKS</span></aside><div class="works-heading"><p class="section-kicker">READ, REVIEW, QUESTION</p><h2>公開的工作，<br /><em>歡迎被檢視。</em></h2></div><div class="works-list"><a href="https://sites.google.com/stu.chjh.tp.edu.tw/crestylon-world/首頁" target="_blank" rel="noreferrer"><span>01</span><div><h3>凌極世界 Cestylon World</h3><p>暫時性官網</p></div><b>↗</b></a><a href="https://drive.google.com/drive/folders/1mkbiHfzNMsQp4hsZWxoUskyr6VMeBX5q" target="_blank" rel="noreferrer"><span>02</span><div><h3>凌極世界白皮書</h3><p>概念與制度實驗的公開文件</p></div><b>↗</b></a><div class="work-pending"><span>03</span><div><h3>核心理念簡述</h3><p>影片連結準備中</p></div><b>□</b></div></div></section>
+      <section class="contact-section" id="contact"><p class="eyebrow"><b>06</b> / MARGIN NOTE — OPEN</p><h2>如果你也相信，<br /><em>世界可以有更多選擇。</em></h2><p class="contact-note">這份檔案並不要求認同，只邀請檢視、質疑與對話。制度不該在關起門的地方被決定。</p><div class="contact-links"><a href="mailto:nashsung2@gmail.com">✉ nashsung2@gmail.com ↗</a><a href="https://github.com/nashsung2-coder" target="_blank" rel="noreferrer">◉ GITHUB / nashsung2-coder ↗</a></div><div class="contact-origin">⌖ TAIPEI / TAIWAN <i></i> OPEN RECORD</div></section>
+    </main><footer class="archive-footer"><span>SONG / FIELD NOTES</span><span>永遠可審計。永遠可被修正。包括我自己。</span><span>VOLUME 01</span></footer><script src="assets/js/site.js"></script>
   </body>
 </html>
