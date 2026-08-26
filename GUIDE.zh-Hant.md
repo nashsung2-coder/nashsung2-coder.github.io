@@ -1,60 +1,76 @@
 # Nash Pages 格式引導文件
 
-這份文件教你如何維護目前的靜態網站。網站首頁刻意只保留導覽列；你不需要碰 JavaScript，也不需要手動修改導覽列。只要新增一個 HTML 檔案、填好三個設定欄位、寫下你的 HTML 內容並提交，導覽列就會依你指定的順序自動更新。
+這是一套給 GitHub Pages 使用的純 HTML 網站框架。首頁刻意只保留導覽列；你不需要修改 JavaScript，也不需要手動重寫選單。每次新增或修改一個 HTML 頁面後，系統會依頁面最上方的設定，自動更新導覽列的名稱、順序與可見性。
 
-> **核心規則：** 新頁面放進 `pages/`，並從 `templates/page-template.html` 複製格式。不要手動編輯 `pages.json`，因為它會自動產生。
+> **最短工作流程：** 複製 `templates/page-template.html` → 存到 `pages/` → 填寫三個 `<meta>` → 寫 HTML → 按 **Commit changes** → 檢查網站。
 
-## 一次看懂：新增第一個頁面
+這份文件本身也可以作為其他靜態網站的操作說明範本：保留「檔案位置、必填設定、可複製範例、錯誤排查與檢查清單」五個段落，即可改寫成不同網站的引導文件。
 
-假設你要建立「關於我」頁面。請在 GitHub 儲存庫開啟 `templates/page-template.html`，按右上角的 **Copy raw file** 或複製內容；接著在 `pages/` 資料夾中新增檔案 `about.html`，把內容貼上。請在頁面最上方填寫名稱、排序與顯示設定，再填寫你的 HTML 內容，最後按 **Commit changes**。
+## 檔案結構與用途
 
-| 步驟 | 你要做的事 | 位置 |
+| 路徑 | 功能 | 你平常是否需要修改 |
+|---|---|---|
+| `index.html` | 空白首頁與共用導覽列 | 通常不需要 |
+| `pages/` | 放你新增的公開或隱藏 HTML 頁面 | **需要** |
+| `templates/page-template.html` | 可複製的頁面格式檔 | 複製，不直接改動 |
+| `assets/css/site.css` | 全站基本樣式 | 想調整顏色或排版時才修改 |
+| `assets/js/nav.js` | 讀取自動導覽列 | 不需要修改 |
+| `pages.json` | 導覽列資料清單 | **不要手動修改** |
+| `FORMAT.md` | 簡短格式說明 | 可閱讀 |
+| `GUIDE.zh-Hant.md` | 本份完整引導文件 | 可閱讀 |
+
+## 新增第一個頁面
+
+假設你要建立「關於我」。先在 GitHub 儲存庫開啟 `templates/page-template.html`，使用 **Copy raw file** 或複製整份內容；再進入 `pages/` 資料夾，按 **Add file → Create new file**，將檔案命名為 `about.html`，貼上內容。最後，填寫頁面上方的三個設定欄位，並在 `<main class="page-content">` 中寫下你的內容。
+
+| 步驟 | 要做的事 | 範例 |
 |---|---|---|
 | 1 | 複製格式檔 | `templates/page-template.html` |
-| 2 | 建立頁面檔 | `pages/about.html` |
-| 3 | 填寫名稱、排序、顯示設定 | HTML 最上方的三個 `<meta>` |
-| 4 | 寫下頁面內容 | `<main class="page-content">` 內 |
-| 5 | 提交變更 | GitHub 的 **Commit changes** |
+| 2 | 建立新檔案 | `pages/about.html` |
+| 3 | 填寫導覽設定 | `關於我`、`10`、`true` |
+| 4 | 寫入 HTML 內容 | `<h1>...</h1>`、`<p>...</p>` |
+| 5 | 提交變更 | **Commit changes** |
 
-## 三個必填的導覽設定
+## 三個導覽設定：請全部填寫
 
-每個頁面的 `<head>` 裡都有三行設定。它們決定導覽列顯示的名稱、位置與可見性。
+每個頁面的 `<head>` 裡都有三個 `site-nav-` 設定。**請將三個都視為必填欄位**，即使其中一個技術上有預設值，也不要省略。完整填寫可避免頁面被意外隱藏、排序跑到最後或無法被導覽系統辨識。
 
-| 設定欄位 | 功能 | 可填內容 | 範例 |
-|---|---|---|---|
-| `site-nav-title` | 導覽列顯示的名稱 | 任何短文字 | `關於我` |
-| `site-nav-order` | 導覽列排列順序 | 整數；數字越小越靠左 | `10` |
-| `site-nav-visible` | 是否顯示於導覽列 | `true` 或 `false` | `true` |
-
-請優先使用 `10`、`20`、`30` 這種有間隔的排序。日後想在「關於我」和「作品」之間加一頁時，可以直接用 `15`，不必重新調整所有頁面。
+| 設定欄位 | 用途 | 正確格式 | 實際預設行為 | 建議 |
+|---|---|---|---|---|
+| `site-nav-title` | 導覽列顯示名稱 | 短文字 | 無名稱時，頁面不會加入導覽列 | **務必填寫** |
+| `site-nav-order` | 導覽排序數字 | 純整數，例如 `10` | 省略或非數字時會排到後面 | **務必填寫** |
+| `site-nav-visible` | 是否顯示在導覽列 | `true` 或 `false` | 省略時會視為 `true` | **仍務必填寫** |
 
 ```html
-<!-- 放在 <head> 內；只需要改這三行。 -->
+<!-- 放在 <head> 內；新增頁面時只需要先改這三行。 -->
 <meta name="site-nav-title" content="關於我" />
 <meta name="site-nav-order" content="10" />
 <meta name="site-nav-visible" content="true" />
 ```
 
-## 可直接複製的完整頁面範例
+排序建議使用 `10`、`20`、`30` 這種有間隔的數字。日後想在「關於我」與「作品」之間插入「凌極世界」時，可使用 `15`，不必重新調整所有頁面的排序。
 
-以下範例可以直接存成 `pages/about.html`。你只要替換標題和段落內容即可。
+## 可直接複製的完整 HTML 頁面
+
+以下內容可直接存為 `pages/about.html`。請把「關於我」、`10`、標題和段落替換為你的實際內容。
 
 ```html
 <!doctype html>
 <html lang="zh-Hant">
   <head>
-    <!-- 導覽列設定 -->
+    <!-- 導覽列設定：三個都請填寫。 -->
     <meta name="site-nav-title" content="關於我" />
     <meta name="site-nav-order" content="10" />
     <meta name="site-nav-visible" content="true" />
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../assets/css/site.css" />
+    <!-- title 建議固定採用「頁面名稱 — 網站名稱」。 -->
     <title>關於我 — Nash Pages</title>
+    <link rel="stylesheet" href="../assets/css/site.css" />
   </head>
   <body>
-    <!-- 請保留以下導覽列，不需要自行新增選單連結。 -->
+    <!-- 請保留 header 與 nav.js；它們提供全站一致的自動導覽列。 -->
     <header class="site-header" data-site-navigation>
       <a class="site-brand" href="/">NASH / PAGES</a>
       <nav class="site-nav" aria-label="網站導覽" data-navigation-list></nav>
@@ -69,34 +85,36 @@
       <p>這裡是第二段內容。</p>
     </main>
 
-    <!-- 請保留這行，它會讀取自動排序的導覽列。 -->
     <script src="../assets/js/nav.js"></script>
   </body>
 </html>
 ```
 
-## 排序範例
+## 預留 class 的用途
 
-下表展示導覽列的最終順序。首頁固定是 `0`；其他頁面依 `site-nav-order` 的數字由小到大排列。
+格式檔中的 class 已經有基本樣式。建議先保留它們，等熟悉後再自行調整 CSS。
 
-| 檔案 | `site-nav-title` | `site-nav-order` | 導覽列位置 |
-|---|---|---:|---|
-| `index.html` | 首頁 | 0 | 第一個 |
-| `pages/about.html` | 關於我 | 10 | 第二個 |
-| `pages/projects.html` | 作品 | 20 | 第三個 |
-| `pages/contact.html` | 聯絡 | 30 | 第四個 |
+| Class | 用途 | 建議做法 |
+|---|---|---|
+| `site-header` | 頂端固定導覽列外框 | 請保留 |
+| `site-brand` | 左側網站名稱連結 | 可改文字，不要移除連結 |
+| `site-nav` | 自動插入導覽連結的位置 | 請保留 `data-navigation-list` |
+| `page-content` | 內容區域的最大寬度、間距與閱讀排版 | 放所有主要內容 |
+| `page-kicker` | 標題上方的小字分類或編號 | 例如 `ABOUT / 10`、`NOTE / 20` |
 
-如果你後來要建立「凌極世界」頁面，而且希望它在「關於我」與「作品」之間，就設定成：
+## 編輯、刪除與隱藏既有頁面
 
-```html
-<meta name="site-nav-title" content="凌極世界" />
-<meta name="site-nav-order" content="15" />
-<meta name="site-nav-visible" content="true" />
-```
+### 編輯頁面
 
-## 建立不顯示在導覽列的頁面
+要修改既有內容時，直接開啟 `pages/` 中對應的 HTML 檔案，編輯 `<main>` 內的文字、圖片或連結後提交即可。如果你同時修改了 `site-nav-title`、`site-nav-order` 或 `site-nav-visible`，導覽列也會跟著重新整理。
 
-有些頁面可能只想透過特定網址分享，例如閱讀筆記、活動頁或尚未完成的草稿。將 `site-nav-visible` 設為 `false`，頁面仍然可以用網址開啟，但不會出現在導覽列。
+### 刪除頁面
+
+如果某一頁不再需要，直接在 GitHub 開啟 `pages/` 下的對應 HTML，使用 **Delete file** 並提交。系統會重新建立導覽清單，因此不需要手動刪除選單項目，也不需要編輯 `pages.json`。
+
+### 建立不顯示在導覽列的頁面
+
+某些頁面可能只想透過特定網址分享，例如草稿、閱讀筆記或活動頁。將 `site-nav-visible` 設為 `false`，它仍然可以用網址開啟，但不會出現在導覽列。
 
 ```html
 <meta name="site-nav-title" content="閱讀筆記" />
@@ -104,27 +122,36 @@
 <meta name="site-nav-visible" content="false" />
 ```
 
-若檔案名稱是 `pages/private-note.html`，網址會是：
+如果檔案名稱是 `pages/private-note.html`，網址會是：
 
 ```text
 https://nashsung.crestylon.org/pages/private-note.html
 ```
 
-> **提醒：** `false` 只是「不顯示在導覽列」，不是保密功能。GitHub Pages 是公開網站；知道網址的人仍然能看到頁面。
+> `false` 只代表「不顯示於導覽列」，不是保密功能。網站內容仍公開可讀；知道網址的人仍能開啟頁面。
 
-## 加入圖片、連結與基本 HTML
+## `<title>` 的一致性
 
-請先把圖片上傳到 `assets/images/`。因為你的頁面在 `pages/` 資料夾內，圖片路徑需要往上一層寫成 `../assets/images/檔名`。
+每個頁面的 `<title>` 建議固定使用：**頁面名稱 — 網站名稱**。例如：
+
+```html
+<title>凌極世界 — Nash Pages</title>
+```
+
+這樣瀏覽器分頁更容易辨認，搜尋結果也較能顯示清楚的頁面名稱。`site-nav-title` 是導覽列短名稱，`<title>` 則是瀏覽器與搜尋引擎辨識用的完整名稱；兩者最好對應，但不必完全相同。
+
+## 圖片、檔案命名與連結
+
+圖片請先上傳到 `assets/images/`。由於內容頁面放在 `pages/` 資料夾，圖片路徑要寫成 `../assets/images/檔名`。
 
 ```html
 <img src="../assets/images/my-photo.jpg" alt="用一句話描述圖片內容" />
-
-<a href="https://example.com" target="_blank" rel="noreferrer">
-  開啟外部連結
-</a>
+<a href="https://example.com" target="_blank" rel="noreferrer">開啟外部連結</a>
 ```
 
-| 你想放的內容 | 可用 HTML |
+請使用**英文小寫、連字號與副檔名**命名，例如 `my-photo.jpg`、`cestylon-notes-2026.pdf`。避免檔名包含空格、中文、特殊符號或容易混淆的大小寫。GitHub Pages 的檔案路徑區分大小寫，因此上傳 `My-Photo.jpg` 後，HTML 也必須完全寫成 `My-Photo.jpg`；寫成 `my-photo.jpg` 會找不到圖片。
+
+| 想放的內容 | 可用 HTML |
 |---|---|
 | 大標題 | `<h1>標題</h1>` |
 | 小標題 | `<h2>小標題</h2>` |
@@ -134,22 +161,35 @@ https://nashsung.crestylon.org/pages/private-note.html
 | 無序清單 | `<ul><li>第一點</li><li>第二點</li></ul>` |
 | 有序清單 | `<ol><li>第一步</li><li>第二步</li></ol>` |
 
-## 發布與檢查
+## 發布、快取與檢查
 
-你在 GitHub 按下 **Commit changes** 後，網站會開始更新。導覽列的頁面清單由工作流程自動整理，因此不用自己新增選單連結或調整 `pages.json`。完成後，請打開 <https://nashsung.crestylon.org/>，確認新頁面出現在正確位置，並點擊一次連結確認網址正常。
+提交後，GitHub 會先執行導覽清單更新，再發布網站。通常只需稍候片刻；若看見舊內容，可依序確認 GitHub 的 **Actions** 是否完成、重新整理頁面，或使用網址參數開啟，例如 `https://nashsung.crestylon.org/?v=2`。
 
-| 狀況 | 先檢查什麼 |
+若仍顯示舊版，可執行強制重新整理：Windows 使用 `Ctrl + F5`，macOS 使用 `Cmd + Shift + R`。這會跳過瀏覽器已儲存的舊快取，重新向網站要求最新版本。
+
+| 狀況 | 優先檢查 |
 |---|---|
-| 新頁面沒有出現在導覽列 | 三個 `<meta>` 是否都在 `<head>` 內；`site-nav-visible` 是否為 `true` |
-| 排序不對 | `site-nav-order` 是否填入純數字，例如 `20` 而不是 `第二頁` |
-| 頁面有開啟但沒有導覽列 | 是否保留 `data-navigation-list` 與 `../assets/js/nav.js` |
-| 圖片無法顯示 | 檔名大小寫是否一致；頁面中的圖片路徑是否以 `../assets/images/` 開頭 |
-| 網站還是舊內容 | 等待更新完成後重新整理，或加入網址參數，例如 `?v=2` |
+| 新頁面沒有出現在導覽列 | 三個 `<meta>` 是否全在 `<head>` 內；`site-nav-title` 是否有內容；`site-nav-visible` 是否為 `true` |
+| 排序不對 | `site-nav-order` 是否為純數字，例如 `20`，不是 `第二頁` |
+| 頁面有開啟但沒有導覽列 | 是否保留 `data-navigation-list` 與最下方的 `../assets/js/nav.js` |
+| 圖片無法顯示 | 檔名大小寫是否一致；路徑是否從 `../assets/images/` 開始 |
+| 網站還是舊內容 | 等待工作流程完成；重新整理、強制重新整理或加上 `?v=2` |
 
-## 不要做的事
+## 公開網站的安全提醒
 
-請不要在任何 HTML、JavaScript、Markdown 或圖片檔名中放入 API Key、Token、密碼或私人資料。GitHub Pages 的內容是公開的。也不要手動修改 `pages.json`，因為系統會根據 HTML 頁面的設定重新產生它。
+GitHub Pages 上的所有檔案都可能被公開讀取。請不要上傳 API Key、Token、密碼、私密文件、電話、住址、身分證件照片、個人帳號資料、未公開的真實姓名，或其他不希望被搜尋、下載與轉傳的資料。即使頁面設定為 `site-nav-visible="false"`，它也不是私人頁面。
 
-## 你的最短工作流程
+## 提交前快速檢查清單
 
-> 複製 `templates/page-template.html` → 存成 `pages/你的檔名.html` → 改三個 `<meta>` → 寫 HTML → Commit changes → 在網站確認導覽列。
+提交前，請確認以下項目：
+
+- [ ] 我是從 `templates/page-template.html` 複製建立頁面。
+- [ ] 三個 `<meta>` 都已填寫，而且位於 `<head>` 內。
+- [ ] `site-nav-title` 短而清楚，`site-nav-order` 是數字，`site-nav-visible` 是 `true` 或 `false`。
+- [ ] `<title>` 使用「頁面名稱 — 網站名稱」格式。
+- [ ] 圖片檔名為英文小寫與連字號，HTML 路徑及大小寫完全一致。
+- [ ] 我保留了 `site-header`、`data-navigation-list` 與 `nav.js`。
+- [ ] 我沒有放入 API Key、Token、密碼或私人資料。
+- [ ] 提交後已開啟網站，確認導覽順序、頁面連結與圖片正常。
+
+> **再提醒一次：** 不要手動編輯 `pages.json`。它是依照 HTML 中的導覽設定自動產生的結果。
