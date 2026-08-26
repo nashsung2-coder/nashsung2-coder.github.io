@@ -20,8 +20,9 @@
         --bg-deep: #050510;
         --bg-panel: rgba(10, 10, 30, 0.75);
         --border-glow: rgba(0, 240, 255, 0.35);
-        --text-main: #e0e8ff;
-        --text-dim: #8899cc;
+        /* 提高文字亮度與對比 */
+        --text-main: #ffffff;
+        --text-dim: #c5cde8;
       }
 
       * {
@@ -122,7 +123,7 @@
         left: 0;
         width: 100%;
         z-index: 100;
-        background: rgba(5, 5, 16, 0.7);
+        background: rgba(5, 5, 16, 0.85);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border-glow);
@@ -174,7 +175,7 @@
       }
 
       .site-nav a {
-        color: var(--text-dim);
+        color: #d0d8f0;
         text-decoration: none;
         padding: 0.4rem 0.8rem;
         letter-spacing: 1px;
@@ -185,10 +186,10 @@
 
       .site-nav a:hover,
       .site-nav a.active {
-        color: var(--neon-cyan);
+        color: #ffffff;
         border-color: var(--neon-cyan);
         text-shadow: 0 0 6px var(--neon-cyan);
-        background: rgba(0, 240, 255, 0.08);
+        background: rgba(0, 240, 255, 0.1);
       }
 
       .site-status {
@@ -220,13 +221,14 @@
       }
 
       .page-kicker {
-        color: var(--neon-magenta);
+        color: #ff6bb8;
         font-size: 0.75rem;
         letter-spacing: 4px;
         text-transform: uppercase;
         border-left: 2px solid var(--neon-magenta);
         padding-left: 0.8rem;
-        text-shadow: 0 0 6px rgba(255, 45, 149, 0.6);
+        text-shadow: 0 0 6px rgba(255, 45, 149, 0.7);
+        font-weight: 600;
       }
 
       h1,
@@ -240,42 +242,45 @@
         letter-spacing: 2px;
         background: linear-gradient(
           120deg,
-          #fff,
-          var(--neon-cyan),
-          var(--neon-purple)
+          #ffffff,
+          #7ef9ff,
+          #d4a5ff
         );
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.4));
+        filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5));
         animation: title-glow 4s ease-in-out infinite alternate;
       }
 
       @keyframes title-glow {
         0% {
-          filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.4));
+          filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.5));
         }
         100% {
-          filter: drop-shadow(0 0 25px rgba(185, 103, 255, 0.6));
+          filter: drop-shadow(0 0 25px rgba(185, 103, 255, 0.7));
         }
       }
 
       .lead {
-        font-size: 1.2rem;
-        color: var(--neon-cyan);
-        border-bottom: 1px dashed var(--border-glow);
+        font-size: 1.25rem;
+        color: #8ef6ff;
+        border-bottom: 1px dashed rgba(0, 240, 255, 0.5);
         padding-bottom: 1rem;
         letter-spacing: 1px;
+        font-weight: 500;
+        text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
       }
 
       h2 {
         margin-top: 3rem;
-        color: #fff;
+        color: #ffffff;
         font-size: 1.5rem;
         letter-spacing: 2px;
         display: flex;
         align-items: center;
         gap: 0.8rem;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
       }
 
       h2::before {
@@ -288,11 +293,16 @@
         content: "";
         flex: 1;
         height: 1px;
-        background: linear-gradient(90deg, var(--border-glow), transparent);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 240, 255, 0.5),
+          transparent
+        );
       }
 
       p {
-        color: var(--text-main);
+        color: #f0f4ff;
+        text-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
       }
 
       ul {
@@ -304,34 +314,40 @@
         padding: 0.5rem 0;
         padding-left: 1.2rem;
         position: relative;
-        color: var(--text-dim);
+        color: #d8e0f8;
         transition: all 0.3s;
       }
 
       ul li::before {
         content: "◈";
-        color: var(--neon-purple);
+        color: #d4a5ff;
         position: absolute;
         left: 0;
         font-size: 0.8rem;
         top: 0.65rem;
+        text-shadow: 0 0 6px rgba(185, 103, 255, 0.7);
       }
 
       ul li:hover {
-        color: #fff;
+        color: #ffffff;
         transform: translateX(4px);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      }
+
+      ul li strong {
+        color: #ffffff;
       }
 
       a {
-        color: var(--neon-cyan);
+        color: #7ef9ff;
         text-decoration: none;
-        border-bottom: 1px dotted rgba(0, 240, 255, 0.4);
+        border-bottom: 1px dotted rgba(126, 249, 255, 0.5);
         transition: all 0.3s;
       }
 
       a:hover {
-        color: #fff;
-        border-bottom-color: #fff;
+        color: #ffffff;
+        border-bottom-color: #ffffff;
         text-shadow: 0 0 8px var(--neon-cyan);
       }
 
@@ -363,10 +379,10 @@
         z-index: 2;
         text-align: center;
         padding: 2rem;
-        color: var(--text-dim);
+        color: #c0c8e8;
         font-size: 0.8rem;
         letter-spacing: 1px;
-        border-top: 1px solid rgba(0, 240, 255, 0.15);
+        border-top: 1px solid rgba(0, 240, 255, 0.2);
       }
 
       /* 滑鼠光點 */
@@ -428,7 +444,7 @@
 
     <!-- 首頁主要內容 -->
     <main class="page-content">
-      <!-- 主標區（已更新文字） -->
+      <!-- 主標區 -->
       <p class="page-kicker reveal visible">HOME / 00</p>
       <h1 class="reveal visible">歡迎您來到宋嵐緒的個人頁面</h1>
       <p class="lead reveal visible">
@@ -574,7 +590,7 @@
         class Particle {
           constructor() {
             this.reset();
-            this.z = Math.random(); // 深度（用於視差）
+            this.z = Math.random();
           }
           reset() {
             this.x = Math.random() * width;
@@ -611,7 +627,6 @@
             ctx.fillStyle = this.color + alpha + ")";
             ctx.fill();
 
-            // 發光
             if (this.size > 1.2) {
               ctx.beginPath();
               ctx.arc(this.x, this.y, size * 2.5, 0, Math.PI * 2);
@@ -621,7 +636,6 @@
           }
         }
 
-        // 流星粒子
         class ShootingStar {
           constructor() {
             this.spawn();
@@ -678,7 +692,6 @@
           }
         }
 
-        // 初始化粒子
         const particleCount = Math.min(180, Math.floor(window.innerWidth / 6));
         for (let i = 0; i < particleCount; i++) {
           particles.push(new Particle());
@@ -688,7 +701,6 @@
           shootingStars.push(new ShootingStar());
         }
 
-        // 滑鼠追蹤
         document.addEventListener("mousemove", (e) => {
           mouseX = e.clientX;
           mouseY = e.clientY;
@@ -699,23 +711,18 @@
           }
         });
 
-        // 滾動追蹤
         window.addEventListener("scroll", () => {
           targetScrollY = window.scrollY;
         });
 
-        // 動畫循環
         function animate() {
-          // 平滑滾動值
           smoothScrollY += (targetScrollY - smoothScrollY) * 0.08;
           scrollY = smoothScrollY;
 
           ctx.clearRect(0, 0, width, height);
 
-          // 繪製粒子
           particles.forEach((p) => {
             p.update();
-            // 滾動視差效果：不同深度的粒子以不同速度移動
             const parallaxY = p.y - scrollY * p.z * 0.15;
             const drawY = ((parallaxY % height) + height) % height;
             const originalY = p.y;
@@ -724,13 +731,11 @@
             p.y = originalY;
           });
 
-          // 繪製流星
           shootingStars.forEach((s) => {
             s.update();
             s.draw();
           });
 
-          // 滑鼠附近的粒子加速
           if (mouseX > -9999) {
             particles.forEach((p) => {
               const dx = p.x - mouseX;
