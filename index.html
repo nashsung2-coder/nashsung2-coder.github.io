@@ -1,29 +1,721 @@
 <!doctype html>
 <html lang="zh-Hant">
   <head>
-    <!-- 導覽設定：首頁會固定顯示在第一位。 -->
-    <meta name="site-nav-title" content="首頁" />
-    <meta name="site-nav-order" content="0" />
-    <meta name="site-nav-visible" content="true" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="宋嵐緒個人頁面的可排序靜態網站框架。" />
-    <link rel="icon" type="image/png" href="assets/images/avatar-circle.png" />
-    <link rel="stylesheet" href="assets/css/site.css?v=2" />
-    <title>宋嵐緒個人頁面</title>
+    <title>宋嵐緒（Nash Sung） — Nash Pages</title>
+    <link rel="stylesheet" href="assets/css/site.css" />
+
+    <!-- 賽博龐克 / 太空主題樣式 -->
+    <style>
+      :root {
+        --neon-cyan: #00f0ff;
+        --neon-magenta: #ff2d95;
+        --neon-purple: #b967ff;
+        --neon-green: #39ff14;
+        --bg-deep: #050510;
+        --bg-panel: rgba(10, 10, 30, 0.75);
+        --border-glow: rgba(0, 240, 255, 0.35);
+        --text-main: #e0e8ff;
+        --text-dim: #8899cc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg-deep);
+        color: var(--text-main);
+        font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+        line-height: 1.8;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* 太空粒子背景 */
+      #particle-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      /* 掃描線效果 */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.03) 2px,
+          rgba(0, 0, 0, 0.03) 4px
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* 霓虹光暈背景 */
+      body::after {
+        content: "";
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+            ellipse at 20% 50%,
+            rgba(0, 240, 255, 0.06) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 80% 20%,
+            rgba(255, 45, 149, 0.05) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 50% 80%,
+            rgba(185, 103, 255, 0.04) 0%,
+            transparent 60%
+          );
+        z-index: 0;
+        pointer-events: none;
+        animation: nebula-drift 30s ease-in-out infinite alternate;
+      }
+
+      @keyframes nebula-drift {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(-2%, 1.5%) scale(1.05);
+        }
+        66% {
+          transform: translate(1.5%, -1%) scale(0.95);
+        }
+        100% {
+          transform: translate(-1%, -2%) scale(1.02);
+        }
+      }
+
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        background: rgba(5, 5, 16, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-glow);
+        padding: 0.8rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .site-brand {
+        color: var(--neon-cyan);
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: 2px;
+        font-size: 1.1rem;
+        text-shadow: 0 0 8px var(--neon-cyan), 0 0 20px rgba(0, 240, 255, 0.4);
+        transition: all 0.3s;
+      }
+
+      .site-brand:hover {
+        text-shadow: 0 0 12px var(--neon-cyan), 0 0 30px rgba(0, 240, 255, 0.7);
+        color: #fff;
+      }
+
+      .site-nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        padding: 0.4rem 0.8rem;
+        letter-spacing: 1px;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+        border: 1px solid transparent;
+      }
+
+      .site-nav a:hover,
+      .site-nav a.active {
+        color: var(--neon-cyan);
+        border-color: var(--neon-cyan);
+        text-shadow: 0 0 6px var(--neon-cyan);
+        background: rgba(0, 240, 255, 0.08);
+      }
+
+      .site-status {
+        color: var(--neon-green);
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+        animation: pulse-status 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-status {
+        0%,
+        100% {
+          opacity: 1;
+          text-shadow: 0 0 4px var(--neon-green);
+        }
+        50% {
+          opacity: 0.5;
+          text-shadow: none;
+        }
+      }
+
+      .page-content {
+        position: relative;
+        z-index: 2;
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 7rem 2rem 5rem;
+      }
+
+      .page-kicker {
+        color: var(--neon-magenta);
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        border-left: 2px solid var(--neon-magenta);
+        padding-left: 0.8rem;
+        text-shadow: 0 0 6px rgba(255, 45, 149, 0.6);
+      }
+
+      h1,
+      h2 {
+        position: relative;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        font-weight: 900;
+        letter-spacing: 2px;
+        background: linear-gradient(120deg, #fff, var(--neon-cyan), var(--neon-purple));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: none;
+        filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.4));
+        animation: title-glow 4s ease-in-out infinite alternate;
+      }
+
+      @keyframes title-glow {
+        0% {
+          filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.4));
+        }
+        100% {
+          filter: drop-shadow(0 0 25px rgba(185, 103, 255, 0.6));
+        }
+      }
+
+      .lead {
+        font-size: 1.2rem;
+        color: var(--neon-cyan);
+        border-bottom: 1px dashed var(--border-glow);
+        padding-bottom: 1rem;
+        letter-spacing: 1px;
+      }
+
+      h2 {
+        margin-top: 3rem;
+        color: #fff;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      h2::before {
+        content: "▸";
+        color: var(--neon-cyan);
+        font-size: 1.2rem;
+      }
+
+      h2::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, var(--border-glow), transparent);
+      }
+
+      p {
+        color: var(--text-main);
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      ul li {
+        padding: 0.5rem 0;
+        padding-left: 1.2rem;
+        position: relative;
+        color: var(--text-dim);
+        transition: all 0.3s;
+      }
+
+      ul li::before {
+        content: "◈";
+        color: var(--neon-purple);
+        position: absolute;
+        left: 0;
+        font-size: 0.8rem;
+        top: 0.65rem;
+      }
+
+      ul li:hover {
+        color: #fff;
+        transform: translateX(4px);
+      }
+
+      a {
+        color: var(--neon-cyan);
+        text-decoration: none;
+        border-bottom: 1px dotted rgba(0, 240, 255, 0.4);
+        transition: all 0.3s;
+      }
+
+      a:hover {
+        color: #fff;
+        border-bottom-color: #fff;
+        text-shadow: 0 0 8px var(--neon-cyan);
+      }
+
+      /* 滾動動畫 */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 0.15s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.45s;
+      }
+
+      .site-footer {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-dim);
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        border-top: 1px solid rgba(0, 240, 255, 0.15);
+      }
+
+      /* 滑鼠光點 */
+      #cursor-glow {
+        position: fixed;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 240, 255, 0.06) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+        z-index: 0;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s;
+      }
+
+      /* 響應式 */
+      @media (max-width: 600px) {
+        .site-header {
+          flex-wrap: wrap;
+          padding: 0.6rem 1rem;
+          gap: 0.4rem;
+        }
+        .site-status {
+          display: none;
+        }
+        .page-content {
+          padding: 6rem 1.2rem 3rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- 保留此導覽列與 nav.js；新增頁面時不需要手動修改導覽列。 -->
+    <!-- 太空粒子背景 -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- 滑鼠追蹤光暈 -->
+    <div id="cursor-glow"></div>
+
+    <!-- 全站導覽列 -->
     <header class="site-header" data-site-navigation>
-      <a class="site-brand" href="/" aria-label="宋嵐緒個人頁面首頁">
-        <img class="site-brand-avatar" src="assets/images/avatar-circle.png" alt="宋嵐緒的角色插圖" />
-        <span>宋嵐緒個人頁面</span>
-      </a>
+      <a class="site-brand" href="/">NASH / PAGES</a>
       <nav class="site-nav" aria-label="網站導覽" data-navigation-list></nav>
       <span class="site-status">STATIC INDEX</span>
     </header>
-    <!-- 首頁保持空白。請在 pages/ 內新增 HTML 頁面。 -->
-    <main class="empty-home" aria-label="空白首頁"></main>
+
+    <!-- 首頁主要內容 -->
+    <main class="page-content">
+      <!-- 主標區 -->
+      <p class="page-kicker reveal visible">HOME / 00</p>
+      <h1 class="reveal visible">我是宋嵐緒（Nash Sung）</h1>
+      <p class="lead reveal visible">高一新生、建造者、凌極世界發起人。</p>
+      <p class="reveal visible">我相信選擇的權利，並用自己的方式，把它做成一件事。</p>
+
+      <!-- 關於我 -->
+      <h2 class="reveal">關於我</h2>
+      <p class="reveal reveal-delay-1">
+        我曾經很努力地想成為一個符合標準的人。
+      </p>
+      <p class="reveal reveal-delay-1">
+        比賽、成績、老師眼中的好學生，我都試過。但後來發現，那些標準讓我離自己越來越遠，
+        也讓我開始懷疑：為什麼我們只能走這些被安排好的路？為什麼選擇那麼少？為什麼離開的成本那麼高？
+      </p>
+      <p class="reveal reveal-delay-2">這些問題，我沒有答案。所以我開始動手。</p>
+      <p class="reveal reveal-delay-2">
+        我學寫程式，學著跟 AI 協作，做網站、寫文件，把腦中的想法一個一個變成真實存在。
+        慢慢地，這些嘗試長成了一個計畫，我把它叫做「凌極世界」。
+      </p>
+      <p class="reveal reveal-delay-3">
+        凌極世界是一個關於「選擇」的計畫。我相信每個人都有權利選擇自己想要的生活方式，
+        而不是被迫妥協於現實、制度或別人的期待。這條路很長，也很難，但我想走下去。
+      </p>
+      <p class="reveal reveal-delay-3">
+        如果你也曾經有過類似的疑問，歡迎來看看，也歡迎跟我聊聊。
+      </p>
+
+      <!-- 我正在做的事 -->
+      <h2 class="reveal">我正在做的事</h2>
+      <ul>
+        <li class="reveal reveal-delay-1">
+          <strong>凌極世界</strong>：一個關於制度、選擇與未來的長期計畫。
+        </li>
+        <li class="reveal reveal-delay-2">
+          <strong>INN 星際新聞網</strong>：以世界地圖與雙語新聞為核心的實驗性平台。
+        </li>
+        <li class="reveal reveal-delay-2">
+          <strong>Bridge Agent</strong>：架設於雲端的個人 AI Agent 系統。
+        </li>
+        <li class="reveal reveal-delay-3">
+          <strong>學習入口設計</strong>：用遊戲化方式重新安排學習資源，和 AI 協作產生完整設計文件。
+        </li>
+      </ul>
+
+      <!-- 聯絡方式 -->
+      <h2 class="reveal">聯絡我</h2>
+      <p class="reveal reveal-delay-1">
+        信箱：<a href="mailto:nashsung2@gmail.com">nashsung2@gmail.com</a><br />
+        任何合作、建議、或你想說的話，都可以寄到這裡。
+      </p>
+      <p class="reveal reveal-delay-2">LINE：nash_0928<br />電話：0972650455</p>
+
+      <!-- 最重要的連結 -->
+      <h2 class="reveal">最重要的連結</h2>
+      <ul>
+        <li class="reveal reveal-delay-1">
+          凌極世界暫時官網：<a
+            href="https://sites.google.com/view/crestylonnewworld/"
+            target="_blank"
+            rel="noreferrer"
+            >https://sites.google.com/view/crestylonnewworld/</a
+          >
+        </li>
+        <li class="reveal reveal-delay-1">
+          白皮書：<a
+            href="https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view"
+            target="_blank"
+            rel="noreferrer"
+            >https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view</a
+          >
+        </li>
+        <li class="reveal reveal-delay-2">
+          執行中網頁：<a href="https://inn.crestylon.org" target="_blank" rel="noreferrer"
+            >inn.crestylon.org</a
+          >
+        </li>
+        <li class="reveal reveal-delay-2">
+          小說背景文件：<a
+            href="https://drive.google.com/file/d/1Bsdvj_d8Ha67rZ2m837vm6k1YWhWisSV/view?usp=drive_link"
+            target="_blank"
+            rel="noreferrer"
+            >https://drive.google.com/file/d/1Bsdvj_d8Ha67rZ2m837vm6k1YWhWisSV/view?usp=drive_link</a
+          >
+        </li>
+        <li class="reveal reveal-delay-3">
+          加入表單：<a
+            href="https://sites.google.com/view/crestylonnewworld/加入我們-join-us"
+            target="_blank"
+            rel="noreferrer"
+            >https://sites.google.com/view/crestylonnewworld/加入我們-join-us</a
+          >
+        </li>
+      </ul>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="site-footer">© 2026 宋嵐緒 Nash Sung. 保留所有權利。</footer>
+
+    <!-- 自動導覽列 -->
     <script src="assets/js/nav.js"></script>
+
+    <!-- 粒子特效與互動 -->
+    <script>
+      (function () {
+        // ========== 太空粒子系統 ==========
+        const canvas = document.getElementById("particle-canvas");
+        const ctx = canvas.getContext("2d");
+        let width, height;
+        let particles = [];
+        let mouseX = -9999;
+        let mouseY = -9999;
+        let scrollY = window.scrollY;
+        let targetScrollY = scrollY;
+        let smoothScrollY = scrollY;
+
+        function resize() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener("resize", resize);
+
+        // 粒子類型
+        const COLORS = [
+          "rgba(0, 240, 255,",
+          "rgba(255, 45, 149,",
+          "rgba(185, 103, 255,",
+          "rgba(255, 255, 255,",
+          "rgba(57, 255, 20,",
+        ];
+
+        class Particle {
+          constructor() {
+            this.reset();
+            this.z = Math.random(); // 深度（用於視差）
+          }
+          reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.3;
+            this.speedY = (Math.random() - 0.5) * 0.2 - 0.05;
+            this.color =
+              COLORS[Math.floor(Math.random() * COLORS.length)];
+            this.opacity = Math.random() * 0.6 + 0.2;
+            this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+            this.twinklePhase = Math.random() * Math.PI * 2;
+          }
+          update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.twinklePhase += this.twinkleSpeed;
+
+            if (
+              this.x < -10 ||
+              this.x > width + 10 ||
+              this.y < -10 ||
+              this.y > height + 10
+            ) {
+              this.reset();
+            }
+          }
+          draw() {
+            const twinkle = Math.sin(this.twinklePhase) * 0.3 + 0.7;
+            const alpha = this.opacity * twinkle;
+            const size = this.size * twinkle + 0.3;
+
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color + alpha + ")";
+            ctx.fill();
+
+            // 發光
+            if (this.size > 1.2) {
+              ctx.beginPath();
+              ctx.arc(this.x, this.y, size * 2.5, 0, Math.PI * 2);
+              ctx.fillStyle = this.color + alpha * 0.2 + ")";
+              ctx.fill();
+            }
+          }
+        }
+
+        // 流星粒子
+        class ShootingStar {
+          constructor() {
+            this.spawn();
+          }
+          spawn() {
+            this.x = Math.random() * width * 1.2 - width * 0.1;
+            this.y = Math.random() * height * 0.4;
+            this.length = Math.random() * 80 + 40;
+            this.speed = Math.random() * 4 + 3;
+            this.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.3;
+            this.opacity = Math.random() * 0.7 + 0.3;
+            this.life = 0;
+            this.maxLife = 60 + Math.random() * 40;
+            this.color = Math.random() > 0.5 ? "0, 240, 255" : "255, 45, 149";
+          }
+          update() {
+            this.x += Math.cos(this.angle) * this.speed;
+            this.y += Math.sin(this.angle) * this.speed;
+            this.life++;
+            if (
+              this.life > this.maxLife ||
+              this.x > width + 100 ||
+              this.y > height + 100
+            ) {
+              this.spawn();
+            }
+          }
+          draw() {
+            const fade =
+              this.life < 15
+                ? this.life / 15
+                : 1 - (this.life - 15) / this.maxLife;
+            const gradient = ctx.createLinearGradient(
+              this.x,
+              this.y,
+              this.x - Math.cos(this.angle) * this.length,
+              this.y - Math.sin(this.angle) * this.length
+            );
+            gradient.addColorStop(
+              0,
+              "rgba(" + this.color + ", " + this.opacity * fade + ")"
+            );
+            gradient.addColorStop(
+              1,
+              "rgba(" + this.color + ", 0)"
+            );
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(
+              this.x - Math.cos(this.angle) * this.length,
+              this.y - Math.sin(this.angle) * this.length
+            );
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          }
+        }
+
+        // 初始化粒子
+        const particleCount = Math.min(180, Math.floor(window.innerWidth / 6));
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+        const shootingStars = [];
+        for (let i = 0; i < 3; i++) {
+          shootingStars.push(new ShootingStar());
+        }
+
+        // 滑鼠追蹤
+        document.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          const glow = document.getElementById("cursor-glow");
+          if (glow) {
+            glow.style.left = mouseX + "px";
+            glow.style.top = mouseY + "px";
+          }
+        });
+
+        // 滾動追蹤
+        window.addEventListener("scroll", () => {
+          targetScrollY = window.scrollY;
+        });
+
+        // 動畫循環
+        function animate() {
+          // 平滑滾動值
+          smoothScrollY += (targetScrollY - smoothScrollY) * 0.08;
+          scrollY = smoothScrollY;
+
+          ctx.clearRect(0, 0, width, height);
+
+          // 繪製粒子
+          particles.forEach((p) => {
+            p.update();
+            // 滾動視差效果：不同深度的粒子以不同速度移動
+            const parallaxY = p.y - scrollY * p.z * 0.15;
+            const drawY = ((parallaxY % height) + height) % height;
+            const originalY = p.y;
+            p.y = drawY;
+            p.draw();
+            p.y = originalY;
+          });
+
+          // 繪製流星
+          shootingStars.forEach((s) => {
+            s.update();
+            s.draw();
+          });
+
+          // 滑鼠附近的粒子加速
+          if (mouseX > -9999) {
+            particles.forEach((p) => {
+              const dx = p.x - mouseX;
+              const dy = p.y - mouseY;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 120) {
+                const force = (120 - dist) / 120 * 0.5;
+                p.x += (dx / dist) * force;
+                p.y += (dy / dist) * force;
+              }
+            });
+          }
+
+          requestAnimationFrame(animate);
+        }
+        animate();
+
+        // ========== 滾動文字動畫 ==========
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px",
+          }
+        );
+
+        document.querySelectorAll(".reveal").forEach((el) => {
+          if (!el.classList.contains("visible")) {
+            observer.observe(el);
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
