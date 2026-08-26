@@ -66,13 +66,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- title 建議固定採用「頁面名稱 — 網站名稱」。 -->
-    <title>關於我 — Nash Pages</title>
+    <title>關於我 — 宋嵐緒</title>
+    <link rel="icon" type="image/png" href="../assets/images/avatar-circle.png" />
     <link rel="stylesheet" href="../assets/css/site.css" />
   </head>
   <body>
     <!-- 請保留 header 與 nav.js；它們提供全站一致的自動導覽列。 -->
     <header class="site-header" data-site-navigation>
-      <a class="site-brand" href="/">NASH / PAGES</a>
+      <a class="site-brand" href="/" aria-label="宋嵐緒首頁">
+        <img class="site-brand-avatar" src="../assets/images/avatar-circle.png" alt="宋嵐緒的角色插圖" />
+        <span>宋嵐緒</span>
+      </a>
       <nav class="site-nav" aria-label="網站導覽" data-navigation-list></nav>
       <span class="site-status">STATIC INDEX</span>
     </header>
@@ -97,7 +101,8 @@
 | Class | 用途 | 建議做法 |
 |---|---|---|
 | `site-header` | 頂端固定導覽列外框 | 請保留 |
-| `site-brand` | 左側網站名稱連結 | 可改文字，不要移除連結 |
+| `site-brand` | 左側的角色圖示與「宋嵐緒」首頁連結 | 可改名稱文字，不要移除圖片與連結 |
+| `site-brand-avatar` | 圓形角色圖示 | 請保留圖片路徑與 `alt` 文字 |
 | `site-nav` | 自動插入導覽連結的位置 | 請保留 `data-navigation-list` |
 | `page-content` | 內容區域的最大寬度、間距與閱讀排版 | 放所有主要內容 |
 | `page-kicker` | 標題上方的小字分類或編號 | 例如 `ABOUT / 10`、`NOTE / 20` |
