@@ -1,0 +1,11 @@
+{
+  "format": 1,
+  "pages": [
+    {
+      "path": "/",
+      "title": "首頁",
+      "order": 0,
+      "visible": true
+    }
+  ]
+}
