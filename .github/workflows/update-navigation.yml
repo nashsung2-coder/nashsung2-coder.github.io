@@ -1,0 +1,35 @@
+name: Update navigation list
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "pages/**/*.html"
+      - "scripts/build_navigation.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-navigation:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python scripts/build_navigation.py
+      - name: Commit generated navigation list
+        run: |
+          if git diff --quiet -- pages.json; then
+            echo "Navigation list is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pages.json
+          git commit -m "chore: update navigation list"
+          git push
