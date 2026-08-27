@@ -1,4 +1,11 @@
 {
   "format": 1,
-  "pages": []
+  "pages": [
+    {
+      "path": "/pages/experience.html",
+      "title": "個人經歷",
+      "order": 20,
+      "visible": true
+    }
+  ]
 }
