@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>宋嵐緒（Nash Sung） — Nash Pages</title>
+    <title>宋嵐緒的個人網站 — Nash Pages</title>
 
     <!-- 網站圖示：固定角色頭像，請勿更換 -->
     <link rel="icon" type="image/png" href="assets/images/avatar-circle.png" />
@@ -20,7 +20,6 @@
         --bg-deep: #050510;
         --bg-panel: rgba(10, 10, 30, 0.75);
         --border-glow: rgba(0, 240, 255, 0.35);
-        /* 提高文字亮度與對比 */
         --text-main: #ffffff;
         --text-dim: #c5cde8;
       }
@@ -240,12 +239,7 @@
         font-size: clamp(2rem, 5vw, 3.2rem);
         font-weight: 900;
         letter-spacing: 2px;
-        background: linear-gradient(
-          120deg,
-          #ffffff,
-          #7ef9ff,
-          #d4a5ff
-        );
+        background: linear-gradient(120deg, #ffffff, #7ef9ff, #d4a5ff);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -293,11 +287,7 @@
         content: "";
         flex: 1;
         height: 1px;
-        background: linear-gradient(
-          90deg,
-          rgba(0, 240, 255, 0.5),
-          transparent
-        );
+        background: linear-gradient(90deg, rgba(0, 240, 255, 0.5), transparent);
       }
 
       p {
@@ -305,10 +295,10 @@
         text-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
       }
 
-      /* 特別強化關於我段落文字的清晰度 */
-      .about-text p {
+      /* 所有內文強化清晰度 */
+      .content-text p {
         color: #ffffff;
-        text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+        text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
       }
 
       ul {
@@ -449,155 +439,57 @@
     </header>
 
     <!-- 首頁主要內容 -->
-    <main class="page-content">
+    <main class="page-content content-text">
       <!-- 主標區 -->
       <p class="page-kicker reveal visible">HOME / 00</p>
       <h1 class="reveal visible">歡迎您來到宋嵐緒的個人頁面</h1>
-      <p class="lead reveal visible">
-        除了認識宋嵐緒，你還可以了解到一個正在進行中的計畫
-      </p>
-      <p class="reveal visible">高一新生、建造者、凌極世界發起人。</p>
-      <p class="reveal visible">
-        我相信選擇的權利，並用自己的方式，把它做成一件事。
-      </p>
+      <p class="lead reveal visible">我是宋嵐緒，高一新生。</p>
 
-      <!-- 關於我 -->
-      <h2 class="reveal">關於我</h2>
-      <div class="about-text">
-        <p class="reveal reveal-delay-1">
-          我曾經很努力地想成為一個符合標準的人。
-        </p>
-        <p class="reveal reveal-delay-1">
-          比賽、成績、老師眼中的好學生，我都試過。但後來發現，那些標準讓我離自己越來越遠，
-          也讓我開始懷疑：為什麼我們只能走這些被安排好的路？為什麼選擇那麼少？為什麼離開的成本那麼高？
-        </p>
-        <p class="reveal reveal-delay-2">這些問題，我沒有答案。所以我開始動手。</p>
-        <p class="reveal reveal-delay-2">
-          我學寫程式，學著跟 AI 協作，做網站、寫文件，把腦中的想法一個一個變成真實存在。
-          慢慢地，這些嘗試長成了一個計畫，我把它叫做「凌極世界」。
-        </p>
-        <p class="reveal reveal-delay-3">
-          凌極世界是一個關於「選擇」的計畫。我相信每個人都有權利選擇自己想要的生活方式，
-          而不是被迫妥協於現實、制度或別人的期待。這條路很長，也很難，但我想走下去。
-        </p>
-        <p class="reveal reveal-delay-3">
-          如果你也曾經有過類似的疑問，歡迎來看看，也歡迎跟我聊聊。
-        </p>
-      </div>
-
-      <!-- 凌極世界（新詳細區塊） -->
-      <h2 class="reveal">凌極世界</h2>
+      <!-- 自我介紹 -->
       <p class="reveal reveal-delay-1">
-        凌極世界是一套試圖回答以下問題的長期計畫：
+        我曾經花很多時間試圖去滿足一套標準。成績、比賽、獎狀、大人的期待。我以為只要做得好，我就會成為一個被認可的人。後來我發現，那套標準是別人走過的路。我走上去，只會成為另一個符合期待的人，而不是我自己。
       </p>
-      <ul>
-        <li class="reveal reveal-delay-1">
-          <strong>制度的規則是誰定的？</strong> 為什麼制定規則的永遠是少數人，而我們只負責遵守？
-        </li>
-        <li class="reveal reveal-delay-1">
-          <strong>為什麼選擇的成本這麼高？</strong> 不走傳統的路，為什麼就代表不穩定、代表失敗？
-        </li>
-        <li class="reveal reveal-delay-2">
-          <strong>人的價值只能被金錢定義嗎？</strong> 那些真正支撐社會運作的付出，為什麼總是被忽略？
-        </li>
-        <li class="reveal reveal-delay-2">
-          <strong>制度完成使命之後，能不能退場？</strong> 還是所有制度一旦建立，就只會不斷強化自己的統治正當性？
-        </li>
-      </ul>
+      <p class="reveal reveal-delay-2">所以我開始問問題。</p>
       <p class="reveal reveal-delay-2">
-        凌極世界的核心，是讓每一個人都有選擇的權利，讓制度可以誕生、演化、互相競爭，也讓制度的退出成本，不再高得讓人動彈不得。
+        為什麼規則是少數人制定的？為什麼離開一條路要付出那麼大的代價？為什麼很多真正重要的付出，最後只能用錢去衡量？為什麼一個制度建立之後，永遠不會自己告訴你：任務完成了，你可以有其他選擇。
       </p>
-      <p class="reveal reveal-delay-3">它包含幾個部分：</p>
-      <ul>
-        <li class="reveal reveal-delay-1">
-          <strong>小說世界：</strong> 一個與現實同步建造的故事宇宙，主角有各自的網站與社群帳號。
-        </li>
-        <li class="reveal reveal-delay-1">
-          <strong>新聞網 INN：</strong> 以星際視角，重新看待現實世界的權力與社會議題，提供雙語閱讀。（點擊連結到 <a href="https://inn.crestylon.org" target="_blank" rel="noreferrer">inn.crestylon.org</a>）
-        </li>
-        <li class="reveal reveal-delay-2">
-          <strong>白皮書：</strong> 完整的制度框架、設計邏輯與未來路徑。（<a href="https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view" target="_blank" rel="noreferrer">查看白皮書</a>）
-        </li>
-        <li class="reveal reveal-delay-2">
-          <strong>小任務大聯盟：</strong> 一套試圖重新定義「貢獻」與「回報」的協作系統，尚未完成，持續建造中。
-        </li>
-        <li class="reveal reveal-delay-3">
-          <strong>AI 基礎設施：</strong> 包括 PSDL（人格描述協議）與 MIL（記憶互通層），都是為了解決 AI 人格與記憶被平台綁死的問題。
-        </li>
-      </ul>
       <p class="reveal reveal-delay-3">
-        很多人的人生，最後都停在「妥協」兩個字。我的想法是，讓人生可以有「選擇」。
+        這些問題，後來變成了一個計畫。我把這個計畫叫做凌極世界。
+      </p>
+      <p class="reveal reveal-delay-3">
+        它不是我拿來證明自己多厲害的工具。它是我對這個社會的提問，是我嘗試把自己看到的問題，一個一個拆開來，再一個一個試著解決的過程。
       </p>
 
-      <!-- 我正在做的事（更新清單） -->
-      <h2 class="reveal">我在做的事</h2>
+      <!-- 我目前做的東西 -->
+      <h2 class="reveal">我目前做的東西</h2>
       <ul>
         <li class="reveal reveal-delay-1">
-          寫白皮書，把制度設計的想法整理成可以被討論的文字。
+          <strong>INN 星際新聞網</strong>：一個雙語新聞平台，用地圖去選擇想看的新聞，同時練英文。（<a href="https://inn.crestylon.org" target="_blank" rel="noreferrer">inn.crestylon.org</a>）
         </li>
         <li class="reveal reveal-delay-1">
-          經營小說角色社群，讓故事世界與真實世界產生連結。
+          <strong>Cool English 星辰啟航</strong>：這是我為一個英文學習平台設計的遊戲化入口原型。
         </li>
         <li class="reveal reveal-delay-2">
-          開發與維護自己的 AI 系統，用最少的資源做最大的事。
+          <strong>均一學習宇宙</strong>：這是我為均一平台設計的學習入口概念。
         </li>
-        <li class="reveal reveal-delay-3">
-          嘗試與教育平台合作，把遊戲化與制度設計的思維帶進學習場域。
+        <li class="reveal reveal-delay-2">
+          <strong>白皮書</strong>：裡面有整個凌極世界的制度框架，想深入理解的人可以看。（<a href="https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view" target="_blank" rel="noreferrer">查看白皮書</a>）
         </li>
       </ul>
+
+      <p class="reveal reveal-delay-3">
+        我把這些東西做出來，只是想證明，一個高中生也可以嘗試去解決那些看起來很遠、但其實離我們很近的問題。
+      </p>
 
       <!-- 聯絡方式 -->
       <h2 class="reveal">聯絡我</h2>
       <p class="reveal reveal-delay-1">
-        信箱：<a href="mailto:nashsung2@gmail.com">nashsung2@gmail.com</a><br />
-        任何合作、建議、或你想說的話，都可以寄到這裡。
+        如果你看完之後，有任何想法，或是你也有一些想做的事情，歡迎寫信給我：<a href="mailto:nashsung2@gmail.com">nashsung2@gmail.com</a>
       </p>
-      <p class="reveal reveal-delay-2">LINE：nash_0928<br />電話：0972650455</p>
 
-      <!-- 最重要的連結 -->
-      <h2 class="reveal">最重要的連結</h2>
-      <ul>
-        <li class="reveal reveal-delay-1">
-          凌極世界暫時官網：<a
-            href="https://sites.google.com/view/crestylonnewworld/"
-            target="_blank"
-            rel="noreferrer"
-            >https://sites.google.com/view/crestylonnewworld/</a
-          >
-        </li>
-        <li class="reveal reveal-delay-1">
-          白皮書：<a
-            href="https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view"
-            target="_blank"
-            rel="noreferrer"
-            >https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view</a
-          >
-        </li>
-        <li class="reveal reveal-delay-2">
-          執行中網頁：<a
-            href="https://inn.crestylon.org"
-            target="_blank"
-            rel="noreferrer"
-            >inn.crestylon.org</a
-          >
-        </li>
-        <li class="reveal reveal-delay-2">
-          小說背景文件：<a
-            href="https://drive.google.com/file/d/1Bsdvj_d8Ha67rZ2m837vm6k1YWhWisSV/view?usp=drive_link"
-            target="_blank"
-            rel="noreferrer"
-            >https://drive.google.com/file/d/1Bsdvj_d8Ha67rZ2m837vm6k1YWhWisSV/view?usp=drive_link</a
-          >
-        </li>
-        <li class="reveal reveal-delay-3">
-          加入表單：<a
-            href="https://sites.google.com/view/crestylonnewworld/加入我們-join-us"
-            target="_blank"
-            rel="noreferrer"
-            >https://sites.google.com/view/crestylonnewworld/加入我們-join-us</a
-          >
-        </li>
-      </ul>
+      <p class="reveal reveal-delay-3" style="margin-top: 3rem; font-style: italic; color: #8ef6ff;">
+        網站還在慢慢長。謝謝你來。
+      </p>
     </main>
 
     <!-- 頁尾 -->
