@@ -1,4 +1,11 @@
 {
   "format": 1,
-  "pages": []
+  "pages": [
+    {
+      "path": "/pages/crestylon.html",
+      "title": "凌極世界",
+      "order": 10,
+      "visible": true
+    }
+  ]
 }
