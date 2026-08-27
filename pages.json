@@ -6,6 +6,12 @@
       "title": "個人經歷",
       "order": 20,
       "visible": true
+    },
+    {
+      "path": "/pages/words.html",
+      "title": "想說的話",
+      "order": 30,
+      "visible": true
     }
   ]
 }
