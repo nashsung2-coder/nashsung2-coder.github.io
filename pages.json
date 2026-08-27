@@ -8,6 +8,12 @@
       "visible": true
     },
     {
+      "path": "/",
+      "title": "想說的話",
+      "order": 30,
+      "visible": true
+    },
+    {
       "path": "/pages/words.html",
       "title": "想說的話",
       "order": 30,
