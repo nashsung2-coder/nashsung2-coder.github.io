@@ -1,26 +1,112 @@
 <!doctype html>
 <html lang="zh-Hant">
   <head>
-    <meta name="site-nav-title" content="想說的話" />
-    <meta name="site-nav-order" content="30" />
-    <meta name="site-nav-visible" content="true" />
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>想說的話 — Nash Pages</title>
-    <link rel="stylesheet" href="../assets/css/site.css" />
+    <title>宋嵐緒的個人網站 — Nash Pages</title>
+
+    <!-- 網站圖示：固定角色頭像，請勿更換 -->
+    <link rel="icon" type="image/png" href="assets/images/avatar-circle.png" />
+
+    <link rel="stylesheet" href="assets/css/site.css" />
 
     <style>
+      :root {
+        --neon-cyan: #00f0ff;
+        --neon-magenta: #ff2d95;
+        --neon-purple: #b967ff;
+        --neon-green: #39ff14;
+        --bg-deep: #050510;
+        --border-glow: rgba(0, 240, 255, 0.35);
+        --text-main: #ffffff;
+        --text-dim: #c5cde8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
-        background: #050510;
-        color: #f0f4ff;
+        background: var(--bg-deep);
+        color: var(--text-main);
         font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei",
           sans-serif;
         line-height: 1.8;
         overflow-x: hidden;
+        position: relative;
       }
 
+      /* 太空粒子背景 */
+      #particle-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      /* 掃描線效果 */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.03) 2px,
+          rgba(0, 0, 0, 0.03) 4px
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* 霓虹光暈背景 */
+      body::after {
+        content: "";
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+            ellipse at 20% 50%,
+            rgba(0, 240, 255, 0.06) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 80% 20%,
+            rgba(255, 45, 149, 0.05) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 50% 80%,
+            rgba(185, 103, 255, 0.04) 0%,
+            transparent 60%
+          );
+        z-index: 0;
+        pointer-events: none;
+        animation: nebula-drift 30s ease-in-out infinite alternate;
+      }
+
+      @keyframes nebula-drift {
+        0% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(-2%, 1.5%) scale(1.05); }
+        66% { transform: translate(1.5%, -1%) scale(0.95); }
+        100% { transform: translate(-1%, -2%) scale(1.02); }
+      }
+
+      /* 導覽列：置中 */
       .site-header {
         position: fixed;
         top: 0;
@@ -30,7 +116,7 @@
         background: rgba(5, 5, 16, 0.85);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(0, 240, 255, 0.35);
+        border-bottom: 1px solid var(--border-glow);
         padding: 0.6rem 2rem;
         display: flex;
         align-items: center;
@@ -44,16 +130,16 @@
         align-items: center;
         gap: 0.6rem;
         text-decoration: none;
-        color: #00f0ff;
+        color: var(--neon-cyan);
         font-weight: 700;
         letter-spacing: 2px;
         font-size: 1rem;
-        text-shadow: 0 0 8px #00f0ff, 0 0 20px rgba(0, 240, 255, 0.4);
+        text-shadow: 0 0 8px var(--neon-cyan), 0 0 20px rgba(0, 240, 255, 0.4);
         transition: all 0.3s;
       }
 
       .site-brand:hover {
-        text-shadow: 0 0 12px #00f0ff, 0 0 30px rgba(0, 240, 255, 0.7);
+        text-shadow: 0 0 12px var(--neon-cyan), 0 0 30px rgba(0, 240, 255, 0.7);
         color: #fff;
       }
 
@@ -62,7 +148,7 @@
         height: 38px;
         border-radius: 50%;
         object-fit: cover;
-        border: 2px solid #00f0ff;
+        border: 2px solid var(--neon-cyan);
         box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
         flex-shrink: 0;
       }
@@ -92,15 +178,15 @@
       .site-nav a:hover,
       .site-nav a.active {
         color: #ffffff;
-        border-color: #00f0ff;
-        text-shadow: 0 0 6px #00f0ff;
+        border-color: var(--neon-cyan);
+        text-shadow: 0 0 6px var(--neon-cyan);
         background: rgba(0, 240, 255, 0.1);
       }
 
       .site-status {
         position: absolute;
         right: 2rem;
-        color: #39ff14;
+        color: var(--neon-green);
         font-size: 0.7rem;
         letter-spacing: 3px;
         animation: pulse-status 2s ease-in-out infinite;
@@ -108,11 +194,13 @@
       }
 
       @keyframes pulse-status {
-        0%, 100% { opacity: 1; text-shadow: 0 0 4px #39ff14; }
+        0%, 100% { opacity: 1; text-shadow: 0 0 4px var(--neon-green); }
         50% { opacity: 0.5; text-shadow: none; }
       }
 
       .page-content {
+        position: relative;
+        z-index: 2;
         max-width: 760px;
         margin: 0 auto;
         padding: 7rem 2rem 5rem;
@@ -123,25 +211,104 @@
         font-size: 0.75rem;
         letter-spacing: 4px;
         text-transform: uppercase;
-        border-left: 2px solid #ff2d95;
+        border-left: 2px solid var(--neon-magenta);
         padding-left: 0.8rem;
+        text-shadow: 0 0 6px rgba(255, 45, 149, 0.7);
         font-weight: 600;
       }
 
       h1 {
-        font-size: clamp(2rem, 5vw, 3rem);
+        font-size: clamp(2rem, 5vw, 3.2rem);
         font-weight: 900;
+        letter-spacing: 2px;
         background: linear-gradient(120deg, #ffffff, #7ef9ff, #d4a5ff);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        margin-bottom: 1rem;
+        filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5));
+        animation: title-glow 4s ease-in-out infinite alternate;
+      }
+
+      @keyframes title-glow {
+        0% { filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.5)); }
+        100% { filter: drop-shadow(0 0 25px rgba(185, 103, 255, 0.7)); }
+      }
+
+      .lead {
+        font-size: 1.25rem;
+        color: #8ef6ff;
+        border-bottom: 1px dashed rgba(0, 240, 255, 0.5);
+        padding-bottom: 1rem;
+        letter-spacing: 1px;
+        font-weight: 500;
+        text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+      }
+
+      h2 {
+        margin-top: 3rem;
+        color: #ffffff;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+      }
+
+      h2::before {
+        content: "▸";
+        color: var(--neon-cyan);
+        font-size: 1.2rem;
+      }
+
+      h2::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(0, 240, 255, 0.5), transparent);
       }
 
       p {
+        color: #f0f4ff;
+        text-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
+      }
+
+      .content-text p {
         color: #ffffff;
         text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
-        margin-bottom: 1.5rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      ul li {
+        padding: 0.5rem 0;
+        padding-left: 1.2rem;
+        position: relative;
+        color: #d8e0f8;
+        transition: all 0.3s;
+      }
+
+      ul li::before {
+        content: "◈";
+        color: #d4a5ff;
+        position: absolute;
+        left: 0;
+        font-size: 0.8rem;
+        top: 0.65rem;
+        text-shadow: 0 0 6px rgba(185, 103, 255, 0.7);
+      }
+
+      ul li:hover {
+        color: #ffffff;
+        transform: translateX(4px);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      }
+
+      ul li strong {
+        color: #ffffff;
       }
 
       a {
@@ -153,7 +320,87 @@
 
       a:hover {
         color: #ffffff;
-        text-shadow: 0 0 8px #00f0ff;
+        border-bottom-color: #ffffff;
+        text-shadow: 0 0 8px var(--neon-cyan);
+      }
+
+      .crestylon-callout {
+        margin-top: 3rem;
+        padding: 2rem;
+        border: 1px solid rgba(0, 240, 255, 0.5);
+        border-radius: 8px;
+        background: rgba(0, 240, 255, 0.05);
+        text-align: center;
+      }
+
+      .callout-label {
+        color: #ff6bb8;
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .callout-button {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.7rem 1.8rem;
+        border: 1px solid #00f0ff;
+        border-radius: 4px;
+        color: #00f0ff;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .callout-button:hover {
+        background: rgba(0, 240, 255, 0.1);
+        color: #ffffff;
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 { transition-delay: 0.15s; }
+      .reveal-delay-2 { transition-delay: 0.3s; }
+      .reveal-delay-3 { transition-delay: 0.45s; }
+
+      .site-footer {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 2rem;
+        color: #c0c8e8;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        border-top: 1px solid rgba(0, 240, 255, 0.2);
+      }
+
+      #cursor-glow {
+        position: fixed;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 240, 255, 0.06) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+        z-index: 0;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s;
       }
 
       @media (max-width: 600px) {
@@ -166,11 +413,14 @@
     </style>
   </head>
   <body>
+    <canvas id="particle-canvas"></canvas>
+    <div id="cursor-glow"></div>
+
     <header class="site-header" data-site-navigation>
       <a class="site-brand" href="/" aria-label="宋嵐緒個人頁面首頁">
         <img
           class="site-brand-avatar"
-          src="../assets/images/avatar-circle.png"
+          src="assets/images/avatar-circle.png"
           alt="宋嵐緒的角色插圖"
         />
         <span class="site-brand-text">宋嵐緒個人頁面</span>
@@ -179,31 +429,256 @@
       <span class="site-status">STATIC INDEX</span>
     </header>
 
-    <main class="page-content">
-      <p class="page-kicker">WORDS / 30</p>
-      <h1>想說的話</h1>
+    <main class="page-content content-text">
+      <p class="page-kicker reveal visible">HOME / 00</p>
+      <h1 class="reveal visible">歡迎來到<br>宋嵐緒的個人網站</h1>
+      <p class="lead reveal visible">我是宋嵐緒，高一新生。</p>
 
-      <p>
+      <p class="reveal reveal-delay-1">
+        我曾經花很多時間試圖去滿足一套標準。成績、比賽、獎狀、大人的期待。我以為只要做得好，我就會成為一個被認可的人。後來我發現，那套標準是別人走過的路。我走上去，只會成為另一個符合期待的人，而不是我自己。
+      </p>
+      <p class="reveal reveal-delay-2">所以我開始問問題。</p>
+      <p class="reveal reveal-delay-2">
+        為什麼規則是少數人制定的？為什麼離開一條路要付出那麼大的代價？為什麼很多真正重要的付出，最後只能用錢去衡量？為什麼一個制度建立之後，永遠不會自己告訴你：任務完成了，你可以有其他選擇。
+      </p>
+      <p class="reveal reveal-delay-3">
+        這些問題，後來變成了一個計畫。我把這個計畫叫做凌極世界。
+      </p>
+      <p class="reveal reveal-delay-3">
+        它不是我拿來證明自己多厲害的工具。它是我對這個社會的提問，是我嘗試把自己看到的問題，一個一個拆開來，再一個一個試著解決的過程。
+      </p>
+
+      <h2 class="reveal">個人經歷</h2>
+      <ul>
+        <li class="reveal reveal-delay-1">
+          <strong>INN 星際新聞網</strong>：一個雙語新聞平台，用地圖去選擇想看的新聞，同時練英文。（<a href="https://inn.crestylon.org" target="_blank" rel="noreferrer">inn.crestylon.org</a>）
+        </li>
+        <li class="reveal reveal-delay-1">
+          <strong>Cool English 星辰啟航</strong>：這是我為一個英文學習平台設計的遊戲化入口原型。（<a href="https://cool-english-cosmos.pages.dev" target="_blank" rel="noreferrer">cool-english-cosmos.pages.dev</a>）
+        </li>
+        <li class="reveal reveal-delay-2">
+          <strong>均一學習宇宙</strong>：這是我為均一平台設計的學習入口概念。（<a href="https://junyi-english-cosmos.pages.dev" target="_blank" rel="noreferrer">junyi-english-cosmos.pages.dev</a>）
+        </li>
+        <li class="reveal reveal-delay-2">
+          <strong>白皮書</strong>：裡面有整個凌極世界的制度框架，想深入理解的人可以看。（<a href="https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view" target="_blank" rel="noreferrer">查看白皮書</a>）
+        </li>
+      </ul>
+
+      <p class="reveal reveal-delay-3">
+        我把這些東西做出來，只是想證明，一個高中生也可以嘗試去解決那些看起來很遠、但其實離我們很近的問題。
+      </p>
+
+      <div class="crestylon-callout reveal reveal-delay-2">
+        <p class="callout-label">CORE PROJECT</p>
+        <h2 style="margin-top: 0.5rem; border-bottom: none;">凌極世界</h2>
+        <p>
+          一個關於選擇、制度與未來的長期計畫。如果你也覺得現在的路走起來不對，但不知道能怎麼辦，這裡是寫給你的。
+        </p>
+        <a class="callout-button" href="pages/crestylon.html">閱讀完整理念 →</a>
+      </div>
+
+      <h2 class="reveal">想說的話</h2>
+      <p class="reveal reveal-delay-1">
         很多人的人生，最後都停在「妥協」兩個字。我的想法是，讓人生可以有「選擇」。
       </p>
-
-      <p>
-        我不太會說話。我比較會做。所以，做吧。
-      </p>
-
-      <p>
+      <p class="reveal reveal-delay-2">
         如果你看完之後，有任何想法，或是你也有一些想做的事情，歡迎寫信給我。
       </p>
-
-      <p>
-        信箱：<a href="mailto:nashsung2@gmail.com">nashsung2@gmail.com</a>
+      <p class="reveal reveal-delay-3" style="font-style: italic; color: #8ef6ff;">
+        網站還在慢慢長。謝謝你來。
       </p>
 
-      <p style="margin-top: 3rem; font-style: italic; color: #8ef6ff;">
-        網站還在慢慢長。謝謝你來。
+      <h2 class="reveal">聯絡我</h2>
+      <p class="reveal reveal-delay-1">
+        信箱：<a href="mailto:nashsung2@gmail.com">nashsung2@gmail.com</a>
       </p>
     </main>
 
-    <script src="../assets/js/nav.js"></script>
+    <footer class="site-footer">
+      © 2026 宋嵐緒 Nash Sung. 保留所有權利。
+    </footer>
+
+    <script src="assets/js/nav.js"></script>
+
+    <script>
+      (function () {
+        const canvas = document.getElementById("particle-canvas");
+        const ctx = canvas.getContext("2d");
+        let width, height;
+        let particles = [];
+        let mouseX = -9999;
+        let mouseY = -9999;
+        let scrollY = window.scrollY;
+        let targetScrollY = scrollY;
+        let smoothScrollY = scrollY;
+
+        function resize() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener("resize", resize);
+
+        const COLORS = [
+          "rgba(0, 240, 255,",
+          "rgba(255, 45, 149,",
+          "rgba(185, 103, 255,",
+          "rgba(255, 255, 255,",
+          "rgba(57, 255, 20,",
+        ];
+
+        class Particle {
+          constructor() {
+            this.reset();
+            this.z = Math.random();
+          }
+          reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.3;
+            this.speedY = (Math.random() - 0.5) * 0.2 - 0.05;
+            this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+            this.opacity = Math.random() * 0.6 + 0.2;
+            this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+            this.twinklePhase = Math.random() * Math.PI * 2;
+          }
+          update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.twinklePhase += this.twinkleSpeed;
+            if (this.x < -10 || this.x > width + 10 || this.y < -10 || this.y > height + 10) {
+              this.reset();
+            }
+          }
+          draw() {
+            const twinkle = Math.sin(this.twinklePhase) * 0.3 + 0.7;
+            const alpha = this.opacity * twinkle;
+            const size = this.size * twinkle + 0.3;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color + alpha + ")";
+            ctx.fill();
+            if (this.size > 1.2) {
+              ctx.beginPath();
+              ctx.arc(this.x, this.y, size * 2.5, 0, Math.PI * 2);
+              ctx.fillStyle = this.color + alpha * 0.2 + ")";
+              ctx.fill();
+            }
+          }
+        }
+
+        class ShootingStar {
+          constructor() { this.spawn(); }
+          spawn() {
+            this.x = Math.random() * width * 1.2 - width * 0.1;
+            this.y = Math.random() * height * 0.4;
+            this.length = Math.random() * 80 + 40;
+            this.speed = Math.random() * 4 + 3;
+            this.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.3;
+            this.opacity = Math.random() * 0.7 + 0.3;
+            this.life = 0;
+            this.maxLife = 60 + Math.random() * 40;
+            this.color = Math.random() > 0.5 ? "0, 240, 255" : "255, 45, 149";
+          }
+          update() {
+            this.x += Math.cos(this.angle) * this.speed;
+            this.y += Math.sin(this.angle) * this.speed;
+            this.life++;
+            if (this.life > this.maxLife || this.x > width + 100 || this.y > height + 100) {
+              this.spawn();
+            }
+          }
+          draw() {
+            const fade = this.life < 15 ? this.life / 15 : 1 - (this.life - 15) / this.maxLife;
+            const gradient = ctx.createLinearGradient(
+              this.x, this.y,
+              this.x - Math.cos(this.angle) * this.length,
+              this.y - Math.sin(this.angle) * this.length
+            );
+            gradient.addColorStop(0, "rgba(" + this.color + ", " + this.opacity * fade + ")");
+            gradient.addColorStop(1, "rgba(" + this.color + ", 0)");
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x - Math.cos(this.angle) * this.length, this.y - Math.sin(this.angle) * this.length);
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          }
+        }
+
+        const particleCount = Math.min(180, Math.floor(window.innerWidth / 6));
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+        const shootingStars = [];
+        for (let i = 0; i < 3; i++) {
+          shootingStars.push(new ShootingStar());
+        }
+
+        document.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          const glow = document.getElementById("cursor-glow");
+          if (glow) {
+            glow.style.left = mouseX + "px";
+            glow.style.top = mouseY + "px";
+          }
+        });
+
+        window.addEventListener("scroll", () => {
+          targetScrollY = window.scrollY;
+        });
+
+        function animate() {
+          smoothScrollY += (targetScrollY - smoothScrollY) * 0.08;
+          scrollY = smoothScrollY;
+          ctx.clearRect(0, 0, width, height);
+          particles.forEach((p) => {
+            p.update();
+            const parallaxY = p.y - scrollY * p.z * 0.15;
+            const drawY = ((parallaxY % height) + height) % height;
+            const originalY = p.y;
+            p.y = drawY;
+            p.draw();
+            p.y = originalY;
+          });
+          shootingStars.forEach((s) => {
+            s.update();
+            s.draw();
+          });
+          if (mouseX > -9999) {
+            particles.forEach((p) => {
+              const dx = p.x - mouseX;
+              const dy = p.y - mouseY;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 120) {
+                const force = ((120 - dist) / 120) * 0.5;
+                p.x += (dx / dist) * force;
+                p.y += (dy / dist) * force;
+              }
+            });
+          }
+          requestAnimationFrame(animate);
+        }
+        animate();
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => {
+          if (!el.classList.contains("visible")) {
+            observer.observe(el);
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
