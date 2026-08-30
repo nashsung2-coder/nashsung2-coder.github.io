@@ -14,7 +14,7 @@
       body {
         margin: 0;
         background: #050510;
-        color: #f0f4ff;
+        color: #ffffff;
         font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei",
           sans-serif;
         line-height: 1.8;
@@ -116,6 +116,8 @@
         max-width: 760px;
         margin: 0 auto;
         padding: 7rem 2rem 5rem;
+        background: rgba(5, 5, 16, 0.6);
+        border-radius: 8px;
       }
 
       .page-kicker {
@@ -126,6 +128,7 @@
         border-left: 2px solid #ff2d95;
         padding-left: 0.8rem;
         font-weight: 600;
+        text-shadow: 0 0 6px rgba(255, 45, 149, 0.7);
       }
 
       h1 {
@@ -136,11 +139,22 @@
         background-clip: text;
         color: transparent;
         margin-bottom: 1rem;
+        filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.5));
+      }
+
+      h2 {
+        color: #ffffff;
+        font-size: 1.5rem;
+        margin-top: 3rem;
+        letter-spacing: 1px;
+        border-bottom: 1px dashed rgba(0, 240, 255, 0.4);
+        padding-bottom: 0.5rem;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
       }
 
       p {
         color: #ffffff;
-        text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
         margin-bottom: 1.5rem;
       }
 
@@ -163,6 +177,7 @@
         left: 0;
         font-size: 0.8rem;
         top: 1rem;
+        text-shadow: 0 0 6px rgba(185, 103, 255, 0.7);
       }
 
       ul li strong {
@@ -179,6 +194,18 @@
       a:hover {
         color: #ffffff;
         text-shadow: 0 0 8px #00f0ff;
+      }
+
+      .greeting-box {
+        margin-bottom: 2rem;
+        padding: 1rem 1.5rem;
+        border: 1px solid rgba(0, 240, 255, 0.4);
+        border-radius: 8px;
+        background: rgba(0, 240, 255, 0.05);
+        color: #8ef6ff;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        text-align: center;
       }
 
       /* 手機版修正 */
@@ -211,6 +238,7 @@
         }
         .page-content {
           padding: 6rem 1.2rem 3rem;
+          background: rgba(5, 5, 16, 0.8);
         }
       }
     </style>
@@ -233,34 +261,101 @@
       <p class="page-kicker">EXPERIENCE / 20</p>
       <h1>個人經歷</h1>
 
-      <p>
-        我目前做的東西，有幾個可以看。這些東西都不是為了交作業，而是為了解決我真正在意的問題。
-      </p>
+      <!-- 隨時間變化的問候語 -->
+      <div class="greeting-box" id="greeting">載入中...</div>
 
+      <h2>基本資料</h2>
+      <ul>
+        <li><strong>姓名</strong>：宋嵐緒</li>
+        <li><strong>生日</strong>：9 月 28 日</li>
+        <li><strong>就讀學校</strong>：北市數位實驗高級中學</li>
+        <li><strong>所在地區</strong>：台北市</li>
+      </ul>
+
+      <h2>學經歷</h2>
+      <ul>
+        <li><strong>國小</strong>：日新國小</li>
+        <li><strong>國中</strong>：忠孝國中</li>
+        <li><strong>高中</strong>：北市數位實驗高級中學（目前）</li>
+        <li><strong>其他學習經歷</strong>：曾參與導演營隊、程式開發營隊等</li>
+      </ul>
+
+      <h2>競賽與獲獎紀錄</h2>
+      <ul>
+        <li><strong>2023 IEYI 世界青少年發明展世界賽</strong>：佳作</li>
+        <li><strong>中華民國第 62 屆中小學科學展覽會</strong>：國小組佳作（《樂齡勇腳椅》）</li>
+        <li><strong>「AI 人工智慧歷險漫畫」繪圖競賽</strong>：優選（《Yes. AI CAN HELP.》）</li>
+        <li><strong>109 年暑期青少年兒童犯罪預防四格漫畫</strong>：國小中年級組佳作</li>
+        <li><strong>其他</strong>：共有 60 餘張市級以上獎項</li>
+      </ul>
+
+      <h2>專案與作品</h2>
       <ul>
         <li>
           <strong>INN 星際新聞網</strong>：一個雙語新聞平台，用地圖去選擇想看的新聞，同時練英文。<br>
           <a href="https://inn.crestylon.org" target="_blank" rel="noreferrer">inn.crestylon.org</a>
         </li>
         <li>
-          <strong>Cool English 星辰啟航</strong>：這是我為一個英文學習平台設計的遊戲化入口原型。<br>
+          <strong>Cool English 星辰啟航（Demo）</strong>：為英文學習平台設計的遊戲化入口原型。<br>
           <a href="https://cool-english-cosmos.pages.dev" target="_blank" rel="noreferrer">cool-english-cosmos.pages.dev</a>
         </li>
         <li>
-          <strong>均一學習宇宙</strong>：這是我為均一平台設計的學習入口概念。<br>
+          <strong>均一學習宇宙（Demo）</strong>：為均一平台設計的學習入口概念。<br>
           <a href="https://junyi-english-cosmos.pages.dev" target="_blank" rel="noreferrer">junyi-english-cosmos.pages.dev</a>
         </li>
         <li>
           <strong>白皮書</strong>：裡面有整個凌極世界的制度框架，想深入理解的人可以看。<br>
           <a href="https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view" target="_blank" rel="noreferrer">查看白皮書</a>
         </li>
+        <li>
+          <strong>凌極世界官網</strong>：凌極世界的入口網站。<br>
+          <a href="https://sites.google.com/view/crestylonnewworld/" target="_blank" rel="noreferrer">crestylonnewworld</a>
+        </li>
+        <li>
+          <strong>小說主角個人頁面</strong>：<br>
+          <a href="https://sungyan-workshop.pages.dev" target="_blank" rel="noreferrer">sungyan-workshop.pages.dev</a><br>
+          <a href="https://auditors-archive.pages.dev" target="_blank" rel="noreferrer">auditors-archive.pages.dev</a>
+        </li>
       </ul>
 
-      <p>
-        我把這些東西做出來，只是想證明，一個高中生也可以嘗試去解決那些看起來很遠、但其實離我們很近的問題。
-      </p>
+      <h2>技能</h2>
+      <ul>
+        <li><strong>程式語言與工具</strong>：HTML、CSS、JavaScript、Python、AI 工具（以 vibecoding 為主，持續精進中）</li>
+        <li><strong>語言能力</strong>：中文</li>
+        <li><strong>其他技能</strong>：寫作、設計、影片剪輯、吉他、游泳、木箱鼓、繪圖</li>
+      </ul>
+
+      <h2>興趣與關注領域</h2>
+      <ul>
+        <li>科技時事與未來發展趨勢</li>
+        <li>社會問題與制度設計</li>
+      </ul>
+
+      <h2>未來方向</h2>
+      <ul>
+        <li><strong>最想完成的事</strong>：啟動我的小說，並建構小說生態</li>
+        <li><strong>希望傳達的感覺</strong>：有野心、真誠</li>
+      </ul>
     </main>
 
     <script src="../assets/js/nav.js"></script>
+    <script>
+      (function () {
+        const greetingBox = document.getElementById("greeting");
+        if (!greetingBox) return;
+        const hour = new Date().getHours();
+        let greetingText = "";
+        if (hour >= 5 && hour < 12) {
+          greetingText = "早安，歡迎來到我的個人經歷。";
+        } else if (hour >= 12 && hour < 18) {
+          greetingText = "午安，歡迎來到我的個人經歷。";
+        } else if (hour >= 18 && hour < 23) {
+          greetingText = "晚安，歡迎來到我的個人經歷。";
+        } else {
+          greetingText = "凌晨好，歡迎來到我的個人經歷。";
+        }
+        greetingBox.textContent = greetingText;
+      })();
+    </script>
   </body>
 </html>
