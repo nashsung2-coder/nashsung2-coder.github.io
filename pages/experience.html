@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="../assets/css/site.css" />
 
     <style>
+      :root {
+        --neon-cyan: #00f0ff;
+        --neon-magenta: #ff2d95;
+        --neon-purple: #b967ff;
+        --neon-green: #39ff14;
+        --bg-deep: #050510;
+        --border-glow: rgba(0, 240, 255, 0.35);
+        --text-main: #ffffff;
+        --text-dim: #c5cde8;
+        --highlight-color: #7ef9ff;
+      }
+
+      * { box-sizing: border-box; }
+
       body {
         margin: 0;
         background: #050510;
@@ -67,9 +81,7 @@
         flex-shrink: 0;
       }
 
-      .site-brand-text {
-        white-space: nowrap;
-      }
+      .site-brand-text { white-space: nowrap; }
 
       .site-nav {
         display: flex;
@@ -117,7 +129,8 @@
         margin: 0 auto;
         padding: 7rem 2rem 5rem;
         background: rgba(5, 5, 16, 0.6);
-        border-radius: 8px;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
       }
 
       .page-kicker {
@@ -129,6 +142,38 @@
         padding-left: 0.8rem;
         font-weight: 600;
         text-shadow: 0 0 6px rgba(255, 45, 149, 0.7);
+        margin-bottom: 1rem;
+      }
+
+      .greeting-box {
+        margin-bottom: 2rem;
+        padding: 1.2rem 1.8rem;
+        border: 1px solid rgba(0, 240, 255, 0.4);
+        border-radius: 50px;
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(185, 103, 255, 0.05));
+        color: #8ef6ff;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .greeting-box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+        animation: glow-rotate 8s linear infinite;
+      }
+
+      @keyframes glow-rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
 
       h1 {
@@ -142,14 +187,32 @@
         filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.5));
       }
 
-      h2 {
-        color: #ffffff;
-        font-size: 1.5rem;
+      .section-title {
+        position: relative;
         margin-top: 3rem;
-        letter-spacing: 1px;
-        border-bottom: 1px dashed rgba(0, 240, 255, 0.4);
-        padding-bottom: 0.5rem;
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: #fff;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .section-title::before {
+        content: "▸";
+        color: #00f0ff;
+        font-size: 1.3rem;
+      }
+
+      .section-title::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(0, 240, 255, 0.7), rgba(185, 103, 255, 0.3), transparent);
+        box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
       }
 
       p {
@@ -158,30 +221,227 @@
         margin-bottom: 1.5rem;
       }
 
-      ul {
-        list-style: none;
-        padding: 0;
+      .highlight {
+        color: #7ef9ff;
+        font-weight: 700;
+        text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        border-bottom: 1px dotted rgba(0, 240, 255, 0.4);
       }
 
-      ul li {
-        padding: 0.8rem 0;
-        padding-left: 1.2rem;
+      /* 時間軸 */
+      .timeline {
         position: relative;
-        color: #d8e0f8;
+        margin: 2rem 0 3rem;
+        padding-left: 2rem;
       }
 
-      ul li::before {
-        content: "◈";
-        color: #d4a5ff;
+      .timeline::before {
+        content: "";
         position: absolute;
-        left: 0;
-        font-size: 0.8rem;
-        top: 1rem;
-        text-shadow: 0 0 6px rgba(185, 103, 255, 0.7);
+        left: 0.5rem;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(0, 240, 255, 0.6), rgba(185, 103, 255, 0.4), transparent);
+        box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
       }
 
-      ul li strong {
-        color: #ffffff;
+      .timeline-item {
+        position: relative;
+        margin-bottom: 2rem;
+        padding: 1.2rem 1.5rem;
+        background: rgba(10, 10, 30, 0.5);
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        border-radius: 12px;
+        transition: all 0.3s;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -2rem;
+        top: 1.8rem;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #00f0ff;
+        box-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0, 240, 255, 0.5);
+      }
+
+      .timeline-item:hover {
+        border-color: rgba(0, 240, 255, 0.6);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        transform: translateX(4px);
+      }
+
+      .timeline-item .time-label {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        color: #ff6bb8;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        text-shadow: 0 0 6px rgba(255, 45, 149, 0.5);
+      }
+
+      .timeline-item h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.1rem;
+        color: #fff;
+      }
+
+      .timeline-item p {
+        margin: 0;
+        color: #d8e0f8;
+        font-size: 0.95rem;
+      }
+
+      /* 專案卡片 */
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.2rem;
+        margin: 2rem 0;
+      }
+
+      .project-card {
+        background: rgba(10, 10, 30, 0.5);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        border-radius: 12px;
+        padding: 1.2rem;
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+        opacity: 0;
+        transition: opacity 0.4s;
+      }
+
+      .project-card:hover {
+        border-color: rgba(0, 240, 255, 0.7);
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+        transform: translateY(-5px);
+      }
+
+      .project-card:hover::before {
+        opacity: 1;
+      }
+
+      .project-card h3 {
+        margin: 0 0 0.4rem;
+        font-size: 1rem;
+        color: #fff;
+      }
+
+      .project-card p {
+        margin: 0 0 0.4rem;
+        color: #d8e0f8;
+        font-size: 0.9rem;
+      }
+
+      .project-card a {
+        color: #7ef9ff;
+        text-decoration: none;
+        border-bottom: 1px dotted rgba(126, 249, 255, 0.5);
+        transition: all 0.3s;
+        font-size: 0.85rem;
+      }
+
+      .project-card a:hover {
+        color: #fff;
+        text-shadow: 0 0 8px #00f0ff;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.15rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+        background: rgba(255, 45, 149, 0.2);
+        color: #ff6bb8;
+        border: 1px solid rgba(255, 45, 149, 0.5);
+        text-shadow: 0 0 4px rgba(255, 45, 149, 0.5);
+      }
+
+      /* 技能標籤 */
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin: 1rem 0 2rem;
+      }
+
+      .skill-tag {
+        padding: 0.4rem 1rem;
+        border-radius: 50px;
+        border: 1px solid rgba(0, 240, 255, 0.4);
+        color: #d0d8f0;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+        background: rgba(0, 240, 255, 0.05);
+      }
+
+      .skill-tag:hover {
+        border-color: #00f0ff;
+        color: #fff;
+        text-shadow: 0 0 6px #00f0ff;
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+      }
+
+      /* 未來方向區塊 */
+      .future-box {
+        margin-top: 2rem;
+        padding: 2rem;
+        background: linear-gradient(145deg, rgba(255, 45, 149, 0.08), rgba(0, 240, 255, 0.05));
+        border: 1px solid rgba(255, 45, 149, 0.4);
+        border-radius: 16px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .future-box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(from 0deg, transparent, rgba(255, 45, 149, 0.1), transparent, rgba(0, 240, 255, 0.1), transparent);
+        animation: rotate-conic 10s linear infinite;
+      }
+
+      @keyframes rotate-conic {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .future-box h3 {
+        font-size: 1.3rem;
+        color: #fff;
+        margin: 0 0 0.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .future-box p {
+        margin: 0;
+        color: #d8e0f8;
+        position: relative;
+        z-index: 1;
       }
 
       a {
@@ -192,23 +452,10 @@
       }
 
       a:hover {
-        color: #ffffff;
+        color: #fff;
         text-shadow: 0 0 8px #00f0ff;
       }
 
-      .greeting-box {
-        margin-bottom: 2rem;
-        padding: 1rem 1.5rem;
-        border: 1px solid rgba(0, 240, 255, 0.4);
-        border-radius: 8px;
-        background: rgba(0, 240, 255, 0.05);
-        color: #8ef6ff;
-        font-size: 1.1rem;
-        letter-spacing: 1px;
-        text-align: center;
-      }
-
-      /* 手機版修正 */
       @media (max-width: 600px) {
         .site-header {
           position: relative;
@@ -240,6 +487,9 @@
           padding: 6rem 1.2rem 3rem;
           background: rgba(5, 5, 16, 0.8);
         }
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -261,100 +511,180 @@
       <p class="page-kicker">EXPERIENCE / 20</p>
       <h1>個人經歷</h1>
 
-      <!-- 隨時間變化的問候語 -->
+      <!-- 時間問候語 -->
       <div class="greeting-box" id="greeting">載入中...</div>
 
-      <h2>基本資料</h2>
-      <ul>
-        <li><strong>姓名</strong>：宋嵐緒</li>
-        <li><strong>生日</strong>：9 月 28 日</li>
-        <li><strong>就讀學校</strong>：北市數位實驗高級中學</li>
-        <li><strong>所在地區</strong>：台北市</li>
-      </ul>
+      <!-- 開場敘事 -->
+      <p>
+        我走過的路，跟多數人不太一樣。沒有刻意標新立異，只是從很小的時候開始，就對<span class="highlight">「為什麼只能這樣」</span>感到好奇。
+      </p>
+      <p>
+        從科學展覽到發明展，從四格漫畫到 AI 繪圖競賽，我一直在試不同的路。有些得獎了，有些只是試過。但每一件事，都讓我更確定一件事：<span class="highlight">我喜歡把想法變成真的</span>。
+      </p>
 
-      <h2>學經歷</h2>
-      <ul>
-        <li><strong>國小</strong>：日新國小</li>
-        <li><strong>國中</strong>：忠孝國中</li>
-        <li><strong>高中</strong>：北市數位實驗高級中學（目前）</li>
-        <li><strong>其他學習經歷</strong>：曾參與導演營隊、程式開發營隊等</li>
-      </ul>
+      <!-- 成長路徑：時間軸 -->
+      <h2 class="section-title">成長路徑</h2>
 
-      <h2>競賽與獲獎紀錄</h2>
-      <ul>
-        <li><strong>2023 IEYI 世界青少年發明展世界賽</strong>：佳作</li>
-        <li><strong>中華民國第 62 屆中小學科學展覽會</strong>：國小組佳作（《樂齡勇腳椅》）</li>
-        <li><strong>「AI 人工智慧歷險漫畫」繪圖競賽</strong>：優選（《Yes. AI CAN HELP.》）</li>
-        <li><strong>109 年暑期青少年兒童犯罪預防四格漫畫</strong>：國小中年級組佳作</li>
-        <li><strong>其他</strong>：共有 60 餘張市級以上獎項</li>
-      </ul>
+      <div class="timeline">
+        <div class="timeline-item">
+          <p class="time-label">國小 · 日新國小</p>
+          <h3>什麼都試的年紀</h3>
+          <p>
+            科學展覽、四格漫畫、AI 繪圖競賽，都在這個階段開始。那時候還不懂什麼是「方向」，只知道有興趣的事，就想動手做。
+          </p>
+        </div>
 
-      <h2>專案與作品</h2>
-      <ul>
-        <li>
-          <strong>INN 星際新聞網</strong>：一個雙語新聞平台，用地圖去選擇想看的新聞，同時練英文。<br>
+        <div class="timeline-item">
+          <p class="time-label">國中 · 忠孝國中</p>
+          <h3>第一次站上世界舞台</h3>
+          <p>
+            2023 年，以發明作品獲得 IEYI 世界青少年發明展佳作。那是我第一次意識到，<span class="highlight">一個中學生的想法，也可以被世界看見</span>。
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <p class="time-label">高中 · 北市數位實驗高級中學</p>
+          <h3>開始建造</h3>
+          <p>
+            進到數位實驗高中後，開始大量接觸程式開發、AI 工具，也參與了導演營隊和程式開發營隊。這裡的環境讓我終於可以把腦中的東西，一個一個做出來。
+          </p>
+        </div>
+      </div>
+
+      <!-- 獲獎紀錄：脈絡化呈現 -->
+      <h2 class="section-title">我做過的事</h2>
+
+      <p>
+        這些獎項不是為了炫耀，而是想讓你知道，我從很小的時候就開始<span class="highlight">嘗試用不同方式回答問題</span>。科學、發明、繪畫、漫畫，都是我的語言。
+      </p>
+
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>IEYI 世界青少年發明展</h3>
+          <p class="time-label" style="margin:0 0 0.4rem;">2023 · 世界賽佳作</p>
+          <p>第一次把想法帶到世界舞台。</p>
+        </div>
+        <div class="project-card">
+          <h3>全國中小學科學展覽會</h3>
+          <p class="time-label" style="margin:0 0 0.4rem;">第62屆 · 國小組佳作</p>
+          <p>作品《樂齡勇腳椅》，關注高齡者的生活需求。</p>
+        </div>
+        <div class="project-card">
+          <h3>AI 人工智慧歷險漫畫</h3>
+          <p class="time-label" style="margin:0 0 0.4rem;">繪圖競賽 · 優選</p>
+          <p>作品《Yes. AI CAN HELP.》，用漫畫說 AI 的故事。</p>
+        </div>
+        <div class="project-card">
+          <h3>犯罪預防四格漫畫</h3>
+          <p class="time-label" style="margin:0 0 0.4rem;">109年 · 國小中年級組佳作</p>
+          <p>用畫筆參與社會議題。</p>
+        </div>
+      </div>
+
+      <p style="font-size: 0.9rem; color: #d8e0f8;">
+        另外，至今累積了 <span class="highlight">60 餘張市級以上獎項</span>，涵蓋科學、發明、繪畫、寫作等不同領域。
+      </p>
+
+      <!-- 專案與作品 -->
+      <h2 class="section-title">我的專案</h2>
+
+      <p>
+        如果說獎項是「嘗試的痕跡」，那這些專案就是我真正<span class="highlight">想持續建造的事</span>。它們都圍繞著同一個核心：<span class="highlight">讓人有更多選擇</span>。
+      </p>
+
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>INN 星際新聞網</h3>
+          <p>雙語新聞平台，用地圖選新聞，順便練英文。</p>
           <a href="https://inn.crestylon.org" target="_blank" rel="noreferrer">inn.crestylon.org</a>
-        </li>
-        <li>
-          <strong>Cool English 星辰啟航（Demo）</strong>：為英文學習平台設計的遊戲化入口原型。<br>
+        </div>
+        <div class="project-card">
+          <h3>Cool English 星辰啟航 <span class="badge">Demo</span></h3>
+          <p>為英文學習平台設計的遊戲化入口原型（未獲採用）。</p>
           <a href="https://cool-english-cosmos.pages.dev" target="_blank" rel="noreferrer">cool-english-cosmos.pages.dev</a>
-        </li>
-        <li>
-          <strong>均一學習宇宙（Demo）</strong>：為均一平台設計的學習入口概念。<br>
+        </div>
+        <div class="project-card">
+          <h3>均一學習宇宙 <span class="badge">Demo</span></h3>
+          <p>為均一平台設計的學習入口概念（未獲採用）。</p>
           <a href="https://junyi-english-cosmos.pages.dev" target="_blank" rel="noreferrer">junyi-english-cosmos.pages.dev</a>
-        </li>
-        <li>
-          <strong>白皮書</strong>：裡面有整個凌極世界的制度框架，想深入理解的人可以看。<br>
+        </div>
+        <div class="project-card">
+          <h3>白皮書</h3>
+          <p>凌極世界的制度框架，想深入了解可以看。</p>
           <a href="https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view" target="_blank" rel="noreferrer">查看白皮書</a>
-        </li>
-        <li>
-          <strong>凌極世界官網</strong>：凌極世界的入口網站。<br>
+        </div>
+        <div class="project-card">
+          <h3>凌極世界官網</h3>
+          <p>整個計畫的入口網站。</p>
           <a href="https://sites.google.com/view/crestylonnewworld/" target="_blank" rel="noreferrer">crestylonnewworld</a>
-        </li>
-        <li>
-          <strong>小說主角個人頁面</strong>：<br>
-          <a href="https://sungyan-workshop.pages.dev" target="_blank" rel="noreferrer">sungyan-workshop.pages.dev</a><br>
-          <a href="https://auditors-archive.pages.dev" target="_blank" rel="noreferrer">auditors-archive.pages.dev</a>
-        </li>
-      </ul>
+        </div>
+        <div class="project-card">
+          <h3>小說主角個人頁面</h3>
+          <p>故事角色的獨立網站，讓小說世界與現實連結。</p>
+          <a href="https://sungyan-workshop.pages.dev" target="_blank" rel="noreferrer">sungyan-workshop</a><br>
+          <a href="https://auditors-archive.pages.dev" target="_blank" rel="noreferrer">auditors-archive</a>
+        </div>
+      </div>
 
-      <h2>技能</h2>
-      <ul>
-        <li><strong>程式語言與工具</strong>：HTML、CSS、JavaScript、Python、AI 工具（以 vibecoding 為主，持續精進中）</li>
-        <li><strong>語言能力</strong>：中文</li>
-        <li><strong>其他技能</strong>：寫作、設計、影片剪輯、吉他、游泳、木箱鼓、繪圖</li>
-      </ul>
+      <!-- 技能 -->
+      <h2 class="section-title">我會的東西</h2>
 
-      <h2>興趣與關注領域</h2>
-      <ul>
-        <li>科技時事與未來發展趨勢</li>
-        <li>社會問題與制度設計</li>
-      </ul>
+      <p>
+        我不會說自己是哪一方面的專家，但我知道怎麼<span class="highlight">用工具把想法變成真的</span>。
+      </p>
 
-      <h2>未來方向</h2>
-      <ul>
-        <li><strong>最想完成的事</strong>：啟動我的小說，並建構小說生態</li>
-        <li><strong>希望傳達的感覺</strong>：有野心、真誠</li>
-      </ul>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML / CSS / JavaScript</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">AI 工具（vibecoding）</span>
+        <span class="skill-tag">寫作</span>
+        <span class="skill-tag">設計</span>
+        <span class="skill-tag">影片剪輯</span>
+        <span class="skill-tag">吉他</span>
+        <span class="skill-tag">游泳</span>
+        <span class="skill-tag">木箱鼓</span>
+        <span class="skill-tag">繪圖</span>
+      </div>
+
+      <p style="font-size: 0.9rem; color: #d8e0f8;">
+        語言能力：中文為主。程式語言持續精進中，目前比較常使用 <span class="highlight">vibecoding</span> 的方式快速做出原型。
+      </p>
+
+      <!-- 興趣與關注 -->
+      <h2 class="section-title">我平常在想的事</h2>
+
+      <p>
+        主要關注<span class="highlight">科技時事與未來趨勢</span>，也一直在思考<span class="highlight">社會問題與制度設計</span>。這兩個方向看起來很遠，但其實每天都在影響我們的生活。
+      </p>
+
+      <!-- 未來方向 -->
+      <h2 class="section-title">接下來想做的事</h2>
+
+      <div class="future-box">
+        <h3>啟動我的小說，建構小說生態</h3>
+        <p>
+          這是我目前最想完成的事。把小說世界變成一個<span class="highlight">可以互動、可以生長的生態系</span>，讓角色有自己的網站、自己的故事，也讓讀者可以參與其中。
+        </p>
+      </div>
+
+      <p style="margin-top: 2rem; font-style: italic; color: #8ef6ff; text-align: center;">
+        我想讓這個頁面傳達的，就是兩個字：<span class="highlight">真誠</span>。
+      </p>
     </main>
 
     <script src="../assets/js/nav.js"></script>
     <script>
       (function () {
         const greetingBox = document.getElementById("greeting");
-        if (!greetingBox) return;
-        const hour = new Date().getHours();
-        let greetingText = "";
-        if (hour >= 5 && hour < 12) {
-          greetingText = "早安，歡迎來到我的個人經歷。";
-        } else if (hour >= 12 && hour < 18) {
-          greetingText = "午安，歡迎來到我的個人經歷。";
-        } else if (hour >= 18 && hour < 23) {
-          greetingText = "晚安，歡迎來到我的個人經歷。";
-        } else {
-          greetingText = "凌晨好，歡迎來到我的個人經歷。";
+        if (greetingBox) {
+          const hour = new Date().getHours();
+          let greetingText = "";
+          if (hour >= 5 && hour < 12) greetingText = "早安，歡迎你來。";
+          else if (hour >= 12 && hour < 18) greetingText = "午安，歡迎你來。";
+          else if (hour >= 18 && hour < 23) greetingText = "晚安，歡迎你來。";
+          else greetingText = "凌晨好，歡迎你來。";
+          greetingBox.textContent = greetingText;
         }
-        greetingBox.textContent = greetingText;
       })();
     </script>
   </body>
