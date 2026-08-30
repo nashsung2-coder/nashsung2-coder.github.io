@@ -11,6 +11,18 @@
     <link rel="stylesheet" href="../assets/css/site.css" />
 
     <style>
+      :root {
+        --neon-cyan: #00f0ff;
+        --neon-magenta: #ff2d95;
+        --neon-purple: #b967ff;
+        --neon-green: #39ff14;
+        --bg-deep: #050510;
+        --border-glow: rgba(0, 240, 255, 0.35);
+        --highlight-color: #7ef9ff;
+      }
+
+      * { box-sizing: border-box; }
+
       body {
         margin: 0;
         background: #050510;
@@ -67,9 +79,7 @@
         flex-shrink: 0;
       }
 
-      .site-brand-text {
-        white-space: nowrap;
-      }
+      .site-brand-text { white-space: nowrap; }
 
       .site-nav {
         display: flex;
@@ -80,7 +90,7 @@
       }
 
       .site-nav a {
-        color: #d0d8f0;
+        color: #ffffff;
         text-decoration: none;
         padding: 0.4rem 0.8rem;
         letter-spacing: 1px;
@@ -117,7 +127,8 @@
         margin: 0 auto;
         padding: 7rem 2rem 5rem;
         background: rgba(5, 5, 16, 0.6);
-        border-radius: 8px;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
       }
 
       .page-kicker {
@@ -129,6 +140,7 @@
         padding-left: 0.8rem;
         font-weight: 600;
         text-shadow: 0 0 6px rgba(255, 45, 149, 0.7);
+        margin-bottom: 1rem;
       }
 
       h1 {
@@ -158,6 +170,13 @@
         margin-bottom: 1.5rem;
       }
 
+      .highlight {
+        color: #7ef9ff;
+        font-weight: 700;
+        text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        border-bottom: 1px dotted rgba(0, 240, 255, 0.4);
+      }
+
       a {
         color: #7ef9ff;
         text-decoration: none;
@@ -172,30 +191,63 @@
 
       .action-box {
         margin-top: 3rem;
-        padding: 1.5rem;
+        padding: 2rem;
         border: 1px solid rgba(0, 240, 255, 0.5);
-        border-radius: 8px;
-        background: rgba(0, 240, 255, 0.05);
+        border-radius: 16px;
+        background: linear-gradient(145deg, rgba(0, 240, 255, 0.08), rgba(185, 103, 255, 0.05));
         text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+      }
+
+      .action-box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(from 0deg, transparent, rgba(0, 240, 255, 0.1), transparent, rgba(185, 103, 255, 0.1), transparent);
+        animation: rotate-conic 10s linear infinite;
+      }
+
+      @keyframes rotate-conic {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .action-box p {
+        margin: 0 0 1rem;
+        color: #ffffff;
+        font-weight: 600;
+        position: relative;
+        z-index: 1;
       }
 
       .action-box a {
         display: inline-block;
-        margin-top: 0.5rem;
-        padding: 0.5rem 1.5rem;
+        padding: 0.7rem 1.8rem;
         border: 1px solid #00f0ff;
-        border-radius: 4px;
+        border-radius: 50px;
         color: #00f0ff;
         font-weight: 600;
-        letter-spacing: 1px;
-        transition: all 0.3s;
+        letter-spacing: 2px;
+        text-decoration: none;
+        transition: all 0.4s;
+        position: relative;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
         border-bottom: 1px solid #00f0ff;
       }
 
       .action-box a:hover {
-        background: rgba(0, 240, 255, 0.1);
+        background: rgba(0, 240, 255, 0.15);
         color: #ffffff;
-        box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+        transform: scale(1.05);
+        text-shadow: none;
       }
 
       @media (max-width: 600px) {
@@ -271,7 +323,7 @@
         你選了 A，大家說你上進；你選了 B，大家說你叛逆。但 A 和 B 的終點，真的差很多嗎？好像都是同一個系統的不同入口。
       </p>
       <p>
-        我想要的，是那種可以自己畫地圖的選項。
+        我想要的，是那種可以<span class="highlight">自己畫地圖</span>的選項。
       </p>
       <p>
         舉個例子，我想學寫程式，不是為了考檢定，是因為我想做一個自己的東西。但我查到的資源，幾乎全是「考上頂大資工系」、「取得 AWS 證照」、「加入外商實習」。這些都很好，但我只是想把腦袋裡那個笨點子做出來。有哪條路是給我這種人的嗎？我還在找。
@@ -288,7 +340,7 @@
         我有個朋友，最開心的事是修理壞掉的機械鍵盤。他可以在房間裡拆一整個下午，然後跟你解釋軸體的手感差異。他以後很可能被大人說「不務正業」。但我覺得他找到了自己很喜歡的事。為什麼這件事不能變成一條路？為什麼一定要先讀完某個學位、考完某個試，才能去做你已經確定想做的事？
       </p>
       <p>
-        我想做的，是讓每個人可以自己定義他過的生活值不值得，而不是由家長、老師、社會或任何專家來定義。
+        我想做的，是讓每個人可以<span class="highlight">自己定義他過的生活值不值得</span>，而不是由家長、老師、社會或任何專家來定義。
       </p>
 
       <h2>三、有些問題，現在不處理，以後可能更大</h2>
@@ -307,7 +359,7 @@
 
       <h2>四、我想做的事，其實很簡單</h2>
       <p>
-        我想做的東西，是一個可以讓人在裡面自己開路的平台。你可以在上面說你想做什麼，找到願意一起做的人，把成果記錄下來，帶著這個記錄走去下一個地方。
+        我想做的東西，是一個可以讓人在裡面<span class="highlight">自己開路</span>的平台。你可以在上面說你想做什麼，找到願意一起做的人，把成果記錄下來，帶著這個記錄走去下一個地方。
       </p>
       <p>
         不需要誰批准，也不需要考什麼資格。你發布了，有人有興趣，就一起試。就算失敗了，記錄還在，經驗也還在。
@@ -321,7 +373,7 @@
         我不知道你是誰，可能跟我一樣大，也可能比我大很多。你可能很會寫程式，可能不會。那些都不重要。
       </p>
       <p>
-        重要的是：你有沒有一個一直想試、但因為「沒人允許」所以沒動手的事？
+        重要的是：你有沒有一個一直想試、但因為<span class="highlight">「沒人允許」</span>所以沒動手的事？
       </p>
       <p>
         如果有，那我們可以聊聊。一起把那個東西做出來。不完美的、小的、醜的都沒關係，先做出來再說。
@@ -337,7 +389,7 @@
       </p>
 
       <div class="action-box">
-        <p style="margin: 0; font-weight: 600;">如果你有興趣，歡迎一起來試試看</p>
+        <p>如果你有興趣，歡迎一起來試試看</p>
         <a href="https://sites.google.com/view/crestylonnewworld/加入我們-join-us" target="_blank" rel="noreferrer">打開加入連結</a>
       </div>
     </main>
