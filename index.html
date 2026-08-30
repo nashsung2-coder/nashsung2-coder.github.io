@@ -18,6 +18,7 @@
         --border-glow: rgba(0, 240, 255, 0.35);
         --text-main: #ffffff;
         --text-dim: #c5cde8;
+        --highlight-color: #7ef9ff;
       }
 
       * { box-sizing: border-box; }
@@ -33,7 +34,6 @@
         position: relative;
       }
 
-      /* 太空粒子背景 */
       #particle-canvas {
         position: fixed;
         top: 0; left: 0;
@@ -42,7 +42,6 @@
         pointer-events: none;
       }
 
-      /* 掃描線 */
       body::before {
         content: "";
         position: fixed;
@@ -53,7 +52,6 @@
         pointer-events: none;
       }
 
-      /* 星雲光暈 */
       body::after {
         content: "";
         position: fixed;
@@ -73,7 +71,6 @@
         100% { transform: translate(-1%,-2%) scale(1.02); }
       }
 
-      /* 導覽列 */
       .site-header {
         position: fixed;
         top: 0; left: 0;
@@ -152,7 +149,6 @@
         50% { opacity:0.5; text-shadow:none; }
       }
 
-      /* 內容區域 */
       .page-content {
         position: relative;
         z-index: 2;
@@ -233,7 +229,6 @@
         margin-bottom: 2rem;
       }
 
-      /* 章節標題裝飾 */
       .section-title {
         position: relative;
         margin-top: 3rem;
@@ -260,7 +255,6 @@
         box-shadow: 0 0 8px rgba(0,240,255,0.5);
       }
 
-      /* 卡片式專案列表 */
       .project-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -334,7 +328,30 @@
         text-shadow: 0 0 8px var(--neon-cyan);
       }
 
-      /* 關於我區塊 */
+      /* Demo 標籤 */
+      .badge {
+        display: inline-block;
+        padding: 0.15rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+        background: rgba(255,45,149,0.2);
+        color: #ff6bb8;
+        border: 1px solid rgba(255,45,149,0.5);
+        text-shadow: 0 0 4px rgba(255,45,149,0.5);
+      }
+
+      /* 重點字 */
+      .highlight {
+        color: var(--highlight-color);
+        font-weight: 700;
+        text-shadow: 0 0 8px rgba(0,240,255,0.5);
+        border-bottom: 1px dotted rgba(0,240,255,0.4);
+      }
+
       .about-highlight {
         background: linear-gradient(135deg, rgba(255,45,149,0.05), rgba(0,240,255,0.05));
         border-left: 3px solid var(--neon-magenta);
@@ -344,7 +361,6 @@
         box-shadow: 0 0 15px rgba(255,45,149,0.1);
       }
 
-      /* 凌極世界呼籲 */
       .crestylon-callout {
         margin-top: 3rem;
         padding: 2.5rem 2rem;
@@ -418,7 +434,6 @@
         transform: scale(1.05);
       }
 
-      /* 頁尾 */
       .site-footer {
         position: relative;
         z-index: 2;
@@ -431,7 +446,6 @@
         margin-top: 2rem;
       }
 
-      /* 滑鼠光點 */
       #cursor-glow {
         position: fixed;
         width: 300px;
@@ -444,7 +458,6 @@
         transition: opacity 0.3s;
       }
 
-      /* 手機版修正 */
       @media (max-width: 600px) {
         .site-header {
           position: relative;
@@ -508,7 +521,7 @@
       <!-- 我在做什麼 -->
       <h2 class="section-title reveal">我在做什麼</h2>
       <p class="reveal reveal-delay-1">
-        簡單說，我在做一個叫做「凌極世界」的計畫。它聽起來很宏大，但其實核心很簡單：每個人都應該有選擇的權利，而不是被迫走同一條路。
+        簡單說，我在做一個叫做<span class="highlight">凌極世界</span>的計畫。它聽起來很宏大，但其實核心很簡單：<span class="highlight">每個人都應該有選擇的權利</span>，而不是被迫走同一條路。
       </p>
 
       <div class="project-grid">
@@ -518,13 +531,13 @@
           <a href="https://inn.crestylon.org" target="_blank" rel="noreferrer">inn.crestylon.org</a>
         </div>
         <div class="project-card reveal reveal-delay-1">
-          <h3>Cool English 星辰啟航</h3>
-          <p>幫英文學習平台做的遊戲化入口原型。</p>
+          <h3>Cool English 星辰啟航 <span class="badge">Demo</span></h3>
+          <p>幫英文學習平台做的遊戲化入口原型（未獲採用）。</p>
           <a href="https://cool-english-cosmos.pages.dev" target="_blank" rel="noreferrer">cool-english-cosmos.pages.dev</a>
         </div>
         <div class="project-card reveal reveal-delay-2">
-          <h3>均一學習宇宙</h3>
-          <p>幫均一平台設計的學習入口概念。</p>
+          <h3>均一學習宇宙 <span class="badge">Demo</span></h3>
+          <p>幫均一平台設計的學習入口概念（未獲採用）。</p>
           <a href="https://junyi-english-cosmos.pages.dev" target="_blank" rel="noreferrer">junyi-english-cosmos.pages.dev</a>
         </div>
         <div class="project-card reveal reveal-delay-2">
@@ -535,7 +548,7 @@
       </div>
 
       <p class="reveal reveal-delay-3">
-        這些東西可能還很粗糙，但我想證明一件事：高中生也可以試著解決那些看起來很遠、但其實離我們很近的問題。
+        這些東西可能還很粗糙，但我想證明一件事：<span class="highlight">高中生也可以試著解決那些看起來很遠、但其實離我們很近的問題</span>。
       </p>
 
       <!-- 凌極世界專區 -->
@@ -543,7 +556,7 @@
         <p class="callout-label">CORE PROJECT</p>
         <h2 class="callout-title">凌極世界</h2>
         <p class="callout-text">
-          如果你也覺得現在的路走起來不太對，但不知道能怎麼辦，歡迎來看看。這不是教學，是邀請。
+          如果你也覺得現在的路走起來不太對，但不知道能怎麼辦，歡迎來看看。這不是教學，是<span class="highlight">邀請</span>。
         </p>
         <a class="callout-button" href="pages/crestylon.html">閱讀完整理念 →</a>
       </div>
@@ -562,10 +575,10 @@
       <!-- 想說的話 -->
       <h2 class="section-title reveal">想說的話</h2>
       <p class="reveal reveal-delay-1">
-        很多人的人生，最後都停在「妥協」兩個字。我想試試看，讓人生可以有「選擇」。
+        很多人的人生，最後都停在<span class="highlight">「妥協」</span>兩個字。我想試試看，讓人生可以有<span class="highlight">「選擇」</span>。
       </p>
       <p class="reveal reveal-delay-2">
-        如果你也有一直想做的事，但因為「沒人允許」所以沒動手，歡迎寫信給我。我們可以一起把它做出來。
+        如果你也有一直想做的事，但因為<span class="highlight">「沒人允許」</span>所以沒動手，歡迎寫信給我。我們可以一起把它做出來。
       </p>
       <p class="reveal reveal-delay-3" style="font-style: italic; color: #8ef6ff;">
         網站還在慢慢長。謝謝你來。
