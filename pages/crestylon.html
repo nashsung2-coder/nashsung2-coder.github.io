@@ -17,8 +17,7 @@
         --neon-purple: #b967ff;
         --neon-green: #39ff14;
         --bg-deep: #050510;
-        --border-glow: rgba(0, 240, 255, 0.35);
-        --highlight-color: #7ef9ff;
+        --border-glow: rgba(255, 255, 255, 0.2);
       }
 
       * { box-sizing: border-box; }
@@ -42,7 +41,7 @@
         background: rgba(5, 5, 16, 0.85);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(0, 240, 255, 0.35);
+        border-bottom: 1px solid var(--border-glow);
         padding: 0.6rem 2rem;
         display: flex;
         align-items: center;
@@ -56,17 +55,16 @@
         align-items: center;
         gap: 0.6rem;
         text-decoration: none;
-        color: #00f0ff;
+        color: #ffffff;
         font-weight: 700;
         letter-spacing: 2px;
         font-size: 1rem;
-        text-shadow: 0 0 8px #00f0ff, 0 0 20px rgba(0, 240, 255, 0.4);
         transition: all 0.3s;
       }
 
       .site-brand:hover {
-        text-shadow: 0 0 12px #00f0ff, 0 0 30px rgba(0, 240, 255, 0.7);
-        color: #fff;
+        color: #ffffff;
+        text-shadow: 0 0 8px rgba(255,255,255,0.6);
       }
 
       .site-brand-avatar {
@@ -74,8 +72,8 @@
         height: 38px;
         border-radius: 50%;
         object-fit: cover;
-        border: 2px solid #00f0ff;
-        box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        border: 2px solid #ffffff;
+        box-shadow: 0 0 10px rgba(255,255,255,0.3);
         flex-shrink: 0;
       }
 
@@ -102,24 +100,17 @@
       .site-nav a:hover,
       .site-nav a.active {
         color: #ffffff;
-        border-color: #00f0ff;
-        text-shadow: 0 0 6px #00f0ff;
-        background: rgba(0, 240, 255, 0.1);
+        border-color: #ffffff;
+        background: rgba(255,255,255,0.1);
       }
 
       .site-status {
         position: absolute;
         right: 2rem;
-        color: #39ff14;
+        color: #ffffff;
         font-size: 0.7rem;
         letter-spacing: 3px;
-        animation: pulse-status 2s ease-in-out infinite;
         white-space: nowrap;
-      }
-
-      @keyframes pulse-status {
-        0%, 100% { opacity: 1; text-shadow: 0 0 4px #39ff14; }
-        50% { opacity: 0.5; text-shadow: none; }
       }
 
       .page-content {
@@ -132,26 +123,22 @@
       }
 
       .page-kicker {
-        color: #ff6bb8;
+        color: #ffffff;
         font-size: 0.75rem;
         letter-spacing: 4px;
         text-transform: uppercase;
-        border-left: 2px solid #ff2d95;
+        border-left: 2px solid rgba(255,255,255,0.5);
         padding-left: 0.8rem;
         font-weight: 600;
-        text-shadow: 0 0 6px rgba(255, 45, 149, 0.7);
         margin-bottom: 1rem;
       }
 
       h1 {
         font-size: clamp(2rem, 5vw, 3rem);
         font-weight: 900;
-        background: linear-gradient(120deg, #ffffff, #7ef9ff, #d4a5ff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        color: #ffffff;
+        text-shadow: 0 0 20px rgba(255,255,255,0.3);
         margin-bottom: 1rem;
-        filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.5));
       }
 
       h2 {
@@ -159,93 +146,60 @@
         font-size: 1.5rem;
         margin-top: 3rem;
         letter-spacing: 1px;
-        border-bottom: 1px dashed rgba(0, 240, 255, 0.4);
+        border-bottom: 1px dashed rgba(255,255,255,0.3);
         padding-bottom: 0.5rem;
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
       }
 
       p {
         color: #ffffff;
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
         margin-bottom: 1.5rem;
       }
 
-      .highlight {
-        color: #7ef9ff;
-        font-weight: 700;
-        text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
-        border-bottom: 1px dotted rgba(0, 240, 255, 0.4);
-      }
-
       a {
-        color: #7ef9ff;
+        color: #ffffff;
         text-decoration: none;
-        border-bottom: 1px dotted rgba(126, 249, 255, 0.5);
+        border-bottom: 1px dotted rgba(255,255,255,0.5);
         transition: all 0.3s;
       }
 
       a:hover {
         color: #ffffff;
-        text-shadow: 0 0 8px #00f0ff;
+        text-shadow: 0 0 8px rgba(255,255,255,0.8);
       }
 
       .action-box {
         margin-top: 3rem;
         padding: 2rem;
-        border: 1px solid rgba(0, 240, 255, 0.5);
+        border: 1px solid rgba(255,255,255,0.3);
         border-radius: 16px;
-        background: linear-gradient(145deg, rgba(0, 240, 255, 0.08), rgba(185, 103, 255, 0.05));
+        background: rgba(255,255,255,0.03);
         text-align: center;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
-      }
-
-      .action-box::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(from 0deg, transparent, rgba(0, 240, 255, 0.1), transparent, rgba(185, 103, 255, 0.1), transparent);
-        animation: rotate-conic 10s linear infinite;
-      }
-
-      @keyframes rotate-conic {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
       }
 
       .action-box p {
         margin: 0 0 1rem;
         color: #ffffff;
         font-weight: 600;
-        position: relative;
-        z-index: 1;
       }
 
       .action-box a {
         display: inline-block;
         padding: 0.7rem 1.8rem;
-        border: 1px solid #00f0ff;
+        border: 1px solid #ffffff;
         border-radius: 50px;
-        color: #00f0ff;
+        color: #ffffff;
         font-weight: 600;
         letter-spacing: 2px;
         text-decoration: none;
         transition: all 0.4s;
-        position: relative;
-        z-index: 1;
-        background: rgba(0, 0, 0, 0.3);
-        box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-        border-bottom: 1px solid #00f0ff;
+        background: rgba(255,255,255,0.05);
+        border-bottom: 1px solid #ffffff;
       }
 
       .action-box a:hover {
-        background: rgba(0, 240, 255, 0.15);
+        background: rgba(255,255,255,0.15);
         color: #ffffff;
-        box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+        box-shadow: 0 0 30px rgba(255,255,255,0.3);
         transform: scale(1.05);
         text-shadow: none;
       }
@@ -323,7 +277,7 @@
         你選了 A，大家說你上進；你選了 B，大家說你叛逆。但 A 和 B 的終點，真的差很多嗎？好像都是同一個系統的不同入口。
       </p>
       <p>
-        我想要的，是那種可以<span class="highlight">自己畫地圖</span>的選項。
+        我想要的，是那種可以自己畫地圖的選項。
       </p>
       <p>
         舉個例子，我想學寫程式，不是為了考檢定，是因為我想做一個自己的東西。但我查到的資源，幾乎全是「考上頂大資工系」、「取得 AWS 證照」、「加入外商實習」。這些都很好，但我只是想把腦袋裡那個笨點子做出來。有哪條路是給我這種人的嗎？我還在找。
@@ -340,7 +294,7 @@
         我有個朋友，最開心的事是修理壞掉的機械鍵盤。他可以在房間裡拆一整個下午，然後跟你解釋軸體的手感差異。他以後很可能被大人說「不務正業」。但我覺得他找到了自己很喜歡的事。為什麼這件事不能變成一條路？為什麼一定要先讀完某個學位、考完某個試，才能去做你已經確定想做的事？
       </p>
       <p>
-        我想做的，是讓每個人可以<span class="highlight">自己定義他過的生活值不值得</span>，而不是由家長、老師、社會或任何專家來定義。
+        我想做的，是讓每個人可以自己定義他過的生活值不值得，而不是由家長、老師、社會或任何專家來定義。
       </p>
 
       <h2>三、有些問題，現在不處理，以後可能更大</h2>
@@ -359,7 +313,7 @@
 
       <h2>四、我想做的事，其實很簡單</h2>
       <p>
-        我想做的東西，是一個可以讓人在裡面<span class="highlight">自己開路</span>的平台。你可以在上面說你想做什麼，找到願意一起做的人，把成果記錄下來，帶著這個記錄走去下一個地方。
+        我想做的東西，是一個可以讓人在裡面自己開路的平台。你可以在上面說你想做什麼，找到願意一起做的人，把成果記錄下來，帶著這個記錄走去下一個地方。
       </p>
       <p>
         不需要誰批准，也不需要考什麼資格。你發布了，有人有興趣，就一起試。就算失敗了，記錄還在，經驗也還在。
@@ -373,7 +327,7 @@
         我不知道你是誰，可能跟我一樣大，也可能比我大很多。你可能很會寫程式，可能不會。那些都不重要。
       </p>
       <p>
-        重要的是：你有沒有一個一直想試、但因為<span class="highlight">「沒人允許」</span>所以沒動手的事？
+        重要的是：你有沒有一個一直想試、但因為「沒人允許」所以沒動手的事？
       </p>
       <p>
         如果有，那我們可以聊聊。一起把那個東西做出來。不完美的、小的、醜的都沒關係，先做出來再說。
