@@ -16,7 +16,6 @@
         --neon-green: #39ff14;
         --bg-deep: #050510;
         --border-glow: rgba(0, 240, 255, 0.35);
-        --highlight-color: #7ef9ff;
       }
 
       * { box-sizing: border-box; }
@@ -159,13 +158,12 @@
       }
 
       .page-kicker {
-        color: #ff6bb8;
+        color: #ffffff;
         font-size: 0.75rem;
         letter-spacing: 4px;
         text-transform: uppercase;
-        border-left: 2px solid var(--neon-magenta);
+        border-left: 2px solid rgba(255,255,255,0.5);
         padding-left: 0.8rem;
-        text-shadow: 0 0 6px rgba(255,45,149,0.7);
         font-weight: 600;
         margin-bottom: 1rem;
       }
@@ -173,57 +171,33 @@
       .greeting-box {
         margin-bottom: 2rem;
         padding: 1.2rem 1.8rem;
-        border: 1px solid rgba(0,240,255,0.4);
+        border: 1px solid rgba(255,255,255,0.3);
         border-radius: 50px;
-        background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(185,103,255,0.05));
+        background: rgba(255,255,255,0.03);
         color: #ffffff;
         font-size: 1.2rem;
         letter-spacing: 2px;
         text-align: center;
-        box-shadow: 0 0 20px rgba(0,240,255,0.2);
         position: relative;
         overflow: hidden;
-      }
-      .greeting-box::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(0,240,255,0.1) 0%, transparent 70%);
-        animation: glow-rotate 8s linear infinite;
-      }
-      @keyframes glow-rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
       }
 
       h1 {
         font-size: clamp(2rem, 5vw, 3.2rem);
         font-weight: 900;
         letter-spacing: 2px;
-        background: linear-gradient(120deg, #ffffff, #7ef9ff, #d4a5ff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        filter: drop-shadow(0 0 15px rgba(0,240,255,0.5));
-        animation: title-glow 4s ease-in-out infinite alternate;
+        color: #ffffff;
+        text-shadow: 0 0 20px rgba(255,255,255,0.3);
         margin: 1rem 0 0.5rem;
-      }
-      @keyframes title-glow {
-        0% { filter: drop-shadow(0 0 10px rgba(0,240,255,0.5)); }
-        100% { filter: drop-shadow(0 0 25px rgba(185,103,255,0.7)); }
       }
 
       .lead {
         font-size: 1.25rem;
         color: #ffffff;
-        border-bottom: 1px dashed rgba(0,240,255,0.5);
+        border-bottom: 1px dashed rgba(255,255,255,0.3);
         padding-bottom: 1rem;
         letter-spacing: 1px;
         font-weight: 500;
-        text-shadow: 0 0 10px rgba(0,240,255,0.3);
         margin-bottom: 2rem;
       }
 
@@ -235,22 +209,20 @@
         font-weight: 700;
         letter-spacing: 2px;
         color: #ffffff;
-        text-shadow: 0 0 12px rgba(255,255,255,0.3);
         display: flex;
         align-items: center;
         gap: 0.8rem;
       }
       .section-title::before {
         content: "▸";
-        color: var(--neon-cyan);
+        color: #ffffff;
         font-size: 1.4rem;
       }
       .section-title::after {
         content: "";
         flex: 1;
-        height: 2px;
-        background: linear-gradient(90deg, rgba(0,240,255,0.7), rgba(185,103,255,0.3), transparent);
-        box-shadow: 0 0 8px rgba(0,240,255,0.5);
+        height: 1px;
+        background: rgba(255,255,255,0.3);
       }
 
       .project-grid {
@@ -260,70 +232,40 @@
         margin: 2rem 0;
       }
       .project-card {
-        background: rgba(10,10,30,0.5);
-        border: 1px solid rgba(0,240,255,0.25);
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.2);
         border-radius: 12px;
         padding: 1.5rem;
         transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
         position: relative;
         overflow: hidden;
-        backdrop-filter: blur(4px);
-      }
-      .project-card::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-        opacity: 0;
-        transition: opacity 0.4s;
-      }
-      .project-card::after {
-        content: "";
-        position: absolute;
-        top: 0; right: 0;
-        width: 100%; height: 100%;
-        background: radial-gradient(circle at top right, rgba(0,240,255,0.1), transparent 70%);
-        opacity: 0;
-        transition: opacity 0.4s;
       }
       .project-card:hover {
-        border-color: rgba(0,240,255,0.7);
-        box-shadow: 0 0 25px rgba(0,240,255,0.3), 0 0 50px rgba(185,103,255,0.15);
+        border-color: rgba(255,255,255,0.6);
+        box-shadow: 0 0 25px rgba(255,255,255,0.15);
         transform: translateY(-5px);
-      }
-      .project-card:hover::before,
-      .project-card:hover::after {
-        opacity: 1;
       }
       .project-card h3 {
         margin: 0 0 0.5rem;
         font-size: 1.2rem;
         color: #ffffff;
         letter-spacing: 1px;
-        position: relative;
-        z-index: 1;
       }
       .project-card p {
         margin: 0 0 0.5rem;
         color: #ffffff;
         font-size: 0.95rem;
-        position: relative;
-        z-index: 1;
       }
       .project-card a {
-        color: #7ef9ff;
+        color: #ffffff;
         text-decoration: none;
-        border-bottom: 1px dotted rgba(126,249,255,0.5);
+        border-bottom: 1px dotted rgba(255,255,255,0.5);
         transition: all 0.3s;
         font-size: 0.9rem;
-        position: relative;
-        z-index: 1;
       }
       .project-card a:hover {
         color: #ffffff;
-        text-shadow: 0 0 8px var(--neon-cyan);
+        text-shadow: 0 0 8px rgba(255,255,255,0.8);
       }
 
       .badge {
@@ -335,98 +277,68 @@
         letter-spacing: 1px;
         margin-left: 0.5rem;
         vertical-align: middle;
-        background: rgba(255,45,149,0.2);
-        color: #ff6bb8;
-        border: 1px solid rgba(255,45,149,0.5);
-        text-shadow: 0 0 4px rgba(255,45,149,0.5);
+        background: rgba(255,255,255,0.1);
+        color: #ffffff;
+        border: 1px solid rgba(255,255,255,0.4);
       }
 
       .highlight {
-        color: var(--highlight-color);
+        color: #ffffff;
         font-weight: 700;
-        text-shadow: 0 0 8px rgba(0,240,255,0.5);
-        border-bottom: 1px dotted rgba(0,240,255,0.4);
+        border-bottom: 1px dotted rgba(255,255,255,0.5);
       }
 
       .about-highlight {
-        background: linear-gradient(135deg, rgba(255,45,149,0.05), rgba(0,240,255,0.05));
-        border-left: 3px solid var(--neon-magenta);
+        background: rgba(255,255,255,0.03);
+        border-left: 3px solid rgba(255,255,255,0.6);
         padding: 1.2rem 1.5rem;
         border-radius: 0 8px 8px 0;
         margin: 1.5rem 0;
-        box-shadow: 0 0 15px rgba(255,45,149,0.1);
       }
 
       .crestylon-callout {
         margin-top: 3rem;
         padding: 2.5rem 2rem;
-        border: 1px solid rgba(0,240,255,0.6);
+        border: 1px solid rgba(255,255,255,0.3);
         border-radius: 16px;
-        background: linear-gradient(145deg, rgba(0,240,255,0.08), rgba(185,103,255,0.05));
+        background: rgba(255,255,255,0.03);
         text-align: center;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 0 30px rgba(0,240,255,0.15);
-      }
-      .crestylon-callout::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(from 0deg, transparent, rgba(0,240,255,0.1), transparent, rgba(185,103,255,0.1), transparent);
-        animation: rotate-conic 10s linear infinite;
-      }
-      @keyframes rotate-conic {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
       }
       .callout-label {
-        color: #ff6bb8;
+        color: #ffffff;
         font-size: 0.7rem;
         letter-spacing: 4px;
         font-weight: 600;
         margin-bottom: 0.5rem;
-        position: relative;
-        z-index: 1;
       }
       .callout-title {
         font-size: 1.8rem;
         font-weight: 900;
-        background: linear-gradient(120deg, #fff, #7ef9ff, #d4a5ff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        color: #ffffff;
         margin: 0 0 0.5rem;
-        position: relative;
-        z-index: 1;
       }
       .callout-text {
         color: #ffffff;
         margin-bottom: 1.5rem;
-        position: relative;
-        z-index: 1;
       }
       .callout-button {
         display: inline-block;
         padding: 0.8rem 2rem;
-        border: 1px solid #00f0ff;
+        border: 1px solid #ffffff;
         border-radius: 50px;
-        color: #00f0ff;
+        color: #ffffff;
         font-weight: 600;
         letter-spacing: 2px;
         text-decoration: none;
         transition: all 0.4s;
-        position: relative;
-        z-index: 1;
-        background: rgba(0,0,0,0.3);
-        box-shadow: 0 0 15px rgba(0,240,255,0.2);
+        background: rgba(255,255,255,0.05);
       }
       .callout-button:hover {
-        background: rgba(0,240,255,0.15);
+        background: rgba(255,255,255,0.15);
         color: #ffffff;
-        box-shadow: 0 0 30px rgba(0,240,255,0.5);
+        box-shadow: 0 0 30px rgba(255,255,255,0.3);
         transform: scale(1.05);
       }
 
@@ -438,7 +350,7 @@
         color: #ffffff;
         font-size: 0.8rem;
         letter-spacing: 1px;
-        border-top: 1px solid rgba(0,240,255,0.2);
+        border-top: 1px solid rgba(255,255,255,0.2);
         margin-top: 2rem;
       }
 
@@ -447,7 +359,7 @@
         width: 300px;
         height: 300px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(0,240,255,0.08) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
         pointer-events: none;
         z-index: 0;
         transform: translate(-50%,-50%);
@@ -515,7 +427,7 @@
 
       <h2 class="section-title reveal">我在做什麼</h2>
       <p class="reveal reveal-delay-1">
-        簡單說，我在做一個叫做<span class="highlight">凌極世界</span>的計畫。它聽起來很宏大，但其實核心很簡單：<span class="highlight">每個人都應該有選擇的權利</span>，而不是被迫走同一條路。
+        簡單說，我在做一個叫做凌極世界的計畫。它聽起來很宏大，但其實核心很簡單：每個人都應該有選擇的權利，而不是被迫走同一條路。
       </p>
 
       <div class="project-grid">
@@ -542,14 +454,14 @@
       </div>
 
       <p class="reveal reveal-delay-3">
-        這些東西可能還很粗糙，但我想證明一件事：<span class="highlight">高中生也可以試著解決那些看起來很遠、但其實離我們很近的問題</span>。
+        這些東西可能還很粗糙，但我想證明一件事：高中生也可以試著解決那些看起來很遠、但其實離我們很近的問題。
       </p>
 
       <div class="crestylon-callout reveal reveal-delay-2">
         <p class="callout-label">CORE PROJECT</p>
         <h2 class="callout-title">凌極世界</h2>
         <p class="callout-text">
-          如果你也覺得現在的路走起來不太對，但不知道能怎麼辦，歡迎來看看。這不是教學，是<span class="highlight">邀請</span>。
+          如果你也覺得現在的路走起來不太對，但不知道能怎麼辦，歡迎來看看。這不是教學，是邀請。
         </p>
         <a class="callout-button" href="pages/crestylon.html">閱讀完整理念 →</a>
       </div>
@@ -566,10 +478,10 @@
 
       <h2 class="section-title reveal">想說的話</h2>
       <p class="reveal reveal-delay-1">
-        很多人的人生，最後都停在<span class="highlight">「妥協」</span>兩個字。我想試試看，讓人生可以有<span class="highlight">「選擇」</span>。
+        很多人的人生，最後都停在「妥協」兩個字。我想試試看，讓人生可以有「選擇」。
       </p>
       <p class="reveal reveal-delay-2">
-        如果你也有一直想做的事，但因為<span class="highlight">「沒人允許」</span>所以沒動手，歡迎寫信給我。我們可以一起把它做出來。
+        如果你也有一直想做的事，但因為「沒人允許」所以沒動手，歡迎寫信給我。我們可以一起把它做出來。
       </p>
       <p class="reveal reveal-delay-3" style="font-style: italic; color: #ffffff;">
         網站還在慢慢長。謝謝你來。
@@ -619,11 +531,11 @@
         window.addEventListener("resize", resize);
 
         const COLORS = [
-          "rgba(0, 240, 255,",
-          "rgba(255, 45, 149,",
-          "rgba(185, 103, 255,",
           "rgba(255, 255, 255,",
-          "rgba(57, 255, 20,",
+          "rgba(200, 200, 255,",
+          "rgba(180, 180, 255,",
+          "rgba(255, 255, 255,",
+          "rgba(200, 255, 200,",
         ];
 
         class Particle {
@@ -673,7 +585,7 @@
             this.opacity = Math.random() * 0.7 + 0.3;
             this.life = 0;
             this.maxLife = 60 + Math.random() * 40;
-            this.color = Math.random() > 0.5 ? "0, 240, 255" : "255, 45, 149";
+            this.color = Math.random() > 0.5 ? "255, 255, 255" : "200, 200, 255";
           }
           update() {
             this.x += Math.cos(this.angle) * this.speed;
