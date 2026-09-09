@@ -169,32 +169,47 @@
         margin-bottom: 1rem;
       }
 
-      /* 首頁橫幅圖片：半透明版本 */
-      .hero-banner {
+      /* ========== 圖片與文字並排區塊 ========== */
+      .intro-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
         margin-bottom: 2.5rem;
+      }
+
+      .intro-image {
+        flex-shrink: 0;
+        width: 160px;
+        height: 160px;
         border-radius: 16px;
         overflow: hidden;
-        border: 1px solid rgba(0, 240, 255, 0.3);
-        box-shadow: 0 0 30px rgba(0, 240, 255, 0.15), 0 0 60px rgba(185, 103, 255, 0.08);
-        position: relative;
+        border: 1px solid rgba(0, 240, 255, 0.4);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), 0 0 50px rgba(185, 103, 255, 0.1);
         background: rgba(255, 255, 255, 0.02);
       }
-      .hero-banner img {
+
+      .intro-image img {
         display: block;
         width: 100%;
-        height: auto;
+        height: 100%;
         object-fit: cover;
         opacity: 0.5;
         transition: opacity 0.5s ease, transform 0.5s ease;
       }
-      .hero-banner:hover img {
+
+      .intro-image:hover img {
         opacity: 0.7;
-        transform: scale(1.02);
+        transform: scale(1.05);
+      }
+
+      .intro-text {
+        flex: 1;
+        min-width: 0;
       }
 
       .greeting-box {
-        margin-bottom: 2rem;
-        padding: 1.2rem 1.8rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem 1.5rem;
         border: 1px solid rgba(0,240,255,0.4);
         border-radius: 50px;
         background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(185,103,255,0.05));
@@ -231,7 +246,7 @@
         color: transparent;
         filter: drop-shadow(0 0 15px rgba(0,240,255,0.5));
         animation: title-glow 4s ease-in-out infinite alternate;
-        margin: 1rem 0 0.5rem;
+        margin: 0.5rem 0;
       }
       @keyframes title-glow {
         0% { filter: drop-shadow(0 0 10px rgba(0,240,255,0.5)); }
@@ -246,9 +261,10 @@
         letter-spacing: 1px;
         font-weight: 500;
         text-shadow: 0 0 10px rgba(0,240,255,0.3);
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
       }
 
+      /* ========== 內容區塊 ========== */
       .section-title {
         position: relative;
         margin-top: 3rem;
@@ -505,12 +521,21 @@
         .project-grid {
           grid-template-columns: 1fr;
         }
-        .hero-banner {
-          border-radius: 10px;
-          margin-bottom: 1.5rem;
+
+        /* 手機上圖片與文字改為上下排列 */
+        .intro-wrapper {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 1.5rem;
         }
-        .hero-banner img {
-          opacity: 0.55;
+        .intro-image {
+          width: 140px;
+          height: 140px;
+          border-radius: 14px;
+        }
+        .intro-text {
+          width: 100%;
         }
       }
     </style>
@@ -529,17 +554,18 @@
     </header>
 
     <main class="page-content content-text">
-      <!-- 首頁橫幅圖片：半透明 -->
-      <div class="hero-banner">
-        <img src="assets/images/hero-banner.png" alt="宋嵐緒的個人網站橫幅圖片" />
+      <!-- 圖片與文字並排區塊 -->
+      <div class="intro-wrapper">
+        <div class="intro-image">
+          <img src="assets/images/hero-banner.png" alt="宋嵐緒的個人網站圖片" />
+        </div>
+        <div class="intro-text">
+          <p class="page-kicker reveal visible">HOME / 00</p>
+          <div class="greeting-box reveal visible" id="greeting">載入中...</div>
+          <h1 class="reveal visible">歡迎來到<br>宋嵐緒的個人網站</h1>
+          <p class="lead reveal visible">很高興你來。我是宋嵐緒。</p>
+        </div>
       </div>
-
-      <p class="page-kicker reveal visible">HOME / 00</p>
-
-      <div class="greeting-box reveal visible" id="greeting">載入中...</div>
-
-      <h1 class="reveal visible">歡迎來到<br>宋嵐緒的個人網站</h1>
-      <p class="lead reveal visible">很高興你來。我是宋嵐緒。</p>
 
       <p class="reveal reveal-delay-1">
         我是個高一學生，喜歡把腦袋裡的奇怪想法做出來。這裡是我的小角落，放著我正在做的事、正在想的問題，還有一些想跟你說的話。
