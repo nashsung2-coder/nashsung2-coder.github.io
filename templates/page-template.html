@@ -1,38 +1,39 @@
 <!doctype html>
 <html lang="zh-Hant">
   <head>
-    <!--
-      新增頁面時，複製此檔案到 pages/，例如：pages/hello.html。
-      只需要修改下列三行：
-      1. site-nav-title：導覽列顯示的名稱
-      2. site-nav-order：數字越小，越靠左；可用 10、20、30 方便日後插入
-      3. site-nav-visible：true 顯示於導覽列；false 隱藏但仍可用網址開啟
-    -->
-    <meta name="site-nav-title" content="把這裡改成頁面名稱" />
+    <!-- 導覽列設定：三個都請填寫。 -->
+    <meta name="site-nav-title" content="頁面名稱" />
     <meta name="site-nav-order" content="10" />
     <meta name="site-nav-visible" content="true" />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="../assets/images/avatar-circle.png" />
-    <link rel="stylesheet" href="../assets/css/site.css?v=2" />
-    <title>把這裡改成頁面名稱 — 宋嵐緒個人頁面</title>
+    <title>頁面名稱 — Nash Pages</title>
+    <link rel="stylesheet" href="../assets/css/site.css" />
   </head>
   <body>
-    <!-- 不要刪除 header 或 nav.js；它們會載入自動排序的導覽列。 -->
+    <!-- 請保留以下導覽列，不需要自行新增選單連結。 -->
     <header class="site-header" data-site-navigation>
       <a class="site-brand" href="/" aria-label="宋嵐緒個人頁面首頁">
-        <img class="site-brand-avatar" src="../assets/images/avatar-circle.png" alt="宋嵐緒的角色插圖" />
-        <span>宋嵐緒個人頁面</span>
+        <img
+          class="site-brand-avatar"
+          src="../assets/images/avatar-circle.png"
+          alt="宋嵐緒的角色插圖"
+        />
+        <span class="site-brand-text">宋嵐緒個人頁面</span>
       </a>
       <nav class="site-nav" aria-label="網站導覽" data-navigation-list></nav>
       <span class="site-status">STATIC INDEX</span>
     </header>
-    <!-- 從這裡開始寫你的 HTML。可以新增任何 HTML 標籤、圖片與連結。 -->
+
+    <!-- 從這裡開始寫你的內容。 -->
     <main class="page-content">
       <p class="page-kicker">PAGE / 10</p>
-      <h1>在這裡寫你的標題</h1>
-      <p>在這裡寫你的內容。儲存並提交這個 HTML 檔案後，導覽列會自動更新。</p>
+      <h1>頁面標題</h1>
+      <p>內容文字。</p>
     </main>
+
+    <!-- 請保留這行，它會讀取自動排序的導覽列。 -->
     <script src="../assets/js/nav.js"></script>
   </body>
 </html>
