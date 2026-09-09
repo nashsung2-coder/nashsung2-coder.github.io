@@ -15,7 +15,7 @@
         --neon-purple: #b967ff;
         --neon-green: #39ff14;
         --bg-deep: #050510;
-        --text-bright: #ffffff;
+        --border-glow: rgba(0, 240, 255, 0.35);
       }
 
       * { box-sizing: border-box; }
@@ -24,7 +24,7 @@
       body {
         margin: 0;
         background: var(--bg-deep);
-        color: var(--text-bright);
+        color: #ffffff;
         font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", sans-serif;
         line-height: 1.8;
         overflow-x: hidden;
@@ -54,9 +54,9 @@
         position: fixed;
         top: -50%; left: -50%;
         width: 200%; height: 200%;
-        background: radial-gradient(ellipse at 20% 50%, rgba(0,240,255,0.08) 0%, transparent 60%),
-                    radial-gradient(ellipse at 80% 20%, rgba(255,45,149,0.06) 0%, transparent 60%),
-                    radial-gradient(ellipse at 50% 80%, rgba(185,103,255,0.06) 0%, transparent 60%);
+        background: radial-gradient(ellipse at 20% 50%, rgba(0,240,255,0.06) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 20%, rgba(255,45,149,0.05) 0%, transparent 60%),
+                    radial-gradient(ellipse at 50% 80%, rgba(185,103,255,0.04) 0%, transparent 60%);
         z-index: 0;
         pointer-events: none;
         animation: nebula-drift 30s ease-in-out infinite alternate;
@@ -76,7 +76,7 @@
         background: rgba(5,5,16,0.85);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(0,240,255,0.4);
+        border-bottom: 1px solid var(--border-glow);
         padding: 0.6rem 2rem;
         display: flex;
         align-items: center;
@@ -167,6 +167,29 @@
         text-shadow: 0 0 6px rgba(255,45,149,0.7);
         font-weight: 600;
         margin-bottom: 1rem;
+      }
+
+      /* 首頁橫幅圖片：半透明版本 */
+      .hero-banner {
+        margin-bottom: 2.5rem;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        box-shadow: 0 0 30px rgba(0, 240, 255, 0.15), 0 0 60px rgba(185, 103, 255, 0.08);
+        position: relative;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .hero-banner img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        opacity: 0.5;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .hero-banner:hover img {
+        opacity: 0.7;
+        transform: scale(1.02);
       }
 
       .greeting-box {
@@ -453,6 +476,7 @@
         transition: opacity 0.3s;
       }
 
+      /* 手機版 */
       @media (max-width: 600px) {
         .site-header {
           position: relative;
@@ -481,6 +505,13 @@
         .project-grid {
           grid-template-columns: 1fr;
         }
+        .hero-banner {
+          border-radius: 10px;
+          margin-bottom: 1.5rem;
+        }
+        .hero-banner img {
+          opacity: 0.55;
+        }
       }
     </style>
   </head>
@@ -498,6 +529,11 @@
     </header>
 
     <main class="page-content content-text">
+      <!-- 首頁橫幅圖片：半透明 -->
+      <div class="hero-banner">
+        <img src="assets/images/hero-banner.png" alt="宋嵐緒的個人網站橫幅圖片" />
+      </div>
+
       <p class="page-kicker reveal visible">HOME / 00</p>
 
       <div class="greeting-box reveal visible" id="greeting">載入中...</div>
