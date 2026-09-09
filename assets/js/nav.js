@@ -11,7 +11,7 @@
     pages.filter((page) => page.visible).forEach((page) => {
       const link = document.createElement('a');
       link.href = page.path;
-      link.innerHTML = `<span>${String(page.order).padStart(2, '0')}</span>${page.title}`;
+      link.textContent = page.title;
       if (page.path === normalizedPath) link.setAttribute('aria-current', 'page');
       list.appendChild(link);
     });
