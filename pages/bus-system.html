@@ -1,112 +1,138 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" style="color-scheme: light only;">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light only" />
+    <meta name="supported-color-schemes" content="light only" />
+    <meta name="theme-color" content="#f7f3ec" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
     <meta name="site-nav-title" content="台北公車" />
     <meta name="site-nav-order" content="40" />
     <meta name="site-nav-visible" content="true" />
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>台北公車 — Nash Pages</title>
     <link rel="stylesheet" href="../assets/css/site.css" />
 
     <style>
-      :root {
-        --bg: #f7f3ec;
-        --surface: #ffffff;
-        --surface-soft: #fbf8f3;
-        --ink: #1f1a16;
-        --ink-soft: #5c534a;
-        --ink-quiet: #9c9188;
-        --line: #e8e0d4;
-        --line-strong: #d8cdbc;
-        --accent: #b2562a;
-        --accent-soft: #f2e5d8;
-        --accent-quiet: #c98868;
-        --moss: #5c6b4f;
-        --gold: #a87a2c;
-        --radius-s: 8px;
-        --radius-m: 14px;
-        --radius-l: 20px;
+      html {
+        color-scheme: light only !important;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
       }
+      :root { forced-color-adjust: none; }
 
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-
-      html { -webkit-text-size-adjust: 100%; }
+      * { box-sizing: border-box; -webkit-box-sizing: border-box; }
+      *:before, *:after { box-sizing: border-box; -webkit-box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
 
       body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font-family: "Noto Sans TC", -apple-system, "Segoe UI", "Microsoft JhengHei", sans-serif;
+        background: #f7f3ec !important;
+        background-color: #f7f3ec !important;
+        color: #1f1a16 !important;
+        font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
         font-size: 15px;
         line-height: 1.75;
         overflow-x: hidden;
         min-height: 100vh;
+        letter-spacing: 0.01em;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        letter-spacing: 0.01em;
+        forced-color-adjust: none;
+        -webkit-forced-color-adjust: none;
+      }
+      @media (prefers-color-scheme: dark) {
+        html, body {
+          background: #f7f3ec !important;
+          background-color: #f7f3ec !important;
+          color: #1f1a16 !important;
+        }
+      }
+      @media (forced-colors: active) {
+        body { background: #f7f3ec !important; color: #1f1a16 !important; }
+      }
+
+      body p, body span, body div, body section, body article,
+      body h1, body h2, body h3, body h4, body h5, body h6,
+      body a, body li, body button, body label, body strong, body em {
+        color: inherit;
+      }
+
+      /* 按鈕文字一律直接顯示，不參與逐字動畫 */
+      .btn, .btn *, .skip, .skip *, .tag, .tag *,
+      .site-header, .site-header *, .status, .status *,
+      .meta-bar, .meta-bar *, .eyebrow, .eyebrow *,
+      .map-wrap, .map-wrap * {
+        animation: none;
       }
 
       /* ============================================================
          導覽列
          ============================================================ */
       .site-header {
-        position: fixed;
+        position: fixed !important;
         top: 0; left: 0;
         width: 100%;
         z-index: 100;
-        background: rgba(247, 243, 236, 0.85);
-        backdrop-filter: saturate(180%) blur(20px);
-        -webkit-backdrop-filter: saturate(180%) blur(20px);
-        border-bottom: 1px solid var(--line);
+        background: rgba(247, 243, 236, 0.92) !important;
+        border-bottom: 1px solid #e8e0d4 !important;
         padding: 0.7rem 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
+        -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        backdrop-filter: saturate(180%) blur(20px);
+      }
+      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        .site-header { background: rgba(247, 243, 236, 0.98) !important; }
       }
       .site-brand {
         position: absolute;
         left: 2rem;
-        display: flex;
-        align-items: center;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
         gap: 0.55rem;
         text-decoration: none;
-        color: var(--ink);
+        color: #1f1a16 !important;
         font-weight: 600;
         font-size: 0.92rem;
-        letter-spacing: 0.02em;
       }
       .site-brand-avatar {
         width: 32px; height: 32px;
         border-radius: 50%;
         object-fit: cover;
-        border: 1px solid var(--line-strong);
+        border: 1px solid #d8cdbc;
       }
-      .site-brand-text { white-space: nowrap; }
-
+      .site-brand-text { white-space: nowrap; color: #1f1a16 !important; }
       .site-nav {
-        display: flex; align-items: center;
-        gap: 0.1rem; flex-wrap: wrap; justify-content: center;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
+        gap: 0.1rem;
+        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
+        -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
       }
       .site-nav a {
-        color: var(--ink-soft); text-decoration: none;
+        color: #5c534a !important;
+        text-decoration: none;
         padding: 0.4rem 0.75rem;
-        font-size: 0.85rem; letter-spacing: 0.02em;
-        border-radius: var(--radius-s);
+        font-size: 0.85rem;
+        border-radius: 8px;
         transition: color 0.2s, background 0.2s;
       }
       .site-nav a:hover,
       .site-nav a[aria-current="page"] {
-        color: var(--accent);
-        background: var(--accent-soft);
+        color: #b2562a !important;
+        background: #f2e5d8 !important;
       }
       .site-status {
-        position: absolute; right: 2rem;
-        color: var(--ink-quiet);
+        position: absolute;
+        right: 2rem;
+        color: #9c9188 !important;
         font-size: 0.7rem;
         letter-spacing: 0.15em;
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
       }
 
       /* ============================================================
@@ -118,34 +144,41 @@
         padding: 6.5rem 1.25rem 4rem;
       }
 
-      /* 頂部狀態 */
       .status {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
+        -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;
         padding: 0.75rem 0 1.5rem;
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1px solid #e8e0d4;
         margin-bottom: 2rem;
         font-size: 0.75rem;
         letter-spacing: 0.08em;
-        color: var(--ink-quiet);
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        color: #9c9188 !important;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
       }
       .status-time {
-        color: var(--ink);
+        color: #1f1a16 !important;
         font-weight: 500;
         font-variant-numeric: tabular-nums;
       }
       .status-loc {
-        display: flex; align-items: center; gap: 0.4rem;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
+        gap: 0.4rem;
       }
+      .status-loc span { color: #9c9188 !important; }
       .status-dot {
         width: 6px; height: 6px;
         border-radius: 50%;
-        background: var(--moss);
+        background: #5c6b4f;
         animation: pulse 2.4s ease-in-out infinite;
+        -webkit-animation: pulse 2.4s ease-in-out infinite;
       }
       @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.35; }
+      }
+      @-webkit-keyframes pulse {
         0%, 100% { opacity: 1; }
         50% { opacity: 0.35; }
       }
@@ -157,111 +190,143 @@
       .screen.active {
         display: block;
         animation: fadeUp 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
+        -webkit-animation: fadeUp 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
       }
       @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0; -webkit-transform: translateY(8px); transform: translateY(8px); }
+        to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+      }
+      @-webkit-keyframes fadeUp {
+        from { opacity: 0; -webkit-transform: translateY(8px); }
+        to { opacity: 1; -webkit-transform: translateY(0); }
       }
 
       /* ============================================================
-         逐字浮現（極簡版）
+         逐字浮現（僅限非互動文字）
          ============================================================ */
       .ch {
-        opacity: 0;
         display: inline-block;
+        opacity: 0;
         animation: chIn 0.4s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+        -webkit-animation: chIn 0.4s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
       }
       @keyframes chIn {
-        from { opacity: 0; transform: translateY(4px); }
-        to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0; -webkit-transform: translateY(4px); transform: translateY(4px); }
+        to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+      }
+      @-webkit-keyframes chIn {
+        from { opacity: 0; -webkit-transform: translateY(4px); }
+        to { opacity: 1; -webkit-transform: translateY(0); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .ch { animation: none !important; -webkit-animation: none !important; opacity: 1 !important; }
+        .screen.active, .status-dot, .scan-line, .icon-wrap { animation: none !important; -webkit-animation: none !important; }
       }
 
       /* ============================================================
-         標籤、標題
+         標籤 / 標題
          ============================================================ */
       .eyebrow {
         display: block;
         font-size: 0.7rem;
         letter-spacing: 0.22em;
-        color: var(--ink-quiet);
+        color: #9c9188 !important;
         text-transform: uppercase;
         margin-bottom: 0.6rem;
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
       }
-      .eyebrow .idx {
-        color: var(--accent);
-        font-weight: 500;
-      }
+      .eyebrow .idx { color: #b2562a !important; font-weight: 500; }
 
       h2.title {
-        font-family: "Noto Serif TC", "Songti TC", serif;
+        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
         font-size: 1.55rem;
         font-weight: 500;
         line-height: 1.5;
-        color: var(--ink);
-        letter-spacing: 0.02em;
-        margin-bottom: 1.5rem;
+        color: #1f1a16 !important;
+        margin: 0 0 1.5rem;
       }
-
       p.lead {
-        color: var(--ink-soft);
+        color: #5c534a !important;
         font-size: 0.95rem;
-        margin-bottom: 1.25rem;
+        margin: 0 0 1.25rem;
         line-height: 1.85;
       }
 
       /* ============================================================
-         按鈕
+         按鈕（文字直接顯示，無逐字）
          ============================================================ */
       .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: space-between;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
+        -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;
         gap: 0.75rem;
         width: 100%;
         padding: 1rem 1.25rem;
-        background: var(--ink);
-        color: var(--bg);
+        background: #1f1a16 !important;
+        color: #f7f3ec !important;
         border: none;
-        border-radius: var(--radius-m);
+        border-radius: 14px;
         font-family: inherit;
         font-size: 0.95rem;
         font-weight: 500;
         letter-spacing: 0.05em;
         cursor: pointer;
-        transition: background 0.25s, transform 0.15s;
+        transition: background 0.25s, -webkit-transform 0.15s, transform 0.15s;
         -webkit-tap-highlight-color: transparent;
         text-decoration: none;
+        text-align: left;
       }
-      .btn:hover { background: #33291f; }
-      .btn:active { transform: scale(0.985); }
+      .btn span { color: inherit !important; }
+      .btn:hover { background: #33291f !important; }
+      .btn:active { -webkit-transform: scale(0.985); transform: scale(0.985); }
       .btn .arrow {
         display: inline-block;
-        transition: transform 0.25s;
+        transition: -webkit-transform 0.25s, transform 0.25s;
+        color: inherit !important;
       }
-      .btn:hover .arrow { transform: translateX(3px); }
+      .btn:hover .arrow { -webkit-transform: translateX(3px); transform: translateX(3px); }
 
       .btn.ghost {
-        background: transparent;
-        color: var(--ink);
-        border: 1px solid var(--line-strong);
+        background: transparent !important;
+        color: #1f1a16 !important;
+        border: 1px solid #d8cdbc;
       }
-      .btn.ghost:hover {
-        background: var(--surface);
-        border-color: var(--ink-quiet);
-      }
+      .btn.ghost:hover { background: #ffffff !important; border-color: #9c9188; }
 
       .btn.accent {
-        background: var(--accent);
+        background: #b2562a !important;
+        color: #ffffff !important;
       }
-      .btn.accent:hover { background: #9c4823; }
+      .btn.accent:hover { background: #9c4823 !important; }
+
+      .btn.map-trigger {
+        background: #ffffff !important;
+        color: #1f1a16 !important;
+        border: 1px solid #d8cdbc;
+        margin-bottom: 1rem;
+        justify-content: flex-start;
+        gap: 0.75rem;
+      }
+      .btn.map-trigger:hover {
+        background: #ffffff !important;
+        border-color: #b2562a;
+        box-shadow: 0 4px 16px rgba(178, 86, 42, 0.08);
+      }
+      .btn.map-trigger .label { color: #1f1a16 !important; font-weight: 500; }
+      .btn.map-trigger .hint {
+        margin-left: auto;
+        font-size: 0.75rem;
+        color: #9c9188 !important;
+        letter-spacing: 0.05em;
+      }
 
       .btn-row {
-        display: flex;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
         gap: 0.65rem;
         margin-top: 1.5rem;
       }
-      .btn-row .btn { flex: 1; }
+      .btn-row .btn { -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; }
 
       /* ============================================================
          圖示
@@ -273,475 +338,538 @@
         fill: none;
         stroke-linecap: round;
         stroke-linejoin: round;
-        flex-shrink: 0;
+        -webkit-flex-shrink: 0; flex-shrink: 0;
       }
-      .icon-lg {
-        width: 40px; height: 40px;
-        stroke-width: 1.25;
-      }
+      .icon-lg { width: 40px; height: 40px; stroke-width: 1.25; }
 
       /* ============================================================
-         歡迎
+         歡迎區
          ============================================================ */
-      .welcome {
-        padding: 1.5rem 0 0.5rem;
-      }
+      .welcome { padding: 1.5rem 0 0.5rem; }
+
       .welcome-mark {
-        display: flex;
-        align-items: center;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
         gap: 0.75rem;
         margin-bottom: 2.5rem;
-        color: var(--accent);
+        color: #b2562a !important;
       }
       .welcome-mark .rule {
         height: 1px;
         width: 40px;
-        background: var(--accent);
+        background: #b2562a;
         opacity: 0.6;
       }
       .welcome-mark .label {
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
         font-size: 0.68rem;
         letter-spacing: 0.28em;
         text-transform: uppercase;
+        color: #b2562a !important;
       }
 
       .welcome-time {
-        font-family: "Noto Serif TC", serif;
-        font-size: clamp(2rem, 8vw, 2.6rem);
+        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
+        font-size: 2.2rem;
         font-weight: 500;
-        line-height: 1.35;
-        color: var(--ink);
+        line-height: 1.45;
+        color: #1f1a16 !important;
+        margin: 0 0 1.75rem;
+      }
+      .welcome-time .time-now {
+        color: #1f1a16 !important;
+        font-variant-numeric: tabular-nums;
         letter-spacing: 0.02em;
-        margin-bottom: 1.75rem;
       }
       .welcome-time .period {
-        color: var(--accent);
+        color: #b2562a !important;
+        margin-left: 0.25em;
       }
+      .welcome-time .location { color: #1f1a16 !important; }
 
       .welcome-greet {
-        font-family: "Noto Serif TC", serif;
-        font-size: clamp(1.05rem, 4vw, 1.2rem);
+        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
+        font-size: 1.12rem;
         font-weight: 400;
         line-height: 1.9;
-        color: var(--ink-soft);
-        margin-bottom: 2.5rem;
+        color: #5c534a !important;
+        margin: 0 0 2.5rem;
       }
-      .welcome-greet .em {
-        color: var(--ink);
-        font-weight: 500;
-      }
+      .welcome-greet .em { color: #1f1a16 !important; font-weight: 500; }
       .welcome-greet .origin {
-        color: var(--accent);
+        color: #b2562a !important;
         font-weight: 500;
-        border-bottom: 1px solid var(--accent-quiet);
+        border-bottom: 1px solid #c98868;
         padding-bottom: 1px;
       }
 
       .welcome-meta {
         padding-top: 1.75rem;
-        border-top: 1px solid var(--line);
+        border-top: 1px solid #e8e0d4;
         font-size: 0.8rem;
-        color: var(--ink-quiet);
+        color: #9c9188 !important;
         letter-spacing: 0.03em;
         line-height: 1.9;
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
       }
 
       /* ============================================================
-         列表 / 卡片
+         路線
          ============================================================ */
-      .list { display: grid; gap: 0; }
+      .list { display: block; }
 
-      .row {
-        display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-        padding: 1.1rem 0;
-        border-bottom: 1px solid var(--line);
-      }
-      .row:last-child { border-bottom: none; }
-      .row .num {
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
-        font-size: 0.72rem;
-        color: var(--ink-quiet);
-        width: 24px;
-        padding-top: 0.3rem;
-        letter-spacing: 0.05em;
-      }
-      .row .body { flex: 1; min-width: 0; }
-      .row .body .name {
-        font-size: 0.98rem;
-        color: var(--ink);
-        font-weight: 500;
-        line-height: 1.5;
-        margin-bottom: 0.15rem;
-      }
-      .row .body .desc {
-        font-size: 0.85rem;
-        color: var(--ink-quiet);
-        line-height: 1.7;
-      }
-      .row .body .meta {
-        display: flex;
-        gap: 1rem;
-        margin-top: 0.4rem;
-        font-size: 0.75rem;
-        color: var(--ink-quiet);
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
-        flex-wrap: wrap;
-      }
-
-      /* 路線卡 */
       .route {
         padding: 1.25rem 0;
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1px solid #e8e0d4;
       }
       .route:last-of-type { border-bottom: none; }
+
       .route-head {
-        display: flex;
-        align-items: baseline;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: baseline; -webkit-align-items: baseline; -ms-flex-align: baseline; align-items: baseline;
         gap: 1rem;
         margin-bottom: 0.5rem;
-        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
       }
       .route-no {
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
         font-size: 1.4rem;
         font-weight: 600;
-        color: var(--ink);
-        letter-spacing: 0.03em;
+        color: #1f1a16 !important;
       }
       .route-eta {
         font-size: 0.78rem;
-        color: var(--accent);
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        color: #b2562a !important;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
       }
       .route-name {
         font-size: 0.92rem;
-        color: var(--ink-soft);
-        margin-bottom: 0.6rem;
+        color: #5c534a !important;
+        margin: 0 0 0.6rem;
         line-height: 1.6;
       }
       .route-meta {
-        display: flex;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
         gap: 1rem;
         font-size: 0.72rem;
-        color: var(--ink-quiet);
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
-        flex-wrap: wrap;
+        color: #9c9188 !important;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
       }
+      .route-meta span { color: #9c9188 !important; }
 
-      /* 分組標題 */
       .group-label {
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
         font-size: 0.7rem;
         letter-spacing: 0.2em;
-        color: var(--ink-quiet);
+        color: #9c9188 !important;
         text-transform: uppercase;
         margin: 2rem 0 0.5rem;
         padding-bottom: 0.5rem;
       }
 
-      /* 標籤 */
+      /* ============================================================
+         標籤（直接顯示，無逐字）
+         ============================================================ */
       .tags {
-        display: flex;
-        flex-wrap: wrap;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
         gap: 0.5rem;
         margin-bottom: 1.5rem;
       }
       .tag {
         padding: 0.5rem 0.9rem;
-        background: var(--surface);
-        border: 1px solid var(--line);
+        background: #ffffff !important;
+        border: 1px solid #e8e0d4;
         border-radius: 999px;
         font-size: 0.85rem;
-        color: var(--ink-soft);
+        color: #5c534a !important;
         transition: all 0.2s;
       }
-      .tag:hover {
-        border-color: var(--accent-quiet);
-        color: var(--accent);
+      .tag:hover { border-color: #c98868; color: #b2562a !important; }
+
+      .tag.removable {
+        cursor: pointer;
+        padding-right: 0.6rem;
       }
+      .tag.removable::after {
+        content: "×";
+        margin-left: 0.5rem;
+        color: #9c9188;
+        font-size: 1rem;
+        line-height: 1;
+        vertical-align: middle;
+      }
+      .tag.removable:hover::after { color: #b2562a; }
 
       /* ============================================================
          輸入
          ============================================================ */
       .input-row {
-        display: flex;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
         gap: 0.5rem;
         margin-bottom: 1.75rem;
       }
       .input-row input {
-        flex: 1;
+        -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1;
         min-width: 0;
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--radius-m);
+        background: #ffffff !important;
+        border: 1px solid #e8e0d4;
+        border-radius: 14px;
         padding: 0.85rem 1rem;
         font-family: inherit;
         font-size: 0.9rem;
-        color: var(--ink);
+        color: #1f1a16 !important;
         outline: none;
         transition: border-color 0.2s;
+        -webkit-appearance: none;
+        appearance: none;
       }
-      .input-row input:focus { border-color: var(--ink-quiet); }
-      .input-row input::placeholder { color: var(--ink-quiet); }
+      .input-row input:focus { border-color: #9c9188; }
+      .input-row input::-webkit-input-placeholder { color: #9c9188 !important; opacity: 1; }
+      .input-row input::-moz-placeholder { color: #9c9188 !important; opacity: 1; }
+      .input-row input:-ms-input-placeholder { color: #9c9188 !important; }
+      .input-row input::placeholder { color: #9c9188 !important; opacity: 1; }
       .input-row button {
         padding: 0.85rem 1.1rem;
-        background: transparent;
-        border: 1px solid var(--line-strong);
-        border-radius: var(--radius-m);
+        background: transparent !important;
+        border: 1px solid #d8cdbc;
+        border-radius: 14px;
         font-family: inherit;
         font-size: 0.9rem;
         font-weight: 500;
-        color: var(--ink);
+        color: #1f1a16 !important;
         cursor: pointer;
         transition: all 0.2s;
         white-space: nowrap;
       }
-      .input-row button:hover {
-        border-color: var(--ink);
-        background: var(--surface);
+      .input-row button:hover { border-color: #1f1a16; background: #ffffff !important; }
+
+      /* ============================================================
+         地圖
+         ============================================================ */
+      .map-wrap {
+        background: #ffffff;
+        border: 1px solid #e8e0d4;
+        border-radius: 20px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+      .map-svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #fbf8f3;
+      }
+      .map-pin { cursor: pointer; }
+      .map-pin .pin-dot {
+        fill: #ffffff;
+        stroke: #b2562a;
+        stroke-width: 2.5;
+        transition: all 0.25s;
+      }
+      .map-pin .pin-dot-inner {
+        fill: #b2562a;
+        transition: all 0.25s;
+      }
+      .map-pin .pin-label {
+        fill: #1f1a16;
+        font-family: "Noto Sans TC", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        text-anchor: middle;
+        pointer-events: none;
+        transition: all 0.25s;
+      }
+      .map-pin:hover .pin-dot { stroke-width: 3; r: 10; }
+      .map-pin.selected .pin-dot {
+        fill: #b2562a;
+        stroke: #ffffff;
+        stroke-width: 3;
+      }
+      .map-pin.selected .pin-dot-inner { fill: #ffffff; }
+      .map-pin.selected .pin-label { fill: #b2562a; font-weight: 700; }
+
+      .map-hint {
+        position: absolute;
+        top: 0.75rem;
+        left: 0.75rem;
+        padding: 0.3rem 0.7rem;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid #e8e0d4;
+        border-radius: 999px;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        color: #9c9188 !important;
+        text-transform: uppercase;
+      }
+
+      .map-selection {
+        padding: 1rem 0 0.5rem;
+        border-top: 1px solid #e8e0d4;
+        margin-top: 0.5rem;
+      }
+      .map-selection-label {
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        color: #9c9188 !important;
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+      }
+      .map-selection-tags {
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
+        gap: 0.4rem;
+        min-height: 2rem;
+      }
+      .map-selection-tags .empty {
+        font-size: 0.85rem;
+        color: #9c9188 !important;
+        font-style: italic;
       }
 
       /* ============================================================
-         中央訊息 (藍牙 / 掃描)
+         中央訊息
          ============================================================ */
-      .center-msg {
-        text-align: center;
-        padding: 2.5rem 0;
-      }
-      .center-msg .icon-wrap {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+      .center-msg { text-align: center; padding: 2.5rem 0; }
+      .icon-wrap {
+        display: -webkit-inline-box; display: -webkit-inline-flex; display: -ms-inline-flexbox; display: inline-flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
+        -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
         width: 72px; height: 72px;
         border-radius: 50%;
-        background: var(--surface);
-        border: 1px solid var(--line);
-        color: var(--accent);
+        background: #ffffff !important;
+        border: 1px solid #e8e0d4;
+        color: #b2562a !important;
         margin-bottom: 1.75rem;
         animation: softFloat 3s ease-in-out infinite;
+        -webkit-animation: softFloat 3s ease-in-out infinite;
       }
       @keyframes softFloat {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-4px); }
+        0%, 100% { -webkit-transform: translateY(0); transform: translateY(0); }
+        50% { -webkit-transform: translateY(-4px); transform: translateY(-4px); }
       }
+      @-webkit-keyframes softFloat {
+        0%, 100% { -webkit-transform: translateY(0); }
+        50% { -webkit-transform: translateY(-4px); }
+      }
+
       .center-msg h3 {
-        font-family: "Noto Serif TC", serif;
+        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
         font-size: 1.25rem;
         font-weight: 500;
-        color: var(--ink);
-        margin-bottom: 0.6rem;
-        letter-spacing: 0.02em;
+        color: #1f1a16 !important;
+        margin: 0 0 0.6rem;
       }
       .center-msg p {
-        color: var(--ink-soft);
+        color: #5c534a !important;
         font-size: 0.9rem;
         line-height: 1.85;
         max-width: 320px;
         margin: 0 auto;
       }
 
-      /* 掃描框 */
       .scan {
         width: 180px; height: 180px;
         margin: 0 auto 1.75rem;
-        border: 1px solid var(--line-strong);
-        border-radius: var(--radius-m);
+        border: 1px solid #d8cdbc;
+        border-radius: 14px;
         position: relative;
         overflow: hidden;
-        background: var(--surface);
+        background: #ffffff !important;
       }
-      .scan::before, .scan::after {
+      .scan:before, .scan:after {
         content: "";
         position: absolute;
         width: 20px; height: 20px;
-        border: 2px solid var(--accent);
+        border: 2px solid #b2562a;
       }
-      .scan::before {
-        top: -1px; left: -1px;
-        border-right: none; border-bottom: none;
-        border-radius: var(--radius-s) 0 0 0;
-      }
-      .scan::after {
-        bottom: -1px; right: -1px;
-        border-left: none; border-top: none;
-        border-radius: 0 0 var(--radius-s) 0;
-      }
+      .scan:before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+      .scan:after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
       .scan-line {
         position: absolute;
         left: 0; width: 100%;
         height: 1.5px;
-        background: var(--accent);
+        background: #b2562a;
         opacity: 0.7;
         animation: scanMove 1.8s ease-in-out infinite;
+        -webkit-animation: scanMove 1.8s ease-in-out infinite;
       }
       @keyframes scanMove {
         0% { top: 8%; opacity: 0.4; }
         50% { top: 92%; opacity: 1; }
         100% { top: 8%; opacity: 0.4; }
       }
+      @-webkit-keyframes scanMove {
+        0% { top: 8%; opacity: 0.4; }
+        50% { top: 92%; opacity: 1; }
+        100% { top: 8%; opacity: 0.4; }
+      }
 
-      /* 掃描中文字 */
       .scan-text {
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
         font-size: 0.75rem;
         letter-spacing: 0.25em;
-        color: var(--accent);
+        color: #b2562a !important;
         text-transform: uppercase;
       }
 
       /* ============================================================
-         連線成功
+         收據
          ============================================================ */
       .receipt {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--radius-l);
+        background: #ffffff !important;
+        border: 1px solid #e8e0d4;
+        border-radius: 20px;
         padding: 2rem 1.75rem;
         margin-bottom: 1.5rem;
         text-align: center;
         position: relative;
         overflow: hidden;
       }
-      .receipt::before {
+      .receipt:before {
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0;
         height: 3px;
-        background: var(--accent);
+        background: #b2562a;
       }
       .receipt .check {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        display: -webkit-inline-box; display: -webkit-inline-flex; display: -ms-inline-flexbox; display: inline-flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
+        -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
         width: 56px; height: 56px;
         border-radius: 50%;
-        background: var(--accent-soft);
-        color: var(--accent);
+        background: #f2e5d8 !important;
+        color: #b2562a !important;
         margin-bottom: 1.25rem;
         animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        -webkit-animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
       @keyframes scaleIn {
-        from { transform: scale(0); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
+        from { -webkit-transform: scale(0); transform: scale(0); opacity: 0; }
+        to { -webkit-transform: scale(1); transform: scale(1); opacity: 1; }
       }
+      @-webkit-keyframes scaleIn {
+        from { -webkit-transform: scale(0); opacity: 0; }
+        to { -webkit-transform: scale(1); opacity: 1; }
+      }
+
       .receipt h3 {
-        font-family: "Noto Serif TC", serif;
+        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
         font-size: 1.15rem;
         font-weight: 500;
-        color: var(--ink);
-        margin-bottom: 0.9rem;
-        letter-spacing: 0.05em;
+        color: #1f1a16 !important;
+        margin: 0 0 0.9rem;
       }
       .receipt .info {
         font-size: 0.9rem;
-        color: var(--ink-soft);
+        color: #5c534a !important;
         line-height: 2;
       }
       .receipt .info .em {
-        color: var(--ink);
+        color: #1f1a16 !important;
         font-weight: 600;
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
         padding: 0 2px;
       }
 
       /* ============================================================
-         底部資訊列
+         Meta bar
          ============================================================ */
       .meta-bar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
+        -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;
         padding: 0.75rem 0;
         margin-bottom: 1.5rem;
         font-size: 0.72rem;
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
         letter-spacing: 0.12em;
-        color: var(--ink-quiet);
+        color: #9c9188 !important;
         text-transform: uppercase;
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1px solid #e8e0d4;
       }
       .meta-bar .live {
-        display: inline-flex;
-        align-items: center;
+        display: -webkit-inline-box; display: -webkit-inline-flex; display: -ms-inline-flexbox; display: inline-flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
         gap: 0.5rem;
-        color: var(--moss);
+        color: #5c6b4f !important;
       }
-      .meta-bar .live::before {
+      .meta-bar .live:before {
         content: "";
         width: 6px; height: 6px;
         border-radius: 50%;
-        background: var(--moss);
+        background: #5c6b4f;
         animation: pulse 2s ease-in-out infinite;
+        -webkit-animation: pulse 2s ease-in-out infinite;
       }
 
       /* ============================================================
-         到站 / 導覽
+         到站
          ============================================================ */
       .arrival-mark {
-        display: flex;
-        align-items: center;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
         gap: 0.75rem;
         margin-bottom: 1.5rem;
-        color: var(--moss);
+        color: #5c6b4f !important;
       }
-      .arrival-mark .rule { height: 1px; width: 32px; background: var(--moss); opacity: 0.6; }
+      .arrival-mark .rule { height: 1px; width: 32px; background: #5c6b4f; opacity: 0.6; }
       .arrival-mark .label {
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
         font-size: 0.68rem;
         letter-spacing: 0.25em;
         text-transform: uppercase;
+        color: #5c6b4f !important;
       }
 
       .prose {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--radius-l);
-        padding: 1.5rem 1.5rem;
-        color: var(--ink-soft);
+        background: #ffffff !important;
+        border: 1px solid #e8e0d4;
+        border-radius: 20px;
+        padding: 1.5rem;
+        color: #5c534a !important;
         font-size: 0.92rem;
         line-height: 2.05;
         letter-spacing: 0.02em;
         margin-bottom: 1.5rem;
       }
-      .prose::first-line {
-        color: var(--ink);
-      }
 
       /* ============================================================
-         美食 / 住宿
+         地點
          ============================================================ */
       .place {
         padding: 1.2rem 0;
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1px solid #e8e0d4;
       }
       .place:last-child { border-bottom: none; }
-      .place .place-head {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
+
+      .place-head {
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-align: baseline; -webkit-align-items: baseline; -ms-flex-align: baseline; align-items: baseline;
+        -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;
         gap: 1rem;
         margin-bottom: 0.4rem;
-        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
       }
       .place .name {
         font-size: 1rem;
         font-weight: 500;
-        color: var(--ink);
-        letter-spacing: 0.01em;
+        color: #1f1a16 !important;
       }
       .place .district {
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
         font-size: 0.72rem;
-        color: var(--ink-quiet);
+        color: #9c9188 !important;
         letter-spacing: 0.1em;
       }
       .place .desc {
         font-size: 0.85rem;
-        color: var(--ink-soft);
+        color: #5c534a !important;
         line-height: 1.75;
       }
 
@@ -751,130 +879,127 @@
       .closing {
         text-align: center;
         padding: 2.5rem 1rem;
-        border-top: 1px solid var(--line);
+        border-top: 1px solid #e8e0d4;
         margin-top: 2rem;
       }
       .closing .title-cn {
-        font-family: "Noto Serif TC", serif;
+        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
         font-size: 1.4rem;
         font-weight: 500;
-        color: var(--ink);
+        color: #1f1a16 !important;
         letter-spacing: 0.15em;
         margin-bottom: 0.75rem;
       }
       .closing .sub {
         font-size: 0.85rem;
-        color: var(--ink-quiet);
+        color: #9c9188 !important;
         letter-spacing: 0.05em;
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
       }
 
       /* ============================================================
-         進度點
+         進度
          ============================================================ */
       .progress {
-        display: flex;
-        justify-content: center;
+        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+        -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
         gap: 0.4rem;
         margin-top: 2rem;
         padding-top: 1.5rem;
-        border-top: 1px solid var(--line);
-        flex-wrap: wrap;
+        border-top: 1px solid #e8e0d4;
+        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
       }
       .progress span {
         width: 5px; height: 5px;
         border-radius: 50%;
-        background: var(--line-strong);
+        background: #d8cdbc;
         transition: all 0.3s;
       }
       .progress span.active {
-        background: var(--accent);
+        background: #b2562a;
         width: 18px;
         border-radius: 3px;
       }
 
-      /* 快進 */
+      /* ============================================================
+         快進
+         ============================================================ */
       .skip {
         display: block;
         margin: 1.75rem auto 0;
         padding: 0.55rem 1.25rem;
-        background: transparent;
-        border: 1px solid var(--line-strong);
+        background: transparent !important;
+        border: 1px solid #d8cdbc;
         border-radius: 999px;
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
         font-size: 0.72rem;
         letter-spacing: 0.15em;
-        color: var(--ink-quiet);
+        color: #9c9188 !important;
         cursor: pointer;
         transition: all 0.2s;
         text-transform: uppercase;
+        -webkit-appearance: none;
+        appearance: none;
       }
-      .skip:hover {
-        color: var(--accent);
-        border-color: var(--accent-quiet);
-      }
+      .skip:hover { color: #b2562a !important; border-color: #c98868; }
 
       /* ============================================================
-         手機版
+         響應式
          ============================================================ */
       @media (max-width: 640px) {
         .site-header {
-          flex-direction: column;
+          -webkit-box-orient: vertical; -webkit-box-direction: normal;
+          -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
           padding: 0.6rem 1rem 0.5rem;
           height: auto;
           gap: 0.4rem;
         }
-        .site-brand {
-          position: static;
-          font-size: 0.85rem;
-        }
+        .site-brand { position: static; font-size: 0.85rem; }
         .site-brand-avatar { width: 28px; height: 28px; }
         .site-status { display: none; }
         .site-nav { width: 100%; gap: 0.1rem; }
-        .site-nav a {
-          padding: 0.32rem 0.55rem;
-          font-size: 0.78rem;
-        }
+        .site-nav a { padding: 0.32rem 0.55rem; font-size: 0.78rem; }
 
-        .app {
-          padding: 7rem 1.1rem 3rem;
-        }
-
+        .app { padding: 7rem 1.1rem 3rem; }
         h2.title { font-size: 1.35rem; }
-
-        .welcome-time { font-size: clamp(1.75rem, 9vw, 2.2rem); }
-        .welcome-greet { font-size: 1.05rem; }
+        .welcome-time { font-size: 1.75rem; }
+        .welcome-greet { font-size: 1.02rem; }
 
         .btn { padding: 0.95rem 1.1rem; font-size: 0.92rem; }
-        .btn-row { flex-direction: column; }
+        .btn-row {
+          -webkit-box-orient: vertical; -webkit-box-direction: normal;
+          -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
+        }
         .btn-row .btn { width: 100%; }
 
-        .input-row { flex-direction: column; }
+        .input-row {
+          -webkit-box-orient: vertical; -webkit-box-direction: normal;
+          -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
+        }
         .input-row button { width: 100%; }
 
         .route-no { font-size: 1.25rem; }
         .receipt { padding: 1.75rem 1.35rem; }
         .prose { padding: 1.35rem 1.2rem; font-size: 0.88rem; line-height: 1.95; }
-
         .scan { width: 160px; height: 160px; }
         .center-msg { padding: 2rem 0; }
+        .map-pin .pin-label { font-size: 11px; }
       }
 
       @media (max-width: 380px) {
         .app { padding: 6.8rem 0.9rem 2rem; }
         .btn { padding: 0.9rem 1rem; font-size: 0.88rem; }
+        .welcome-time { font-size: 1.5rem; }
+        .map-pin .pin-label { font-size: 10px; }
       }
 
       @media (hover: none) {
-        .btn:hover,
-        .route:hover,
-        .place:hover,
-        .tag:hover {
-          transform: none;
-        }
-        .btn:hover { background: var(--ink); }
-        .btn.accent:hover { background: var(--accent); }
-        .btn.ghost:hover { background: transparent; }
+        .btn:hover { background: #1f1a16 !important; }
+        .btn.accent:hover { background: #b2562a !important; }
+        .btn.ghost:hover { background: transparent !important; }
+        .btn.map-trigger:hover { background: #ffffff !important; box-shadow: none; }
+        .tag:hover { transform: none; }
+        .map-pin:hover .pin-dot { stroke-width: 2.5; r: 9; }
       }
     </style>
   </head>
@@ -890,7 +1015,6 @@
     </header>
 
     <main class="app">
-
       <div class="status">
         <div class="status-time" data-no-type id="clock">--:--:--</div>
         <div class="status-loc">
@@ -899,9 +1023,7 @@
         </div>
       </div>
 
-      <!-- ================================================
-           1. 歡迎
-           ================================================ -->
+      <!-- 1. 歡迎 -->
       <section class="screen active" data-screen="1">
         <div class="welcome">
           <div class="welcome-mark">
@@ -910,8 +1032,9 @@
           </div>
 
           <h1 class="welcome-time">
-            台北市 · 大同區<br>
-            現在是 <span class="period" id="greeting">晚安</span>
+            <span class="location">台北市 · 大同區</span><br>
+            現在是 <span class="time-now" data-no-type id="now-time">--:--</span>
+            <span class="period" id="greeting">晚安</span>
           </h1>
 
           <p class="welcome-greet">
@@ -925,45 +1048,136 @@
           </div>
         </div>
 
-        <button class="btn accent" style="margin-top: 2.5rem;" onclick="goTo(2)">
+        <button type="button" class="btn accent" style="margin-top: 2.5rem;" onclick="goTo(2)">
           <span>開始規劃行程</span>
           <span class="arrow">→</span>
         </button>
       </section>
 
-      <!-- ================================================
-           2. 行程輸入
-           ================================================ -->
+      <!-- 2. 行程規劃 -->
       <section class="screen" data-screen="2">
         <span class="eyebrow"><span class="idx">01</span> · 行程規劃</span>
         <h2 class="title">今日，想去哪裡走走？</h2>
 
         <p class="lead">
-          系統已為您準備了幾個推薦地點。您可以自由增減，或加入自己想去的地方。
+          可直接打字新增，也可以打開地圖，點選想去的地點。
         </p>
 
+        <button type="button" class="btn map-trigger" onclick="goTo('map')">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span class="label">打開地圖選擇</span>
+          <span class="hint">Map →</span>
+        </button>
+
         <div class="tags" id="spots">
-          <span class="tag">迪化街</span>
-          <span class="tag">中正紀念堂</span>
-          <span class="tag">總統府</span>
-          <span class="tag">世貿</span>
-          <span class="tag">101</span>
+          <span class="tag removable" onclick="removeSpot(this)">迪化街</span>
+          <span class="tag removable" onclick="removeSpot(this)">中正紀念堂</span>
+          <span class="tag removable" onclick="removeSpot(this)">總統府</span>
+          <span class="tag removable" onclick="removeSpot(this)">世貿</span>
+          <span class="tag removable" onclick="removeSpot(this)">101</span>
         </div>
 
         <div class="input-row">
           <input type="text" id="custom" placeholder="輸入其他想去的地點…" />
-          <button onclick="addSpot()">新增</button>
+          <button type="button" onclick="addSpot()">新增</button>
         </div>
 
-        <button class="btn" onclick="goTo(3)">
+        <button type="button" class="btn" onclick="goTo(3)">
           <span>查詢適合的公車</span>
           <span class="arrow">→</span>
         </button>
       </section>
 
-      <!-- ================================================
-           3. 路線
-           ================================================ -->
+      <!-- 2-map. 地圖選擇 -->
+      <section class="screen" data-screen="map">
+        <span class="eyebrow"><span class="idx">01</span> · 地圖選擇</span>
+        <h2 class="title">點選地圖上的地點</h2>
+
+        <p class="lead">
+          點一下標記即可加入行程。再次點擊可取消。
+        </p>
+
+        <div class="map-wrap">
+          <div class="map-hint">TAIPEI · MAP</div>
+          <svg class="map-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" aria-label="台北市簡圖">
+            <rect width="800" height="600" fill="#fbf8f3"/>
+            <path d="M 0 260 Q 120 250 220 210 Q 300 180 360 160 L 360 120"
+                  stroke="#b8d2dd" stroke-width="26" fill="none" stroke-linecap="round" opacity="0.55"/>
+            <path d="M 360 120 Q 460 100 580 80 Q 700 60 800 50"
+                  stroke="#b8d2dd" stroke-width="22" fill="none" stroke-linecap="round" opacity="0.55"/>
+            <g stroke="#e8e0d4" stroke-width="4" fill="none">
+              <line x1="120" y1="0" x2="120" y2="600"/>
+              <line x1="280" y1="0" x2="280" y2="600"/>
+              <line x1="460" y1="0" x2="460" y2="600"/>
+              <line x1="640" y1="0" x2="640" y2="600"/>
+              <line x1="0" y1="180" x2="800" y2="180"/>
+              <line x1="0" y1="320" x2="800" y2="320"/>
+              <line x1="0" y1="460" x2="800" y2="460"/>
+              <line x1="0" y1="560" x2="800" y2="560"/>
+            </g>
+            <g stroke="#f0e9dd" stroke-width="2" fill="none">
+              <line x1="200" y1="0" x2="200" y2="600"/>
+              <line x1="380" y1="0" x2="380" y2="600"/>
+              <line x1="540" y1="0" x2="540" y2="600"/>
+              <line x1="720" y1="0" x2="720" y2="600"/>
+              <line x1="0" y1="80" x2="800" y2="80"/>
+              <line x1="0" y1="250" x2="800" y2="250"/>
+              <line x1="0" y1="390" x2="800" y2="390"/>
+              <line x1="0" y1="520" x2="800" y2="520"/>
+            </g>
+            <text x="400" y="35" text-anchor="middle" fill="#9c9188"
+                  font-family="Noto Sans TC, sans-serif" font-size="13" letter-spacing="6"
+                  style="pointer-events:none;">TAIPEI CITY</text>
+
+            <g class="map-pin" data-spot="迪化街" onclick="toggleMapPin(this)">
+              <circle class="pin-dot" cx="180" cy="170" r="9"/>
+              <circle class="pin-dot-inner" cx="180" cy="170" r="4"/>
+              <text class="pin-label" x="180" y="200">迪化街</text>
+            </g>
+
+            <g class="map-pin" data-spot="總統府" onclick="toggleMapPin(this)">
+              <circle class="pin-dot" cx="350" cy="330" r="9"/>
+              <circle class="pin-dot-inner" cx="350" cy="330" r="4"/>
+              <text class="pin-label" x="350" y="360">總統府</text>
+            </g>
+
+            <g class="map-pin" data-spot="中正紀念堂" onclick="toggleMapPin(this)">
+              <circle class="pin-dot" cx="420" cy="410" r="9"/>
+              <circle class="pin-dot-inner" cx="420" cy="410" r="4"/>
+              <text class="pin-label" x="420" y="440">中正紀念堂</text>
+            </g>
+
+            <g class="map-pin" data-spot="世貿" onclick="toggleMapPin(this)">
+              <circle class="pin-dot" cx="600" cy="430" r="9"/>
+              <circle class="pin-dot-inner" cx="600" cy="430" r="4"/>
+              <text class="pin-label" x="600" y="460">世貿</text>
+            </g>
+
+            <g class="map-pin" data-spot="101" onclick="toggleMapPin(this)">
+              <circle class="pin-dot" cx="650" cy="490" r="9"/>
+              <circle class="pin-dot-inner" cx="650" cy="490" r="4"/>
+              <text class="pin-label" x="650" y="520">101</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="map-selection">
+          <div class="map-selection-label">已選擇的地點</div>
+          <div class="map-selection-tags" id="map-selection-tags">
+            <span class="empty">尚未選擇任何地點</span>
+          </div>
+        </div>
+
+        <div class="btn-row" style="margin-top: 1.75rem;">
+          <button type="button" class="btn ghost" onclick="goTo(2)">返回</button>
+          <button type="button" class="btn accent" onclick="confirmMapSelection()">確認並加入</button>
+        </div>
+      </section>
+
+      <!-- 3. 路線 -->
       <section class="screen" data-screen="3">
         <div class="meta-bar">
           <span class="live">即時查詢中</span>
@@ -1038,19 +1252,17 @@
           <div class="route-meta"><span>304 / 639</span></div>
         </div>
 
-        <button class="btn accent" style="margin-top: 1.75rem;" onclick="goTo(4)">
+        <button type="button" class="btn accent" style="margin-top: 1.75rem;" onclick="goTo(4)">
           <span>開始行程</span>
           <span class="arrow">→</span>
         </button>
       </section>
 
-      <!-- ================================================
-           4. 藍牙連接
-           ================================================ -->
+      <!-- 4. 藍牙 -->
       <section class="screen" data-screen="4">
         <div class="center-msg">
           <div class="icon-wrap">
-            <svg class="icon icon-lg" viewBox="0 0 24 24">
+            <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M7 7l10 10-5 5V2l5 5L7 17"/>
             </svg>
           </div>
@@ -1058,15 +1270,13 @@
           <p>請掃描座位前方或刷卡機上的 QR code，以完成連線。</p>
         </div>
 
-        <button class="btn" style="margin-top: 1rem;" onclick="startScan()">
+        <button type="button" class="btn" style="margin-top: 1rem;" onclick="startScan()">
           <span>開始掃描 QR code</span>
           <span class="arrow">→</span>
         </button>
       </section>
 
-      <!-- ================================================
-           5. 掃描中
-           ================================================ -->
+      <!-- 5. 掃描 -->
       <section class="screen" data-screen="5">
         <div class="center-msg" style="padding: 3rem 0;">
           <div class="scan">
@@ -1076,13 +1286,11 @@
         </div>
       </section>
 
-      <!-- ================================================
-           6. 連線成功
-           ================================================ -->
+      <!-- 6. 成功 -->
       <section class="screen" data-screen="6">
         <div class="receipt">
           <div class="check">
-            <svg class="icon" viewBox="0 0 24 24" style="width: 24px; height: 24px;">
+            <svg class="icon" viewBox="0 0 24 24" style="width: 24px; height: 24px;" aria-hidden="true">
               <polyline points="20 6 9 17 4 12"/>
             </svg>
           </div>
@@ -1096,26 +1304,24 @@
         </div>
 
         <div style="padding: 1.5rem 0; text-align: center;">
-          <p style="color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 1.25rem;">
+          <p style="color: #5c534a !important; font-size: 0.9rem; margin: 0 0 1.25rem;">
             是否開啟自動按鈴服務？
           </p>
           <div class="btn-row">
-            <button class="btn ghost" onclick="goTo(7)">稍後再說</button>
-            <button class="btn accent" onclick="goTo(7)">開啟服務</button>
+            <button type="button" class="btn ghost" onclick="goTo(7)">稍後再說</button>
+            <button type="button" class="btn accent" onclick="goTo(7)">開啟服務</button>
           </div>
         </div>
       </section>
 
-      <!-- ================================================
-           7. 行進中
-           ================================================ -->
+      <!-- 7. 行進中 -->
       <section class="screen" data-screen="7">
         <div class="meta-bar">
           <span class="live">403 號公車行進中</span>
           <span data-no-type id="ride-timer">00:00</span>
         </div>
 
-        <div class="receipt" style="background: var(--surface-soft);">
+        <div class="receipt" style="background: #fbf8f3 !important;">
           <div class="info" style="text-align: center;">
             自動按鈴服務已開啟<br>
             到站前 300 公尺將為您按鈴<br>
@@ -1123,18 +1329,16 @@
           </div>
         </div>
 
-        <p style="text-align: center; color: var(--ink-quiet); font-size: 0.85rem; margin: 1.75rem 0; font-family: ui-monospace, monospace; letter-spacing: 0.1em;">
+        <p style="text-align: center; color: #9c9188 !important; font-size: 0.85rem; margin: 1.75rem 0; font-family: 'SF Mono', ui-monospace, monospace; letter-spacing: 0.1em;">
           ETA · 5 MIN · 中正紀念堂
         </p>
 
-        <button class="skip" onclick="goTo(8)">
+        <button type="button" class="skip" onclick="goTo(8)">
           快進 · 抵達中正紀念堂
         </button>
       </section>
 
-      <!-- ================================================
-           8. 到站
-           ================================================ -->
+      <!-- 8. 到站 -->
       <section class="screen" data-screen="8">
         <div class="arrival-mark">
           <span class="rule"></span>
@@ -1151,14 +1355,12 @@
           中正紀念堂建於 1976 年，為紀念先總統　蔣公而建。主體建築高 70 公尺，藍瓦白牆，象徵自由與平等。屋頂倣天壇造型，八角形則寓意「八德」。堂內設有銅像、文物展示區與藝文空間；園區另有國家戲劇院與國家音樂廳，皆為仿古宮殿式建築。漫步其間，可感受建築與歷史交織的時光厚度。
         </div>
 
-        <button class="skip" style="margin-top: 1rem;" onclick="goTo(9)">
+        <button type="button" class="skip" style="margin-top: 1rem;" onclick="goTo(9)">
           快進 · 準備用餐
         </button>
       </section>
 
-      <!-- ================================================
-           9. 美食
-           ================================================ -->
+      <!-- 9. 美食 -->
       <section class="screen" data-screen="9">
         <span class="eyebrow"><span class="idx">03</span> · 午餐提案</span>
         <h2 class="title">準備好要吃什麼了嗎？</h2>
@@ -1199,22 +1401,20 @@
           </div>
         </div>
 
-        <p style="text-align: center; color: var(--ink-quiet); font-size: 0.85rem; margin: 1.75rem 0 0; letter-spacing: 0.03em;">
+        <p style="text-align: center; color: #9c9188 !important; font-size: 0.85rem; margin: 1.75rem 0 0;">
           吃飽，讓下午的行程充滿戰鬥力。
         </p>
 
-        <button class="skip" style="margin-top: 1.75rem;" onclick="goTo(10)">
+        <button type="button" class="skip" style="margin-top: 1.75rem;" onclick="goTo(10)">
           快進 · 前往 101
         </button>
       </section>
 
-      <!-- ================================================
-           10. 101 逛完
-           ================================================ -->
+      <!-- 10. 101 -->
       <section class="screen" data-screen="10">
         <div style="text-align: center; padding: 2rem 0;">
-          <div style="display: inline-flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); color: var(--accent); margin-bottom: 1.75rem;">
-            <svg class="icon icon-lg" viewBox="0 0 24 24">
+          <div class="icon-wrap" style="display: inline-flex; margin-bottom: 1.75rem;">
+            <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
             </svg>
           </div>
@@ -1226,20 +1426,18 @@
           </p>
         </div>
 
-        <div style="padding-top: 1.5rem; border-top: 1px solid var(--line); text-align: center;">
-          <p style="color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        <div style="padding-top: 1.5rem; border-top: 1px solid #e8e0d4; text-align: center;">
+          <p style="color: #5c534a !important; font-size: 0.9rem; margin: 0 0 1.25rem;">
             為您搜尋附近的住宿？
           </p>
           <div class="btn-row">
-            <button class="btn ghost" onclick="restart()">重新開始</button>
-            <button class="btn accent" onclick="finishTrip()">為我推薦</button>
+            <button type="button" class="btn ghost" onclick="restart()">重新開始</button>
+            <button type="button" class="btn accent" onclick="finishTrip()">為我推薦</button>
           </div>
         </div>
       </section>
 
-      <!-- ================================================
-           11. 住宿
-           ================================================ -->
+      <!-- 11. 住宿 -->
       <section class="screen" data-screen="11">
         <span class="eyebrow"><span class="idx">04</span> · 落腳之處</span>
         <h2 class="title">為您推薦附近住宿</h2>
@@ -1275,13 +1473,12 @@
           <div class="sub">TAIPEI TRANSIT GUIDE · END OF SESSION</div>
         </div>
 
-        <button class="btn ghost" style="margin-top: 1.5rem;" onclick="restart()">
+        <button type="button" class="btn ghost" style="margin-top: 1.5rem;" onclick="restart()">
           <span>回到首頁重新開始</span>
           <span class="arrow">→</span>
         </button>
       </section>
 
-      <!-- 進度 -->
       <div class="progress" id="progress">
         <span class="active"></span>
         <span></span><span></span><span></span><span></span>
@@ -1294,162 +1491,388 @@
 
     <script>
       (function () {
-        /* ============ 問候語 ============ */
-        const hour = new Date().getHours();
-        let greeting;
-        if (hour >= 5 && hour < 12) greeting = '早安';
-        else if (hour >= 12 && hour < 18) greeting = '午安';
-        else greeting = '晚安';
-        document.getElementById('greeting').textContent = greeting;
+        'use strict';
 
-        /* ============ 時鐘 ============ */
-        function tick() {
-          const d = new Date();
-          const hh = String(d.getHours()).padStart(2, '0');
-          const mm = String(d.getMinutes()).padStart(2, '0');
-          const ss = String(d.getSeconds()).padStart(2, '0');
-          const clock = document.getElementById('clock');
-          const rt = document.getElementById('route-time');
-          const it = document.getElementById('init-time');
-          if (clock) clock.textContent = `${hh}:${mm}:${ss}`;
-          if (rt) rt.textContent = `${hh}:${mm}`;
-          if (it && it.textContent === '--:--') it.textContent = `${hh}:${mm}`;
+        function $(id) { return document.getElementById(id); }
+
+        function getGreeting() {
+          var h = new Date().getHours();
+          if (h >= 5 && h < 12) return '早安';
+          if (h >= 12 && h < 18) return '午安';
+          return '晚安';
         }
-        tick();
-        setInterval(tick, 1000);
+
+        function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+
+        function tick() {
+          var d = new Date();
+          var hh = pad2(d.getHours());
+          var mm = pad2(d.getMinutes());
+          var ss = pad2(d.getSeconds());
+
+          var clock = $('clock');
+          var rt = $('route-time');
+          var it = $('init-time');
+          var nt = $('now-time');
+
+          if (clock) clock.textContent = hh + ':' + mm + ':' + ss;
+          if (rt) rt.textContent = hh + ':' + mm;
+          if (it && it.textContent === '--:--') it.textContent = hh + ':' + mm;
+          if (nt) nt.textContent = hh + ':' + mm;
+        }
 
         /* ============================================================
-           逐字浮現（剝離 → 標記 → 依序淡入）
+           逐字浮現（僅限敘述性文字）
+           排除：按鈕、標籤、快進、狀態列、導覽列、meta 列、地圖、SVG、已標記 data-no-type
            ============================================================ */
-        function splitText(screen) {
-          /* 先把上一次的 .ch 還原 */
-          screen.querySelectorAll('.ch').forEach(ch => {
-            const t = ch.textContent === '\u00A0' ? ' ' : ch.textContent;
-            ch.parentNode.replaceChild(document.createTextNode(t), ch);
-          });
+        function unwrapChars(screen) {
+          var chars = screen.querySelectorAll('.ch');
+          for (var i = 0; i < chars.length; i++) {
+            var ch = chars[i];
+            var txt = ch.textContent === '\u00A0' ? ' ' : ch.textContent;
+            var parent = ch.parentNode;
+            if (parent) parent.replaceChild(document.createTextNode(txt), ch);
+          }
+        }
 
-          const walker = document.createTreeWalker(
+        /* 檢查某個節點是否位於不需逐字的容器內 */
+        function isExcluded(node) {
+          var p = node.parentNode;
+          if (!p) return true;
+
+          /* data-no-type */
+          if (p.getAttribute && p.getAttribute('data-no-type') !== null) return true;
+
+          var tag = p.tagName ? p.tagName.toLowerCase() : '';
+          if (tag === 'script' || tag === 'style' || tag === 'svg') return true;
+
+          /* 往上找祖先 */
+          var el = p;
+          var depth = 0;
+          while (el && depth < 12) {
+            if (el.nodeType === 1) {
+              var t = el.tagName ? el.tagName.toLowerCase() : '';
+              var cls = el.className && typeof el.className === 'string' ? el.className : '';
+
+              /* 按鈕 */
+              if (t === 'button') return true;
+              if (cls.indexOf('btn') !== -1) return true;
+              if (cls.indexOf('skip') !== -1) return true;
+              if (cls.indexOf('tag') !== -1) return true;
+
+              /* 狀態列 / 導覽 / meta / 地圖 / eyebrow */
+              if (cls.indexOf('status') !== -1) return true;
+              if (cls.indexOf('site-header') !== -1) return true;
+              if (cls.indexOf('site-nav') !== -1) return true;
+              if (cls.indexOf('site-brand') !== -1) return true;
+              if (cls.indexOf('meta-bar') !== -1) return true;
+              if (cls.indexOf('eyebrow') !== -1) return true;
+              if (cls.indexOf('map-') !== -1) return true;
+
+              /* 屬性標記 */
+              if (el.getAttribute && el.getAttribute('data-no-type') !== null) return true;
+            }
+            el = el.parentNode;
+            depth++;
+          }
+          return false;
+        }
+
+        function splitText(screen) {
+          unwrapChars(screen);
+          if (!document.createTreeWalker) return;
+
+          var walker = document.createTreeWalker(
             screen,
             NodeFilter.SHOW_TEXT,
             {
-              acceptNode(node) {
-                const p = node.parentNode;
-                if (!p) return NodeFilter.FILTER_REJECT;
-                if (p.hasAttribute && p.hasAttribute('data-no-type')) return NodeFilter.FILTER_REJECT;
-                if (p.tagName === 'SCRIPT' || p.tagName === 'STYLE') return NodeFilter.FILTER_REJECT;
-                if (node.textContent.trim() === '') return NodeFilter.FILTER_REJECT;
+              acceptNode: function (node) {
+                if (isExcluded(node)) return NodeFilter.FILTER_REJECT;
+                if (node.textContent.replace(/\s/g, '') === '') return NodeFilter.FILTER_REJECT;
                 return NodeFilter.FILTER_ACCEPT;
               }
             }
           );
 
-          const nodes = [];
-          let n;
+          var nodes = [];
+          var n;
           while ((n = walker.nextNode())) nodes.push(n);
+          if (nodes.length === 0) return;
 
-          let total = 0;
-          nodes.forEach(nd => { total += Array.from(nd.textContent).length; });
+          var total = 0;
+          for (var i = 0; i < nodes.length; i++) {
+            total += nodes[i].textContent.length;
+          }
 
-          /* 節奏：整體約 3.8 秒內完成，最短每字 10ms，最長 42ms */
-          const target = 3.8;
-          const perChar = Math.max(0.01, Math.min(0.042, target / Math.max(total, 1)));
-          const startDelay = 0.1;
+          var target = 3.8;
+          var perChar = Math.max(0.01, Math.min(0.042, target / Math.max(total, 1)));
+          var startDelay = 0.1;
+          var idx = 0;
 
-          let idx = 0;
-          nodes.forEach(node => {
-            const frag = document.createDocumentFragment();
-            const chars = Array.from(node.textContent);
-            chars.forEach(ch => {
-              const span = document.createElement('span');
+          for (var j = 0; j < nodes.length; j++) {
+            var node = nodes[j];
+            var text = node.textContent;
+            var chars = text.split('');
+            var frag = document.createDocumentFragment();
+
+            for (var k = 0; k < chars.length; k++) {
+              var ch = chars[k];
+              var span = document.createElement('span');
               span.className = 'ch';
               if (ch === ' ') span.innerHTML = '&nbsp;';
               else span.textContent = ch;
-              span.style.animationDelay = (startDelay + idx * perChar).toFixed(3) + 's';
+              var delay = (startDelay + idx * perChar).toFixed(3) + 's';
+              span.style.webkitAnimationDelay = delay;
+              span.style.animationDelay = delay;
               idx++;
               frag.appendChild(span);
-            });
-            node.parentNode.replaceChild(frag, node);
-          });
+            }
+            if (node.parentNode) node.parentNode.replaceChild(frag, node);
+          }
         }
 
-        /* ============ 畫面切換 ============ */
-        let current = 1;
+        /* ============================================================
+           畫面切換
+           ============================================================ */
+        var currentScreen = 1;
 
-        window.goTo = function (n) {
-          document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-          const t = document.querySelector(`[data-screen="${n}"]`);
-          if (t) {
-            t.classList.add('active');
-            /* 強制 reflow 以重啟動畫 */
-            void t.offsetWidth;
-            splitText(t);
+        function goTo(n) {
+          var screens = document.querySelectorAll('.screen');
+          for (var i = 0; i < screens.length; i++) {
+            if (screens[i].classList) screens[i].classList.remove('active');
+            else screens[i].className = screens[i].className.replace(/\bactive\b/g, '');
           }
-          current = n;
 
-          const dots = document.querySelectorAll('#progress span');
-          dots.forEach((d, i) => d.classList.toggle('active', i === n - 1));
+          var target = document.querySelector('[data-screen="' + n + '"]');
+          if (target) {
+            if (target.classList) target.classList.add('active');
+            else target.className = target.className + ' active';
+            void target.offsetWidth;
+            splitText(target);
+          }
+          currentScreen = n;
+
+          var num = parseInt(n, 10);
+          var dots = document.querySelectorAll('#progress span');
+          for (var m = 0; m < dots.length; m++) {
+            var on = (num && m === num - 1);
+            if (dots[m].classList) {
+              if (on) dots[m].classList.add('active');
+              else dots[m].classList.remove('active');
+            } else {
+              if (on) dots[m].className = dots[m].className + ' active';
+              else dots[m].className = dots[m].className.replace(/\bactive\b/g, '');
+            }
+          }
 
           if (window.innerWidth <= 640) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            try {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (e) {
+              window.scrollTo(0, 0);
+            }
           }
-        };
+        }
 
-        /* ============ 掃描 ============ */
-        window.startScan = function () {
+        function startScan() {
           goTo(5);
-          setTimeout(() => goTo(6), 1400);
-        };
+          setTimeout(function () { goTo(6); }, 1400);
+        }
 
-        /* ============ 新增景點 ============ */
-        window.addSpot = function () {
-          const input = document.getElementById('custom');
-          const v = input.value.trim();
+        /* ============================================================
+           行程標籤
+           ============================================================ */
+        function addSpot() {
+          var input = $('custom');
+          if (!input) return;
+          var v = input.value.replace(/^\s+|\s+$/g, '');
           if (!v) return;
-          const tag = document.createElement('span');
-          tag.className = 'tag ch';
-          tag.style.animationDelay = '0s';
-          tag.textContent = v;
-          document.getElementById('spots').appendChild(tag);
+          addSpotToTags(v);
           input.value = '';
-        };
+        }
 
-        window.finishTrip = function () { goTo(11); };
-        window.restart = function () { goTo(1); };
+        function addSpotToTags(v) {
+          var spots = $('spots');
+          if (!spots) return;
+          var existing = spots.querySelectorAll('.tag');
+          for (var i = 0; i < existing.length; i++) {
+            if (existing[i].textContent.replace(/×\s*$/, '').replace(/^\s+|\s+$/g, '') === v) {
+              return;
+            }
+          }
+          var tag = document.createElement('span');
+          tag.className = 'tag removable';
+          tag.textContent = v;
+          tag.onclick = function () { removeSpot(tag); };
+          spots.appendChild(tag);
+        }
 
-        /* ============ 行進計時 ============ */
-        let sec = 0, timer = null;
+        function removeSpot(el) {
+          if (!el || !el.parentNode) return;
+          el.parentNode.removeChild(el);
+        }
+
+        /* ============================================================
+           地圖選擇
+           ============================================================ */
+        var mapSelected = {};
+
+        function toggleMapPin(el) {
+          var spot = el.getAttribute('data-spot');
+          if (!spot) return;
+
+          if (el.classList && el.classList.contains('selected')) {
+            el.classList.remove('selected');
+            delete mapSelected[spot];
+          } else {
+            if (el.classList) el.classList.add('selected');
+            mapSelected[spot] = true;
+          }
+
+          renderMapSelection();
+        }
+
+        function renderMapSelection() {
+          var wrap = $('map-selection-tags');
+          if (!wrap) return;
+          wrap.innerHTML = '';
+
+          var keys = [];
+          for (var k in mapSelected) {
+            if (mapSelected.hasOwnProperty(k)) keys.push(k);
+          }
+
+          if (keys.length === 0) {
+            var empty = document.createElement('span');
+            empty.className = 'empty';
+            empty.textContent = '尚未選擇任何地點';
+            wrap.appendChild(empty);
+            return;
+          }
+
+          for (var i = 0; i < keys.length; i++) {
+            var tag = document.createElement('span');
+            tag.className = 'tag';
+            tag.textContent = keys[i];
+            wrap.appendChild(tag);
+          }
+        }
+
+        function confirmMapSelection() {
+          var keys = [];
+          for (var k in mapSelected) {
+            if (mapSelected.hasOwnProperty(k)) keys.push(k);
+          }
+          if (keys.length === 0) {
+            goTo(2);
+            return;
+          }
+          for (var i = 0; i < keys.length; i++) {
+            addSpotToTags(keys[i]);
+          }
+          mapSelected = {};
+          var pins = document.querySelectorAll('.map-pin.selected');
+          for (var j = 0; j < pins.length; j++) {
+            pins[j].classList.remove('selected');
+          }
+          renderMapSelection();
+          goTo(2);
+        }
+
+        /* ============================================================
+           其他
+           ============================================================ */
+        function finishTrip() { goTo(11); }
+
+        function restart() {
+          var spots = $('spots');
+          if (spots) {
+            spots.innerHTML = '';
+            var defaults = ['迪化街', '中正紀念堂', '總統府', '世貿', '101'];
+            for (var i = 0; i < defaults.length; i++) {
+              (function (name) {
+                var tag = document.createElement('span');
+                tag.className = 'tag removable';
+                tag.textContent = name;
+                tag.onclick = function () { removeSpot(tag); };
+                spots.appendChild(tag);
+              })(defaults[i]);
+            }
+          }
+          mapSelected = {};
+          var pins = document.querySelectorAll('.map-pin.selected');
+          for (var j = 0; j < pins.length; j++) {
+            pins[j].classList.remove('selected');
+          }
+          renderMapSelection();
+          goTo(1);
+        }
+
+        /* ============================================================
+           行進計時
+           ============================================================ */
+        var rideSec = 0;
+        var rideTimer = null;
+
         function startTimer() {
-          sec = 0;
-          if (timer) clearInterval(timer);
-          timer = setInterval(() => {
-            sec++;
-            const m = String(Math.floor(sec / 60)).padStart(2, '0');
-            const s = String(sec % 60).padStart(2, '0');
-            const el = document.getElementById('ride-timer');
-            if (el) el.textContent = `${m}:${s}`;
+          rideSec = 0;
+          if (rideTimer) clearInterval(rideTimer);
+          rideTimer = setInterval(function () {
+            rideSec++;
+            var m = pad2(Math.floor(rideSec / 60));
+            var s = pad2(rideSec % 60);
+            var el = $('ride-timer');
+            if (el) el.textContent = m + ':' + s;
           }, 1000);
         }
 
-        const mo = new MutationObserver(() => {
-          if (current === 7 && !timer) startTimer();
-          else if (current !== 7 && timer) { clearInterval(timer); timer = null; }
-        });
-        mo.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+        var lastScreen = 1;
+        setInterval(function () {
+          if (currentScreen === 7 && lastScreen !== 7) startTimer();
+          if (currentScreen !== 7 && lastScreen === 7) {
+            if (rideTimer) { clearInterval(rideTimer); rideTimer = null; }
+          }
+          lastScreen = currentScreen;
+        }, 300);
 
-        document.addEventListener('keydown', e => {
-          if (e.key === 'Enter') {
-            const inp = document.getElementById('custom');
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.keyCode === 13) {
+            var inp = $('custom');
             if (document.activeElement === inp) addSpot();
           }
         });
 
-        /* ============ 首次載入 ============ */
+        /* ============================================================
+           初始化
+           ============================================================ */
         function boot() {
-          const first = document.querySelector('[data-screen="1"]');
+          var g = $('greeting');
+          if (g) g.textContent = getGreeting();
+
+          tick();
+          setInterval(tick, 1000);
+
+          var first = document.querySelector('[data-screen="1"]');
           if (first) splitText(first);
         }
-        if (document.readyState === 'complete') boot();
-        else window.addEventListener('load', boot);
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+          setTimeout(boot, 1);
+        } else if (document.addEventListener) {
+          document.addEventListener('DOMContentLoaded', boot, false);
+          window.addEventListener('load', boot, false);
+        } else if (window.attachEvent) {
+          window.attachEvent('onload', boot);
+        }
+
+        window.goTo = goTo;
+        window.startScan = startScan;
+        window.addSpot = addSpot;
+        window.removeSpot = removeSpot;
+        window.toggleMapPin = toggleMapPin;
+        window.confirmMapSelection = confirmMapSelection;
+        window.finishTrip = finishTrip;
+        window.restart = restart;
       })();
     </script>
   </body>
