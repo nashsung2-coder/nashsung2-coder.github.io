@@ -18,6 +18,12 @@
       "title": "想說的話",
       "order": 30,
       "visible": true
+    },
+    {
+      "path": "/pages/bus-system.html",
+      "title": "台北公車",
+      "order": 40,
+      "visible": true
     }
   ]
 }
