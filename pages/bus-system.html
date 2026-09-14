@@ -12,39 +12,64 @@
 
     <style>
       :root {
-        --bus-bg: #070d1a;
-        --bus-panel: #0d1729;
-        --bus-panel-light: #142238;
-        --bus-cyan: #00e5ff;
-        --bus-green: #00ff9d;
-        --bus-yellow: #ffd60a;
-        --bus-red: #ff3d68;
-        --bus-text: #e8f4ff;
-        --bus-text-dim: #7fa4c9;
-        --bus-border: rgba(0, 229, 255, 0.25);
+        --warm-bg: #1a1210;
+        --warm-panel: #241816;
+        --warm-card: #2e1f1c;
+        --warm-cream: #fff4e6;
+        --warm-peach: #ffb088;
+        --warm-coral: #ff8a5c;
+        --warm-sunset: #ff6b4a;
+        --warm-gold: #ffd166;
+        --warm-honey: #ffb347;
+        --warm-sage: #a8d5a8;
+        --warm-mint: #7ed9b0;
+        --warm-text: #f5e6d8;
+        --warm-text-dim: #b8a094;
+        --warm-border: rgba(255, 176, 136, 0.25);
+        --warm-glow: rgba(255, 138, 92, 0.4);
       }
 
       * { box-sizing: border-box; margin: 0; padding: 0; }
 
       body {
         margin: 0;
-        background: #050510;
-        color: var(--bus-text);
-        font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", sans-serif;
-        line-height: 1.7;
+        background: #0d0806;
+        color: var(--warm-text);
+        font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", -apple-system, sans-serif;
+        line-height: 1.75;
         overflow-x: hidden;
         min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
       }
 
+      /* 暖陽漸層背景 */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(circle at 20% 0%, rgba(255, 138, 92, 0.15) 0%, transparent 45%),
+          radial-gradient(circle at 80% 20%, rgba(255, 209, 102, 0.1) 0%, transparent 40%),
+          radial-gradient(circle at 50% 100%, rgba(255, 107, 74, 0.08) 0%, transparent 50%);
+        z-index: 0;
+        pointer-events: none;
+        animation: warmDrift 20s ease-in-out infinite alternate;
+      }
+      @keyframes warmDrift {
+        0% { opacity: 0.8; }
+        100% { opacity: 1; }
+      }
+
+      /* ============ 導覽列 ============ */
       .site-header {
         position: fixed;
         top: 0; left: 0;
         width: 100%;
         z-index: 100;
-        background: rgba(5, 5, 16, 0.9);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border-bottom: 1px solid rgba(0, 229, 255, 0.4);
+        background: rgba(26, 18, 16, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--warm-border);
         padding: 0.6rem 2rem;
         display: flex;
         align-items: center;
@@ -57,17 +82,18 @@
         align-items: center;
         gap: 0.6rem;
         text-decoration: none;
-        color: var(--bus-cyan);
+        color: var(--warm-peach);
         font-weight: 700;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
         font-size: 1rem;
-        text-shadow: 0 0 8px var(--bus-cyan);
+        text-shadow: 0 0 12px var(--warm-glow);
       }
       .site-brand-avatar {
         width: 36px; height: 36px;
         border-radius: 50%;
         object-fit: cover;
-        border: 2px solid var(--bus-cyan);
+        border: 2px solid var(--warm-peach);
+        box-shadow: 0 0 12px var(--warm-glow);
       }
       .site-brand-text { white-space: nowrap; }
       .site-nav {
@@ -75,7 +101,7 @@
         gap: 0.2rem; flex-wrap: wrap; justify-content: center;
       }
       .site-nav a {
-        color: #fff; text-decoration: none;
+        color: var(--warm-text); text-decoration: none;
         padding: 0.4rem 0.8rem;
         font-size: 0.9rem; letter-spacing: 1px;
         border-radius: 20px;
@@ -84,377 +110,376 @@
       }
       .site-nav a:hover,
       .site-nav a[aria-current="page"] {
-        color: var(--bus-cyan);
-        border-color: var(--bus-cyan);
-        background: rgba(0, 229, 255, 0.1);
+        color: var(--warm-coral);
+        border-color: var(--warm-coral);
+        background: rgba(255, 138, 92, 0.1);
       }
       .site-status {
         position: absolute; right: 2rem;
-        color: var(--bus-green);
+        color: var(--warm-gold);
         font-size: 0.7rem;
-        letter-spacing: 3px;
+        letter-spacing: 2px;
       }
 
-      /* 主要容器 */
+      /* ============ 主容器 ============ */
       .bus-app {
         position: relative;
         z-index: 2;
-        max-width: 720px;
+        max-width: 680px;
         margin: 0 auto;
-        padding: 7rem 1.5rem 4rem;
+        padding: 6.5rem 1.2rem 3rem;
       }
 
-      /* 頂部狀態列 */
+      /* ============ 頂部狀態列 ============ */
       .status-bar {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0.8rem 1.2rem;
-        background: var(--bus-panel);
-        border: 1px solid var(--bus-border);
-        border-radius: 12px 12px 0 0;
-        font-family: "Courier New", monospace;
-        font-size: 0.85rem;
-        letter-spacing: 1px;
+        background: var(--warm-panel);
+        border: 1px solid var(--warm-border);
+        border-radius: 16px 16px 0 0;
+        font-size: 0.82rem;
+        letter-spacing: 0.5px;
       }
       .status-time {
-        color: var(--bus-green);
+        color: var(--warm-gold);
         font-weight: 700;
-        text-shadow: 0 0 8px rgba(0, 255, 157, 0.5);
+        font-variant-numeric: tabular-nums;
       }
       .status-location {
-        color: var(--bus-text-dim);
+        color: var(--warm-text-dim);
         flex: 1;
         text-align: center;
+        font-size: 0.78rem;
       }
       .status-dot {
         width: 8px; height: 8px;
         border-radius: 50%;
-        background: var(--bus-green);
-        box-shadow: 0 0 10px var(--bus-green);
-        animation: dotPulse 1.5s ease-in-out infinite;
+        background: var(--warm-mint);
+        box-shadow: 0 0 10px var(--warm-mint);
+        animation: dotPulse 2s ease-in-out infinite;
       }
       @keyframes dotPulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.3; }
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.85); }
       }
 
-      /* 主螢幕 */
+      /* ============ 主螢幕 ============ */
       .screen-container {
-        background: var(--bus-panel);
-        border: 1px solid var(--bus-border);
+        background: var(--warm-panel);
+        border: 1px solid var(--warm-border);
         border-top: none;
-        border-radius: 0 0 12px 12px;
-        min-height: 520px;
+        border-radius: 0 0 16px 16px;
+        min-height: 480px;
         padding: 2rem 1.5rem;
         position: relative;
         overflow: hidden;
       }
 
-      /* 每個畫面 */
       .screen {
         display: none;
-        animation: screenIn 0.7s cubic-bezier(0.19, 1, 0.22, 1);
       }
-      .screen.active { display: block; }
-
+      .screen.active {
+        display: block;
+        animation: screenIn 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+      }
       @keyframes screenIn {
-        0% { opacity: 0; transform: translateY(20px); filter: blur(6px); }
+        0% { opacity: 0; transform: translateY(16px); filter: blur(4px); }
         100% { opacity: 1; transform: translateY(0); filter: blur(0); }
       }
 
-      /* 進度條 */
-      .progress-dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 1.2rem;
-      }
-      .progress-dot {
-        width: 6px; height: 6px;
-        border-radius: 50%;
-        background: rgba(127, 164, 201, 0.3);
-        transition: all 0.4s;
-      }
-      .progress-dot.active {
-        background: var(--bus-cyan);
-        box-shadow: 0 0 10px var(--bus-cyan);
-        width: 20px;
-        border-radius: 3px;
-      }
-
-      /* ============================================================
-         歡迎畫面
-         ============================================================ */
+      /* ============ 歡迎畫面 ============ */
       .welcome-screen {
         text-align: center;
-        padding: 2rem 0;
+        padding: 1.5rem 0;
       }
       .welcome-icon {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-        animation: floatY 3s ease-in-out infinite;
+        font-size: 3.5rem;
+        margin-bottom: 1.2rem;
+        display: inline-block;
+        animation: floatY 3.5s ease-in-out infinite;
+        filter: drop-shadow(0 4px 20px rgba(255, 138, 92, 0.5));
       }
       @keyframes floatY {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+        50% { transform: translateY(-8px); }
       }
       .welcome-line-1 {
-        font-size: 1rem;
-        color: var(--bus-text-dim);
-        letter-spacing: 4px;
+        font-size: 0.85rem;
+        color: var(--warm-text-dim);
+        letter-spacing: 5px;
         margin-bottom: 0.5rem;
       }
       .welcome-line-2 {
-        font-size: clamp(1.4rem, 4vw, 2rem);
-        font-weight: 700;
-        color: var(--bus-cyan);
+        font-size: clamp(1.4rem, 4.5vw, 1.9rem);
+        font-weight: 800;
+        color: var(--warm-peach);
         letter-spacing: 3px;
-        text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+        text-shadow: 0 0 25px var(--warm-glow);
         margin-bottom: 1.5rem;
       }
       .welcome-line-3 {
-        font-size: 1.1rem;
-        color: var(--bus-text);
-        letter-spacing: 2px;
-        margin-bottom: 2rem;
+        font-size: clamp(1rem, 3.5vw, 1.15rem);
+        color: var(--warm-text);
+        letter-spacing: 1px;
+        line-height: 2;
+        margin-bottom: 1.5rem;
       }
       .welcome-line-3 .greeting {
-        color: var(--bus-yellow);
+        color: var(--warm-gold);
         font-weight: 700;
       }
       .welcome-line-3 .nationality {
-        color: var(--bus-green);
+        color: var(--warm-coral);
         font-weight: 700;
       }
       .welcome-divider {
-        width: 60%;
+        width: 50%;
         height: 1px;
-        margin: 2rem auto;
-        background: linear-gradient(90deg, transparent, var(--bus-border), transparent);
+        margin: 1.8rem auto;
+        background: linear-gradient(90deg, transparent, var(--warm-border), transparent);
       }
       .welcome-tip {
-        font-size: 0.9rem;
-        color: var(--bus-text-dim);
-        letter-spacing: 1px;
+        font-size: 0.82rem;
+        color: var(--warm-text-dim);
+        letter-spacing: 0.5px;
+        line-height: 1.8;
       }
 
-      /* ============================================================
-         行程輸入
-         ============================================================ */
+      /* ============ 章節標題 ============ */
       .section-label {
-        font-size: 0.75rem;
-        letter-spacing: 4px;
-        color: var(--bus-cyan);
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
+        display: inline-block;
+        padding: 0.25rem 0.9rem;
+        background: rgba(255, 138, 92, 0.12);
+        border-radius: 20px;
+        font-size: 0.72rem;
+        letter-spacing: 3px;
+        color: var(--warm-coral);
+        margin-bottom: 0.8rem;
       }
       .section-title {
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: #fff;
-        letter-spacing: 2px;
-        margin-bottom: 1.5rem;
+        font-size: clamp(1.2rem, 4vw, 1.45rem);
+        font-weight: 800;
+        color: var(--warm-cream);
+        letter-spacing: 1.5px;
+        margin-bottom: 1.2rem;
+        line-height: 1.5;
       }
 
+      /* ============ 行程標籤 ============ */
       .itinerary-list {
         display: flex;
         flex-wrap: wrap;
         gap: 0.6rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
       }
       .itinerary-chip {
-        padding: 0.6rem 1.2rem;
-        background: var(--bus-panel-light);
-        border: 1px solid var(--bus-border);
-        border-radius: 30px;
-        color: var(--bus-text);
-        font-size: 0.95rem;
-        letter-spacing: 1px;
-        cursor: default;
+        padding: 0.6rem 1.1rem;
+        background: var(--warm-card);
+        border: 1px solid var(--warm-border);
+        border-radius: 24px;
+        color: var(--warm-text);
+        font-size: 0.92rem;
+        letter-spacing: 0.5px;
         transition: all 0.3s;
       }
       .itinerary-chip:hover {
-        border-color: var(--bus-cyan);
-        background: rgba(0, 229, 255, 0.08);
+        border-color: var(--warm-peach);
+        background: rgba(255, 176, 136, 0.1);
+        transform: translateY(-2px);
       }
       .itinerary-chip::before {
-        content: "▸ ";
-        color: var(--bus-cyan);
-        font-size: 0.7rem;
+        content: "📍 ";
+        font-size: 0.85rem;
       }
 
+      /* ============ 輸入框 ============ */
       .itinerary-input {
         display: flex;
-        gap: 0.5rem;
-        margin-bottom: 2rem;
+        gap: 0.6rem;
+        margin-bottom: 1.8rem;
+        flex-wrap: wrap;
       }
       .itinerary-input input {
         flex: 1;
-        background: var(--bus-panel-light);
-        border: 1px solid var(--bus-border);
-        border-radius: 8px;
-        padding: 0.8rem 1rem;
-        color: var(--bus-text);
+        min-width: 0;
+        background: var(--warm-card);
+        border: 1px solid var(--warm-border);
+        border-radius: 12px;
+        padding: 0.85rem 1rem;
+        color: var(--warm-text);
         font-family: inherit;
         font-size: 0.95rem;
         outline: none;
-        transition: border-color 0.3s;
+        transition: border-color 0.3s, box-shadow 0.3s;
       }
       .itinerary-input input:focus {
-        border-color: var(--bus-cyan);
+        border-color: var(--warm-peach);
+        box-shadow: 0 0 0 3px rgba(255, 176, 136, 0.15);
       }
       .itinerary-input input::placeholder {
-        color: var(--bus-text-dim);
+        color: var(--warm-text-dim);
       }
       .itinerary-input button {
-        padding: 0.8rem 1.2rem;
-        background: rgba(0, 229, 255, 0.15);
-        border: 1px solid var(--bus-cyan);
-        border-radius: 8px;
-        color: var(--bus-cyan);
+        padding: 0.85rem 1.3rem;
+        background: rgba(255, 138, 92, 0.15);
+        border: 1px solid var(--warm-peach);
+        border-radius: 12px;
+        color: var(--warm-peach);
         font-family: inherit;
         font-weight: 700;
+        font-size: 0.95rem;
         cursor: pointer;
         transition: all 0.3s;
+        white-space: nowrap;
       }
       .itinerary-input button:hover {
-        background: rgba(0, 229, 255, 0.25);
+        background: rgba(255, 138, 92, 0.25);
+        transform: translateY(-2px);
       }
 
-      /* 按鈕 */
+      /* ============ 按鈕 ============ */
       .btn {
         display: block;
         width: 100%;
         padding: 1rem;
-        background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(0, 255, 157, 0.1));
-        border: 1px solid var(--bus-cyan);
-        border-radius: 10px;
-        color: var(--bus-cyan);
+        background: linear-gradient(135deg, rgba(255, 138, 92, 0.18), rgba(255, 209, 102, 0.12));
+        border: 1.5px solid var(--warm-peach);
+        border-radius: 14px;
+        color: var(--warm-peach);
         font-family: inherit;
         font-size: 1rem;
         font-weight: 700;
-        letter-spacing: 3px;
+        letter-spacing: 2px;
         cursor: pointer;
         transition: all 0.3s;
         text-align: center;
         text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
       }
       .btn:hover {
-        background: linear-gradient(135deg, rgba(0, 229, 255, 0.25), rgba(0, 255, 157, 0.15));
-        box-shadow: 0 0 25px rgba(0, 229, 255, 0.4);
+        background: linear-gradient(135deg, rgba(255, 138, 92, 0.3), rgba(255, 209, 102, 0.2));
+        box-shadow: 0 8px 25px rgba(255, 138, 92, 0.3);
         transform: translateY(-2px);
       }
+      .btn:active { transform: translateY(0); }
       .btn.green {
-        border-color: var(--bus-green);
-        color: var(--bus-green);
-        background: rgba(0, 255, 157, 0.08);
+        border-color: var(--warm-mint);
+        color: var(--warm-mint);
+        background: rgba(126, 217, 176, 0.1);
       }
       .btn.green:hover {
-        background: rgba(0, 255, 157, 0.18);
-        box-shadow: 0 0 25px rgba(0, 255, 157, 0.4);
+        background: rgba(126, 217, 176, 0.2);
+        box-shadow: 0 8px 25px rgba(126, 217, 176, 0.25);
       }
 
-      /* ============================================================
-         路線列表
-         ============================================================ */
+      /* ============ 路線卡片 ============ */
       .route-card {
-        background: var(--bus-panel-light);
-        border: 1px solid var(--bus-border);
-        border-radius: 10px;
-        padding: 1rem 1.2rem;
+        background: var(--warm-card);
+        border: 1px solid var(--warm-border);
+        border-radius: 14px;
+        padding: 1.1rem 1.2rem;
         margin-bottom: 0.8rem;
         transition: all 0.3s;
       }
       .route-card:hover {
-        border-color: var(--bus-cyan);
-        transform: translateX(4px);
+        border-color: var(--warm-peach);
+        transform: translateX(3px);
+        box-shadow: 0 4px 20px rgba(255, 138, 92, 0.15);
       }
       .route-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 0.5rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
       }
       .route-number {
-        font-family: "Courier New", monospace;
-        font-size: 1.3rem;
+        font-size: 1.25rem;
         font-weight: 900;
-        color: var(--bus-yellow);
-        letter-spacing: 2px;
+        color: var(--warm-gold);
+        letter-spacing: 1.5px;
+        font-variant-numeric: tabular-nums;
       }
       .route-time {
-        font-size: 0.8rem;
-        color: var(--bus-green);
-        font-family: "Courier New", monospace;
+        font-size: 0.78rem;
+        color: var(--warm-mint);
+        padding: 0.2rem 0.7rem;
+        background: rgba(126, 217, 176, 0.1);
+        border-radius: 12px;
+        white-space: nowrap;
       }
       .route-name {
-        font-size: 0.9rem;
-        color: var(--bus-text);
-        margin-bottom: 0.4rem;
+        font-size: 0.92rem;
+        color: var(--warm-text);
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
       }
       .route-info {
         display: flex;
-        gap: 1rem;
+        flex-wrap: wrap;
+        gap: 0.6rem 1rem;
         font-size: 0.75rem;
-        color: var(--bus-text-dim);
+        color: var(--warm-text-dim);
       }
       .route-info span::before {
-        content: "● ";
-        font-size: 0.5rem;
-        color: var(--bus-cyan);
-        vertical-align: middle;
+        content: "◦ ";
+        color: var(--warm-peach);
       }
 
-      /* ============================================================
-         藍牙連接 / 掃描
-         ============================================================ */
+      /* ============ 藍牙 / 掃描 ============ */
       .bt-center {
         text-align: center;
-        padding: 3rem 0;
+        padding: 2.5rem 0;
       }
       .bt-icon {
         font-size: 3rem;
-        color: var(--bus-cyan);
-        margin-bottom: 1.5rem;
-        animation: btPulse 1.5s ease-in-out infinite;
+        margin-bottom: 1.2rem;
+        display: inline-block;
+        animation: btPulse 2s ease-in-out infinite;
+        filter: drop-shadow(0 0 20px var(--warm-glow));
       }
       @keyframes btPulse {
-        0%, 100% { opacity: 0.6; transform: scale(1); }
+        0%, 100% { opacity: 0.7; transform: scale(1); }
         50% { opacity: 1; transform: scale(1.08); }
       }
       .bt-title {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: #fff;
-        letter-spacing: 2px;
+        font-size: clamp(1.15rem, 4vw, 1.3rem);
+        font-weight: 800;
+        color: var(--warm-cream);
+        letter-spacing: 1.5px;
         margin-bottom: 0.8rem;
       }
       .bt-desc {
-        font-size: 0.95rem;
-        color: var(--bus-text-dim);
-        letter-spacing: 1px;
-        line-height: 2;
+        font-size: 0.92rem;
+        color: var(--warm-text-dim);
+        letter-spacing: 0.5px;
+        line-height: 1.9;
+        padding: 0 0.5rem;
       }
 
-      /* 掃描動畫 */
+      /* 掃描框 */
       .scan-frame {
-        width: 200px;
-        height: 200px;
+        width: min(200px, 60vw);
+        height: min(200px, 60vw);
         margin: 2rem auto;
-        border: 2px solid var(--bus-cyan);
-        border-radius: 12px;
+        border: 2px solid var(--warm-peach);
+        border-radius: 20px;
         position: relative;
         overflow: hidden;
-        background: rgba(0, 229, 255, 0.03);
+        background: rgba(255, 176, 136, 0.04);
+        box-shadow: 0 0 40px rgba(255, 138, 92, 0.2), inset 0 0 30px rgba(255, 138, 92, 0.05);
       }
       .scan-frame::before,
       .scan-frame::after {
         content: "";
         position: absolute;
-        width: 30px;
-        height: 30px;
-        border: 3px solid var(--bus-green);
+        width: 26px;
+        height: 26px;
+        border: 3px solid var(--warm-gold);
+        border-radius: 4px;
       }
       .scan-frame::before {
         top: -3px; left: -3px;
@@ -471,9 +496,9 @@
         left: 0;
         width: 100%;
         height: 3px;
-        background: linear-gradient(90deg, transparent, var(--bus-green), transparent);
-        box-shadow: 0 0 20px var(--bus-green);
-        animation: scanMove 1.2s ease-in-out infinite;
+        background: linear-gradient(90deg, transparent, var(--warm-gold), transparent);
+        box-shadow: 0 0 24px var(--warm-gold);
+        animation: scanMove 1.4s ease-in-out infinite;
       }
       @keyframes scanMove {
         0% { top: 0; }
@@ -481,27 +506,30 @@
         100% { top: 0; }
       }
       .scan-text {
-        font-family: "Courier New", monospace;
-        font-size: 0.85rem;
-        color: var(--bus-green);
-        letter-spacing: 2px;
+        font-size: 0.82rem;
+        color: var(--warm-gold);
+        letter-spacing: 3px;
         text-align: center;
         margin-top: 1rem;
+        animation: dotPulse 1.5s ease-in-out infinite;
       }
 
-      /* 連線成功 */
+      /* ============ 成功 / 提示 ============ */
       .success-box {
-        background: linear-gradient(135deg, rgba(0, 255, 157, 0.08), rgba(0, 229, 255, 0.05));
-        border: 1px solid var(--bus-green);
-        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(126, 217, 176, 0.08), rgba(255, 209, 102, 0.05));
+        border: 1.5px solid var(--warm-mint);
+        border-radius: 18px;
         padding: 2rem 1.5rem;
         text-align: center;
+        box-shadow: 0 8px 30px rgba(126, 217, 176, 0.15);
       }
       .success-icon {
         font-size: 3rem;
-        color: var(--bus-green);
+        color: var(--warm-mint);
         margin-bottom: 1rem;
-        animation: successPulse 1s ease-out;
+        display: inline-block;
+        animation: successPulse 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        filter: drop-shadow(0 0 20px rgba(126, 217, 176, 0.6));
       }
       @keyframes successPulse {
         0% { transform: scale(0); opacity: 0; }
@@ -509,174 +537,296 @@
         100% { transform: scale(1); opacity: 1; }
       }
       .success-title {
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: var(--bus-green);
-        letter-spacing: 3px;
+        font-size: clamp(1.2rem, 4vw, 1.4rem);
+        font-weight: 800;
+        color: var(--warm-mint);
+        letter-spacing: 2px;
         margin-bottom: 1rem;
       }
       .success-info {
-        font-size: 1rem;
-        color: var(--bus-text);
-        letter-spacing: 1px;
+        font-size: clamp(0.92rem, 3vw, 1rem);
+        color: var(--warm-text);
+        letter-spacing: 0.5px;
         line-height: 2.2;
       }
       .success-info .highlight {
-        color: var(--bus-yellow);
-        font-weight: 700;
-        font-family: "Courier New", monospace;
+        color: var(--warm-gold);
+        font-weight: 800;
+        padding: 0 4px;
+        background: linear-gradient(180deg, transparent 65%, rgba(255, 209, 102, 0.2) 65%);
       }
 
-      /* 提示卡片 */
+      /* ============ 提示卡 ============ */
       .prompt-card {
-        background: var(--bus-panel-light);
-        border: 1px solid var(--bus-border);
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        background: var(--warm-card);
+        border: 1px solid var(--warm-border);
+        border-radius: 14px;
+        padding: 1.3rem;
+        margin: 1.3rem 0;
       }
       .prompt-card p {
-        color: var(--bus-text);
-        letter-spacing: 1px;
-        margin-bottom: 1.2rem;
+        color: var(--warm-text);
+        letter-spacing: 0.5px;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
       }
 
-      /* ============================================================
-         到站 / 導覽
-         ============================================================ */
+      /* ============ 到站 ============ */
       .arrival-badge {
         display: inline-block;
-        padding: 0.4rem 1.2rem;
-        background: rgba(0, 255, 157, 0.15);
-        border: 1px solid var(--bus-green);
+        padding: 0.35rem 1rem;
+        background: rgba(126, 217, 176, 0.12);
+        border: 1px solid var(--warm-mint);
         border-radius: 30px;
-        color: var(--bus-green);
-        font-size: 0.8rem;
-        letter-spacing: 3px;
-        font-family: "Courier New", monospace;
-        margin-bottom: 1.5rem;
+        color: var(--warm-mint);
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
       }
       .arrival-title {
-        font-size: clamp(1.4rem, 4vw, 1.8rem);
-        font-weight: 700;
-        color: #fff;
-        letter-spacing: 3px;
-        margin-bottom: 1.5rem;
+        font-size: clamp(1.3rem, 4.5vw, 1.7rem);
+        font-weight: 800;
+        color: var(--warm-cream);
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+        line-height: 1.5;
       }
       .guide-text {
-        background: var(--bus-panel-light);
-        border-left: 3px solid var(--bus-cyan);
-        border-radius: 0 10px 10px 0;
-        padding: 1.2rem 1.5rem;
-        color: var(--bus-text);
-        letter-spacing: 0.5px;
+        background: var(--warm-card);
+        border-left: 3px solid var(--warm-peach);
+        border-radius: 0 12px 12px 0;
+        padding: 1.2rem 1.3rem;
+        color: var(--warm-text);
+        letter-spacing: 0.3px;
         line-height: 2;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.3rem;
+        font-size: 0.95rem;
       }
 
-      /* 美食推薦 */
+      /* ============ 美食 ============ */
       .food-list {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 0.8rem;
-        margin: 1.5rem 0;
+        gap: 0.7rem;
+        margin: 1.3rem 0;
       }
       .food-item {
-        background: var(--bus-panel-light);
-        border: 1px solid var(--bus-border);
-        border-radius: 10px;
+        background: var(--warm-card);
+        border: 1px solid var(--warm-border);
+        border-radius: 12px;
         padding: 1rem 1.2rem;
         transition: all 0.3s;
       }
       .food-item:hover {
-        border-color: var(--bus-yellow);
-        transform: translateX(4px);
+        border-color: var(--warm-gold);
+        transform: translateX(3px);
+        box-shadow: 0 4px 20px rgba(255, 209, 102, 0.15);
       }
       .food-item-title {
-        font-size: 1rem;
+        font-size: 0.98rem;
         font-weight: 700;
-        color: var(--bus-yellow);
+        color: var(--warm-gold);
         margin-bottom: 0.3rem;
       }
       .food-item-desc {
         font-size: 0.85rem;
-        color: var(--bus-text-dim);
+        color: var(--warm-text-dim);
+        line-height: 1.7;
       }
 
-      /* 結束 */
+      /* ============ 結束 ============ */
       .ending-box {
         text-align: center;
-        padding: 2rem 0;
+        padding: 1.8rem 0;
       }
       .ending-icon {
         font-size: 3rem;
-        margin-bottom: 1.5rem;
-        animation: floatY 3s ease-in-out infinite;
+        margin-bottom: 1.2rem;
+        display: inline-block;
+        animation: floatY 3.5s ease-in-out infinite;
+        filter: drop-shadow(0 4px 20px var(--warm-glow));
       }
       .ending-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--bus-cyan);
-        letter-spacing: 3px;
+        font-size: clamp(1.3rem, 4.5vw, 1.5rem);
+        font-weight: 800;
+        color: var(--warm-peach);
+        letter-spacing: 2px;
         margin-bottom: 1rem;
-        text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+        text-shadow: 0 0 20px var(--warm-glow);
       }
       .ending-text {
-        font-size: 1rem;
-        color: var(--bus-text);
-        letter-spacing: 1px;
+        font-size: 0.98rem;
+        color: var(--warm-text);
+        letter-spacing: 0.5px;
         line-height: 2.2;
       }
 
-      /* 快進按鈕 */
+      /* ============ 快進按鈕 ============ */
       .skip-btn {
         display: inline-block;
-        padding: 0.5rem 1.5rem;
+        padding: 0.6rem 1.4rem;
         background: transparent;
-        border: 1px dashed var(--bus-text-dim);
+        border: 1.5px dashed var(--warm-text-dim);
         border-radius: 30px;
-        color: var(--bus-text-dim);
+        color: var(--warm-text-dim);
         font-family: inherit;
-        font-size: 0.8rem;
-        letter-spacing: 2px;
+        font-size: 0.82rem;
+        letter-spacing: 1.5px;
         cursor: pointer;
         transition: all 0.3s;
         margin-top: 1rem;
+        -webkit-tap-highlight-color: transparent;
       }
       .skip-btn:hover {
-        color: var(--bus-cyan);
-        border-color: var(--bus-cyan);
+        color: var(--warm-peach);
+        border-color: var(--warm-peach);
+        background: rgba(255, 176, 136, 0.05);
       }
 
-      /* 即時資訊列 */
+      /* ============ 即時資訊列 ============ */
       .live-info {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.6rem 1rem;
-        background: rgba(0, 255, 157, 0.05);
-        border: 1px solid rgba(0, 255, 157, 0.2);
-        border-radius: 8px;
-        font-family: "Courier New", monospace;
-        font-size: 0.8rem;
-        color: var(--bus-green);
-        margin-bottom: 1.5rem;
-        letter-spacing: 1px;
+        padding: 0.7rem 1rem;
+        background: rgba(255, 209, 102, 0.06);
+        border: 1px solid rgba(255, 209, 102, 0.2);
+        border-radius: 10px;
+        font-size: 0.78rem;
+        color: var(--warm-gold);
+        margin-bottom: 1.3rem;
+        letter-spacing: 0.5px;
+        flex-wrap: wrap;
+        gap: 0.4rem;
       }
 
-      /* 手機版 */
+      /* ============ 進度點 ============ */
+      .progress-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.4rem;
+        margin-top: 1.2rem;
+        flex-wrap: wrap;
+      }
+      .progress-dot {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: rgba(184, 160, 148, 0.3);
+        transition: all 0.4s;
+      }
+      .progress-dot.active {
+        background: var(--warm-coral);
+        box-shadow: 0 0 10px var(--warm-glow);
+        width: 20px;
+        border-radius: 3px;
+      }
+
+      /* ============================================================
+         手機版優化
+         ============================================================ */
       @media (max-width: 600px) {
         .site-header {
           flex-direction: column;
           padding: 0.6rem 1rem;
           height: auto;
+          gap: 0.3rem;
         }
-        .site-brand { position: static; margin-bottom: 0.4rem; }
+        .site-brand {
+          position: static;
+          margin-bottom: 0.2rem;
+        }
+        .site-brand-avatar { width: 32px; height: 32px; }
+        .site-brand-text { font-size: 0.9rem; }
         .site-status { display: none; }
-        .site-nav { width: 100%; gap: 0.2rem; }
-        .site-nav a { padding: 0.3rem 0.6rem; font-size: 0.8rem; }
-        .bus-app { padding: 7rem 1rem 3rem; }
-        .screen-container { padding: 1.5rem 1rem; }
+        .site-nav {
+          width: 100%;
+          gap: 0.15rem;
+        }
+        .site-nav a {
+          padding: 0.35rem 0.65rem;
+          font-size: 0.78rem;
+        }
+
+        .bus-app {
+          padding: 7rem 0.8rem 2rem;
+        }
+
+        .status-bar {
+          padding: 0.7rem 0.9rem;
+          font-size: 0.75rem;
+        }
+        .status-location { font-size: 0.72rem; }
+
+        .screen-container {
+          padding: 1.5rem 1.1rem;
+          min-height: 420px;
+        }
+
+        .welcome-icon { font-size: 3rem; }
+        .welcome-line-1 { letter-spacing: 3px; font-size: 0.78rem; }
+        .welcome-line-2 { letter-spacing: 2px; }
+
+        .section-title { letter-spacing: 1px; }
+
+        .itinerary-chip {
+          padding: 0.5rem 0.9rem;
+          font-size: 0.85rem;
+        }
+
+        .itinerary-input {
+          flex-direction: column;
+        }
+        .itinerary-input button {
+          width: 100%;
+        }
+
+        .btn {
+          padding: 0.95rem;
+          font-size: 0.95rem;
+          letter-spacing: 1.5px;
+        }
+
+        .route-card { padding: 1rem; }
+        .route-number { font-size: 1.15rem; }
+        .route-header { gap: 0.4rem; }
+
+        .success-box { padding: 1.6rem 1.2rem; }
+        .success-info { line-height: 2.1; }
+
+        .prompt-card { padding: 1.1rem; }
+
+        .guide-text { padding: 1rem 1.1rem; font-size: 0.9rem; }
+
+        .food-item { padding: 0.9rem 1rem; }
+        .food-item-title { font-size: 0.92rem; }
+        .food-item-desc { font-size: 0.82rem; }
+
+        /* 讓按鈕並排時在手機上仍然舒適 */
+        .btn-row {
+          display: flex;
+          gap: 0.6rem;
+          flex-direction: column;
+        }
+        .btn-row .btn { margin: 0 !important; }
+      }
+
+      /* 極窄螢幕 */
+      @media (max-width: 380px) {
+        .bus-app { padding: 6.8rem 0.6rem 1.5rem; }
+        .screen-container { padding: 1.2rem 0.9rem; }
+        .route-info { font-size: 0.7rem; }
+        .itinerary-chip { font-size: 0.8rem; padding: 0.45rem 0.8rem; }
+      }
+
+      /* 觸控裝置：移除 hover 效果的黏滯感 */
+      @media (hover: none) {
+        .btn:hover,
+        .route-card:hover,
+        .food-item:hover,
+        .itinerary-chip:hover,
+        .itinerary-input button:hover {
+          transform: none;
+        }
       }
     </style>
   </head>
@@ -692,7 +842,6 @@
     </header>
 
     <main class="bus-app">
-      <!-- 頂部狀態列 -->
       <div class="status-bar">
         <div class="status-time" id="status-time">--:--:--</div>
         <div class="status-location">台北市 · 大同區</div>
@@ -701,7 +850,7 @@
 
       <div class="screen-container">
 
-        <!-- ============ 1. 歡迎畫面 ============ -->
+        <!-- 1. 歡迎 -->
         <div class="screen active" data-screen="1">
           <div class="welcome-screen">
             <div class="welcome-icon">🚌</div>
@@ -713,19 +862,19 @@
             </div>
             <div class="welcome-divider"></div>
             <div class="welcome-tip">
-              台北公車智慧導覽系統 v2.4<br>
+              台北公車智慧導覽系統<br>
               為您規劃今日的專屬旅程
             </div>
-            <button class="btn" style="margin-top: 2rem;" onclick="goTo(2)">開始規劃行程 →</button>
+            <button class="btn" style="margin-top: 1.8rem;" onclick="goTo(2)">開始規劃行程 →</button>
           </div>
         </div>
 
-        <!-- ============ 2. 行程輸入 ============ -->
+        <!-- 2. 行程 -->
         <div class="screen" data-screen="2">
-          <div class="section-label">STEP 01 / 行程規劃</div>
+          <div class="section-label">STEP 01</div>
           <div class="section-title">請輸入您今日的行程</div>
 
-          <p style="color: var(--bus-text-dim); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px;">
+          <p style="color: var(--warm-text-dim); font-size: 0.88rem; margin-bottom: 1rem;">
             系統已為您預設以下推薦景點：
           </p>
 
@@ -745,24 +894,24 @@
           <button class="btn" onclick="goTo(3)">查詢適合的公車 →</button>
         </div>
 
-        <!-- ============ 3. 路線列表 ============ -->
+        <!-- 3. 路線 -->
         <div class="screen" data-screen="3">
           <div class="live-info">
             <span>◉ 即時查詢中</span>
-            <span id="route-live-time">更新時間 --:--</span>
+            <span id="route-live-time">更新 --:--</span>
           </div>
 
-          <div class="section-label">STEP 02 / 公車路線</div>
+          <div class="section-label">STEP 02</div>
           <div class="section-title">為您推薦以下路線</div>
 
-          <p style="color: var(--bus-text-dim); font-size: 0.85rem; margin-bottom: 1.2rem;">
+          <p style="color: var(--warm-text-dim); font-size: 0.85rem; margin-bottom: 1.2rem;">
             依您選擇的行程「迪化街 → 中正紀念堂」，建議搭乘：
           </p>
 
           <div class="route-card">
             <div class="route-header">
               <div class="route-number">206</div>
-              <div class="route-time">約 3 分鐘後到站</div>
+              <div class="route-time">約 3 分後到站</div>
             </div>
             <div class="route-name">迪化街 → 捷運中正紀念堂站</div>
             <div class="route-info">
@@ -775,7 +924,7 @@
           <div class="route-card">
             <div class="route-header">
               <div class="route-number">304</div>
-              <div class="route-time">約 8 分鐘後到站</div>
+              <div class="route-time">約 8 分後到站</div>
             </div>
             <div class="route-name">大龍峒 → 中正紀念堂</div>
             <div class="route-info">
@@ -788,7 +937,7 @@
           <div class="route-card">
             <div class="route-header">
               <div class="route-number">639</div>
-              <div class="route-time">約 12 分鐘後到站</div>
+              <div class="route-time">約 12 分後到站</div>
             </div>
             <div class="route-name">迪化街 → 台北車站 → 中正紀念堂</div>
             <div class="route-info">
@@ -798,13 +947,13 @@
             </div>
           </div>
 
-          <p style="color: var(--bus-text-dim); font-size: 0.85rem; margin: 1.5rem 0 1rem;">
+          <p style="color: var(--warm-text-dim); font-size: 0.85rem; margin: 1.5rem 0 1rem;">
             ▸ 不同時段的班次資訊：
           </p>
 
           <div class="route-card">
             <div class="route-header">
-              <div class="route-number" style="font-size: 1rem;">早上 05:30 - 11:00</div>
+              <div class="route-number" style="font-size: 0.95rem;">早上 05:30 - 11:00</div>
               <div class="route-time">班次密集</div>
             </div>
             <div class="route-info">
@@ -814,7 +963,7 @@
 
           <div class="route-card">
             <div class="route-header">
-              <div class="route-number" style="font-size: 1rem;">中午 11:00 - 17:00</div>
+              <div class="route-number" style="font-size: 0.95rem;">中午 11:00 - 17:00</div>
               <div class="route-time">班次正常</div>
             </div>
             <div class="route-info">
@@ -824,7 +973,7 @@
 
           <div class="route-card">
             <div class="route-header">
-              <div class="route-number" style="font-size: 1rem;">晚上 17:00 - 23:00</div>
+              <div class="route-number" style="font-size: 0.95rem;">晚上 17:00 - 23:00</div>
               <div class="route-time">班次較少</div>
             </div>
             <div class="route-info">
@@ -832,10 +981,10 @@
             </div>
           </div>
 
-          <button class="btn green" style="margin-top: 2rem;" onclick="goTo(4)">開始行程 →</button>
+          <button class="btn green" style="margin-top: 1.8rem;" onclick="goTo(4)">開始行程 →</button>
         </div>
 
-        <!-- ============ 4. 藍牙連接 ============ -->
+        <!-- 4. 藍牙 -->
         <div class="screen" data-screen="4">
           <div class="bt-center">
             <div class="bt-icon">📡</div>
@@ -843,24 +992,24 @@
             <div class="bt-desc">
               請掃描座位前方或刷卡機上的 QR code
             </div>
-            <button class="btn" style="margin-top: 2rem;" onclick="startScan()">開始掃描 QR code →</button>
+            <button class="btn" style="margin-top: 1.8rem;" onclick="startScan()">開始掃描 QR code →</button>
           </div>
         </div>
 
-        <!-- ============ 5. 掃描中 ============ -->
+        <!-- 5. 掃描中 -->
         <div class="screen" data-screen="5">
           <div class="bt-center">
             <div class="scan-frame">
               <div class="scan-line"></div>
             </div>
-            <div class="scan-text">◉ SCANNING...</div>
-            <p style="color: var(--bus-text-dim); font-size: 0.9rem; margin-top: 1.5rem; letter-spacing: 1px;">
+            <div class="scan-text">◉ 掃描中…</div>
+            <p style="color: var(--warm-text-dim); font-size: 0.88rem; margin-top: 1.3rem; letter-spacing: 0.5px;">
               正在辨識 QR code，請稍候
             </p>
           </div>
         </div>
 
-        <!-- ============ 6. 連線成功 ============ -->
+        <!-- 6. 成功 -->
         <div class="screen" data-screen="6">
           <div class="success-box">
             <div class="success-icon">✓</div>
@@ -876,21 +1025,21 @@
 
           <div class="prompt-card">
             <p style="text-align: center;">是否進行自動按鈴服務？</p>
-            <div style="display: flex; gap: 0.8rem;">
-              <button class="btn green" style="margin: 0;" onclick="goTo(7)">是，開啟</button>
-              <button class="btn" style="margin: 0;" onclick="goTo(7)">稍後再說</button>
+            <div class="btn-row" style="display: flex; gap: 0.7rem;">
+              <button class="btn green" style="flex: 1; margin: 0;" onclick="goTo(7)">是，開啟</button>
+              <button class="btn" style="flex: 1; margin: 0;" onclick="goTo(7)">稍後再說</button>
             </div>
           </div>
         </div>
 
-        <!-- ============ 7. 行進中 ============ -->
+        <!-- 7. 行進中 -->
         <div class="screen" data-screen="7">
           <div class="live-info">
             <span>◉ 403 號公車行進中</span>
             <span id="ride-timer">00:00</span>
           </div>
 
-          <div class="success-box" style="background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(0, 255, 157, 0.05)); border-color: var(--bus-cyan);">
+          <div class="success-box" style="background: linear-gradient(135deg, rgba(255, 209, 102, 0.08), rgba(255, 138, 92, 0.05)); border-color: var(--warm-gold);">
             <div class="success-info" style="text-align: center;">
               自動按鈴服務已啟用<br>
               到站前 300 公尺會為您按鈴<br>
@@ -898,21 +1047,21 @@
             </div>
           </div>
 
-          <p style="color: var(--bus-text-dim); font-size: 0.9rem; margin-top: 1.5rem; text-align: center; letter-spacing: 1px;">
+          <p style="color: var(--warm-text-dim); font-size: 0.88rem; margin-top: 1.3rem; text-align: center;">
             預計五分鐘後抵達 中正紀念堂站
           </p>
 
-          <button class="skip-btn" style="display: block; margin: 1.5rem auto 0;" onclick="goTo(8)">
+          <button class="skip-btn" style="display: block; margin: 1.3rem auto 0;" onclick="goTo(8)">
             快進 → 抵達中正紀念堂
           </button>
         </div>
 
-        <!-- ============ 8. 到站 ============ -->
+        <!-- 8. 到站 -->
         <div class="screen" data-screen="8">
           <div class="arrival-badge">◉ 已到站</div>
           <div class="arrival-title">歡迎來到 中正紀念堂</div>
 
-          <p style="color: var(--bus-text-dim); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 1rem;">
+          <p style="color: var(--warm-text-dim); font-size: 0.88rem; margin-bottom: 1rem;">
             請掃描 QR code，讓隨身導覽為您介紹不同的建築與文化故事：
           </p>
 
@@ -925,35 +1074,35 @@
           </button>
         </div>
 
-        <!-- ============ 9. 美食推薦 ============ -->
+        <!-- 9. 美食 -->
         <div class="screen" data-screen="9">
-          <div class="section-label">STEP 03 / 午餐時光</div>
+          <div class="section-label">STEP 03</div>
           <div class="section-title">準備好要吃什麼了嗎？</div>
 
-          <p style="color: var(--bus-text-dim); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 1rem;">
+          <p style="color: var(--warm-text-dim); font-size: 0.88rem; margin-bottom: 1rem;">
             為您推薦中正紀念堂周邊美食：
           </p>
 
           <div class="food-list">
             <div class="food-item">
-              <div class="food-item-title">金峰滷肉飯</div>
+              <div class="food-item-title">🍚 金峰滷肉飯</div>
               <div class="food-item-desc">羅斯福路一段 · 台北經典滷肉飯，肥瘦適中，配滷蛋與筍絲</div>
             </div>
             <div class="food-item">
-              <div class="food-item-title">盛園絲瓜小籠湯包</div>
+              <div class="food-item-title">🥟 盛園絲瓜小籠湯包</div>
               <div class="food-item-desc">杭州南路二段 · 絲瓜清甜，湯汁飽滿，皮薄餡多</div>
             </div>
             <div class="food-item">
-              <div class="food-item-title">南門市場 · 合興糕餅</div>
+              <div class="food-item-title">🍡 南門市場 · 合興糕餅</div>
               <div class="food-item-desc">在地老字號，各式傳統糕餅與熟食，適合帶走</div>
             </div>
             <div class="food-item">
-              <div class="food-item-title">桃源街牛肉麵</div>
+              <div class="food-item-title">🍜 桃源街牛肉麵</div>
               <div class="food-item-desc">西門町 · 紅燒湯頭濃郁，牛肉軟嫩，老台北人的記憶</div>
             </div>
           </div>
 
-          <p style="color: var(--bus-text-dim); font-size: 0.85rem; text-align: center; margin: 1rem 0 1.5rem;">
+          <p style="color: var(--warm-text-dim); font-size: 0.85rem; text-align: center; margin: 0.8rem 0 1.3rem;">
             吃飽，讓下午的行程充滿戰鬥力！
           </p>
 
@@ -962,7 +1111,7 @@
           </button>
         </div>
 
-        <!-- ============ 10. 101 逛完 ============ -->
+        <!-- 10. 101 -->
         <div class="screen" data-screen="10">
           <div class="ending-box">
             <div class="ending-icon">🌃</div>
@@ -974,48 +1123,47 @@
             </div>
           </div>
 
-          <div class="prompt-card" style="margin-top: 2rem;">
-            <p style="text-align: center; margin-bottom: 1rem;">為您搜尋附近的住宿？</p>
-            <div style="display: flex; gap: 0.8rem;">
-              <button class="btn green" style="margin: 0;" onclick="finishTrip()">是，為我推薦</button>
-              <button class="btn" style="margin: 0;" onclick="restart()">重新開始</button>
+          <div class="prompt-card" style="margin-top: 1.5rem;">
+            <p style="text-align: center;">為您搜尋附近的住宿？</p>
+            <div class="btn-row" style="display: flex; gap: 0.7rem;">
+              <button class="btn green" style="flex: 1; margin: 0;" onclick="finishTrip()">是，為我推薦</button>
+              <button class="btn" style="flex: 1; margin: 0;" onclick="restart()">重新開始</button>
             </div>
           </div>
         </div>
 
-        <!-- ============ 11. 住宿推薦 ============ -->
+        <!-- 11. 住宿 -->
         <div class="screen" data-screen="11">
-          <div class="section-label">STEP 04 / 住宿推薦</div>
+          <div class="section-label">STEP 04</div>
           <div class="section-title">為您推薦附近住宿</div>
 
           <div class="food-list">
             <div class="food-item">
-              <div class="food-item-title">台北君悅酒店</div>
+              <div class="food-item-title">🏨 台北君悅酒店</div>
               <div class="food-item-desc">信義區 · 緊鄰 101，步行 3 分鐘</div>
             </div>
             <div class="food-item">
-              <div class="food-item-title">寒舍艾美酒店</div>
+              <div class="food-item-title">🏨 寒舍艾美酒店</div>
               <div class="food-item-desc">信義區 · 精品設計，鄰近世貿</div>
             </div>
             <div class="food-item">
-              <div class="food-item-title">誠品行旅</div>
+              <div class="food-item-title">🏨 誠品行旅</div>
               <div class="food-item-desc">松菸文創園區 · 書香與設計的結合</div>
             </div>
           </div>
 
           <div class="ending-box" style="padding-top: 1rem;">
-            <div class="ending-text" style="color: var(--bus-cyan); font-size: 1.1rem;">
+            <div class="ending-text" style="color: var(--warm-peach); font-size: 1.05rem;">
               台北公車系統感謝您的搭乘<br>
-              <span style="color: var(--bus-yellow);">祝您有一個平安的休息</span>
+              <span style="color: var(--warm-gold); font-weight: 700;">祝您有一個平安的休息</span>
             </div>
           </div>
 
-          <button class="btn" style="margin-top: 2rem;" onclick="restart()">回到首頁重新開始</button>
+          <button class="btn" style="margin-top: 1.8rem;" onclick="restart()">回到首頁重新開始</button>
         </div>
 
       </div>
 
-      <!-- 進度點 -->
       <div class="progress-dots" id="progress-dots">
         <div class="progress-dot active"></div>
         <div class="progress-dot"></div>
@@ -1035,7 +1183,6 @@
 
     <script>
       (function () {
-        /* ============ 時間問候 ============ */
         const hour = new Date().getHours();
         let greeting;
         if (hour >= 5 && hour < 12) greeting = '早安';
@@ -1043,7 +1190,6 @@
         else greeting = '晚安';
         document.getElementById('greeting').textContent = greeting;
 
-        /* ============ 即時時鐘 ============ */
         function updateClock() {
           const now = new Date();
           const hh = String(now.getHours()).padStart(2, '0');
@@ -1055,17 +1201,15 @@
         updateClock();
         setInterval(updateClock, 1000);
 
-        /* ============ 路線即時時間 ============ */
         function updateRouteTime() {
           const now = new Date();
           const hh = String(now.getHours()).padStart(2, '0');
           const mm = String(now.getMinutes()).padStart(2, '0');
           const el = document.getElementById('route-live-time');
-          if (el) el.textContent = `更新時間 ${hh}:${mm}`;
+          if (el) el.textContent = `更新 ${hh}:${mm}`;
         }
         updateRouteTime();
 
-        /* ============ 畫面切換 ============ */
         let currentScreen = 1;
         window.goTo = function (n) {
           document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -1073,26 +1217,22 @@
           if (target) target.classList.add('active');
           currentScreen = n;
 
-          /* 更新進度點 */
           const dots = document.querySelectorAll('.progress-dot');
           dots.forEach((d, i) => {
             d.classList.toggle('active', i === n - 1);
           });
 
-          /* 捲動到頂部 */
-          const container = document.querySelector('.screen-container');
-          if (container) container.scrollTop = 0;
+          /* 手機上切換畫面時捲到頂部 */
+          if (window.innerWidth <= 600) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
         };
 
-        /* ============ 掃描 QR code ============ */
         window.startScan = function () {
           goTo(5);
-          setTimeout(() => {
-            goTo(6);
-          }, 1000);
+          setTimeout(() => goTo(6), 1000);
         };
 
-        /* ============ 新增景點 ============ */
         window.addSpot = function () {
           const input = document.getElementById('custom-spot');
           const value = input.value.trim();
@@ -1105,17 +1245,9 @@
           input.value = '';
         };
 
-        /* ============ 完成行程 ============ */
-        window.finishTrip = function () {
-          goTo(11);
-        };
+        window.finishTrip = function () { goTo(11); };
+        window.restart = function () { goTo(1); };
 
-        /* ============ 重新開始 ============ */
-        window.restart = function () {
-          goTo(1);
-        };
-
-        /* ============ 行進計時器 ============ */
         let rideSeconds = 0;
         let rideTimer = null;
 
@@ -1131,7 +1263,6 @@
           }, 1000);
         }
 
-        /* 監聽畫面切換到 7 時啟動計時器 */
         const observer = new MutationObserver(() => {
           if (currentScreen === 7 && !rideTimer) {
             startRideTimer();
@@ -1146,13 +1277,10 @@
           attributeFilter: ['class']
         });
 
-        /* ============ 鍵盤 Enter 支援 ============ */
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Enter') {
             const input = document.getElementById('custom-spot');
-            if (document.activeElement === input) {
-              addSpot();
-            }
+            if (document.activeElement === input) addSpot();
           }
         });
       })();
