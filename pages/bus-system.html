@@ -21,7 +21,6 @@
         --warm-sunset: #ff6b4a;
         --warm-gold: #ffd166;
         --warm-honey: #ffb347;
-        --warm-sage: #a8d5a8;
         --warm-mint: #7ed9b0;
         --warm-text: #f5e6d8;
         --warm-text-dim: #b8a094;
@@ -42,7 +41,6 @@
         -webkit-font-smoothing: antialiased;
       }
 
-      /* 暖陽漸層背景 */
       body::before {
         content: "";
         position: fixed;
@@ -58,6 +56,45 @@
       @keyframes warmDrift {
         0% { opacity: 0.8; }
         100% { opacity: 1; }
+      }
+
+      /* ============ 逐字動畫 ============ */
+      .type-char {
+        display: inline-block;
+        opacity: 0;
+        animation: charAppear 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        will-change: opacity, transform, filter;
+      }
+      @keyframes charAppear {
+        0% {
+          opacity: 0;
+          transform: translateY(8px) scale(0.7);
+          filter: blur(4px);
+        }
+        60% {
+          opacity: 1;
+          transform: translateY(-2px) scale(1.05);
+          filter: blur(0);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          filter: blur(0);
+        }
+      }
+
+      /* 系統光標（打字機效果） */
+      .typing-cursor::after {
+        content: "▊";
+        display: inline-block;
+        margin-left: 2px;
+        color: var(--warm-coral);
+        animation: cursorBlink 0.7s steps(2) infinite;
+        font-weight: 400;
+      }
+      @keyframes cursorBlink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
       }
 
       /* ============ 導覽列 ============ */
@@ -130,7 +167,7 @@
         padding: 6.5rem 1.2rem 3rem;
       }
 
-      /* ============ 頂部狀態列 ============ */
+      /* 狀態列 */
       .status-bar {
         display: flex;
         align-items: center;
@@ -165,7 +202,7 @@
         50% { opacity: 0.5; transform: scale(0.85); }
       }
 
-      /* ============ 主螢幕 ============ */
+      /* 螢幕 */
       .screen-container {
         background: var(--warm-panel);
         border: 1px solid var(--warm-border);
@@ -177,17 +214,8 @@
         overflow: hidden;
       }
 
-      .screen {
-        display: none;
-      }
-      .screen.active {
-        display: block;
-        animation: screenIn 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-      }
-      @keyframes screenIn {
-        0% { opacity: 0; transform: translateY(16px); filter: blur(4px); }
-        100% { opacity: 1; transform: translateY(0); filter: blur(0); }
-      }
+      .screen { display: none; }
+      .screen.active { display: block; }
 
       /* ============ 歡迎畫面 ============ */
       .welcome-screen {
@@ -217,22 +245,35 @@
         color: var(--warm-peach);
         letter-spacing: 3px;
         text-shadow: 0 0 25px var(--warm-glow);
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
       }
       .welcome-line-3 {
         font-size: clamp(1rem, 3.5vw, 1.15rem);
         color: var(--warm-text);
         letter-spacing: 1px;
-        line-height: 2;
-        margin-bottom: 1.5rem;
+        line-height: 1.8;
+        margin-bottom: 0.4rem;
       }
       .welcome-line-3 .greeting {
         color: var(--warm-gold);
         font-weight: 700;
       }
-      .welcome-line-3 .nationality {
+      .welcome-line-4 {
+        font-size: clamp(1.5rem, 5.5vw, 2.2rem);
+        font-weight: 900;
+        letter-spacing: 3px;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+      }
+      .welcome-line-4 .big-word {
+        color: var(--warm-cream);
+        text-shadow: 0 0 20px rgba(255, 244, 230, 0.3);
+      }
+      .welcome-line-4 .name-tag {
         color: var(--warm-coral);
-        font-weight: 700;
+        text-shadow:
+          0 0 20px var(--warm-glow),
+          0 0 40px rgba(255, 138, 92, 0.3);
       }
       .welcome-divider {
         width: 50%;
@@ -244,7 +285,7 @@
         font-size: 0.82rem;
         color: var(--warm-text-dim);
         letter-spacing: 0.5px;
-        line-height: 1.8;
+        line-height: 1.9;
       }
 
       /* ============ 章節標題 ============ */
@@ -460,7 +501,6 @@
         padding: 0 0.5rem;
       }
 
-      /* 掃描框 */
       .scan-frame {
         width: min(200px, 60vw);
         height: min(200px, 60vw);
@@ -514,7 +554,7 @@
         animation: dotPulse 1.5s ease-in-out infinite;
       }
 
-      /* ============ 成功 / 提示 ============ */
+      /* ============ 成功 ============ */
       .success-box {
         background: linear-gradient(135deg, rgba(126, 217, 176, 0.08), rgba(255, 209, 102, 0.05));
         border: 1.5px solid var(--warm-mint);
@@ -722,7 +762,7 @@
       }
 
       /* ============================================================
-         手機版優化
+         手機版
          ============================================================ */
       @media (max-width: 600px) {
         .site-header {
@@ -738,23 +778,12 @@
         .site-brand-avatar { width: 32px; height: 32px; }
         .site-brand-text { font-size: 0.9rem; }
         .site-status { display: none; }
-        .site-nav {
-          width: 100%;
-          gap: 0.15rem;
-        }
-        .site-nav a {
-          padding: 0.35rem 0.65rem;
-          font-size: 0.78rem;
-        }
+        .site-nav { width: 100%; gap: 0.15rem; }
+        .site-nav a { padding: 0.35rem 0.65rem; font-size: 0.78rem; }
 
-        .bus-app {
-          padding: 7rem 0.8rem 2rem;
-        }
+        .bus-app { padding: 7rem 0.8rem 2rem; }
 
-        .status-bar {
-          padding: 0.7rem 0.9rem;
-          font-size: 0.75rem;
-        }
+        .status-bar { padding: 0.7rem 0.9rem; font-size: 0.75rem; }
         .status-location { font-size: 0.72rem; }
 
         .screen-container {
@@ -765,20 +794,12 @@
         .welcome-icon { font-size: 3rem; }
         .welcome-line-1 { letter-spacing: 3px; font-size: 0.78rem; }
         .welcome-line-2 { letter-spacing: 2px; }
+        .welcome-line-4 { letter-spacing: 2px; }
 
-        .section-title { letter-spacing: 1px; }
+        .itinerary-chip { padding: 0.5rem 0.9rem; font-size: 0.85rem; }
 
-        .itinerary-chip {
-          padding: 0.5rem 0.9rem;
-          font-size: 0.85rem;
-        }
-
-        .itinerary-input {
-          flex-direction: column;
-        }
-        .itinerary-input button {
-          width: 100%;
-        }
+        .itinerary-input { flex-direction: column; }
+        .itinerary-input button { width: 100%; }
 
         .btn {
           padding: 0.95rem;
@@ -794,23 +815,13 @@
         .success-info { line-height: 2.1; }
 
         .prompt-card { padding: 1.1rem; }
-
         .guide-text { padding: 1rem 1.1rem; font-size: 0.9rem; }
 
         .food-item { padding: 0.9rem 1rem; }
         .food-item-title { font-size: 0.92rem; }
         .food-item-desc { font-size: 0.82rem; }
-
-        /* 讓按鈕並排時在手機上仍然舒適 */
-        .btn-row {
-          display: flex;
-          gap: 0.6rem;
-          flex-direction: column;
-        }
-        .btn-row .btn { margin: 0 !important; }
       }
 
-      /* 極窄螢幕 */
       @media (max-width: 380px) {
         .bus-app { padding: 6.8rem 0.6rem 1.5rem; }
         .screen-container { padding: 1.2rem 0.9rem; }
@@ -818,7 +829,6 @@
         .itinerary-chip { font-size: 0.8rem; padding: 0.45rem 0.8rem; }
       }
 
-      /* 觸控裝置：移除 hover 效果的黏滯感 */
       @media (hover: none) {
         .btn:hover,
         .route-card:hover,
@@ -843,7 +853,7 @@
 
     <main class="bus-app">
       <div class="status-bar">
-        <div class="status-time" id="status-time">--:--:--</div>
+        <div class="status-time" data-no-type id="status-time">--:--:--</div>
         <div class="status-location">台北市 · 大同區</div>
         <div class="status-dot"></div>
       </div>
@@ -857,8 +867,12 @@
             <div class="welcome-line-1">WELCOME TO</div>
             <div class="welcome-line-2">台北市 · 大同區</div>
             <div class="welcome-line-3">
-              <span class="greeting" id="greeting">晚安</span>，<br>
-              尊敬的 <span class="nationality" id="nationality">日本</span> 旅客
+              <span class="greeting" id="greeting">晚安</span>，
+            </div>
+            <div class="welcome-line-4">
+              <span class="big-word">尊敬的</span>
+              <span class="big-word name-tag" id="nationality">日本</span>
+              <span class="big-word">旅客</span>
             </div>
             <div class="welcome-divider"></div>
             <div class="welcome-tip">
@@ -898,7 +912,7 @@
         <div class="screen" data-screen="3">
           <div class="live-info">
             <span>◉ 即時查詢中</span>
-            <span id="route-live-time">更新 --:--</span>
+            <span data-no-type id="route-live-time">更新 --:--</span>
           </div>
 
           <div class="section-label">STEP 02</div>
@@ -996,7 +1010,7 @@
           </div>
         </div>
 
-        <!-- 5. 掃描中 -->
+        <!-- 5. 掃描 -->
         <div class="screen" data-screen="5">
           <div class="bt-center">
             <div class="scan-frame">
@@ -1025,18 +1039,18 @@
 
           <div class="prompt-card">
             <p style="text-align: center;">是否進行自動按鈴服務？</p>
-            <div class="btn-row" style="display: flex; gap: 0.7rem;">
+            <div style="display: flex; gap: 0.7rem;">
               <button class="btn green" style="flex: 1; margin: 0;" onclick="goTo(7)">是，開啟</button>
               <button class="btn" style="flex: 1; margin: 0;" onclick="goTo(7)">稍後再說</button>
             </div>
           </div>
         </div>
 
-        <!-- 7. 行進中 -->
+        <!-- 7. 行進 -->
         <div class="screen" data-screen="7">
           <div class="live-info">
             <span>◉ 403 號公車行進中</span>
-            <span id="ride-timer">00:00</span>
+            <span data-no-type id="ride-timer">00:00</span>
           </div>
 
           <div class="success-box" style="background: linear-gradient(135deg, rgba(255, 209, 102, 0.08), rgba(255, 138, 92, 0.05)); border-color: var(--warm-gold);">
@@ -1125,7 +1139,7 @@
 
           <div class="prompt-card" style="margin-top: 1.5rem;">
             <p style="text-align: center;">為您搜尋附近的住宿？</p>
-            <div class="btn-row" style="display: flex; gap: 0.7rem;">
+            <div style="display: flex; gap: 0.7rem;">
               <button class="btn green" style="flex: 1; margin: 0;" onclick="finishTrip()">是，為我推薦</button>
               <button class="btn" style="flex: 1; margin: 0;" onclick="restart()">重新開始</button>
             </div>
@@ -1183,6 +1197,7 @@
 
     <script>
       (function () {
+        /* ============ 時間問候 ============ */
         const hour = new Date().getHours();
         let greeting;
         if (hour >= 5 && hour < 12) greeting = '早安';
@@ -1190,6 +1205,7 @@
         else greeting = '晚安';
         document.getElementById('greeting').textContent = greeting;
 
+        /* ============ 時鐘 ============ */
         function updateClock() {
           const now = new Date();
           const hh = String(now.getHours()).padStart(2, '0');
@@ -1201,6 +1217,7 @@
         updateClock();
         setInterval(updateClock, 1000);
 
+        /* ============ 路線即時時間 ============ */
         function updateRouteTime() {
           const now = new Date();
           const hh = String(now.getHours()).padStart(2, '0');
@@ -1210,11 +1227,97 @@
         }
         updateRouteTime();
 
+        /* ============================================================
+           逐字打字系統
+           ============================================================ */
+        function unwrapTyping(screen) {
+          const chars = screen.querySelectorAll('.type-char');
+          chars.forEach(span => {
+            let text = span.textContent;
+            if (text === '\u00A0') text = ' ';
+            span.parentNode.replaceChild(document.createTextNode(text), span);
+          });
+        }
+
+        function animateScreen(screen) {
+          /* 先取消先前的打字 */
+          unwrapTyping(screen);
+
+          /* 收集所有文字節點 */
+          const walker = document.createTreeWalker(
+            screen,
+            NodeFilter.SHOW_TEXT,
+            {
+              acceptNode(node) {
+                const p = node.parentNode;
+                if (!p) return NodeFilter.FILTER_REJECT;
+                if (p.hasAttribute && p.hasAttribute('data-no-type')) {
+                  return NodeFilter.FILTER_REJECT;
+                }
+                if (p.tagName === 'SCRIPT' || p.tagName === 'STYLE') {
+                  return NodeFilter.FILTER_REJECT;
+                }
+                if (node.textContent.trim() === '') {
+                  return NodeFilter.FILTER_REJECT;
+                }
+                return NodeFilter.FILTER_ACCEPT;
+              }
+            }
+          );
+
+          const textNodes = [];
+          let n;
+          while ((n = walker.nextNode())) textNodes.push(n);
+
+          /* 計算總字數 */
+          let totalChars = 0;
+          textNodes.forEach(node => {
+            totalChars += Array.from(node.textContent).length;
+          });
+
+          /* 依字數決定打字速度：整體控制在約 4.5 秒內 */
+          const idealDuration = 4.5;
+          const baseDelay = 0.045;
+          const charDelay = Math.max(0.012, Math.min(baseDelay, idealDuration / Math.max(totalChars, 1)));
+          const startDelay = 0.15;
+
+          /* 逐字包裹 */
+          let charIdx = 0;
+          textNodes.forEach(textNode => {
+            const text = textNode.textContent;
+            const fragment = document.createDocumentFragment();
+            const chars = Array.from(text);
+
+            chars.forEach(ch => {
+              const span = document.createElement('span');
+              span.className = 'type-char';
+
+              if (ch === ' ') {
+                span.innerHTML = '&nbsp;';
+              } else {
+                span.textContent = ch;
+              }
+
+              const delay = startDelay + charIdx * charDelay;
+              span.style.animationDelay = delay.toFixed(3) + 's';
+              charIdx++;
+
+              fragment.appendChild(span);
+            });
+
+            textNode.parentNode.replaceChild(fragment, textNode);
+          });
+        }
+
+        /* ============ 畫面切換 ============ */
         let currentScreen = 1;
         window.goTo = function (n) {
           document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
           const target = document.querySelector(`[data-screen="${n}"]`);
-          if (target) target.classList.add('active');
+          if (target) {
+            target.classList.add('active');
+            animateScreen(target);
+          }
           currentScreen = n;
 
           const dots = document.querySelectorAll('.progress-dot');
@@ -1222,17 +1325,18 @@
             d.classList.toggle('active', i === n - 1);
           });
 
-          /* 手機上切換畫面時捲到頂部 */
           if (window.innerWidth <= 600) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }
         };
 
+        /* ============ 掃描 ============ */
         window.startScan = function () {
           goTo(5);
-          setTimeout(() => goTo(6), 1000);
+          setTimeout(() => goTo(6), 1200);
         };
 
+        /* ============ 新增景點 ============ */
         window.addSpot = function () {
           const input = document.getElementById('custom-spot');
           const value = input.value.trim();
@@ -1248,6 +1352,7 @@
         window.finishTrip = function () { goTo(11); };
         window.restart = function () { goTo(1); };
 
+        /* ============ 行進計時器 ============ */
         let rideSeconds = 0;
         let rideTimer = null;
 
@@ -1283,6 +1388,18 @@
             if (document.activeElement === input) addSpot();
           }
         });
+
+        /* ============ 首次載入 → 為歡迎畫面打字 ============ */
+        window.addEventListener('load', () => {
+          const first = document.querySelector('[data-screen="1"]');
+          if (first) animateScreen(first);
+        });
+
+        /* 若 load 事件已過，立即執行 */
+        if (document.readyState === 'complete') {
+          const first = document.querySelector('[data-screen="1"]');
+          if (first) animateScreen(first);
+        }
       })();
     </script>
   </body>
