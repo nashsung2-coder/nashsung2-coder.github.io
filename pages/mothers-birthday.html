@@ -1,0 +1,1635 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>母親生日快樂 — 宋嵐緒</title>
+    <link rel="icon" type="image/png" href="../assets/images/avatar-circle.png" />
+
+    <style>
+      :root {
+        --pink-soft: #ffd6e8;
+        --pink-mid: #ff9ec7;
+        --pink-deep: #ff6ba8;
+        --pink-dark: #d94a86;
+        --text-main: #7a2f4f;
+        --text-soft: #a3547a;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        background: linear-gradient(180deg, #fff0f6 0%, #ffe0ee 40%, #ffd0e4 100%);
+        color: var(--text-main);
+        font-family: "Noto Serif TC", "Noto Sans TC", "微軟正黑體",
+          "Microsoft JhengHei", serif;
+        line-height: 2;
+        overflow-x: hidden;
+        position: relative;
+        min-height: 100vh;
+      }
+
+      /* ============ 開場動畫 ============ */
+      #opening {
+        position: fixed; top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: radial-gradient(circle at center, #ffe0ee 0%, #ffc8de 60%, #ffb0d0 100%);
+        z-index: 9999;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        overflow: hidden;
+        transition: opacity 1.5s ease, visibility 1.5s ease;
+      }
+      #opening.hide { opacity: 0; visibility: hidden; }
+
+      .opening-glow {
+        position: absolute; width: 600px; height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,107,168,0.4) 0%, transparent 70%);
+        animation: glowPulse 3s ease-in-out infinite;
+      }
+      @keyframes glowPulse {
+        0%, 100% { transform: scale(0.8); opacity: 0.6; }
+        50% { transform: scale(1.3); opacity: 1; }
+      }
+
+      .opening-heart-wrap {
+        position: relative;
+        width: 180px; height: 180px;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .opening-heart {
+        font-size: 8rem; color: var(--pink-deep);
+        filter: drop-shadow(0 0 40px rgba(255,107,168,0.8))
+                drop-shadow(0 0 80px rgba(255,107,168,0.4));
+        animation: heartBeat 1.6s ease-in-out infinite;
+        z-index: 2;
+      }
+      @keyframes heartBeat {
+        0%, 100% { transform: scale(1); }
+        15% { transform: scale(1.25); }
+        30% { transform: scale(1); }
+        45% { transform: scale(1.18); }
+        60% { transform: scale(1); }
+      }
+
+      .opening-ring {
+        position: absolute; width: 220px; height: 220px;
+        border-radius: 50%;
+        border: 2px dashed rgba(255,107,168,0.5);
+        animation: ringRotate 6s linear infinite;
+      }
+      .opening-ring::before,
+      .opening-ring::after {
+        content: "♥"; position: absolute;
+        color: var(--pink-deep); font-size: 1.2rem;
+        top: -10px; left: 50%; transform: translateX(-50%);
+        filter: drop-shadow(0 0 8px rgba(255,107,168,0.8));
+      }
+      .opening-ring::after { top: auto; bottom: -10px; }
+      @keyframes ringRotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      .opening-text {
+        margin-top: 3rem;
+        font-size: 1.6rem;
+        color: var(--text-main);
+        letter-spacing: 6px;
+        font-weight: 700;
+        min-height: 2rem;
+        text-shadow: 0 2px 15px rgba(255,107,168,0.4);
+        z-index: 2;
+      }
+      .opening-text .cursor {
+        display: inline-block;
+        width: 2px; height: 1.4rem;
+        background: var(--pink-deep);
+        margin-left: 4px;
+        animation: blink 0.8s infinite;
+        vertical-align: middle;
+      }
+      @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+      .opening-sub {
+        margin-top: 1rem;
+        font-size: 1rem;
+        color: var(--text-soft);
+        letter-spacing: 3px;
+        opacity: 0;
+        animation: fadeInUp 1s ease 3s forwards;
+      }
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ============ 主畫布 ============ */
+      #scene-canvas {
+        position: fixed; top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 1; pointer-events: none;
+      }
+
+      /* ============ 主內容 ============ */
+      .letter-container {
+        position: relative; z-index: 10;
+        max-width: 720px; margin: 0 auto;
+        padding: 5rem 2rem 6rem;
+        opacity: 0;
+        animation: letterFadeIn 2.5s ease 4.5s forwards;
+      }
+      @keyframes letterFadeIn {
+        from { opacity: 0; transform: translateY(60px); filter: blur(8px); }
+        to { opacity: 1; transform: translateY(0); filter: blur(0); }
+      }
+
+      .title-block { text-align: center; margin-bottom: 3.5rem; }
+      .title-block h1 {
+        font-size: clamp(2rem, 6vw, 3.2rem);
+        font-weight: 900; letter-spacing: 6px;
+        background: linear-gradient(120deg, #d94a86, #ff6ba8, #ffb3d1, #ff6ba8);
+        background-size: 200% 200%;
+        -webkit-background-clip: text; background-clip: text;
+        color: transparent;
+        animation: gradientShift 5s ease infinite, titlePulse 4s ease-in-out infinite;
+      }
+      @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      @keyframes titlePulse {
+        0%, 100% { filter: drop-shadow(0 4px 20px rgba(255,107,168,0.25)); }
+        50% { filter: drop-shadow(0 4px 40px rgba(255,107,168,0.6)); }
+      }
+      .title-block .subtitle {
+        margin-top: 1.2rem; font-size: 1.2rem;
+        color: var(--text-soft); letter-spacing: 4px;
+      }
+
+      .heart-divider {
+        display: flex; align-items: center; justify-content: center;
+        gap: 1rem; margin: 2rem auto 0; width: 80%;
+      }
+      .heart-divider::before,
+      .heart-divider::after {
+        content: ""; flex: 1; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,107,168,0.5), transparent);
+      }
+      .heart-divider span {
+        color: var(--pink-deep); font-size: 1.2rem;
+        animation: heartPulse 2.5s ease-in-out infinite;
+      }
+      @keyframes heartPulse {
+        0%, 100% { transform: scale(1); opacity: 0.7; }
+        50% { transform: scale(1.25); opacity: 1; }
+      }
+
+      /* 信紙 */
+      .letter {
+        position: relative;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 24px;
+        padding: 3.5rem 2.8rem;
+        box-shadow:
+          0 20px 60px rgba(255,107,168,0.2),
+          0 0 0 1px rgba(255,182,213,0.5) inset,
+          0 0 60px rgba(255,182,213,0.3);
+        overflow: hidden;
+      }
+      .letter::before {
+        content: "❀"; position: absolute;
+        top: -20px; left: 50%; transform: translateX(-50%);
+        font-size: 2.4rem; color: var(--pink-deep);
+        background: linear-gradient(180deg, #fff0f6, #ffe0ee);
+        padding: 0.3rem 1rem; border-radius: 50%;
+        filter: drop-shadow(0 0 15px rgba(255,107,168,0.6));
+      }
+      .letter::after {
+        content: ""; position: absolute;
+        top: -50%; left: -50%; width: 200%; height: 200%;
+        background: conic-gradient(
+          from 0deg,
+          transparent 0deg,
+          rgba(255,107,168,0.4) 20deg,
+          transparent 40deg,
+          transparent 180deg,
+          rgba(255,182,213,0.4) 200deg,
+          transparent 220deg
+        );
+        animation: borderSpin 12s linear infinite;
+        z-index: 0; pointer-events: none; opacity: 0.5;
+      }
+      @keyframes borderSpin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .letter > * { position: relative; z-index: 1; }
+      .letter-inner-glow {
+        position: absolute; top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: radial-gradient(circle at 20% 20%, rgba(255,214,232,0.4) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 80%, rgba(255,182,213,0.3) 0%, transparent 40%);
+        pointer-events: none; z-index: 0;
+      }
+
+      .letter p {
+        font-size: 1.05rem; color: var(--text-main);
+        margin-bottom: 1.6rem; text-align: justify;
+        letter-spacing: 0.4px;
+      }
+      .letter p.greeting-line {
+        font-size: 1.25rem; font-weight: 700;
+        color: var(--pink-dark);
+        text-align: left; margin-bottom: 1.8rem;
+        letter-spacing: 2px;
+      }
+      .letter p.closing {
+        margin-top: 2rem; text-align: right;
+        font-style: italic; color: var(--text-soft);
+        font-size: 1.1rem;
+      }
+      .letter p.wish {
+        text-align: center; font-weight: 700;
+        color: var(--pink-dark); font-size: 1.2rem;
+        margin-top: 2.5rem; padding-top: 2rem;
+        border-top: 1px dashed rgba(255,107,168,0.4);
+        letter-spacing: 2px;
+      }
+      .highlight {
+        color: var(--pink-dark); font-weight: 700;
+        background: linear-gradient(180deg, transparent 60%, rgba(255,182,213,0.5) 60%);
+        padding: 0 2px;
+      }
+
+      /* ============================================================
+         溫暖版文字動畫
+         ============================================================ */
+      [data-anim] {
+        opacity: 0;
+        transition: opacity 2s ease, transform 2s cubic-bezier(0.19, 1, 0.22, 1),
+                    filter 2s ease, letter-spacing 2s ease;
+      }
+
+      /* 1. 柔光浮現（原本從左滑入 → 改為從下方緩升 + 微光） */
+      [data-anim="slide-left"] {
+        transform: translateY(40px);
+        filter: blur(6px);
+      }
+      [data-anim="slide-left"].visible {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+        transition-duration: 2.2s;
+      }
+
+      /* 2. 溫柔綻放（原本字距展開 → 改為從中心慢慢展開 + 暖光） */
+      [data-anim="letter-spread"] {
+        letter-spacing: 14px;
+        transform: scale(0.94);
+        filter: blur(4px);
+      }
+      [data-anim="letter-spread"].visible {
+        opacity: 1;
+        letter-spacing: 0.4px;
+        transform: scale(1);
+        filter: blur(0);
+        transition-duration: 2.4s;
+        transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      /* 3. 霧散清晰（原本模糊轉清晰 → 保留但更慢更柔） */
+      [data-anim="blur-in"] {
+        filter: blur(16px);
+        transform: translateY(30px) scale(0.98);
+      }
+      [data-anim="blur-in"].visible {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0) scale(1);
+        transition-duration: 2.5s;
+      }
+
+      /* 4. 緩升如霧（原本從右滑入 → 改為從下緩升 + 暖光暈） */
+      [data-anim="slide-right"] {
+        transform: translateY(50px);
+        filter: blur(8px);
+        text-shadow: 0 0 0 rgba(255, 107, 168, 0);
+      }
+      [data-anim="slide-right"].visible {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+        text-shadow: 0 0 20px rgba(255, 107, 168, 0.15);
+        transition-duration: 2.4s;
+      }
+
+      /* 5. 溫暖漂浮（原本上浮 → 保留但更慢、更有韻律） */
+      [data-anim="float-up"] {
+        transform: translateY(70px) scale(0.96);
+        filter: blur(6px);
+      }
+      [data-anim="float-up"].visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+        transition-duration: 2.6s;
+        transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      /* 6. 燭光輕晃（原本 3D 旋轉 → 改為從微妙傾斜緩緩轉正） */
+      [data-anim="rotate-in"] {
+        transform: perspective(1200px) rotateX(-8deg) translateY(30px) scale(0.97);
+        filter: blur(8px);
+      }
+      [data-anim="rotate-in"].visible {
+        opacity: 1;
+        transform: perspective(1200px) rotateX(0) translateY(0) scale(1);
+        filter: blur(0);
+        transition-duration: 2.6s;
+        transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      /* 7. 心跳綻放（原本縮放彈跳 → 改為柔軟的呼吸擴展） */
+      [data-anim="swell"] {
+        transform: scale(0.9);
+        filter: blur(5px);
+      }
+      [data-anim="swell"].visible {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+        transition-duration: 2.8s;
+        transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      /* 8. 祝願之光（原本脈衝發光 → 改為持續溫柔的心跳光暈） */
+      [data-anim="pulse-glow"] {
+        transform: scale(0.95);
+        filter: blur(4px);
+      }
+      [data-anim="pulse-glow"].visible {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+        transition-duration: 2s;
+        animation: warmGlow 4s ease-in-out infinite 1.5s;
+      }
+      @keyframes warmGlow {
+        0%, 100% {
+          text-shadow: 0 0 15px rgba(217, 74, 134, 0.35),
+                       0 0 30px rgba(255, 182, 213, 0.25);
+        }
+        50% {
+          text-shadow: 0 0 25px rgba(217, 74, 134, 0.6),
+                       0 0 50px rgba(255, 182, 213, 0.5),
+                       0 0 80px rgba(255, 107, 168, 0.3);
+        }
+      }
+
+      /* 9. 斜陽輕灑（原本斜滑入 → 改為斜向柔光流入） */
+      [data-anim="diagonal"] {
+        transform: translate(-20px, 30px) rotate(-1deg);
+        filter: blur(7px);
+      }
+      [data-anim="diagonal"].visible {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0);
+        filter: blur(0);
+        transition-duration: 2.4s;
+      }
+
+      /* 10. 手寫展開（原本向下展開 → 改為從上如信紙般緩慢攤開） */
+      [data-anim="unfold"] {
+        transform: scaleY(0.6) translateY(-15px);
+        transform-origin: top;
+        filter: blur(6px);
+      }
+      [data-anim="unfold"].visible {
+        opacity: 1;
+        transform: scaleY(1) translateY(0);
+        filter: blur(0);
+        transition: opacity 1.5s ease, transform 2.5s cubic-bezier(0.19, 1, 0.22, 1),
+                    filter 2s ease;
+      }
+
+      .floating-hearts-end {
+        text-align: center; margin-top: 3rem;
+        font-size: 1.8rem; color: var(--pink-deep);
+        letter-spacing: 0.8rem;
+        animation: floatUp 4s ease-in-out infinite;
+        filter: drop-shadow(0 0 10px rgba(255,107,168,0.6));
+      }
+      @keyframes floatUp {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+
+      .surprise-btn {
+        display: block; margin: 2rem auto 0;
+        padding: 0.7rem 2rem;
+        border-radius: 30px;
+        border: 1px solid var(--pink-deep);
+        background: rgba(255, 255, 255, 0.6);
+        color: var(--pink-dark);
+        font-family: inherit; font-size: 0.95rem;
+        letter-spacing: 2px; cursor: pointer;
+        transition: all 0.4s;
+        box-shadow: 0 0 20px rgba(255,107,168,0.2);
+      }
+      .surprise-btn:hover {
+        background: rgba(255,107,168,0.15);
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255,107,168,0.5);
+      }
+
+      /* ============================================================
+         全螢幕生日動畫
+         ============================================================ */
+      #finale {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 10000;
+        background: radial-gradient(circle at center, rgba(255,224,238,0.98) 0%, rgba(255,192,220,0.98) 60%, rgba(255,160,200,0.98) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      #finale.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* ============================================================
+         多層次旋轉光束
+         ============================================================ */
+      .finale-light-stage {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 1400px;
+        height: 1400px;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 1.2s ease;
+      }
+      #finale.show .finale-light-stage {
+        opacity: 1;
+      }
+
+      .finale-halo {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 100%; height: 100%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 214, 232, 0.7) 18%,
+          rgba(255, 107, 168, 0.45) 35%,
+          rgba(255, 107, 168, 0.15) 55%,
+          transparent 75%
+        );
+        transform: translate(-50%, -50%);
+        animation: haloBreath 5s ease-in-out infinite;
+        filter: blur(4px);
+      }
+      @keyframes haloBreath {
+        0%, 100% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.75; }
+        50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+      }
+
+      .finale-halo-inner {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 60%; height: 60%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 230, 240, 0.8) 30%,
+          transparent 70%
+        );
+        transform: translate(-50%, -50%);
+        animation: haloBreath 4s ease-in-out infinite reverse;
+        filter: blur(8px);
+      }
+
+      .light-beam {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 100%; height: 100%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        mix-blend-mode: screen;
+      }
+
+      .beam-1 {
+        background: conic-gradient(
+          from 0deg,
+          transparent 0deg,
+          rgba(255, 255, 255, 0.55) 8deg,
+          transparent 20deg,
+          transparent 30deg,
+          rgba(255, 107, 168, 0.45) 40deg,
+          transparent 55deg,
+          transparent 70deg,
+          rgba(255, 182, 213, 0.5) 80deg,
+          transparent 95deg,
+          transparent 110deg,
+          rgba(255, 255, 255, 0.5) 120deg,
+          transparent 135deg,
+          transparent 150deg,
+          rgba(255, 107, 168, 0.45) 160deg,
+          transparent 175deg,
+          transparent 190deg,
+          rgba(255, 182, 213, 0.5) 200deg,
+          transparent 215deg,
+          transparent 230deg,
+          rgba(255, 255, 255, 0.5) 240deg,
+          transparent 255deg,
+          transparent 270deg,
+          rgba(255, 107, 168, 0.45) 280deg,
+          transparent 295deg,
+          transparent 310deg,
+          rgba(255, 182, 213, 0.5) 320deg,
+          transparent 335deg,
+          transparent 360deg
+        );
+        animation: beamRotate 30s linear infinite;
+        filter: blur(6px);
+        opacity: 0.85;
+      }
+
+      .beam-2 {
+        background: conic-gradient(
+          from 30deg,
+          transparent 0deg,
+          rgba(255, 255, 255, 0.7) 6deg,
+          transparent 12deg,
+          transparent 60deg,
+          rgba(255, 107, 168, 0.6) 66deg,
+          transparent 72deg,
+          transparent 120deg,
+          rgba(255, 214, 232, 0.7) 126deg,
+          transparent 132deg,
+          transparent 180deg,
+          rgba(255, 255, 255, 0.7) 186deg,
+          transparent 192deg,
+          transparent 240deg,
+          rgba(255, 107, 168, 0.6) 246deg,
+          transparent 252deg,
+          transparent 300deg,
+          rgba(255, 214, 232, 0.7) 306deg,
+          transparent 312deg,
+          transparent 360deg
+        );
+        animation: beamRotateReverse 22s linear infinite;
+        filter: blur(3px);
+        opacity: 0.7;
+      }
+
+      .beam-3 {
+        background: conic-gradient(
+          from 0deg,
+          transparent 0deg,
+          rgba(255, 255, 255, 0.9) 2deg,
+          transparent 4deg,
+          transparent 40deg,
+          rgba(255, 158, 199, 0.8) 42deg,
+          transparent 44deg,
+          transparent 80deg,
+          rgba(255, 255, 255, 0.9) 82deg,
+          transparent 84deg,
+          transparent 120deg,
+          rgba(255, 158, 199, 0.8) 122deg,
+          transparent 124deg,
+          transparent 160deg,
+          rgba(255, 255, 255, 0.9) 162deg,
+          transparent 164deg,
+          transparent 200deg,
+          rgba(255, 158, 199, 0.8) 202deg,
+          transparent 204deg,
+          transparent 240deg,
+          rgba(255, 255, 255, 0.9) 242deg,
+          transparent 244deg,
+          transparent 280deg,
+          rgba(255, 158, 199, 0.8) 282deg,
+          transparent 284deg,
+          transparent 320deg,
+          rgba(255, 255, 255, 0.9) 322deg,
+          transparent 324deg,
+          transparent 360deg
+        );
+        animation: beamRotate 14s linear infinite;
+        filter: blur(2px);
+        opacity: 0.6;
+      }
+
+      .beam-4 {
+        background: conic-gradient(
+          from 0deg,
+          rgba(255, 182, 213, 0.35) 0deg,
+          transparent 45deg,
+          rgba(255, 214, 232, 0.4) 90deg,
+          transparent 135deg,
+          rgba(255, 158, 199, 0.35) 180deg,
+          transparent 225deg,
+          rgba(255, 182, 213, 0.4) 270deg,
+          transparent 315deg,
+          rgba(255, 214, 232, 0.35) 360deg
+        );
+        animation: beamRotateReverse 45s linear infinite;
+        filter: blur(20px);
+        opacity: 0.6;
+      }
+
+      @keyframes beamRotate {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+      @keyframes beamRotateReverse {
+        from { transform: translate(-50%, -50%) rotate(360deg); }
+        to { transform: translate(-50%, -50%) rotate(0deg); }
+      }
+
+      .finale-core {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 120px; height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 214, 232, 0.9) 40%,
+          transparent 75%
+        );
+        transform: translate(-50%, -50%);
+        animation: corePulse 3s ease-in-out infinite;
+        filter: blur(6px);
+        z-index: 2;
+      }
+      @keyframes corePulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.9; }
+        50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+      }
+
+      .finale-spark-ring {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 700px; height: 700px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        animation: sparkRingRotate 35s linear infinite;
+      }
+      .finale-spark-ring::before,
+      .finale-spark-ring::after {
+        content: "";
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow:
+          0 0 12px rgba(255,255,255,1),
+          0 0 25px rgba(255,107,168,0.9),
+          0 0 45px rgba(255,107,168,0.6);
+        transform: translate(-50%, -50%) translateX(350px);
+      }
+      .finale-spark-ring::after {
+        transform: translate(-50%, -50%) translateX(-350px);
+        width: 5px; height: 5px;
+        box-shadow:
+          0 0 10px rgba(255,255,255,1),
+          0 0 20px rgba(255,182,213,0.9);
+      }
+      @keyframes sparkRingRotate {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+
+      .finale-spark-ring-2 {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 500px; height: 500px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        animation: sparkRingRotate 25s linear infinite reverse;
+      }
+      .finale-spark-ring-2::before {
+        content: "";
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: #ffd6e8;
+        box-shadow:
+          0 0 10px rgba(255,255,255,1),
+          0 0 22px rgba(255,107,168,1);
+        transform: translate(-50%, -50%) translateX(250px);
+      }
+
+      /* ============================================================
+         兩張合照並排的容器
+         ============================================================ */
+      .finale-photos {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        z-index: 5;
+        padding: 0 1rem;
+      }
+
+      .finale-photo-wrap {
+        position: relative;
+        width: min(38vw, 320px);
+        aspect-ratio: 3 / 4;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 4px solid rgba(255,255,255,0.95);
+        box-shadow:
+          0 0 40px rgba(255,107,168,0.6),
+          0 0 80px rgba(255,107,168,0.3),
+          0 15px 40px rgba(0,0,0,0.15);
+        opacity: 0;
+      }
+
+      .finale-photo-wrap.photo-1 {
+        transform: scale(0.6) rotate(-15deg);
+      }
+      #finale.show .finale-photo-wrap.photo-1 {
+        animation: photoFloatLeft 2s cubic-bezier(0.19, 1, 0.22, 1) 0.4s forwards;
+      }
+      @keyframes photoFloatLeft {
+        0% {
+          transform: scale(0.6) rotate(-15deg);
+          opacity: 0;
+          filter: blur(8px);
+        }
+        100% {
+          transform: scale(1) rotate(-3deg);
+          opacity: 1;
+          filter: blur(0);
+        }
+      }
+
+      .finale-photo-wrap.photo-2 {
+        transform: scale(0.6) rotate(15deg);
+      }
+      #finale.show .finale-photo-wrap.photo-2 {
+        animation: photoFloatRight 2s cubic-bezier(0.19, 1, 0.22, 1) 0.6s forwards;
+      }
+      @keyframes photoFloatRight {
+        0% {
+          transform: scale(0.6) rotate(15deg);
+          opacity: 0;
+          filter: blur(8px);
+        }
+        100% {
+          transform: scale(1) rotate(3deg);
+          opacity: 1;
+          filter: blur(0);
+        }
+      }
+
+      .finale-photo-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .finale-photo-wrap::after {
+        content: "";
+        position: absolute;
+        top: -100%; left: -100%;
+        width: 300%; height: 300%;
+        background: linear-gradient(
+          120deg,
+          transparent 30%,
+          rgba(255,255,255,0.6) 50%,
+          transparent 70%
+        );
+        transform: rotate(0deg);
+        animation: photoShine 6s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .finale-photo-wrap.photo-2::after {
+        animation-delay: 2.5s;
+      }
+      @keyframes photoShine {
+        0% { transform: translate(-100%, -100%) rotate(0deg); }
+        100% { transform: translate(100%, 100%) rotate(0deg); }
+      }
+
+      .finale-photos::before {
+        content: "♥";
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        color: var(--pink-deep);
+        filter: drop-shadow(0 0 15px rgba(255,107,168,1));
+        animation: heartPulse 2.5s ease-in-out infinite;
+        z-index: 10;
+        opacity: 0;
+      }
+      #finale.show .finale-photos::before {
+        animation: heartPulse 2.5s ease-in-out infinite, fadeInHeart 1.5s ease 1.6s forwards;
+      }
+      @keyframes fadeInHeart {
+        to { opacity: 1; }
+      }
+
+      /* ============================================================
+         文字（更溫柔的進場）
+         ============================================================ */
+      .finale-text {
+        margin-top: 3rem;
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        font-weight: 900;
+        letter-spacing: 8px;
+        text-align: center;
+        background: linear-gradient(120deg, #d94a86, #ff6ba8, #ffb3d1, #ff6ba8, #d94a86);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 0 30px rgba(255,107,168,0.6));
+        animation: gradientShift 5s ease infinite;
+        z-index: 5;
+        position: relative;
+        opacity: 0;
+        padding: 0 1rem;
+      }
+
+      #finale.show .finale-text {
+        animation: textBloom 2s cubic-bezier(0.19, 1, 0.22, 1) 1.6s forwards,
+                   gradientShift 5s ease infinite 1.6s;
+      }
+
+      @keyframes textBloom {
+        0% {
+          opacity: 0;
+          transform: scale(0.85) translateY(20px);
+          letter-spacing: 24px;
+          filter: blur(10px) drop-shadow(0 0 10px rgba(255,107,168,0.2));
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+          letter-spacing: 8px;
+          filter: blur(0) drop-shadow(0 0 30px rgba(255,107,168,0.6));
+        }
+      }
+
+      .finale-sub {
+        margin-top: 1rem;
+        font-size: clamp(1rem, 3vw, 1.3rem);
+        color: var(--pink-dark);
+        letter-spacing: 6px;
+        text-align: center;
+        opacity: 0;
+        z-index: 5;
+        position: relative;
+      }
+      #finale.show .finale-sub {
+        animation: subEnter 1.8s ease 2.6s forwards;
+      }
+      @keyframes subEnter {
+        0% { opacity: 0; transform: translateY(20px); filter: blur(6px); }
+        100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+      }
+
+      #finale-canvas {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 3;
+      }
+
+      .finale-hint {
+        position: absolute;
+        bottom: 2rem;
+        font-size: 0.85rem;
+        color: rgba(217,74,134,0.7);
+        letter-spacing: 2px;
+        opacity: 0;
+        z-index: 5;
+      }
+      #finale.show .finale-hint {
+        animation: subEnter 1.5s ease 3.8s forwards;
+      }
+
+      /* ============ 手機版 ============ */
+      @media (max-width: 700px) {
+        .letter-container { padding: 3rem 1rem 4rem; }
+        .letter { padding: 2.2rem 1.5rem; border-radius: 18px; }
+        .letter p { font-size: 1rem; line-height: 2; }
+        .title-block h1 { letter-spacing: 3px; }
+        .opening-heart { font-size: 6rem; }
+        .opening-ring { width: 170px; height: 170px; }
+        .opening-text { font-size: 1.2rem; letter-spacing: 3px; }
+        .finale-text { letter-spacing: 4px; }
+        @keyframes textBloom {
+          0% {
+            opacity: 0;
+            transform: scale(0.85) translateY(20px);
+            letter-spacing: 16px;
+            filter: blur(10px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            letter-spacing: 4px;
+            filter: blur(0);
+          }
+        }
+        .finale-light-stage {
+          width: 900px;
+          height: 900px;
+        }
+        .finale-spark-ring { width: 500px; height: 500px; }
+        .finale-spark-ring::before { transform: translate(-50%, -50%) translateX(250px); }
+        .finale-spark-ring::after { transform: translate(-50%, -50%) translateX(-250px); }
+        .finale-spark-ring-2 { width: 360px; height: 360px; }
+        .finale-spark-ring-2::before { transform: translate(-50%, -50%) translateX(180px); }
+
+        .finale-photos {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .finale-photo-wrap {
+          width: min(60vw, 240px);
+          aspect-ratio: 1 / 1;
+        }
+        .finale-photo-wrap.photo-1 {
+          transform: scale(0.6) rotate(-10deg);
+        }
+        .finale-photo-wrap.photo-2 {
+          transform: scale(0.6) rotate(10deg);
+        }
+        @keyframes photoFloatLeft {
+          0% { transform: scale(0.6) rotate(-10deg); opacity: 0; filter: blur(8px); }
+          100% { transform: scale(1) rotate(-2deg); opacity: 1; filter: blur(0); }
+        }
+        @keyframes photoFloatRight {
+          0% { transform: scale(0.6) rotate(10deg); opacity: 0; filter: blur(8px); }
+          100% { transform: scale(1) rotate(2deg); opacity: 1; filter: blur(0); }
+        }
+        .finale-photos::before {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="opening">
+      <div class="opening-glow"></div>
+      <div class="opening-heart-wrap">
+        <div class="opening-ring"></div>
+        <div class="opening-heart">♥</div>
+      </div>
+      <div class="opening-text">
+        <span id="typing-text"></span><span class="cursor"></span>
+      </div>
+      <div class="opening-sub">願您天天開心 !!</div>
+    </div>
+
+    <canvas id="scene-canvas"></canvas>
+
+    <main class="letter-container">
+      <div class="title-block">
+        <h1>母親生日快樂</h1>
+        <p class="subtitle">願您天天開心 !!</p>
+        <div class="heart-divider"><span>♥</span></div>
+      </div>
+
+      <article class="letter">
+        <div class="letter-inner-glow"></div>
+
+        <p class="greeting-line" data-anim="slide-left">親愛的母親大人：</p>
+        <p data-anim="letter-spread">生日快樂。</p>
+        <p data-anim="blur-in">
+          我還記得，小時候您一隻手就能把我托住。我的頭靠在您的掌心，短短的手指只能抓住您的一截指節；那時的我，輕得像一團棉絮。如今我站在您面前，身高比您高，體重比您重，低頭看見您的髮根和眼角細紋，才明白時間是您一夜一夜抱我、替我擦汗、為我擔心走出來的。
+        </p>
+        <p data-anim="slide-right">
+          抽實驗幼稚園的籤紙、打聽國小的教育體制、帶我跑醫院……氣喘發作時，我的喉嚨咻咻作響，胸口像被繩子勒住；過敏抓得皮膚紅腫；嘔吐的酸味散在房間裡。藥粉在舌根化開時，我其實不覺得苦，因為您一直握著我的手。您沒有把我推去補習班，而是坐在我身邊，親手教我，讓我能用和別人不一樣的方式看世界。
+        </p>
+        <p data-anim="float-up">
+          疫情時，螢幕藍光照在我們臉上，您一筆一筆幫我報名線上課程；耳機裡老師的聲音，陪我走進不同領域。小四抽到那台腳踏車後，清晨的風灌進衣領，鏈條咔啦咔啦響，您站起來踩踏板，汗從鬢角滑下，後座載著四十多公斤的我，一天一公里。雨天裡，塑膠雨衣的味道混著雨水，我躲在您背後，書包卡在我們中間，您的背卻越踩越彎。那一公里，我當時只覺得理所當然，現在才知道，是您一腳一腳踩出來的愛。
+        </p>
+        <p data-anim="rotate-in">
+          您對我的愛，不只在餐桌上，在醫院走廊、在學校與家之間奔跑的腳步裡。我因為氣喘住進醫院那天，急診室日光燈白得刺眼，消毒水味嗆鼻，點滴管一滴一滴地響。您衝進來時臉色發白，手冰得像剛從冷水裡撈出來，聲音抖著問護士：「他怎麼樣？」後來您還跑去學校拿我的作業，又跑回家抓我最愛的玩具，氣喘吁吁回到病房，把玩具塞進我懷裡，把作業放在床頭。那一刻，我手上握著玩具，心裡知道：<span class="highlight">我是被您深深愛著的。</span>
+        </p>
+        <p data-anim="diagonal">
+          飯桌上，您總把雞腿、魚肉、最好的菜夾進我碗裡，自己默默吃著菜尾。您要踏上教師生涯、追求理想前，還先問我：「這樣你會不會沒人照顧？」我的思想、能力，都是您一手養成。這些年，我做過不成熟、糊塗的事，讓您蒙羞，也曾用不耐煩的語氣嫌棄您的付出，讓您紅了眼眶。爭吵後，房門砰一聲關上，客廳只剩微光。
+        </p>
+        <p data-anim="swell">
+          雖然我可能不是您心中的那個模樣，雖然我們常因意見不同而爭吵，但謝謝您忍住生產的痛，把我生下來，給我生命。<span class="highlight">很榮幸能成為您的孩子。</span>
+        </p>
+        <p class="wish" data-anim="pulse-glow">
+          祝您生日快樂，平安健康，天天開心。
+        </p>
+        <p class="closing" data-anim="unfold">
+          祝你的人生能活出您自己的理想
+        </p>
+
+        <div class="floating-hearts-end">♥ ♥ ♥ ♥ ♥</div>
+
+        <button class="surprise-btn" id="surprise-btn">點我一下 ♥</button>
+      </article>
+    </main>
+
+    <div id="finale" aria-hidden="true">
+      <div class="finale-light-stage">
+        <div class="finale-halo"></div>
+        <div class="beam-4 light-beam"></div>
+        <div class="beam-1 light-beam"></div>
+        <div class="beam-2 light-beam"></div>
+        <div class="beam-3 light-beam"></div>
+        <div class="finale-halo-inner"></div>
+        <div class="finale-core"></div>
+        <div class="finale-spark-ring"></div>
+        <div class="finale-spark-ring-2"></div>
+      </div>
+
+      <canvas id="finale-canvas"></canvas>
+
+      <div class="finale-photos">
+        <div class="finale-photo-wrap photo-1">
+          <img src="../assets/images/mom-photo.jpg" alt="與母親的合照（一）" />
+        </div>
+        <div class="finale-photo-wrap photo-2">
+          <img src="../assets/images/mom-photo2.jpg" alt="與母親的合照（二）" />
+        </div>
+      </div>
+
+      <div class="finale-text">母親，生日快樂</div>
+      <div class="finale-sub">願您天天開心 !!</div>
+
+      <div class="finale-hint">點擊任意處關閉 ♥</div>
+    </div>
+
+    <script>
+      (function () {
+        const typingText = "母親生日快樂";
+        const typingEl = document.getElementById('typing-text');
+        let typeIndex = 0;
+        function typeWriter() {
+          if (typeIndex < typingText.length) {
+            typingEl.textContent += typingText.charAt(typeIndex);
+            typeIndex++;
+            setTimeout(typeWriter, 220);
+          }
+        }
+        setTimeout(typeWriter, 800);
+
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            document.getElementById('opening').classList.add('hide');
+          }, 5600);
+        });
+
+        const canvas = document.getElementById('scene-canvas');
+        const ctx = canvas.getContext('2d');
+        let w, h;
+        let scrollY = window.scrollY;
+        let smoothScroll = scrollY;
+
+        function resize() {
+          w = canvas.width = window.innerWidth;
+          h = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+        window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+
+        const PINK_PALETTE = [
+          'rgba(255, 107, 168,',
+          'rgba(255, 158, 199,',
+          'rgba(255, 182, 213,',
+          'rgba(217, 74, 134,',
+          'rgba(255, 214, 232,',
+          'rgba(255, 200, 222,',
+        ];
+
+        class Heart {
+          constructor() { this.reset(); this.y = Math.random() * h; }
+          reset() {
+            this.x = Math.random() * w;
+            this.y = h + 40;
+            this.size = Math.random() * 18 + 8;
+            this.speedY = Math.random() * 0.5 + 0.2;
+            this.speedX = (Math.random() - 0.5) * 0.3;
+            this.opacity = Math.random() * 0.5 + 0.3;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotationSpeed = (Math.random() - 0.5) * 0.01;
+            this.color = PINK_PALETTE[Math.floor(Math.random() * PINK_PALETTE.length)];
+            this.wobblePhase = Math.random() * Math.PI * 2;
+            this.wobbleSpeed = Math.random() * 0.015 + 0.008;
+            this.depth = Math.random() * 0.8 + 0.2;
+          }
+          update() {
+            this.y -= this.speedY * this.depth;
+            this.wobblePhase += this.wobbleSpeed;
+            this.x += Math.sin(this.wobblePhase) * 0.5 + this.speedX;
+            this.rotation += this.rotationSpeed;
+            if (this.y < -40) this.reset();
+          }
+          draw() {
+            const parallaxY = this.y - smoothScroll * 0.1 * this.depth;
+            ctx.save();
+            ctx.translate(this.x, parallaxY);
+            ctx.rotate(this.rotation);
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = this.color + this.opacity + ')';
+            ctx.font = `${this.size}px serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = this.color + '0.7)';
+            ctx.fillText('♥', 0, 0);
+            ctx.restore();
+          }
+        }
+
+        class Petal {
+          constructor() { this.reset(); this.y = Math.random() * h; }
+          reset() {
+            this.x = Math.random() * w;
+            this.y = -20;
+            this.size = Math.random() * 10 + 6;
+            this.speedY = Math.random() * 0.4 + 0.15;
+            this.speedX = (Math.random() - 0.5) * 0.6;
+            this.opacity = Math.random() * 0.4 + 0.2;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+            this.color = PINK_PALETTE[Math.floor(Math.random() * PINK_PALETTE.length)];
+            this.swayPhase = Math.random() * Math.PI * 2;
+          }
+          update() {
+            this.y += this.speedY;
+            this.swayPhase += 0.015;
+            this.x += Math.sin(this.swayPhase) * 0.8 + this.speedX;
+            this.rotation += this.rotationSpeed;
+            if (this.y > h + 30) this.reset();
+          }
+          draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y - smoothScroll * 0.05);
+            ctx.rotate(this.rotation);
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = this.color + this.opacity + ')';
+            ctx.beginPath();
+            ctx.ellipse(0, 0, this.size, this.size * 0.5, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+
+        class Bokeh {
+          constructor() { this.reset(); }
+          reset() {
+            this.x = Math.random() * w;
+            this.y = Math.random() * h;
+            this.size = Math.random() * 80 + 30;
+            this.speedY = (Math.random() - 0.5) * 0.1;
+            this.speedX = (Math.random() - 0.5) * 0.1;
+            this.opacity = Math.random() * 0.15 + 0.05;
+            this.color = PINK_PALETTE[Math.floor(Math.random() * PINK_PALETTE.length)];
+            this.pulsePhase = Math.random() * Math.PI * 2;
+            this.pulseSpeed = Math.random() * 0.004 + 0.0015;
+          }
+          update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.pulsePhase += this.pulseSpeed;
+            if (this.x < -100) this.x = w + 100;
+            if (this.x > w + 100) this.x = -100;
+            if (this.y < -100) this.y = h + 100;
+            if (this.y > h + 100) this.y = -100;
+          }
+          draw() {
+            const pulse = Math.sin(this.pulsePhase) * 0.3 + 0.7;
+            const gradient = ctx.createRadialGradient(
+              this.x, this.y - smoothScroll * 0.03, 0,
+              this.x, this.y - smoothScroll * 0.03, this.size
+            );
+            gradient.addColorStop(0, this.color + (this.opacity * pulse) + ')');
+            gradient.addColorStop(1, this.color + '0)');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y - smoothScroll * 0.03, this.size, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        class Sparkle {
+          constructor(x, y, isBurst = false) {
+            this.x = x; this.y = y;
+            const angle = isBurst ? Math.random() * Math.PI * 2 : (Math.random() - 0.5) * Math.PI;
+            const speed = isBurst ? Math.random() * 4 + 1.5 : Math.random() * 1.5 + 0.4;
+            this.speedX = Math.cos(angle) * speed;
+            this.speedY = Math.sin(angle) * speed - (isBurst ? 0 : 0.8);
+            this.size = Math.random() * 4 + 2;
+            this.opacity = 1;
+            this.decay = Math.random() * 0.012 + 0.008;
+            this.color = PINK_PALETTE[Math.floor(Math.random() * PINK_PALETTE.length)];
+            this.gravity = isBurst ? 0.08 : 0.03;
+            this.symbol = Math.random() > 0.6 ? '♥' : '✦';
+          }
+          update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.speedY += this.gravity;
+            this.speedX *= 0.985;
+            this.opacity -= this.decay;
+          }
+          draw() {
+            if (this.opacity <= 0) return;
+            ctx.save();
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = this.color + this.opacity + ')';
+            ctx.font = `${this.size * 2}px serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = this.color + '0.8)';
+            ctx.fillText(this.symbol, this.x, this.y);
+            ctx.restore();
+          }
+        }
+
+        const hearts = [];
+        const heartCount = Math.min(40, Math.floor(window.innerWidth / 30));
+        for (let i = 0; i < heartCount; i++) hearts.push(new Heart());
+
+        const petals = [];
+        const petalCount = Math.min(25, Math.floor(window.innerWidth / 50));
+        for (let i = 0; i < petalCount; i++) petals.push(new Petal());
+
+        const bokeh = [];
+        for (let i = 0; i < 8; i++) bokeh.push(new Bokeh());
+
+        let sparkles = [];
+
+        let lastMouseMove = 0;
+        document.addEventListener('mousemove', (e) => {
+          const now = Date.now();
+          if (now - lastMouseMove < 60) return;
+          lastMouseMove = now;
+          for (let i = 0; i < 2; i++) {
+            sparkles.push(new Sparkle(e.clientX, e.clientY));
+          }
+        });
+
+        document.addEventListener('touchmove', (e) => {
+          const touch = e.touches[0];
+          for (let i = 0; i < 3; i++) {
+            sparkles.push(new Sparkle(touch.clientX, touch.clientY));
+          }
+        }, { passive: true });
+
+        let lastScrollTime = 0;
+        window.addEventListener('scroll', () => {
+          const now = Date.now();
+          if (now - lastScrollTime < 120) return;
+          lastScrollTime = now;
+          for (let i = 0; i < 2; i++) {
+            const x = Math.random() * w;
+            const y = Math.random() * h * 0.3 + h * 0.7;
+            sparkles.push(new Sparkle(x, y));
+          }
+        });
+
+        function animate() {
+          ctx.clearRect(0, 0, w, h);
+          smoothScroll += (scrollY - smoothScroll) * 0.06;
+          bokeh.forEach((b) => { b.update(); b.draw(); });
+          petals.forEach((p) => { p.update(); p.draw(); });
+          hearts.forEach((h) => { h.update(); h.draw(); });
+          sparkles = sparkles.filter((s) => s.opacity > 0);
+          sparkles.forEach((s) => { s.update(); s.draw(); });
+          if (sparkles.length > 300) sparkles = sparkles.slice(-300);
+          requestAnimationFrame(animate);
+        }
+        animate();
+
+        /* ============ 每段獨立動畫觸發（更溫柔的粒子） ============ */
+        const animParticleConfig = {
+          "slide-left":    { count: 12, symbol: '♥' },
+          "letter-spread": { count: 15, symbol: '✦' },
+          "blur-in":       { count: 10, symbol: '♥' },
+          "slide-right":   { count: 12, symbol: '❀' },
+          "float-up":      { count: 15, symbol: '♥' },
+          "rotate-in":     { count: 18, symbol: '✦' },
+          "diagonal":      { count: 12, symbol: '♥' },
+          "swell":         { count: 15, symbol: '♥' },
+          "pulse-glow":    { count: 25, symbol: '♥' },
+          "unfold":        { count: 10, symbol: '❀' }
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            el.classList.add('visible');
+
+            const anim = el.dataset.anim;
+            const cfg = animParticleConfig[anim];
+            if (cfg) {
+              const rect = el.getBoundingClientRect();
+              for (let i = 0; i < cfg.count; i++) {
+                const x = rect.left + Math.random() * rect.width;
+                const y = rect.top + Math.random() * rect.height;
+                const sparkle = new Sparkle(x, y);
+                sparkle.symbol = cfg.symbol;
+                sparkle.speedX = (Math.random() - 0.5) * 2;
+                sparkle.speedY = -Math.random() * 1.5 - 0.3;
+                sparkle.size = Math.random() * 3 + 1.5;
+                sparkles.push(sparkle);
+              }
+            }
+            observer.unobserve(el);
+          });
+        }, { threshold: 0.25 });
+
+        document.querySelectorAll('[data-anim]').forEach((el) => {
+          observer.observe(el);
+        });
+
+        /* ============================================================
+           全螢幕生日動畫
+           ============================================================ */
+        const finale = document.getElementById('finale');
+        const finaleCanvas = document.getElementById('finale-canvas');
+        const fctx = finaleCanvas.getContext('2d');
+        let fw, fh;
+        let finaleActive = false;
+        let finaleParticles = [];
+        let finaleHearts = [];
+        let finaleConfetti = [];
+
+        function resizeFinale() {
+          fw = finaleCanvas.width = window.innerWidth;
+          fh = finaleCanvas.height = window.innerHeight;
+        }
+
+        class FinaleParticle {
+          constructor(x, y, type = 'heart') {
+            this.x = x; this.y = y;
+            this.type = type;
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 5 + 2;
+            this.speedX = Math.cos(angle) * speed;
+            this.speedY = Math.sin(angle) * speed;
+            this.size = Math.random() * 7 + 4;
+            this.opacity = 1;
+            this.decay = Math.random() * 0.012 + 0.006;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotationSpeed = (Math.random() - 0.5) * 0.1;
+            this.color = PINK_PALETTE[Math.floor(Math.random() * PINK_PALETTE.length)];
+            this.gravity = 0.08;
+            this.friction = 0.98;
+          }
+          update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.speedX *= this.friction;
+            this.speedY *= this.friction;
+            this.speedY += this.gravity;
+            this.rotation += this.rotationSpeed;
+            this.opacity -= this.decay;
+          }
+          draw() {
+            if (this.opacity <= 0) return;
+            fctx.save();
+            fctx.translate(this.x, this.y);
+            fctx.rotate(this.rotation);
+            fctx.globalAlpha = this.opacity;
+            fctx.fillStyle = this.color + this.opacity + ')';
+            fctx.font = `${this.size * 2}px serif`;
+            fctx.textAlign = 'center';
+            fctx.textBaseline = 'middle';
+            fctx.shadowBlur = 20;
+            fctx.shadowColor = this.color + '0.9)';
+            if (this.type === 'heart') {
+              fctx.fillText('♥', 0, 0);
+            } else if (this.type === 'star') {
+              fctx.fillText('✦', 0, 0);
+            } else if (this.type === 'flower') {
+              fctx.fillText('❀', 0, 0);
+            }
+            fctx.restore();
+          }
+        }
+
+        class FinaleFloatingHeart {
+          constructor() {
+            this.reset();
+            this.y = fh + 30;
+          }
+          reset() {
+            this.x = Math.random() * fw;
+            this.y = fh + 30;
+            this.size = Math.random() * 22 + 10;
+            this.speedY = Math.random() * 1.2 + 0.4;
+            this.speedX = (Math.random() - 0.5) * 0.4;
+            this.opacity = Math.random() * 0.6 + 0.4;
+            this.rotation = (Math.random() - 0.5) * 0.3;
+            this.rotationSpeed = (Math.random() - 0.5) * 0.015;
+            this.color = PINK_PALETTE[Math.floor(Math.random() * PINK_PALETTE.length)];
+            this.wobble = Math.random() * Math.PI * 2;
+          }
+          update() {
+            this.y -= this.speedY;
+            this.wobble += 0.025;
+            this.x += Math.sin(this.wobble) * 0.8 + this.speedX;
+            this.rotation += this.rotationSpeed;
+            if (this.y < -40) this.reset();
+          }
+          draw() {
+            fctx.save();
+            fctx.translate(this.x, this.y);
+            fctx.rotate(this.rotation);
+            fctx.globalAlpha = this.opacity;
+            fctx.fillStyle = this.color + this.opacity + ')';
+            fctx.font = `${this.size}px serif`;
+            fctx.textAlign = 'center';
+            fctx.textBaseline = 'middle';
+            fctx.shadowBlur = 25;
+            fctx.shadowColor = this.color + '0.9)';
+            fctx.fillText('♥', 0, 0);
+            fctx.restore();
+          }
+        }
+
+        class Confetti {
+          constructor() {
+            this.reset();
+            this.y = -20;
+          }
+          reset() {
+            this.x = Math.random() * fw;
+            this.y = -20;
+            this.size = Math.random() * 9 + 4;
+            this.speedY = Math.random() * 1.5 + 0.8;
+            this.speedX = (Math.random() - 0.5) * 1;
+            this.opacity = Math.random() * 0.6 + 0.3;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotationSpeed = (Math.random() - 0.5) * 0.12;
+            this.color = PINK_PALETTE[Math.floor(Math.random() * PINK_PALETTE.length)];
+            this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
+            this.swayPhase = Math.random() * Math.PI * 2;
+          }
+          update() {
+            this.y += this.speedY;
+            this.swayPhase += 0.04;
+            this.x += Math.sin(this.swayPhase) * 1.2 + this.speedX;
+            this.rotation += this.rotationSpeed;
+            if (this.y > fh + 20) this.reset();
+          }
+          draw() {
+            fctx.save();
+            fctx.translate(this.x, this.y);
+            fctx.rotate(this.rotation);
+            fctx.globalAlpha = this.opacity;
+            fctx.fillStyle = this.color + this.opacity + ')';
+            if (this.shape === 'rect') {
+              fctx.fillRect(-this.size/2, -this.size/4, this.size, this.size/2);
+            } else {
+              fctx.beginPath();
+              fctx.arc(0, 0, this.size/2, 0, Math.PI*2);
+              fctx.fill();
+            }
+            fctx.restore();
+          }
+        }
+
+        function startFinale() {
+          if (finaleActive) return;
+          finaleActive = true;
+          resizeFinale();
+          finale.classList.add('show');
+          finale.setAttribute('aria-hidden', 'false');
+
+          finaleParticles = [];
+          finaleHearts = [];
+          finaleConfetti = [];
+
+          const cx = fw / 2;
+          const cy = fh / 2;
+
+          for (let i = 0; i < 50; i++) {
+            const types = ['heart', 'heart', 'star', 'flower'];
+            finaleParticles.push(new FinaleParticle(cx, cy, types[Math.floor(Math.random() * types.length)]));
+          }
+
+          setTimeout(() => {
+            for (let i = 0; i < 40; i++) {
+              const angle = Math.random() * Math.PI * 2;
+              const radius = Math.random() * 100 + 50;
+              const x = cx + Math.cos(angle) * radius;
+              const y = cy + Math.sin(angle) * radius;
+              finaleParticles.push(new FinaleParticle(x, y, Math.random() > 0.5 ? 'heart' : 'star'));
+            }
+          }, 400);
+
+          setTimeout(() => {
+            for (let i = 0; i < 35; i++) {
+              const angle = Math.random() * Math.PI * 2;
+              const radius = Math.random() * 200 + 100;
+              const x = cx + Math.cos(angle) * radius;
+              const y = cy + Math.sin(angle) * radius;
+              finaleParticles.push(new FinaleParticle(x, y, Math.random() > 0.4 ? 'heart' : 'flower'));
+            }
+          }, 800);
+
+          for (let i = 0; i < 20; i++) {
+            finaleHearts.push(new FinaleFloatingHeart());
+          }
+
+          for (let i = 0; i < 30; i++) {
+            finaleConfetti.push(new Confetti());
+          }
+
+          animateFinale();
+        }
+
+        function animateFinale() {
+          if (!finaleActive) return;
+
+          fctx.clearRect(0, 0, fw, fh);
+
+          finaleConfetti.forEach(c => { c.update(); c.draw(); });
+          finaleHearts.forEach(h => { h.update(); h.draw(); });
+
+          finaleParticles = finaleParticles.filter(p => p.opacity > 0);
+          finaleParticles.forEach(p => { p.update(); p.draw(); });
+
+          if (finaleParticles.length < 25) {
+            const cx = fw / 2;
+            const cy = fh / 2;
+            for (let i = 0; i < 4; i++) {
+              finaleParticles.push(new FinaleParticle(cx, cy, Math.random() > 0.5 ? 'heart' : 'star'));
+            }
+          }
+
+          requestAnimationFrame(animateFinale);
+        }
+
+        finale.addEventListener('click', () => {
+          finale.classList.remove('show');
+          finale.setAttribute('aria-hidden', 'true');
+          finaleActive = false;
+          finaleParticles = [];
+          finaleHearts = [];
+          finaleConfetti = [];
+          fctx.clearRect(0, 0, fw, fh);
+        });
+
+        document.getElementById('surprise-btn').addEventListener('click', (e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+
+          for (let i = 0; i < 40; i++) {
+            sparkles.push(new Sparkle(cx, cy, true));
+          }
+
+          const btn = e.currentTarget;
+          const originalText = btn.textContent;
+          btn.textContent = '♥ 生日快樂 ♥';
+
+          setTimeout(() => {
+            startFinale();
+            btn.textContent = originalText;
+          }, 700);
+        });
+
+        window.addEventListener('resize', () => {
+          if (finaleActive) resizeFinale();
+        });
+      })();
+    </script>
+  </body>
+</html>
