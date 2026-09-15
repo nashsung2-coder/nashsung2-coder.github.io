@@ -5,39 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light only" />
     <meta name="theme-color" content="#f7f3ec" />
-
     <meta name="site-nav-title" content="智慧遊台北" />
     <meta name="site-nav-order" content="40" />
     <meta name="site-nav-visible" content="true" />
-
     <title>智慧遊台北 — Nash Pages</title>
     <link rel="stylesheet" href="../assets/css/site.css" />
-
     <style>
-      html { color-scheme: light only !important; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+      html { color-scheme: light only !important; -webkit-text-size-adjust: 100%; }
       :root { forced-color-adjust: none; }
       * { box-sizing: border-box; -webkit-box-sizing: border-box; }
       html, body { margin: 0; padding: 0; }
-
       body {
-        background: #f7f3ec !important;
-        color: #1f1a16 !important;
-        font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
-        font-size: 15px;
-        line-height: 1.75;
-        overflow-x: hidden;
-        min-height: 100vh;
-        letter-spacing: 0.01em;
-        -webkit-font-smoothing: antialiased;
+        background: #f7f3ec !important; color: #1f1a16 !important;
+        font-family: "Noto Sans TC", -apple-system, "Segoe UI", "Microsoft JhengHei", sans-serif;
+        font-size: 15px; line-height: 1.75; overflow-x: hidden; min-height: 100vh;
+        letter-spacing: 0.01em; -webkit-font-smoothing: antialiased;
       }
       @media (prefers-color-scheme: dark) {
         html, body { background: #f7f3ec !important; color: #1f1a16 !important; }
       }
 
-      /* 導覽列 */
+      /* ============ 導覽列 ============ */
       .site-header {
         position: fixed !important; top: 0; left: 0; width: 100%; z-index: 100;
-        background: rgba(247, 243, 236, 0.92) !important;
+        background: rgba(247,243,236,0.92) !important;
         border-bottom: 1px solid #e8e0d4 !important;
         padding: 0.7rem 2rem;
         display: flex; align-items: center; justify-content: center;
@@ -50,75 +41,68 @@
         text-decoration: none; color: #1f1a16 !important;
         font-weight: 600; font-size: 0.92rem;
       }
-      .site-brand-avatar {
-        width: 32px; height: 32px; border-radius: 50%;
-        object-fit: cover; border: 1px solid #d8cdbc;
-      }
+      .site-brand-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #d8cdbc; }
       .site-brand-text { white-space: nowrap; color: #1f1a16 !important; }
       .site-nav { display: flex; align-items: center; gap: 0.1rem; flex-wrap: wrap; justify-content: center; }
-      .site-nav a {
-        color: #5c534a !important; text-decoration: none;
-        padding: 0.4rem 0.75rem; font-size: 0.85rem; border-radius: 8px;
-        transition: color 0.2s, background 0.2s;
-      }
-      .site-nav a:hover, .site-nav a[aria-current="page"] {
-        color: #b2562a !important; background: #f2e5d8 !important;
-      }
-      .site-status {
-        position: absolute; right: 2rem;
-        color: #9c9188 !important; font-size: 0.7rem; letter-spacing: 0.15em;
-        font-family: "SF Mono", ui-monospace, monospace;
-      }
+      .site-nav a { color: #5c534a !important; text-decoration: none; padding: 0.4rem 0.75rem; font-size: 0.85rem; border-radius: 8px; transition: all 0.2s; }
+      .site-nav a:hover, .site-nav a[aria-current="page"] { color: #b2562a !important; background: #f2e5d8 !important; }
+      .site-status { position: absolute; right: 2rem; color: #9c9188 !important; font-size: 0.7rem; letter-spacing: 0.15em; font-family: "SF Mono", monospace; }
 
-      .app { max-width: 640px; margin: 0 auto; padding: 6.5rem 1.25rem 4rem; }
+      /* ============ 主容器 ============ */
+      .app { max-width: 640px; margin: 0 auto; padding: 6.5rem 1.25rem 7rem; }
 
+      /* ============ 狀態列 ============ */
       .status {
         display: flex; align-items: center; justify-content: space-between;
-        padding: 0.75rem 0 1.5rem; border-bottom: 1px solid #e8e0d4;
-        margin-bottom: 2rem; font-size: 0.75rem; letter-spacing: 0.08em;
-        color: #9c9188 !important;
-        font-family: "SF Mono", ui-monospace, monospace;
+        padding: 0.75rem 0 1.5rem; border-bottom: 1px solid #e8e0d4; margin-bottom: 2rem;
+        font-size: 0.75rem; letter-spacing: 0.08em; color: #9c9188 !important;
+        font-family: "SF Mono", monospace;
       }
       .status-time { color: #1f1a16 !important; font-weight: 500; font-variant-numeric: tabular-nums; }
       .status-loc { display: flex; align-items: center; gap: 0.4rem; }
       .status-loc span { color: #9c9188 !important; }
-      .status-dot {
-        width: 6px; height: 6px; border-radius: 50%; background: #5c6b4f;
-        animation: pulse 2.4s ease-in-out infinite;
-      }
+      .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #5c6b4f; animation: pulse 2.4s ease-in-out infinite; }
       @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
 
-      .screen { display: none; }
-      .screen.active { display: block; animation: fadeUp 0.55s cubic-bezier(0.2, 0.7, 0.3, 1); }
+      /* ============ 分頁 ============ */
+      .tab { display: none; }
+      .tab.active { display: block; animation: fadeUp 0.45s cubic-bezier(0.2,0.7,0.3,1); }
       @keyframes fadeUp { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
 
-      .ch { display: inline-block; opacity: 0; animation: chIn 0.4s cubic-bezier(0.2, 0.7, 0.3, 1) forwards; }
+      /* ============ 逐字 ============ */
+      .ch { display: inline-block; opacity: 0; animation: chIn 0.4s cubic-bezier(0.2,0.7,0.3,1) forwards; }
       @keyframes chIn { from{opacity:0;transform:translateY(4px);} to{opacity:1;transform:translateY(0);} }
 
+      /* 按鈕與互動元素不逐字 */
       .btn, .btn *, .skip, .skip *, .tag, .tag *,
-      .site-header, .site-header *, .status, .status *,
-      .meta-bar, .meta-bar *, .eyebrow, .eyebrow *,
-      .map-wrap, .map-wrap *, .metro-map, .metro-map *,
-      .step-num, .step-num *, .guide-card-head, .guide-card-head *,
-      .exit-number, .exit-number *, .route-badge, .route-badge * {
+      .site-header *, .status *, .meta-bar *, .eyebrow *,
+      .map-wrap *, .metro-map *, .qr-box *, .nav-tab, .nav-tab *,
+      .step-num, .step-num *, .route-step *, .guide-icon *,
+      .card, .card *, .chip, .chip *, .exit-number, .exit-number *,
+      .badge, .badge *, .points-bar * {
         animation: none !important;
       }
 
+      /* ============ 標籤 / 標題 ============ */
       .eyebrow {
         display: block; font-size: 0.7rem; letter-spacing: 0.22em;
         color: #9c9188 !important; text-transform: uppercase;
-        margin-bottom: 0.6rem;
-        font-family: "SF Mono", ui-monospace, monospace;
+        margin-bottom: 0.6rem; font-family: "SF Mono", monospace;
       }
       .eyebrow .idx { color: #b2562a !important; font-weight: 500; }
-
       h2.title {
-        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", serif;
+        font-family: "Noto Serif TC", "Songti TC", serif;
         font-size: 1.55rem; font-weight: 500; line-height: 1.5;
         color: #1f1a16 !important; margin: 0 0 1.5rem;
       }
+      h3.sub-title {
+        font-family: "Noto Serif TC", serif;
+        font-size: 1.15rem; font-weight: 500;
+        color: #1f1a16 !important; margin: 2rem 0 1rem;
+      }
       p.lead { color: #5c534a !important; font-size: 0.95rem; margin: 0 0 1.25rem; line-height: 1.85; }
 
+      /* ============ 按鈕 ============ */
       .btn {
         display: flex; align-items: center; justify-content: space-between;
         gap: 0.75rem; width: 100%; padding: 1rem 1.25rem;
@@ -127,465 +111,504 @@
         font-family: inherit; font-size: 0.95rem; font-weight: 500;
         letter-spacing: 0.05em; cursor: pointer;
         transition: background 0.25s, transform 0.15s;
-        -webkit-tap-highlight-color: transparent;
-        text-decoration: none; text-align: left;
+        -webkit-tap-highlight-color: transparent; text-align: left;
       }
       .btn span { color: inherit !important; }
       .btn:hover { background: #33291f !important; }
       .btn:active { transform: scale(0.985); }
       .btn .arrow { display: inline-block; transition: transform 0.25s; }
       .btn:hover .arrow { transform: translateX(3px); }
-
-      .btn.ghost {
-        background: transparent !important; color: #1f1a16 !important;
-        border: 1px solid #d8cdbc;
-      }
+      .btn.ghost { background: transparent !important; color: #1f1a16 !important; border: 1px solid #d8cdbc; }
       .btn.ghost:hover { background: #ffffff !important; border-color: #9c9188; }
       .btn.accent { background: #b2562a !important; color: #ffffff !important; }
       .btn.accent:hover { background: #9c4823 !important; }
       .btn.metro { background: #1f3a5f !important; color: #ffffff !important; }
       .btn.metro:hover { background: #162a45 !important; }
-      .btn.map-trigger {
-        background: #ffffff !important; color: #1f1a16 !important;
-        border: 1px solid #d8cdbc; margin-bottom: 1rem;
-        justify-content: flex-start;
-      }
-      .btn.map-trigger .hint { margin-left: auto; font-size: 0.75rem; color: #9c9188 !important; }
       .btn-row { display: flex; gap: 0.65rem; margin-top: 1.5rem; }
       .btn-row .btn { flex: 1; }
 
+      /* ============ 圖示 ============ */
       .icon { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
       .icon-lg { width: 40px; height: 40px; stroke-width: 1.25; }
 
-      .welcome { padding: 1.5rem 0 0.5rem; }
-      .welcome-mark { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem; color: #b2562a !important; }
+      /* ============ 首頁歡迎 ============ */
+      .welcome-mark { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; color: #b2562a !important; }
       .welcome-mark .rule { height: 1px; width: 40px; background: #b2562a; opacity: 0.6; }
-      .welcome-mark .label {
-        font-family: "SF Mono", ui-monospace, monospace;
-        font-size: 0.68rem; letter-spacing: 0.28em;
-        text-transform: uppercase; color: #b2562a !important;
-      }
+      .welcome-mark .label { font-family: "SF Mono", monospace; font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: #b2562a !important; }
       .welcome-time {
-        font-family: "Noto Serif TC", "Songti TC", serif;
-        font-size: 2.2rem; font-weight: 500; line-height: 1.45;
-        color: #1f1a16 !important; margin: 0 0 1.75rem;
+        font-family: "Noto Serif TC", serif;
+        font-size: 1.9rem; font-weight: 500; line-height: 1.45;
+        color: #1f1a16 !important; margin: 0 0 1.5rem;
       }
       .welcome-time .period { color: #b2562a !important; margin-left: 0.25em; }
       .welcome-greet {
-        font-family: "Noto Serif TC", serif;
-        font-size: 1.12rem; line-height: 1.9; color: #5c534a !important;
-        margin: 0 0 2.5rem;
+        font-family: "Noto Serif TC", serif; font-size: 1.05rem; line-height: 1.9;
+        color: #5c534a !important; margin: 0 0 2rem;
       }
-      .welcome-greet .origin {
-        color: #b2562a !important; font-weight: 500;
-        border-bottom: 1px solid #c98868; padding-bottom: 1px;
-      }
-      .welcome-meta {
-        padding-top: 1.75rem; border-top: 1px solid #e8e0d4;
-        font-size: 0.8rem; color: #9c9188 !important; line-height: 1.9;
-        font-family: "SF Mono", ui-monospace, monospace;
-      }
+      .welcome-greet .origin { color: #b2562a !important; font-weight: 500; }
 
-      /* ============ 智慧路徑卡 ============ */
-      .smart-route {
-        background: linear-gradient(135deg, #ffffff 0%, #fbf8f3 100%);
-        border: 2px solid #1f3a5f;
-        border-radius: 22px;
-        padding: 0;
-        margin-bottom: 1.75rem;
-        overflow: hidden;
-        position: relative;
-        box-shadow: 0 8px 32px rgba(31, 58, 95, 0.12);
+      /* ============ 首頁大按鈕 ============ */
+      .hero-action {
+        background: linear-gradient(135deg, #1f3a5f 0%, #162a45 100%);
+        color: #ffffff; border-radius: 20px;
+        padding: 1.75rem 1.5rem; margin-bottom: 1.75rem;
+        position: relative; overflow: hidden;
+        cursor: pointer; text-align: left; width: 100%;
+        border: none; font-family: inherit;
+        box-shadow: 0 8px 28px rgba(31,58,95,0.2);
+        transition: transform 0.2s;
       }
-
-      .smart-route-header {
-        background: #1f3a5f;
-        color: #ffffff;
-        padding: 0.9rem 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.5rem;
+      .hero-action:hover { transform: translateY(-2px); }
+      .hero-action:active { transform: translateY(0); }
+      .hero-action::before {
+        content: ""; position: absolute; top: -50%; right: -20%;
+        width: 200px; height: 200px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
       }
-      .smart-route-header .h-label {
-        font-family: "SF Mono", ui-monospace, monospace;
-        font-size: 0.68rem; letter-spacing: 0.25em;
-        text-transform: uppercase; color: #b8c8dc;
-      }
-      .smart-route-header .h-title {
-        font-family: "Noto Serif TC", serif;
-        font-size: 1.05rem; font-weight: 500;
-        color: #ffffff;
-        letter-spacing: 0.05em;
-      }
-
-      .smart-route-body { padding: 1.75rem 1.5rem 1.5rem; }
-
-      /* 出口大字 */
-      .exit-block {
-        text-align: center;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px dashed #d8cdbc;
-        margin-bottom: 1.5rem;
-      }
-      .exit-block .exit-label {
-        font-family: "SF Mono", ui-monospace, monospace;
-        font-size: 0.7rem; letter-spacing: 0.3em;
-        color: #9c9188 !important; text-transform: uppercase;
-        margin-bottom: 0.5rem;
-      }
-      .exit-block .exit-number {
-        font-family: "Noto Serif TC", serif;
-        font-size: 3.5rem;
-        font-weight: 700;
-        color: #1f3a5f;
-        line-height: 1;
-        letter-spacing: 0.02em;
-        margin-bottom: 0.5rem;
-      }
-      .exit-block .exit-number .unit {
-        font-size: 1.5rem;
-        color: #b2562a;
-        font-weight: 500;
-        margin-left: 0.25rem;
-      }
-      .exit-block .exit-name {
-        font-size: 0.95rem;
-        color: #5c534a !important;
-        line-height: 1.6;
-      }
-
-      /* 步驟序列 */
-      .route-steps {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        counter-reset: step;
-      }
-      .route-step {
-        display: flex;
-        gap: 1rem;
-        padding: 0.9rem 0;
+      .hero-action .ha-label {
+        font-family: "SF Mono", monospace; font-size: 0.65rem;
+        letter-spacing: 0.28em; text-transform: uppercase;
+        color: #b8c8dc; margin-bottom: 0.5rem;
         position: relative;
       }
-      .route-step::before {
-        content: "";
-        position: absolute;
-        left: 15px;
-        top: 2.6rem;
-        bottom: -0.5rem;
-        width: 1px;
-        background: #d8cdbc;
+      .hero-action .ha-title {
+        font-family: "Noto Serif TC", serif;
+        font-size: 1.35rem; font-weight: 600; color: #ffffff;
+        margin-bottom: 0.35rem; letter-spacing: 0.02em;
+        position: relative;
       }
-      .route-step:last-child::before { display: none; }
-      .route-step-icon {
-        flex-shrink: 0;
-        width: 32px; height: 32px;
-        border-radius: 50%;
-        background: #f2e5d8;
-        color: #b2562a;
+      .hero-action .ha-sub {
+        font-size: 0.85rem; color: #d8e2ef; line-height: 1.7;
+        position: relative;
+      }
+      .hero-action .ha-icon {
+        position: absolute; top: 1.75rem; right: 1.5rem;
+        width: 44px; height: 44px; color: #ffffff; opacity: 0.9;
+      }
+      .hero-action .ha-icon svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 1.2; fill: none; }
+
+      /* ============ 首頁快速入口 ============ */
+      .quick-grid {
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 0.75rem; margin-bottom: 2rem;
+      }
+      .quick-card {
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 16px; padding: 1.25rem 1rem;
+        cursor: pointer; transition: all 0.2s;
+        text-align: left; font-family: inherit;
+        display: flex; flex-direction: column; gap: 0.6rem;
+      }
+      .quick-card:hover { border-color: #b2562a; transform: translateY(-2px); }
+      .quick-card .qc-icon {
+        width: 40px; height: 40px; border-radius: 12px;
+        background: #f2e5d8; color: #b2562a;
         display: flex; align-items: center; justify-content: center;
-        position: relative;
-        z-index: 1;
-        border: 2px solid #ffffff;
       }
-      .route-step-icon svg {
-        width: 16px; height: 16px;
-        stroke: currentColor; stroke-width: 2; fill: none;
-        stroke-linecap: round; stroke-linejoin: round;
+      .quick-card .qc-icon svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .quick-card .qc-label {
+        font-family: "SF Mono", monospace; font-size: 0.62rem;
+        letter-spacing: 0.15em; text-transform: uppercase;
+        color: #9c9188;
       }
-      .route-step-body { flex: 1; min-width: 0; padding-top: 0.15rem; }
-      .route-step-body .step-label {
-        font-family: "SF Mono", ui-monospace, monospace;
-        font-size: 0.68rem; letter-spacing: 0.15em;
-        color: #b2562a !important; text-transform: uppercase;
-        margin-bottom: 0.15rem;
-      }
-      .route-step-body .step-main {
-        font-size: 0.98rem;
-        color: #1f1a16 !important;
-        font-weight: 500;
-        line-height: 1.55;
-        margin-bottom: 0.15rem;
-      }
-      .route-step-body .step-sub {
-        font-size: 0.82rem;
-        color: #5c534a !important;
-        line-height: 1.7;
+      .quick-card .qc-title {
+        font-size: 0.95rem; font-weight: 500;
+        color: #1f1a16; line-height: 1.4;
       }
 
-      /* 提示列 */
-      .smart-route-tip {
-        margin-top: 1.25rem;
-        padding: 0.85rem 1rem;
-        background: #f2e5d8;
-        border-radius: 12px;
-        font-size: 0.82rem;
-        color: #5c534a !important;
-        line-height: 1.7;
-        display: flex;
-        gap: 0.6rem;
-        align-items: flex-start;
+      /* ============ 首頁推薦卡 ============ */
+      .reco-card {
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 16px; padding: 1.25rem;
+        margin-bottom: 0.75rem; cursor: pointer;
+        transition: all 0.2s;
+        display: flex; gap: 1rem; align-items: flex-start;
       }
-      .smart-route-tip .tip-icon {
-        flex-shrink: 0;
-        width: 18px; height: 18px;
-        margin-top: 2px;
+      .reco-card:hover { border-color: #b2562a; }
+      .reco-card .rc-badge {
+        flex-shrink: 0; padding: 0.2rem 0.55rem;
+        background: #f2e5d8; border-radius: 999px;
+        font-family: "SF Mono", monospace; font-size: 0.62rem;
+        letter-spacing: 0.1em; color: #b2562a;
+        text-transform: uppercase; margin-bottom: 0.4rem;
+        display: inline-block;
+      }
+      .reco-card .rc-body { flex: 1; min-width: 0; }
+      .reco-card .rc-title {
+        font-size: 0.98rem; font-weight: 500;
+        color: #1f1a16; margin-bottom: 0.25rem;
+      }
+      .reco-card .rc-desc {
+        font-size: 0.83rem; color: #5c534a; line-height: 1.7;
+      }
+      .reco-card .rc-points {
+        flex-shrink: 0; font-family: "Noto Serif TC", serif;
+        font-size: 1.15rem; font-weight: 700;
         color: #b2562a;
       }
-      .smart-route-tip .tip-icon svg {
-        width: 100%; height: 100%;
-        stroke: currentColor; stroke-width: 2; fill: none;
-        stroke-linecap: round; stroke-linejoin: round;
-      }
-      .smart-route-tip strong { color: #b2562a; }
+      .reco-card .rc-points::after { content: "P"; font-size: 0.7rem; margin-left: 1px; color: #9c9188; }
 
-      /* ============ 通用 ============ */
-      .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-      .tag {
-        padding: 0.5rem 0.9rem; background: #ffffff !important;
-        border: 1px solid #e8e0d4; border-radius: 999px;
-        font-size: 0.85rem; color: #5c534a !important;
-        transition: all 0.2s;
-      }
-      .tag:hover { border-color: #c98868; color: #b2562a !important; }
-      .tag.removable { cursor: pointer; padding-right: 0.6rem; }
-      .tag.removable::after {
-        content: "×"; margin-left: 0.5rem;
-        color: #9c9188; font-size: 1rem; vertical-align: middle;
-      }
-
-      .input-row { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; }
-      .input-row input {
-        flex: 1; min-width: 0;
-        background: #ffffff !important;
-        border: 1px solid #e8e0d4; border-radius: 14px;
-        padding: 0.85rem 1rem; font-family: inherit; font-size: 0.9rem;
-        color: #1f1a16 !important; outline: none;
-        -webkit-appearance: none; appearance: none;
-      }
-      .input-row input:focus { border-color: #9c9188; }
-      .input-row input::placeholder { color: #9c9188 !important; opacity: 1; }
-      .input-row button {
-        padding: 0.85rem 1.1rem;
-        background: transparent !important;
-        border: 1px solid #d8cdbc; border-radius: 14px;
-        font-family: inherit; font-size: 0.9rem; font-weight: 500;
-        color: #1f1a16 !important; cursor: pointer;
-        transition: all 0.2s; white-space: nowrap;
-      }
-
-      /* 地圖 */
+      /* ============ 探索：地圖 / 列表 ============ */
       .map-wrap {
         background: #ffffff; border: 1px solid #e8e0d4;
-        border-radius: 20px; overflow: hidden;
-        margin-bottom: 1.5rem; position: relative;
+        border-radius: 20px; overflow: hidden; margin-bottom: 1.5rem;
+        position: relative;
       }
       .map-svg { display: block; width: 100%; height: auto; background: #fbf8f3; }
       .map-pin { cursor: pointer; }
       .map-pin .pin-dot { fill: #ffffff; stroke: #b2562a; stroke-width: 2.5; transition: all 0.25s; }
       .map-pin .pin-dot-inner { fill: #b2562a; transition: all 0.25s; }
-      .map-pin .pin-label {
-        fill: #1f1a16; font-family: "Noto Sans TC", sans-serif;
-        font-size: 13px; font-weight: 500;
-        text-anchor: middle; pointer-events: none;
-      }
+      .map-pin .pin-label { fill: #1f1a16; font-family: "Noto Sans TC", sans-serif; font-size: 13px; font-weight: 500; text-anchor: middle; pointer-events: none; }
       .map-pin.selected .pin-dot { fill: #b2562a; stroke: #ffffff; stroke-width: 3; }
       .map-pin.selected .pin-dot-inner { fill: #ffffff; }
       .map-pin.selected .pin-label { fill: #b2562a; font-weight: 700; }
-
       .map-hint {
         position: absolute; top: 0.75rem; left: 0.75rem;
-        padding: 0.3rem 0.7rem;
-        background: rgba(255, 255, 255, 0.92);
+        padding: 0.3rem 0.7rem; background: rgba(255,255,255,0.92);
         border: 1px solid #e8e0d4; border-radius: 999px;
-        font-family: "SF Mono", ui-monospace, monospace;
-        font-size: 0.68rem; letter-spacing: 0.12em;
-        color: #9c9188 !important; text-transform: uppercase;
+        font-family: "SF Mono", monospace; font-size: 0.68rem;
+        letter-spacing: 0.12em; color: #9c9188 !important; text-transform: uppercase;
       }
-      .map-selection {
-        padding: 1rem 0 0.5rem;
-        border-top: 1px solid #e8e0d4; margin-top: 0.5rem;
-      }
-      .map-selection-label {
-        font-family: "SF Mono", ui-monospace, monospace;
-        font-size: 0.68rem; letter-spacing: 0.2em;
-        color: #9c9188 !important; text-transform: uppercase;
-        margin-bottom: 0.6rem;
-      }
-      .map-selection-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; min-height: 2rem; }
-      .map-selection-tags .empty { font-size: 0.85rem; color: #9c9188 !important; font-style: italic; }
 
-      /* 捷運圖 */
-      .metro-map {
+      /* ============ 探索：分類 chips ============ */
+      .chips {
+        display: flex; gap: 0.5rem; overflow-x: auto;
+        padding-bottom: 0.75rem; margin-bottom: 1.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .chips::-webkit-scrollbar { display: none; }
+      .chip {
+        flex-shrink: 0;
+        padding: 0.5rem 1rem;
         background: #ffffff; border: 1px solid #e8e0d4;
-        border-radius: 20px; padding: 1.25rem;
-        margin-bottom: 1.5rem; overflow: hidden;
+        border-radius: 999px; font-family: inherit;
+        font-size: 0.85rem; color: #5c534a;
+        cursor: pointer; transition: all 0.2s;
+        white-space: nowrap;
       }
-      .metro-line-svg { display: block; width: 100%; height: auto; }
-      .metro-station { cursor: pointer; }
-      .metro-station .st-dot {
-        fill: #ffffff; stroke: #1f3a5f; stroke-width: 3;
-        transition: all 0.25s;
-      }
-      .metro-station .st-label {
-        fill: #1f1a16; font-family: "Noto Sans TC", sans-serif;
-        font-size: 12px; font-weight: 500;
-        pointer-events: none; transition: all 0.25s;
-      }
-      .metro-station.selected .st-dot { fill: #1f3a5f; stroke: #ffffff; stroke-width: 3; }
-      .metro-station.selected .st-label { fill: #1f3a5f; font-weight: 700; }
+      .chip:hover { border-color: #b2562a; color: #b2562a; }
+      .chip.active { background: #1f1a16; color: #f7f3ec; border-color: #1f1a16; }
 
-      .route { padding: 1.25rem 0; border-bottom: 1px solid #e8e0d4; }
-      .route:last-of-type { border-bottom: none; }
-      .route-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
-      .route-no { font-family: "SF Mono", ui-monospace, monospace; font-size: 1.4rem; font-weight: 600; color: #1f1a16 !important; }
-      .route-eta { font-size: 0.78rem; color: #b2562a !important; font-family: "SF Mono", ui-monospace, monospace; }
-      .route-name { font-size: 0.92rem; color: #5c534a !important; margin: 0 0 0.6rem; line-height: 1.6; }
-      .route-meta { display: flex; gap: 1rem; font-size: 0.72rem; color: #9c9188 !important; font-family: "SF Mono", ui-monospace, monospace; flex-wrap: wrap; }
-      .route-meta span { color: #9c9188 !important; }
-
-      .group-label {
-        font-family: "SF Mono", ui-monospace, monospace;
-        font-size: 0.7rem; letter-spacing: 0.2em;
-        color: #9c9188 !important; text-transform: uppercase;
-        margin: 2rem 0 0.5rem; padding-bottom: 0.5rem;
+      /* ============ 通用卡片 ============ */
+      .card {
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 16px; padding: 1.25rem;
+        margin-bottom: 0.75rem;
+        transition: all 0.2s;
+      }
+      .card-head {
+        display: flex; align-items: baseline; justify-content: space-between;
+        gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;
+      }
+      .card-head .name { font-size: 1rem; font-weight: 500; color: #1f1a16; }
+      .card-head .district {
+        font-family: "SF Mono", monospace; font-size: 0.72rem;
+        color: #9c9188;
+      }
+      .card .desc { font-size: 0.85rem; color: #5c534a; line-height: 1.75; }
+      .card .meta {
+        display: flex; gap: 1rem; margin-top: 0.6rem;
+        font-size: 0.72rem; color: #9c9188;
+        font-family: "SF Mono", monospace;
+        flex-wrap: wrap;
       }
 
-      .place { padding: 1.2rem 0; border-bottom: 1px solid #e8e0d4; }
-      .place:last-child { border-bottom: none; }
-      .place-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
-      .place .name { font-size: 1rem; font-weight: 500; color: #1f1a16 !important; }
-      .place .district { font-family: "SF Mono", ui-monospace, monospace; font-size: 0.72rem; color: #9c9188 !important; }
-      .place .desc { font-size: 0.85rem; color: #5c534a !important; line-height: 1.75; }
+      /* ============ 尋寶：點數 + 徽章 ============ */
+      .points-hero {
+        background: linear-gradient(135deg, #b2562a 0%, #9c4823 100%);
+        color: #ffffff; border-radius: 20px;
+        padding: 1.75rem 1.5rem; margin-bottom: 1.5rem;
+        position: relative; overflow: hidden;
+        box-shadow: 0 8px 28px rgba(178,86,42,0.25);
+      }
+      .points-hero::before {
+        content: ""; position: absolute; top: -40%; right: -20%;
+        width: 220px; height: 220px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%);
+      }
+      .points-hero .ph-label {
+        font-family: "SF Mono", monospace; font-size: 0.68rem;
+        letter-spacing: 0.28em; text-transform: uppercase;
+        color: #ffe0d0; margin-bottom: 0.4rem;
+        position: relative;
+      }
+      .points-hero .ph-value {
+        font-family: "Noto Serif TC", serif;
+        font-size: 3.2rem; font-weight: 700;
+        line-height: 1; color: #ffffff;
+        font-variant-numeric: tabular-nums;
+        position: relative;
+      }
+      .points-hero .ph-value::after {
+        content: "P"; font-size: 1.2rem; margin-left: 0.3rem;
+        color: #ffe0d0; font-weight: 500;
+      }
+      .points-hero .ph-sub {
+        font-size: 0.82rem; color: #ffe0d0;
+        margin-top: 0.5rem; position: relative;
+      }
 
+      .badge-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem; margin-bottom: 1.75rem;
+      }
+      .badge {
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 14px; padding: 1rem 0.5rem;
+        text-align: center; transition: all 0.2s;
+      }
+      .badge.locked { opacity: 0.4; }
+      .badge.unlocked { border-color: #b2562a; }
+      .badge .badge-icon {
+        width: 44px; height: 44px; border-radius: 50%;
+        margin: 0 auto 0.5rem;
+        display: flex; align-items: center; justify-content: center;
+        background: #f2e5d8; color: #b2562a;
+      }
+      .badge.locked .badge-icon { background: #e8e0d4; color: #9c9188; }
+      .badge .badge-icon svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .badge .badge-name {
+        font-size: 0.75rem; color: #1f1a16;
+        font-weight: 500; line-height: 1.3;
+      }
+      .badge.locked .badge-name { color: #9c9188; }
+
+      /* ============ QR 掃描 ============ */
+      .qr-box {
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 20px; padding: 2rem 1.5rem;
+        margin-bottom: 1.5rem; text-align: center;
+      }
+      .qr-frame {
+        width: 180px; height: 180px; margin: 0 auto 1.5rem;
+        border: 2px solid #b2562a; border-radius: 16px;
+        position: relative; overflow: hidden;
+        background: #fbf8f3;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .qr-frame::before, .qr-frame::after {
+        content: ""; position: absolute; width: 24px; height: 24px;
+        border: 3px solid #b2562a;
+      }
+      .qr-frame::before { top: -2px; left: -2px; border-right: none; border-bottom: none; border-radius: 14px 0 0 0; }
+      .qr-frame::after { bottom: -2px; right: -2px; border-left: none; border-top: none; border-radius: 0 0 14px 0; }
+      .qr-frame svg { width: 130px; height: 130px; fill: #1f1a16; }
+      .qr-line {
+        position: absolute; left: 0; width: 100%; height: 3px;
+        background: linear-gradient(90deg, transparent, #b2562a, transparent);
+        animation: qrScan 2s ease-in-out infinite;
+      }
+      @keyframes qrScan {
+        0%,100% { top: 8%; opacity: 0.5; }
+        50% { top: 92%; opacity: 1; }
+      }
+      .qr-title {
+        font-family: "Noto Serif TC", serif;
+        font-size: 1.15rem; font-weight: 500;
+        color: #1f1a16 !important; margin-bottom: 0.5rem;
+      }
+      .qr-sub { font-size: 0.88rem; color: #5c534a !important; line-height: 1.75; }
+
+      /* ============ 智慧路徑卡 ============ */
+      .smart-route {
+        background: linear-gradient(135deg, #ffffff 0%, #fbf8f3 100%);
+        border: 2px solid #1f3a5f; border-radius: 22px;
+        margin-bottom: 1.75rem; overflow: hidden;
+        box-shadow: 0 8px 32px rgba(31,58,95,0.12);
+      }
+      .smart-route-header {
+        background: #1f3a5f; color: #ffffff; padding: 0.9rem 1.5rem;
+        display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+      }
+      .smart-route-header .h-label {
+        font-family: "SF Mono", monospace; font-size: 0.68rem;
+        letter-spacing: 0.25em; text-transform: uppercase; color: #b8c8dc;
+      }
+      .smart-route-header .h-title {
+        font-family: "Noto Serif TC", serif; font-size: 1.05rem; font-weight: 500; color: #ffffff;
+      }
+      .smart-route-body { padding: 1.75rem 1.5rem 1.5rem; }
+      .exit-block { text-align: center; padding-bottom: 1.5rem; border-bottom: 1px dashed #d8cdbc; margin-bottom: 1.5rem; }
+      .exit-block .exit-label {
+        font-family: "SF Mono", monospace; font-size: 0.7rem;
+        letter-spacing: 0.3em; color: #9c9188 !important;
+        text-transform: uppercase; margin-bottom: 0.5rem;
+      }
+      .exit-block .exit-number {
+        font-family: "Noto Serif TC", serif; font-size: 3.2rem;
+        font-weight: 700; color: #1f3a5f; line-height: 1; margin-bottom: 0.5rem;
+      }
+      .exit-block .exit-number .unit { font-size: 1.4rem; color: #b2562a; font-weight: 500; margin-left: 0.25rem; }
+      .exit-block .exit-name { font-size: 0.95rem; color: #5c534a !important; }
+
+      .route-steps { display: flex; flex-direction: column; }
+      .route-step { display: flex; gap: 1rem; padding: 0.9rem 0; position: relative; }
+      .route-step::before {
+        content: ""; position: absolute; left: 15px; top: 2.6rem; bottom: -0.5rem;
+        width: 1px; background: #d8cdbc;
+      }
+      .route-step:last-child::before { display: none; }
+      .route-step-icon {
+        flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+        background: #f2e5d8; color: #b2562a;
+        display: flex; align-items: center; justify-content: center;
+        position: relative; z-index: 1; border: 2px solid #ffffff;
+      }
+      .route-step-icon svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .route-step-body { flex: 1; min-width: 0; padding-top: 0.15rem; }
+      .route-step-body .step-label {
+        font-family: "SF Mono", monospace; font-size: 0.68rem;
+        letter-spacing: 0.15em; color: #b2562a !important;
+        text-transform: uppercase; margin-bottom: 0.15rem;
+      }
+      .route-step-body .step-main {
+        font-size: 0.98rem; color: #1f1a16 !important;
+        font-weight: 500; line-height: 1.55; margin-bottom: 0.15rem;
+      }
+      .route-step-body .step-sub { font-size: 0.82rem; color: #5c534a !important; line-height: 1.7; }
+
+      .smart-route-tip {
+        margin-top: 1.25rem; padding: 0.85rem 1rem;
+        background: #f2e5d8; border-radius: 12px;
+        font-size: 0.82rem; color: #5c534a !important; line-height: 1.7;
+        display: flex; gap: 0.6rem; align-items: flex-start;
+      }
+      .smart-route-tip .tip-icon { flex-shrink: 0; width: 18px; height: 18px; margin-top: 2px; color: #b2562a; }
+      .smart-route-tip .tip-icon svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 2; fill: none; }
+
+      /* ============ 禮儀卡 ============ */
       .guide-cards { display: grid; gap: 1rem; margin-bottom: 1.75rem; }
       .guide-card {
         background: #ffffff; border: 1px solid #e8e0d4;
         border-radius: 16px; padding: 1.25rem;
         display: flex; gap: 1rem; align-items: flex-start;
-        transition: border-color 0.25s;
       }
-      .guide-card:hover { border-color: #b2562a; }
       .guide-icon {
         flex-shrink: 0; width: 48px; height: 48px;
         border-radius: 12px; background: #f2e5d8;
-        display: flex; align-items: center; justify-content: center;
-        color: #b2562a;
+        display: flex; align-items: center; justify-content: center; color: #b2562a;
       }
-      .guide-icon svg {
-        width: 26px; height: 26px;
+      .guide-icon svg { width: 26px; height: 26px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .guide-body { flex: 1; min-width: 0; }
+      .guide-card-head { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.4rem; }
+      .step-num { font-family: "SF Mono", monospace; font-size: 0.7rem; letter-spacing: 0.15em; color: #b2562a !important; }
+      .guide-card-head .title-sm { font-size: 0.98rem; font-weight: 600; color: #1f1a16 !important; }
+      .guide-card p { font-size: 0.86rem; color: #5c534a !important; line-height: 1.8; margin: 0; }
+
+      /* ============ 我的：列表 ============ */
+      .me-list { display: flex; flex-direction: column; gap: 0; }
+      .me-item {
+        display: flex; align-items: center; gap: 1rem;
+        padding: 1.1rem 0; border-bottom: 1px solid #e8e0d4;
+        cursor: pointer; transition: opacity 0.2s;
+        background: transparent; border-left: none; border-right: none; border-top: none;
+        font-family: inherit; text-align: left; width: 100%;
+      }
+      .me-item:hover { opacity: 0.7; }
+      .me-item:last-child { border-bottom: none; }
+      .me-item-icon {
+        flex-shrink: 0; width: 40px; height: 40px;
+        border-radius: 12px; background: #f2e5d8; color: #b2562a;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .me-item-icon svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .me-item-body { flex: 1; min-width: 0; }
+      .me-item-body .mi-title {
+        font-size: 0.95rem; color: #1f1a16; font-weight: 500;
+        margin-bottom: 0.15rem;
+      }
+      .me-item-body .mi-desc { font-size: 0.8rem; color: #9c9188; }
+      .me-item .mi-arrow {
+        flex-shrink: 0; color: #9c9188; font-size: 0.9rem;
+      }
+
+      /* ============ 底部 Tab 導覽 ============ */
+      .bottom-nav {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        z-index: 100;
+        background: rgba(247,243,236,0.96);
+        border-top: 1px solid #e8e0d4;
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        backdrop-filter: saturate(180%) blur(20px);
+        padding: 0.5rem 0 max(0.5rem, env(safe-area-inset-bottom));
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .bottom-nav-inner {
+        max-width: 640px; width: 100%; margin: 0 auto;
+        display: flex; justify-content: space-around; align-items: center;
+        padding: 0 1rem;
+      }
+      .nav-tab {
+        flex: 1; max-width: 90px;
+        background: transparent; border: none;
+        padding: 0.5rem 0.25rem;
+        display: flex; flex-direction: column;
+        align-items: center; gap: 0.2rem;
+        cursor: pointer; font-family: inherit;
+        color: #9c9188;
+        transition: color 0.2s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .nav-tab svg {
+        width: 22px; height: 22px;
         stroke: currentColor; stroke-width: 1.5; fill: none;
         stroke-linecap: round; stroke-linejoin: round;
       }
-      .guide-body { flex: 1; min-width: 0; }
-      .guide-card-head { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.4rem; }
-      .step-num {
-        font-family: "SF Mono", ui-monospace, monospace;
-        font-size: 0.7rem; letter-spacing: 0.15em;
-        color: #b2562a !important;
+      .nav-tab .nav-label {
+        font-size: 0.68rem;
+        font-family: "SF Mono", monospace;
+        letter-spacing: 0.05em;
       }
-      .guide-card-head .title-sm { font-size: 0.98rem; font-weight: 600; color: #1f1a16 !important; }
-      .guide-card p { font-size: 0.86rem; color: #5c534a !important; line-height: 1.8; margin: 0; }
-      .guide-card .tip {
-        display: inline-block; margin-top: 0.5rem;
-        padding: 0.2rem 0.6rem; background: #f2e5d8; border-radius: 999px;
-        font-size: 0.72rem; color: #b2562a !important;
-        font-family: "SF Mono", ui-monospace, monospace;
+      .nav-tab.active { color: #b2562a; }
+
+      /* ============ 首頁專屬 ============ */
+      .status-inline {
+        display: flex; align-items: center; gap: 0.4rem;
+        font-family: "SF Mono", monospace; font-size: 0.72rem;
+        color: #9c9188; letter-spacing: 0.08em;
+        margin-bottom: 1.5rem;
       }
 
-      .meta-bar {
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 0.75rem 0; margin-bottom: 1.5rem;
-        font-size: 0.72rem;
-        font-family: "SF Mono", ui-monospace, monospace;
-        letter-spacing: 0.12em;
-        color: #9c9188 !important; text-transform: uppercase;
-        border-bottom: 1px solid #e8e0d4;
+      /* ============ 通知條 ============ */
+      .notice {
+        display: flex; align-items: flex-start; gap: 0.6rem;
+        padding: 0.85rem 1rem;
+        background: #f2e5d8; border-radius: 12px;
+        font-size: 0.82rem; color: #5c534a;
+        line-height: 1.7; margin-bottom: 1.5rem;
       }
-      .meta-bar .live { display: inline-flex; align-items: center; gap: 0.5rem; color: #5c6b4f !important; }
-      .meta-bar .live::before {
-        content: ""; width: 6px; height: 6px; border-radius: 50%; background: #5c6b4f;
-        animation: pulse 2s ease-in-out infinite;
+      .notice svg {
+        flex-shrink: 0; width: 18px; height: 18px;
+        margin-top: 2px; color: #b2562a;
+        stroke: currentColor; stroke-width: 2; fill: none;
       }
+      .notice strong { color: #b2562a; }
 
-      .arrival-mark { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; color: #5c6b4f !important; }
-      .arrival-mark .rule { height: 1px; width: 32px; background: #5c6b4f; opacity: 0.6; }
-      .arrival-mark .label {
-        font-family: "SF Mono", ui-monospace, monospace;
-        font-size: 0.68rem; letter-spacing: 0.25em;
-        text-transform: uppercase; color: #5c6b4f !important;
-      }
-      .prose {
-        background: #ffffff !important; border: 1px solid #e8e0d4;
-        border-radius: 20px; padding: 1.5rem;
-        color: #5c534a !important; font-size: 0.92rem;
-        line-height: 2.05; margin-bottom: 1.5rem;
-      }
-
-      .closing {
-        text-align: center; padding: 2.5rem 1rem;
-        border-top: 1px solid #e8e0d4; margin-top: 2rem;
-      }
-      .closing .title-cn {
-        font-family: "Noto Serif TC", serif;
-        font-size: 1.4rem; font-weight: 500;
-        color: #1f1a16 !important; letter-spacing: 0.15em;
-        margin-bottom: 0.75rem;
-      }
-      .closing .sub {
-        font-size: 0.85rem; color: #9c9188 !important;
-        font-family: "SF Mono", ui-monospace, monospace;
-      }
-
-      .progress {
-        display: flex; justify-content: center; gap: 0.4rem;
-        margin-top: 2rem; padding-top: 1.5rem;
-        border-top: 1px solid #e8e0d4; flex-wrap: wrap;
-      }
-      .progress span {
-        width: 5px; height: 5px; border-radius: 50%;
-        background: #d8cdbc; transition: all 0.3s;
-      }
-      .progress span.active { background: #b2562a; width: 18px; border-radius: 3px; }
-
-      .skip {
-        display: block; margin: 1.75rem auto 0;
-        padding: 0.55rem 1.25rem;
-        background: transparent !important;
-        border: 1px solid #d8cdbc; border-radius: 999px;
-        font-family: "SF Mono", ui-monospace, monospace;
-        font-size: 0.72rem; letter-spacing: 0.15em;
-        color: #9c9188 !important; cursor: pointer;
-        transition: all 0.2s; text-transform: uppercase;
-      }
-      .skip:hover { color: #b2562a !important; border-color: #c98868; }
-
+      /* ============ 響應式 ============ */
       @media (max-width: 640px) {
         .site-header { flex-direction: column; padding: 0.6rem 1rem 0.5rem; height: auto; gap: 0.4rem; }
         .site-brand { position: static; font-size: 0.85rem; }
         .site-status { display: none; }
         .site-nav { width: 100%; }
         .site-nav a { padding: 0.32rem 0.55rem; font-size: 0.78rem; }
-        .app { padding: 7rem 1.1rem 3rem; }
+        .app { padding: 7rem 1.1rem 7.5rem; }
         h2.title { font-size: 1.35rem; }
-        .welcome-time { font-size: 1.75rem; }
-        .btn { padding: 0.95rem 1.1rem; font-size: 0.92rem; }
+        .welcome-time { font-size: 1.55rem; }
+        .hero-action { padding: 1.5rem 1.25rem; }
+        .hero-action .ha-title { font-size: 1.15rem; }
+        .hero-action .ha-icon { width: 36px; height: 36px; top: 1.4rem; right: 1.15rem; }
+        .quick-grid { grid-template-columns: 1fr; }
         .btn-row { flex-direction: column; }
         .btn-row .btn { width: 100%; }
-        .input-row { flex-direction: column; }
-        .input-row button { width: 100%; }
-        .exit-block .exit-number { font-size: 3rem; }
+        .points-hero .ph-value { font-size: 2.6rem; }
+        .badge-grid { grid-template-columns: repeat(3, 1fr); }
+        .exit-block .exit-number { font-size: 2.8rem; }
         .smart-route-body { padding: 1.5rem 1.15rem 1.25rem; }
-        .route-step-icon { width: 28px; height: 28px; }
-        .route-step::before { left: 13px; }
-        .guide-card { padding: 1rem; gap: 0.8rem; }
-      }
-      @media (hover: none) {
-        .btn:hover { background: #1f1a16 !important; }
-        .btn.accent:hover { background: #b2562a !important; }
-        .btn.metro:hover { background: #1f3a5f !important; }
-        .btn.ghost:hover { background: transparent !important; }
+        .qr-frame { width: 160px; height: 160px; }
+        .qr-frame svg { width: 110px; height: 110px; }
       }
     </style>
   </head>
@@ -601,97 +624,137 @@
     </header>
 
     <main class="app">
-      <div class="status">
-        <div class="status-time" data-no-type id="clock">--:--:--</div>
-        <div class="status-loc">
-          <span class="status-dot"></span>
-          <span>台北市 · 大同區</span>
-        </div>
-      </div>
 
       <!-- ============================================================
-           1. 歡迎
+           首頁 HOME
            ============================================================ -->
-      <section class="screen active" data-screen="1">
-        <div class="welcome">
-          <div class="welcome-mark">
-            <span class="rule"></span>
-            <span class="label">Welcome</span>
-          </div>
-
-          <h1 class="welcome-time">
-            台北市 · 大同區<br>
-            現在是 <span class="time-now" data-no-type id="now-time">--:--</span>
-            <span class="period" id="greeting">晚安</span>
-          </h1>
-
-          <p class="welcome-greet">
-            尊敬的 <span class="origin" id="origin">日本</span> 旅客，
-            歡迎使用智慧遊台北系統。我們會告訴您該走哪個樓梯、哪個出口，以及台北特有的搭乘默契。
-          </p>
-
-          <div class="welcome-meta">
-            SMART TAIPEI GUIDE · v3.1<br>
-            SESSION INITIALIZED · <span data-no-type id="init-time">--:--</span>
-          </div>
+      <section class="tab active" data-tab="home">
+        <div class="welcome-mark">
+          <span class="rule"></span>
+          <span class="label">Welcome</span>
         </div>
 
-        <button type="button" class="btn accent" style="margin-top: 2.5rem;" onclick="goTo(2)">
-          <span>開始規劃行程</span>
-          <span class="arrow">→</span>
-        </button>
-      </section>
+        <h1 class="welcome-time">
+          <span data-no-type id="now-time">--:--</span>
+          <span class="period" id="greeting">晚安</span>
+        </h1>
 
-      <!-- ============================================================
-           2. 行程規劃
-           ============================================================ -->
-      <section class="screen" data-screen="2">
-        <span class="eyebrow"><span class="idx">01</span> · 行程規劃</span>
-        <h2 class="title">今日，想去哪裡走走？</h2>
-
-        <p class="lead">
-          可直接打字新增，也可以打開地圖，點選想去的地點。
+        <p class="welcome-greet">
+          尊敬的 <span class="origin" id="origin">日本</span> 旅客，
+          歡迎使用智慧遊台北。今天想去哪裡？
         </p>
 
-        <button type="button" class="btn map-trigger" onclick="goTo('map')">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-          <span class="label">打開地圖選擇</span>
-          <span class="hint">Map →</span>
-        </button>
-
-        <div class="tags" id="spots">
-          <span class="tag removable" onclick="removeSpot(this)">迪化街</span>
-          <span class="tag removable" onclick="removeSpot(this)">中正紀念堂</span>
-          <span class="tag removable" onclick="removeSpot(this)">總統府</span>
-          <span class="tag removable" onclick="removeSpot(this)">世貿</span>
-          <span class="tag removable" onclick="removeSpot(this)">101</span>
+        <div class="status-inline">
+          <span class="status-dot"></span>
+          <span>台北市 · 大同區</span>
+          <span style="margin-left: auto;" data-no-type id="clock">--:--:--</span>
         </div>
 
-        <div class="input-row">
-          <input type="text" id="custom" placeholder="輸入其他想去的地點…" />
-          <button type="button" onclick="addSpot()">新增</button>
+        <!-- 主要動作：掃 QR 尋寶 -->
+        <button class="hero-action" onclick="switchTab('quest')">
+          <div class="ha-label">Start Quest</div>
+          <div class="ha-title">掃描 QR code 開始尋寶</div>
+          <div class="ha-sub">在捷運站裡收集關卡，累積點數</div>
+          <div class="ha-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+              <path d="M14 14h3v3M20 14v.01M14 20h.01M17 20h3v-3"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- 快速入口 -->
+        <div class="quick-grid">
+          <button class="quick-card" onclick="switchTab('explore')">
+            <div class="qc-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="qc-label">Explore</div>
+            <div class="qc-title">探索附近</div>
+          </button>
+
+          <button class="quick-card" onclick="switchTab('route')">
+            <div class="qc-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 6h18M3 12h18M3 18h12"/>
+                <circle cx="18" cy="18" r="2"/>
+              </svg>
+            </div>
+            <div class="qc-label">Route</div>
+            <div class="qc-title">查詢路線</div>
+          </button>
+
+          <button class="quick-card" onclick="switchTab('guide')">
+            <div class="qc-icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 8v5M12 16h.01"/>
+              </svg>
+            </div>
+            <div class="qc-label">Guide</div>
+            <div class="qc-title">站內默契</div>
+          </button>
+
+          <button class="quick-card" onclick="switchTab('me')">
+            <div class="qc-icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+              </svg>
+            </div>
+            <div class="qc-label">Me</div>
+            <div class="qc-title">我的旅程</div>
+          </button>
         </div>
 
-        <button type="button" class="btn" onclick="goTo(3)">
-          <span>選擇交通方式</span>
-          <span class="arrow">→</span>
-        </button>
+        <!-- 附近關卡推薦 -->
+        <h3 class="sub-title">附近的關卡</h3>
+        <p class="lead">這些是您目前位置附近的 QR 關卡。</p>
+
+        <div class="reco-card" onclick="switchTab('quest')">
+          <div class="rc-body">
+            <span class="rc-badge">中正紀念堂站</span>
+            <div class="rc-title">入口關卡</div>
+            <div class="rc-desc">解鎖車站故事與站內動線，第一次完成可獲得「初探者」徽章。</div>
+          </div>
+          <div class="rc-points">10</div>
+        </div>
+
+        <div class="reco-card" onclick="switchTab('quest')">
+          <div class="rc-body">
+            <span class="rc-badge">中正紀念堂站</span>
+            <div class="rc-title">月台關卡</div>
+            <div class="rc-desc">學習車廂位置與月台方向，適合第一次來台北的旅客。</div>
+          </div>
+          <div class="rc-points">15</div>
+        </div>
+
+        <div class="reco-card" onclick="switchTab('guide')">
+          <div class="rc-body">
+            <span class="rc-badge">站內默契</span>
+            <div class="rc-title">電扶梯靠右站</div>
+            <div class="rc-desc">台北捷運最有名的一個潛規則。為什麼要這樣做？</div>
+          </div>
+          <div class="rc-points">10</div>
+        </div>
       </section>
 
       <!-- ============================================================
-           2-map. 地圖
+           探索 EXPLORE
            ============================================================ -->
-      <section class="screen" data-screen="map">
-        <span class="eyebrow"><span class="idx">01</span> · 地圖選擇</span>
-        <h2 class="title">點選地圖上的地點</h2>
-        <p class="lead">點一下標記即可加入行程。再次點擊可取消。</p>
+      <section class="tab" data-tab="explore">
+        <span class="eyebrow"><span class="idx">01</span> · 探索</span>
+        <h2 class="title">台北的角落，慢慢走</h2>
+        <p class="lead">點地圖上的標記，或往下滑看看分類。</p>
 
         <div class="map-wrap">
           <div class="map-hint">TAIPEI · MAP</div>
-          <svg class="map-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" aria-label="台北市簡圖">
+          <svg class="map-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
             <rect width="800" height="600" fill="#fbf8f3"/>
             <path d="M 0 260 Q 120 250 220 210 Q 300 180 360 160 L 360 120" stroke="#b8d2dd" stroke-width="26" fill="none" stroke-linecap="round" opacity="0.55"/>
             <path d="M 360 120 Q 460 100 580 80 Q 700 60 800 50" stroke="#b8d2dd" stroke-width="22" fill="none" stroke-linecap="round" opacity="0.55"/>
@@ -705,218 +768,362 @@
               <line x1="0" y1="460" x2="800" y2="460"/>
               <line x1="0" y1="560" x2="800" y2="560"/>
             </g>
-            <text x="400" y="35" text-anchor="middle" fill="#9c9188" font-family="Noto Sans TC, sans-serif" font-size="13" letter-spacing="6" style="pointer-events:none;">TAIPEI CITY</text>
+            <text x="400" y="35" text-anchor="middle" fill="#9c9188" font-family="Noto Sans TC, sans-serif" font-size="13" letter-spacing="6">TAIPEI CITY</text>
 
-            <g class="map-pin" data-spot="迪化街" onclick="toggleMapPin(this)">
-              <circle class="pin-dot" cx="180" cy="170" r="9"/>
-              <circle class="pin-dot-inner" cx="180" cy="170" r="4"/>
+            <g class="map-pin" onclick="showSpot('迪化街')">
+              <circle class="pin-dot" cx="180" cy="170" r="9"/><circle class="pin-dot-inner" cx="180" cy="170" r="4"/>
               <text class="pin-label" x="180" y="200">迪化街</text>
             </g>
-            <g class="map-pin" data-spot="總統府" onclick="toggleMapPin(this)">
-              <circle class="pin-dot" cx="350" cy="330" r="9"/>
-              <circle class="pin-dot-inner" cx="350" cy="330" r="4"/>
-              <text class="pin-label" x="350" y="360">總統府</text>
-            </g>
-            <g class="map-pin" data-spot="中正紀念堂" onclick="toggleMapPin(this)">
-              <circle class="pin-dot" cx="420" cy="410" r="9"/>
-              <circle class="pin-dot-inner" cx="420" cy="410" r="4"/>
+            <g class="map-pin" onclick="showSpot('中正紀念堂')">
+              <circle class="pin-dot" cx="420" cy="410" r="9"/><circle class="pin-dot-inner" cx="420" cy="410" r="4"/>
               <text class="pin-label" x="420" y="440">中正紀念堂</text>
             </g>
-            <g class="map-pin" data-spot="世貿" onclick="toggleMapPin(this)">
-              <circle class="pin-dot" cx="600" cy="430" r="9"/>
-              <circle class="pin-dot-inner" cx="600" cy="430" r="4"/>
+            <g class="map-pin" onclick="showSpot('總統府')">
+              <circle class="pin-dot" cx="350" cy="330" r="9"/><circle class="pin-dot-inner" cx="350" cy="330" r="4"/>
+              <text class="pin-label" x="350" y="360">總統府</text>
+            </g>
+            <g class="map-pin" onclick="showSpot('世貿')">
+              <circle class="pin-dot" cx="600" cy="430" r="9"/><circle class="pin-dot-inner" cx="600" cy="430" r="4"/>
               <text class="pin-label" x="600" y="460">世貿</text>
             </g>
-            <g class="map-pin" data-spot="101" onclick="toggleMapPin(this)">
-              <circle class="pin-dot" cx="650" cy="490" r="9"/>
-              <circle class="pin-dot-inner" cx="650" cy="490" r="4"/>
+            <g class="map-pin" onclick="showSpot('101')">
+              <circle class="pin-dot" cx="650" cy="490" r="9"/><circle class="pin-dot-inner" cx="650" cy="490" r="4"/>
               <text class="pin-label" x="650" y="520">101</text>
             </g>
           </svg>
         </div>
 
-        <div class="map-selection">
-          <div class="map-selection-label">已選擇的地點</div>
-          <div class="map-selection-tags" id="map-selection-tags">
-            <span class="empty">尚未選擇任何地點</span>
-          </div>
+        <div class="chips">
+          <button class="chip active" onclick="filterCategory(this, 'all')">全部</button>
+          <button class="chip" onclick="filterCategory(this, 'temple')">寺廟</button>
+          <button class="chip" onclick="filterCategory(this, 'history')">歷史</button>
+          <button class="chip" onclick="filterCategory(this, 'modern')">現代</button>
+          <button class="chip" onclick="filterCategory(this, 'museum')">博物館</button>
+          <button class="chip" onclick="filterCategory(this, 'night')">夜市</button>
+          <button class="chip" onclick="filterCategory(this, 'nature')">自然</button>
         </div>
 
-        <div class="btn-row" style="margin-top: 1.75rem;">
-          <button type="button" class="btn ghost" onclick="goTo(2)">返回</button>
-          <button type="button" class="btn accent" onclick="confirmMapSelection()">確認並加入</button>
+        <div id="spot-list">
+          <div class="card" data-cat="history">
+            <div class="card-head"><span class="name">中正紀念堂</span><span class="district">中正區</span></div>
+            <div class="desc">藍瓦白牆，象徵自由與平等。屋頂仿天壇，八角形寓意八德。整點有儀隊交接。</div>
+            <div class="meta"><span>捷運 5 號出口</span><span>步行 1 分</span></div>
+          </div>
+          <div class="card" data-cat="history">
+            <div class="card-head"><span class="name">總統府</span><span class="district">中正區</span></div>
+            <div class="desc">1919 年建成，原為日本總督府。外圍博愛特區可自由參觀，安檢較嚴格。</div>
+            <div class="meta"><span>捷運 1 號出口</span><span>步行 8 分</span></div>
+          </div>
+          <div class="card" data-cat="history">
+            <div class="card-head"><span class="name">迪化街</span><span class="district">大同區</span></div>
+            <div class="desc">台北最老的老街，南北貨、中藥、布匹。清代與日治時期的建築，每棟都有故事。</div>
+            <div class="meta"><span>捷運 1 號出口</span><span>步行 5 分</span></div>
+          </div>
+          <div class="card" data-cat="modern">
+            <div class="card-head"><span class="name">台北 101</span><span class="district">信義區</span></div>
+            <div class="desc">2004 年完工，曾是世界第一高樓。89 樓室內、91 樓戶外觀景台。電梯 37 秒直達。</div>
+            <div class="meta"><span>捷運 4 號出口</span><span>連通道直達</span></div>
+          </div>
+          <div class="card" data-cat="modern">
+            <div class="card-head"><span class="name">台北表演藝術中心</span><span class="district">士林區</span></div>
+            <div class="desc">2022 年開幕，銀色球體建築。晚上打燈最漂亮。</div>
+            <div class="meta"><span>捷運劍潭站 3 號出口</span><span>步行 3 分</span></div>
+          </div>
+          <div class="card" data-cat="temple">
+            <div class="card-head"><span class="name">龍山寺</span><span class="district">萬華區</span></div>
+            <div class="desc">1738 年創建，台北最古老的寺廟之一。拜拜順序：天公爐 → 主神 → 配祀神。</div>
+            <div class="meta"><span>捷運龍山寺站 1 號出口</span><span>步行 1 分</span></div>
+          </div>
+          <div class="card" data-cat="temple">
+            <div class="card-head"><span class="name">霞海城隍廟</span><span class="district">大同區</span></div>
+            <div class="desc">求姻緣最有名的廟。拜月老要帶紅線、喜糖，說清楚自己的條件。</div>
+            <div class="meta"><span>捷運 1 號出口</span><span>步行 5 分</span></div>
+          </div>
+          <div class="card" data-cat="nature">
+            <div class="card-head"><span class="name">象山</span><span class="district">信義區</span></div>
+            <div class="desc">看 101 最近的地方。爬 20 分鐘到六巨石，是拍 101 最經典的角度。</div>
+            <div class="meta"><span>捷運象山站 2 號出口</span><span>步行 5 分</span></div>
+          </div>
+          <div class="card" data-cat="nature">
+            <div class="card-head"><span class="name">淡水</span><span class="district">淡水區</span></div>
+            <div class="desc">看夕陽、逛老街、坐渡輪。傍晚 4 點到，找個河邊的位置坐下來。</div>
+            <div class="meta"><span>捷運淡水站</span><span>終點站</span></div>
+          </div>
+          <div class="card" data-cat="night">
+            <div class="card-head"><span class="name">士林夜市</span><span class="district">士林區</span></div>
+            <div class="desc">豪大大雞排、蚵仔煎、大腸包小腸。先逛地下美食街，再逛地面攤位。</div>
+            <div class="meta"><span>捷運劍潭站 1 號出口</span><span>步行 1 分</span></div>
+          </div>
+          <div class="card" data-cat="night">
+            <div class="card-head"><span class="name">饒河街夜市</span><span class="district">松山區</span></div>
+            <div class="desc">胡椒餅、藥燉排骨、東發號蚵仔麵線。整條街直直走到底，不會迷路。</div>
+            <div class="meta"><span>捷運松山站 1 號出口</span><span>步行 3 分</span></div>
+          </div>
+          <div class="card" data-cat="museum">
+            <div class="card-head"><span class="name">故宮博物院</span><span class="district">士林區</span></div>
+            <div class="desc">必看三寶：翠玉白菜、肉形石、毛公鼎。建議從 3 樓開始往下逛。</div>
+            <div class="meta"><span>捷運士林站 1 號出口</span><span>轉紅 30 公車</span></div>
+          </div>
         </div>
       </section>
 
       <!-- ============================================================
-           3. 交通方式
+           路線 ROUTE
            ============================================================ -->
-      <section class="screen" data-screen="3">
-        <span class="eyebrow"><span class="idx">02</span> · 交通方式</span>
-        <h2 class="title">想用哪一種方式前進？</h2>
-        <p class="lead">公車能看見城市的街道，捷運能快速穿越城市。也可以兩者搭配。</p>
+      <section class="tab" data-tab="route">
+        <span class="eyebrow"><span class="idx">02</span> · 路線</span>
+        <h2 class="title">想從哪裡，去哪裡？</h2>
+        <p class="lead">輸入起點與終點，系統會告訴您怎麼走。</p>
 
-        <div class="list">
-          <button type="button" class="btn" style="margin-bottom: 0.75rem;" onclick="goTo(4)">
-            <span>搭公車　公車路線查詢</span>
-            <span class="arrow">→</span>
-          </button>
-          <button type="button" class="btn metro" style="margin-bottom: 0.75rem;" onclick="goTo(5)">
-            <span>搭捷運　站點與站內導引</span>
-            <span class="arrow">→</span>
-          </button>
-          <button type="button" class="btn ghost" onclick="goTo(4)">
-            <span>公車 + 捷運　混合規劃</span>
-            <span class="arrow">→</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           4. 公車路線
-           ============================================================ -->
-      <section class="screen" data-screen="4">
-        <div class="meta-bar">
-          <span class="live">公車 · 即時查詢</span>
-          <span data-no-type id="route-time">--:--</span>
-        </div>
-
-        <span class="eyebrow"><span class="idx">03</span> · 公車路線</span>
-        <h2 class="title">依您的行程「迪化街 → 中正紀念堂」<br>建議搭乘以下路線</h2>
-
-        <div class="route">
-          <div class="route-head">
-            <span class="route-no">206</span>
-            <span class="route-eta">約 3 分鐘後到站</span>
+        <div style="background: #ffffff; border: 1px solid #e8e0d4; border-radius: 16px; padding: 1.25rem; margin-bottom: 1.5rem;">
+          <div style="margin-bottom: 1rem;">
+            <div style="font-family: 'SF Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: #9c9188; text-transform: uppercase; margin-bottom: 0.5rem;">從</div>
+            <input type="text" value="迪化街" style="width: 100%; padding: 0.75rem 0; border: none; border-bottom: 1px solid #e8e0d4; font-family: inherit; font-size: 1rem; color: #1f1a16; outline: none; background: transparent;" />
           </div>
-          <div class="route-name">迪化街 → 捷運中正紀念堂站</div>
-          <div class="route-meta"><span>首班 05:30</span><span>末班 22:30</span><span>間隔 10–15 分</span></div>
-        </div>
-
-        <div class="route">
-          <div class="route-head">
-            <span class="route-no">304</span>
-            <span class="route-eta">約 8 分鐘後到站</span>
+          <div>
+            <div style="font-family: 'SF Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: #9c9188; text-transform: uppercase; margin-bottom: 0.5rem;">到</div>
+            <input type="text" value="中正紀念堂" style="width: 100%; padding: 0.75rem 0; border: none; border-bottom: 1px solid #e8e0d4; font-family: inherit; font-size: 1rem; color: #1f1a16; outline: none; background: transparent;" />
           </div>
-          <div class="route-name">大龍峒 → 中正紀念堂</div>
-          <div class="route-meta"><span>首班 05:40</span><span>末班 23:00</span><span>間隔 15–20 分</span></div>
         </div>
 
-        <div class="route">
-          <div class="route-head">
-            <span class="route-no">639</span>
-            <span class="route-eta">約 12 分鐘後到站</span>
+        <h3 class="sub-title">公車路線</h3>
+        <div class="card">
+          <div class="card-head"><span class="name" style="font-family: 'SF Mono', monospace; font-size: 1.3rem; font-weight: 600;">206</span><span class="district" style="color: #b2562a;">約 3 分鐘</span></div>
+          <div class="desc">迪化街 → 捷運中正紀念堂站</div>
+          <div class="meta"><span>首班 05:30</span><span>末班 22:30</span><span>間隔 10–15 分</span></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="name" style="font-family: 'SF Mono', monospace; font-size: 1.3rem; font-weight: 600;">304</span><span class="district" style="color: #b2562a;">約 8 分鐘</span></div>
+          <div class="desc">大龍峒 → 中正紀念堂</div>
+          <div class="meta"><span>首班 05:40</span><span>末班 23:00</span><span>間隔 15–20 分</span></div>
+        </div>
+
+        <h3 class="sub-title">捷運路線</h3>
+        <p class="lead" style="font-size: 0.88rem;">淡水信義線 · 3 站</p>
+
+        <div class="card" style="display: flex; align-items: center; gap: 1rem;">
+          <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #1f3a5f;"></div>
+          <div style="flex: 1;">
+            <div style="font-size: 0.95rem; font-weight: 500;">中山站</div>
+            <div style="font-size: 0.78rem; color: #9c9188;">上車 · 往象山方向</div>
           </div>
-          <div class="route-name">迪化街 → 台北車站 → 中正紀念堂</div>
-          <div class="route-meta"><span>首班 06:00</span><span>末班 22:00</span><span>間隔 20–30 分</span></div>
+        </div>
+        <div style="margin-left: 0.35rem; width: 1px; height: 24px; background: #1f3a5f;"></div>
+        <div class="card" style="display: flex; align-items: center; gap: 1rem;">
+          <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #1f3a5f;"></div>
+          <div style="flex: 1;">
+            <div style="font-size: 0.95rem; font-weight: 500;">台北車站</div>
+            <div style="font-size: 0.78rem; color: #9c9188;">經過</div>
+          </div>
+        </div>
+        <div style="margin-left: 0.35rem; width: 1px; height: 24px; background: #1f3a5f;"></div>
+        <div class="card" style="display: flex; align-items: center; gap: 1rem; border-color: #b2562a;">
+          <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #b2562a;"></div>
+          <div style="flex: 1;">
+            <div style="font-size: 0.95rem; font-weight: 500;">中正紀念堂站</div>
+            <div style="font-size: 0.78rem; color: #9c9188;">下車 · 5 號出口</div>
+          </div>
         </div>
 
-        <button type="button" class="btn accent" style="margin-top: 1.75rem;" onclick="goTo(6)">
-          <span>開始行程</span>
+        <button class="btn metro" style="margin-top: 1.5rem;" onclick="switchTab('smart')">
+          <span>查看站內智慧引導</span>
           <span class="arrow">→</span>
         </button>
       </section>
 
       <!-- ============================================================
-           5. 捷運站點地圖
+           智慧路徑 SMART
            ============================================================ -->
-      <section class="screen" data-screen="5">
-        <span class="eyebrow"><span class="idx">04</span> · 捷運系統</span>
-        <h2 class="title">選擇您要前往的捷運站</h2>
-        <p class="lead">點選站點即可查看站內智慧引導。</p>
+      <section class="tab" data-tab="smart">
+        <span class="eyebrow"><span class="idx">03</span> · 站內智慧引導</span>
+        <h2 class="title">為您計算出的最佳路徑</h2>
+        <p class="lead">系統已根據您的目的地，計算出站內最短路徑。請依序操作。</p>
 
-        <div class="metro-map">
-          <svg class="metro-line-svg" viewBox="0 0 800 340" preserveAspectRatio="xMidYMid meet" aria-label="台北捷運淡水信義線簡圖">
-            <line x1="40" y1="180" x2="760" y2="180" stroke="#1f3a5f" stroke-width="8" stroke-linecap="round"/>
-            <text x="40" y="140" fill="#1f3a5f" font-family="Noto Sans TC, sans-serif" font-size="12" letter-spacing="4">淡水信義線 · TAMSUI–XINYI</text>
-
-            <g class="metro-station" data-station="士林" onclick="selectStation(this)">
-              <circle class="st-dot" cx="90" cy="180" r="8"/>
-              <text class="st-label" x="90" y="215" text-anchor="middle">士林</text>
-            </g>
-            <g class="metro-station" data-station="中山" onclick="selectStation(this)">
-              <circle class="st-dot" cx="280" cy="180" r="8"/>
-              <text class="st-label" x="280" y="215" text-anchor="middle">中山</text>
-            </g>
-            <g class="metro-station" data-station="台北車站" onclick="selectStation(this)">
-              <circle class="st-dot" cx="380" cy="180" r="8"/>
-              <text class="st-label" x="380" y="215" text-anchor="middle">台北車站</text>
-            </g>
-            <g class="metro-station" data-station="中正紀念堂" onclick="selectStation(this)">
-              <circle class="st-dot" cx="480" cy="180" r="8"/>
-              <text class="st-label" x="480" y="215" text-anchor="middle">中正紀念堂</text>
-            </g>
-            <g class="metro-station" data-station="大安森林公園" onclick="selectStation(this)">
-              <circle class="st-dot" cx="580" cy="180" r="8"/>
-              <text class="st-label" x="580" y="215" text-anchor="middle">大安森林公園</text>
-            </g>
-            <g class="metro-station" data-station="台北101/世貿" onclick="selectStation(this)">
-              <circle class="st-dot" cx="700" cy="180" r="8"/>
-              <text class="st-label" x="700" y="215" text-anchor="middle">台北101/世貿</text>
-            </g>
-
-            <line x1="40" y1="270" x2="760" y2="270" stroke="#e8e0d4" stroke-width="1"/>
-            <text x="400" y="300" text-anchor="middle" fill="#9c9188" font-family="Noto Sans TC, sans-serif" font-size="11" letter-spacing="3">點選站點查看智慧引導</text>
-          </svg>
-        </div>
-
-        <div class="map-selection">
-          <div class="map-selection-label">已選擇的站點</div>
-          <div class="map-selection-tags" id="station-selection">
-            <span class="empty">尚未選擇任何站點</span>
+        <div class="smart-route" id="smart-route">
+          <div class="smart-route-header">
+            <span class="h-label">SMART · ROUTE</span>
+            <span class="h-title">前往 中正紀念堂</span>
+          </div>
+          <div class="smart-route-body">
+            <div class="exit-block">
+              <div class="exit-label">請從此出口出站</div>
+              <div class="exit-number">5<span class="unit">號出口</span></div>
+              <div class="exit-name">5 號出口 · 中正紀念堂方向</div>
+            </div>
+            <div class="route-steps">
+              <div class="route-step">
+                <div class="route-step-icon">
+                  <svg viewBox="0 0 24 24"><path d="M13 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M10 21l2-5-2-3V8l3-1 3 4 3 1"/><path d="M5 12l3-3"/></svg>
+                </div>
+                <div class="route-step-body">
+                  <div class="step-label">STEP 01</div>
+                  <div class="step-main">下車後，往月台右側方向走</div>
+                  <div class="step-sub">5 號出口的電扶梯在車廂右前方</div>
+                </div>
+              </div>
+              <div class="route-step">
+                <div class="route-step-icon">
+                  <svg viewBox="0 0 24 24"><path d="M3 20h4v-4h4v-4h4V8h4V4"/></svg>
+                </div>
+                <div class="route-step-body">
+                  <div class="step-label">STEP 02</div>
+                  <div class="step-main">走右側樓梯或搭電扶梯上大廳</div>
+                  <div class="step-sub">樓梯口標示「往 5 號出口 · 中正紀念堂」</div>
+                </div>
+              </div>
+              <div class="route-step">
+                <div class="route-step-icon">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="1"/><path d="M8 20V6M12 12h4"/></svg>
+                </div>
+                <div class="route-step-body">
+                  <div class="step-label">STEP 03</div>
+                  <div class="step-main">出閘門後，直走到底</div>
+                  <div class="step-sub">沿著指標往 5 號出口</div>
+                </div>
+              </div>
+              <div class="route-step">
+                <div class="route-step-icon">
+                  <svg viewBox="0 0 24 24"><path d="M3 17l4-4 4 2 4-6 6-4"/><circle cx="18" cy="5" r="1.5"/><circle cx="6" cy="19" r="1.5"/></svg>
+                </div>
+                <div class="route-step-body">
+                  <div class="step-label">STEP 04</div>
+                  <div class="step-main">搭電扶梯上地面</div>
+                  <div class="step-sub">靠右站，左側留給趕時間的人</div>
+                </div>
+              </div>
+              <div class="route-step">
+                <div class="route-step-icon">
+                  <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+                </div>
+                <div class="route-step-body">
+                  <div class="step-label">STEP 05</div>
+                  <div class="step-main">從 5 號出口出站</div>
+                  <div class="step-sub">對面即是中正紀念堂園區入口</div>
+                </div>
+              </div>
+            </div>
+            <div class="smart-route-tip">
+              <div class="tip-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+              </div>
+              <div><strong style="color: #b2562a;">在地提醒：</strong>5 號出口正對中正紀念堂主體建築，出站後過馬路即可進入園區。往國家音樂廳請改走 1 號出口。</div>
+            </div>
           </div>
         </div>
 
-        <div class="btn-row" style="margin-top: 1.75rem;">
-          <button type="button" class="btn ghost" onclick="goTo(3)">返回</button>
-          <button type="button" class="btn metro" onclick="showSmartRoute()">查看智慧引導</button>
+        <button class="btn ghost" onclick="switchTab('route')">
+          <span>返回修改路線</span>
+          <span class="arrow">→</span>
+        </button>
+      </section>
+
+      <!-- ============================================================
+           尋寶 QUEST
+           ============================================================ -->
+      <section class="tab" data-tab="quest">
+        <span class="eyebrow"><span class="idx">04</span> · 尋寶</span>
+        <h2 class="title">掃描 QR code，解鎖關卡</h2>
+        <p class="lead">台北的捷運站裡藏著很多小關卡。掃描牆上的 QR code，就能解鎖這一站的故事與引導。</p>
+
+        <div class="points-hero">
+          <div class="ph-label">Total Points</div>
+          <div class="ph-value" data-no-type id="points-display">0</div>
+          <div class="ph-sub">已收集 0 個關卡 · 0 個徽章</div>
+        </div>
+
+        <div class="qr-box">
+          <div class="qr-frame">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <rect x="10" y="10" width="20" height="20" fill="none" stroke="#1f1a16" stroke-width="3"/>
+              <rect x="15" y="15" width="10" height="10" fill="#1f1a16"/>
+              <rect x="70" y="10" width="20" height="20" fill="none" stroke="#1f1a16" stroke-width="3"/>
+              <rect x="75" y="15" width="10" height="10" fill="#1f1a16"/>
+              <rect x="10" y="70" width="20" height="20" fill="none" stroke="#1f1a16" stroke-width="3"/>
+              <rect x="15" y="75" width="10" height="10" fill="#1f1a16"/>
+              <rect x="40" y="15" width="5" height="5" fill="#1f1a16"/>
+              <rect x="50" y="20" width="5" height="5" fill="#1f1a16"/>
+              <rect x="40" y="40" width="5" height="5" fill="#1f1a16"/>
+              <rect x="50" y="50" width="5" height="5" fill="#1f1a16"/>
+              <rect x="60" y="40" width="5" height="5" fill="#1f1a16"/>
+              <rect x="70" y="50" width="5" height="5" fill="#1f1a16"/>
+              <rect x="80" y="45" width="5" height="5" fill="#1f1a16"/>
+              <rect x="40" y="70" width="5" height="5" fill="#1f1a16"/>
+              <rect x="55" y="75" width="5" height="5" fill="#1f1a16"/>
+              <rect x="70" y="70" width="5" height="5" fill="#1f1a16"/>
+              <rect x="80" y="80" width="5" height="5" fill="#1f1a16"/>
+            </svg>
+            <div class="qr-line"></div>
+          </div>
+          <div class="qr-title">對準牆上的 QR code</div>
+          <div class="qr-sub">在捷運站的入口、月台、樓梯、出口都有關卡。</div>
+        </div>
+
+        <button class="btn metro" onclick="startScan()">
+          <span>開始掃描</span>
+          <span class="arrow">→</span>
+        </button>
+
+        <h3 class="sub-title">我的徽章</h3>
+        <div class="badge-grid" id="badge-grid">
+          <div class="badge unlocked">
+            <div class="badge-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg>
+            </div>
+            <div class="badge-name">初探者</div>
+          </div>
+          <div class="badge locked">
+            <div class="badge-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            </div>
+            <div class="badge-name">站長</div>
+          </div>
+          <div class="badge locked">
+            <div class="badge-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 20h4v-4h4v-4h4V8h4V4"/></svg>
+            </div>
+            <div class="badge-name">電扶梯達人</div>
+          </div>
+          <div class="badge locked">
+            <div class="badge-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+            </div>
+            <div class="badge-name">出口獵人</div>
+          </div>
+          <div class="badge locked">
+            <div class="badge-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </div>
+            <div class="badge-name">夜行者</div>
+          </div>
+          <div class="badge locked">
+            <div class="badge-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+            </div>
+            <div class="badge-name">台北通</div>
+          </div>
         </div>
       </section>
 
       <!-- ============================================================
-           6. 智慧路徑（依目的地計算）
+           掃描中 SCANNING
            ============================================================ -->
-      <section class="screen" data-screen="smart">
-        <div class="meta-bar">
-          <span class="live">智慧路徑計算中</span>
-          <span data-no-type id="smart-time">--:--</span>
-        </div>
-
-        <span class="eyebrow"><span class="idx">05</span> · 站內智慧引導</span>
-        <h2 class="title" id="smart-title">為您計算出的最佳路徑</h2>
-
-        <p class="lead" id="smart-lead">
-          系統已根據您的目的地，計算出站內最短路徑。請依序操作。
-        </p>
-
-        <div class="smart-route" id="smart-route">
-          <!-- 由 JS 動態填入 -->
-        </div>
-
-        <div class="btn-row">
-          <button type="button" class="btn ghost" onclick="goTo(5)">重新選擇站點</button>
-          <button type="button" class="btn metro" onclick="goTo(7)">
-            <span>我懂了，開始走</span>
-            <span class="arrow">→</span>
-          </button>
+      <section class="tab" data-tab="scanning">
+        <div class="qr-box" style="padding: 3rem 1.5rem;">
+          <div class="qr-frame" style="width: 160px; height: 160px;">
+            <div class="qr-line"></div>
+          </div>
+          <div class="qr-title" style="margin-top: 1rem;">正在辨識 QR code…</div>
+          <div class="qr-sub">請將手機對準牆上的 QR code</div>
         </div>
       </section>
 
       <!-- ============================================================
-           7. 站內規則 6 卡
+           站內默契 GUIDE
            ============================================================ -->
-      <section class="screen" data-screen="7">
-        <div class="meta-bar">
-          <span class="live">捷運站內默契</span>
-          <span>6 GUIDES</span>
-        </div>
-
-        <span class="eyebrow"><span class="idx">06</span> · 使用引導</span>
+      <section class="tab" data-tab="guide">
+        <span class="eyebrow"><span class="idx">05</span> · 站內默契</span>
         <h2 class="title">進站之後，這些事值得知道</h2>
-
-        <p class="lead">
-          台北捷運有幾個不成文的默契。懂了，就能走得更順，也讓別人更舒服。
-        </p>
+        <p class="lead">台北捷運有幾個不成文的默契。懂了，就能走得更順，也讓別人更舒服。</p>
 
         <div class="guide-cards">
           <div class="guide-card">
@@ -1017,129 +1224,106 @@
             </div>
           </div>
         </div>
-
-        <button type="button" class="btn metro" onclick="goTo(8)">
-          <span>我懂了，前往目的地</span>
-          <span class="arrow">→</span>
-        </button>
       </section>
 
       <!-- ============================================================
-           8. 抵達
+           我的 ME
            ============================================================ -->
-      <section class="screen" data-screen="8">
-        <div class="arrival-mark">
-          <span class="rule"></span>
-          <span class="label">Arrived</span>
+      <section class="tab" data-tab="me">
+        <span class="eyebrow"><span class="idx">06</span> · 我的</span>
+        <h2 class="title">我的旅程</h2>
+
+        <div class="points-hero">
+          <div class="ph-label">Total Points</div>
+          <div class="ph-value" data-no-type id="points-display-2">0</div>
+          <div class="ph-sub">繼續探索，累積更多點數</div>
         </div>
 
-        <h2 class="title">歡迎來到 中正紀念堂</h2>
-        <p class="lead">請掃描 QR code，讓隨身導覽為您介紹這座建築與它背後的故事。</p>
+        <div class="me-list">
+          <button class="me-item" onclick="switchTab('quest')">
+            <div class="me-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg>
+            </div>
+            <div class="me-item-body">
+              <div class="mi-title">我的徽章</div>
+              <div class="mi-desc">1 個徽章已解鎖</div>
+            </div>
+            <span class="mi-arrow">→</span>
+          </button>
 
-        <div class="prose">
-          中正紀念堂建於 1976 年，為紀念先總統　蔣公而建。主體建築高 70 公尺，藍瓦白牆，象徵自由與平等。屋頂倣天壇造型，八角形則寓意「八德」。堂內設有銅像、文物展示區與藝文空間；園區另有國家戲劇院與國家音樂廳，皆為仿古宮殿式建築。漫步其間，可感受建築與歷史交織的時光厚度。
+          <button class="me-item" onclick="switchTab('route')">
+            <div class="me-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+            </div>
+            <div class="me-item-body">
+              <div class="mi-title">我的行程</div>
+              <div class="mi-desc">尚無儲存的行程</div>
+            </div>
+            <span class="mi-arrow">→</span>
+          </button>
+
+          <button class="me-item" onclick="switchTab('explore')">
+            <div class="me-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="me-item-body">
+              <div class="mi-title">我的最愛</div>
+              <div class="mi-desc">3 個景點</div>
+            </div>
+            <span class="mi-arrow">→</span>
+          </button>
+
+          <button class="me-item">
+            <div class="me-item-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+            </div>
+            <div class="me-item-body">
+              <div class="mi-title">語言設定</div>
+              <div class="mi-desc">日本語</div>
+            </div>
+            <span class="mi-arrow">→</span>
+          </button>
+
+          <button class="me-item">
+            <div class="me-item-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            </div>
+            <div class="me-item-body">
+              <div class="mi-title">關於智慧遊台北</div>
+              <div class="mi-desc">v4.0</div>
+            </div>
+            <span class="mi-arrow">→</span>
+          </button>
         </div>
-
-        <button type="button" class="skip" onclick="goTo(9)">
-          快進 · 準備用餐
-        </button>
       </section>
 
-      <!-- ============================================================
-           9. 美食
-           ============================================================ -->
-      <section class="screen" data-screen="9">
-        <span class="eyebrow"><span class="idx">07</span> · 午餐提案</span>
-        <h2 class="title">準備好要吃什麼了嗎？</h2>
-        <p class="lead">為您推薦中正紀念堂周邊，幾處值得一嚐的地方。</p>
-
-        <div class="list">
-          <div class="place">
-            <div class="place-head"><span class="name">金峰滷肉飯</span><span class="district">羅斯福路一段</span></div>
-            <div class="desc">台北經典滷肉飯，肥瘦適中，配滷蛋與筍絲。</div>
-          </div>
-          <div class="place">
-            <div class="place-head"><span class="name">盛園絲瓜小籠湯包</span><span class="district">杭州南路二段</span></div>
-            <div class="desc">絲瓜清甜，湯汁飽滿，皮薄餡多。</div>
-          </div>
-          <div class="place">
-            <div class="place-head"><span class="name">合興糕餅 · 南門市場</span><span class="district">南門市場</span></div>
-            <div class="desc">在地老字號，各式傳統糕餅與熟食，適合外帶。</div>
-          </div>
-          <div class="place">
-            <div class="place-head"><span class="name">桃源街牛肉麵</span><span class="district">西門町</span></div>
-            <div class="desc">紅燒湯頭濃郁，牛肉軟嫩，老台北人的記憶。</div>
-          </div>
-        </div>
-
-        <button type="button" class="skip" style="margin-top: 1.75rem;" onclick="goTo(10)">
-          快進 · 前往 101
-        </button>
-      </section>
-
-      <!-- ============================================================
-           10. 101 逛完
-           ============================================================ -->
-      <section class="screen" data-screen="10">
-        <div style="text-align: center; padding: 2rem 0;">
-          <h2 class="title" style="text-align: center; font-size: 1.35rem;">101 逛完了</h2>
-          <p class="lead" style="text-align: center; max-width: 340px; margin: 0 auto 2rem;">
-            這是今天最後的行程。接下來，要為您尋找落腳的地方嗎？希望您能有一個平安的休息。
-          </p>
-        </div>
-
-        <div style="padding-top: 1.5rem; border-top: 1px solid #e8e0d4; text-align: center;">
-          <p style="color: #5c534a !important; font-size: 0.9rem; margin: 0 0 1.25rem;">為您搜尋附近的住宿？</p>
-          <div class="btn-row">
-            <button type="button" class="btn ghost" onclick="restart()">重新開始</button>
-            <button type="button" class="btn accent" onclick="goTo(11)">為我推薦</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           11. 住宿
-           ============================================================ -->
-      <section class="screen" data-screen="11">
-        <span class="eyebrow"><span class="idx">08</span> · 落腳之處</span>
-        <h2 class="title">為您推薦附近住宿</h2>
-
-        <div class="list">
-          <div class="place">
-            <div class="place-head"><span class="name">台北君悅酒店</span><span class="district">信義區</span></div>
-            <div class="desc">緊鄰 101，步行約 3 分鐘。</div>
-          </div>
-          <div class="place">
-            <div class="place-head"><span class="name">寒舍艾美酒店</span><span class="district">信義區</span></div>
-            <div class="desc">精品設計，鄰近世貿。</div>
-          </div>
-          <div class="place">
-            <div class="place-head"><span class="name">誠品行旅</span><span class="district">松菸文創園區</span></div>
-            <div class="desc">書香與設計的結合。</div>
-          </div>
-        </div>
-
-        <div class="closing">
-          <div class="title-cn">祝您有一個平安的休息</div>
-          <div class="sub">SMART TAIPEI GUIDE · END OF SESSION</div>
-        </div>
-
-        <button type="button" class="btn ghost" style="margin-top: 1.5rem;" onclick="restart()">
-          <span>回到首頁重新開始</span>
-          <span class="arrow">→</span>
-        </button>
-      </section>
-
-      <div class="progress" id="progress">
-        <span class="active"></span>
-        <span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span>
-        <span></span>
-      </div>
     </main>
 
-    <script src="../assets/js/nav.js"></script>
+    <!-- ============================================================
+         底部 Tab 導覽
+         ============================================================ -->
+    <nav class="bottom-nav" aria-label="主要導覽">
+      <div class="bottom-nav-inner">
+        <button class="nav-tab active" data-nav="home" onclick="switchTab('home')">
+          <svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2z"/></svg>
+          <span class="nav-label">首頁</span>
+        </button>
+        <button class="nav-tab" data-nav="explore" onclick="switchTab('explore')">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M16 8l-2 6-6 2 2-6z"/></svg>
+          <span class="nav-label">探索</span>
+        </button>
+        <button class="nav-tab" data-nav="quest" onclick="switchTab('quest')">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M20 14v.01M14 20h.01M17 20h3v-3"/></svg>
+          <span class="nav-label">尋寶</span>
+        </button>
+        <button class="nav-tab" data-nav="me" onclick="switchTab('me')">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          <span class="nav-label">我的</span>
+        </button>
+      </div>
+    </nav>
 
+    <script src="../assets/js/nav.js"></script>
     <script>
       (function () {
         'use strict';
@@ -1153,183 +1337,124 @@
         }
         function pad2(n) { return n < 10 ? '0' + n : '' + n; }
 
+        var points = 0;
+
         function tick() {
           var d = new Date();
-          var hh = pad2(d.getHours()); var mm = pad2(d.getMinutes()); var ss = pad2(d.getSeconds());
-          var clock = $('clock'); var rt = $('route-time');
-          var it = $('init-time'); var nt = $('now-time');
-          var st = $('smart-time');
-          if (clock) clock.textContent = hh + ':' + mm + ':' + ss;
-          if (rt) rt.textContent = hh + ':' + mm;
-          if (it && it.textContent === '--:--') it.textContent = hh + ':' + mm;
+          var hh = pad2(d.getHours()), mm = pad2(d.getMinutes()), ss = pad2(d.getSeconds());
+          var c = $('clock'); var nt = $('now-time');
+          if (c) c.textContent = hh + ':' + mm + ':' + ss;
           if (nt) nt.textContent = hh + ':' + mm;
-          if (st) st.textContent = hh + ':' + mm;
         }
 
-        /* ============================================================
-           智慧路徑資料：每個目的地的具體引導
-           ============================================================ */
-        var smartRoutes = {
-          '迪化街': {
-            exit: '1',
-            exitName: '1 號出口 · 民生西路方向',
-            destination: '迪化街',
-            steps: [
-              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台中央方向走', sub: '避開兩側人潮，中間動線最快' },
-              { icon: 'stairs', label: 'STEP 02', main: '走中央樓梯上 1 樓大廳', sub: '樓梯口標示「往 1 號出口 · 民生西路」' },
-              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往左手邊走', sub: '沿著指示牌往 1 號出口' },
-              { icon: 'escalator', label: 'STEP 04', main: '搭左側電扶梯上地面', sub: '靠右站，左側通行' },
-              { icon: 'exit', label: 'STEP 05', main: '從 1 號出口出站', sub: '出站後向右走約 5 分鐘抵達迪化街' }
-            ],
-            tip: '<strong>在地提醒：</strong>迪化街是南北向街道，出站後沿民生西路直走，看到永樂市場就是迪化街入口。'
-          },
-          '中正紀念堂': {
-            exit: '5',
-            exitName: '5 號出口 · 中正紀念堂方向',
-            destination: '中正紀念堂',
-            steps: [
-              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台右側方向走', sub: '5 號出口的電扶梯在車廂右前方' },
-              { icon: 'stairs', label: 'STEP 02', main: '走右側樓梯或搭電扶梯上大廳', sub: '樓梯口標示「往 5 號出口 · 中正紀念堂」' },
-              { icon: 'gate', label: 'STEP 03', main: '出閘門後，直走到底', sub: '沿著指標往 5 號出口' },
-              { icon: 'escalator', label: 'STEP 04', main: '搭電扶梯上地面', sub: '靠右站，左側留給趕時間的人' },
-              { icon: 'exit', label: 'STEP 05', main: '從 5 號出口出站', sub: '對面即是中正紀念堂園區入口' }
-            ],
-            tip: '<strong>在地提醒：</strong>5 號出口正對中正紀念堂主體建築，出站後過馬路即可進入園區。往國家音樂廳請改走 1 號出口。'
-          },
-          '總統府': {
-            exit: '1',
-            exitName: '1 號出口 · 凱達格蘭大道方向',
-            destination: '總統府',
-            steps: [
-              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台左側方向走', sub: '1 號出口的電扶梯在車廂左前方' },
-              { icon: 'stairs', label: 'STEP 02', main: '走左側樓梯上大廳', sub: '樓梯口標示「往 1 號出口 · 凱道」' },
-              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往左手邊走', sub: '沿著指示牌往 1 號出口' },
-              { icon: 'escalator', label: 'STEP 04', main: '搭左側電扶梯上地面', sub: '靠右站，左側通行' },
-              { icon: 'exit', label: 'STEP 05', main: '從 1 號出口出站', sub: '出站後步行約 8 分鐘，總統府在右手邊' }
-            ],
-            tip: '<strong>在地提醒：</strong>總統府參觀需事先預約，平日不對外開放。外圍博愛特區可自由參觀，安檢較嚴格。'
-          },
-          '世貿': {
-            exit: '2',
-            exitName: '2 號出口 · 世貿一館方向',
-            destination: '世貿',
-            steps: [
-              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台中央方向走', sub: '往 2 號出口的動線在月台中央' },
-              { icon: 'stairs', label: 'STEP 02', main: '走中央樓梯上 1 樓大廳', sub: '樓梯口標示「往 2 號出口 · 世貿」' },
-              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往前直走', sub: '沿著指標往 2 號出口' },
-              { icon: 'escalator', label: 'STEP 04', main: '搭電扶梯上地面', sub: '靠右站，左側通行' },
-              { icon: 'exit', label: 'STEP 05', main: '從 2 號出口出站', sub: '出站即是世貿一館，對面是 101' }
-            ],
-            tip: '<strong>在地提醒：</strong>世貿展覽期間人潮眾多，建議提早 20 分鐘出站。2 號出口有無障礙電梯。'
-          },
-          '101': {
-            exit: '4',
-            exitName: '4 號出口 · 台北 101 方向',
-            destination: '台北 101',
-            steps: [
-              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台右側方向走', sub: '往 4 號出口的動線在月台右側' },
-              { icon: 'stairs', label: 'STEP 02', main: '走右側樓梯上 1 樓大廳', sub: '樓梯口標示「往 4 號出口 · 101」' },
-              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往右手邊走', sub: '沿著指示牌往 4 號出口' },
-              { icon: 'escalator', label: 'STEP 04', main: '搭右側電扶梯上地面', sub: '靠右站，左側通行' },
-              { icon: 'exit', label: 'STEP 05', main: '從 4 號出口出站', sub: '出站即見 101，步行約 3 分鐘' }
-            ],
-            tip: '<strong>在地提醒：</strong>4 號出口有直達 101 購物中心的連通道。若要去觀景台，請從 101 購物中心 5 樓購票。'
-          }
-        };
-
-        /* 圖示 SVG */
-        var stepIcons = {
-          walk: '<path d="M13 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M10 21l2-5-2-3V8l3-1 3 4 3 1"/><path d="M5 12l3-3"/>',
-          stairs: '<path d="M3 20h4v-4h4v-4h4V8h4V4"/>',
-          gate: '<rect x="3" y="6" width="18" height="14" rx="1"/><path d="M8 20V6M12 12h4"/>',
-          escalator: '<path d="M3 17l4-4 4 2 4-6 6-4"/><circle cx="18" cy="5" r="1.5"/><circle cx="6" cy="19" r="1.5"/>',
-          exit: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/>'
-        };
-
-        function renderSmartRoute(stationName) {
-          var data = smartRoutes[stationName] || smartRoutes['中正紀念堂'];
-          var wrap = $('smart-route');
-          if (!wrap) return;
-
-          var stepsHTML = '';
-          for (var i = 0; i < data.steps.length; i++) {
-            var s = data.steps[i];
-            var iconPath = stepIcons[s.icon] || stepIcons.walk;
-            stepsHTML +=
-              '<div class="route-step">' +
-                '<div class="route-step-icon"><svg viewBox="0 0 24 24">' + iconPath + '</svg></div>' +
-                '<div class="route-step-body">' +
-                  '<div class="step-label">' + s.label + '</div>' +
-                  '<div class="step-main">' + s.main + '</div>' +
-                  '<div class="step-sub">' + s.sub + '</div>' +
-                '</div>' +
-              '</div>';
-          }
-
-          wrap.innerHTML =
-            '<div class="smart-route-header">' +
-              '<span class="h-label">SMART · ROUTE</span>' +
-              '<span class="h-title">前往 ' + data.destination + '</span>' +
-            '</div>' +
-            '<div class="smart-route-body">' +
-              '<div class="exit-block">' +
-                '<div class="exit-label">請從此出口出站</div>' +
-                '<div class="exit-number">' + data.exit + '<span class="unit">號出口</span></div>' +
-                '<div class="exit-name">' + data.exitName + '</div>' +
-              '</div>' +
-              '<div class="route-steps">' + stepsHTML + '</div>' +
-              '<div class="smart-route-tip">' +
-                '<div class="tip-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></div>' +
-                '<div>' + data.tip + '</div>' +
-              '</div>' +
-            '</div>';
+        function addPoints(n) {
+          points += n;
+          var d1 = $('points-display');
+          var d2 = $('points-display-2');
+          if (d1) d1.textContent = points;
+          if (d2) d2.textContent = points;
         }
 
-        /* ============================================================
-           逐字浮現
-           ============================================================ */
+        /* Tab 切換 */
+        var currentTab = 'home';
+        function switchTab(name) {
+          var tabs = document.querySelectorAll('.tab');
+          for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+          var target = document.querySelector('[data-tab="' + name + '"]');
+          if (target) {
+            target.classList.add('active');
+            void target.offsetWidth;
+            splitText(target);
+          }
+          currentTab = name;
+
+          /* 更新底部 tab */
+          var navs = document.querySelectorAll('.nav-tab');
+          for (var j = 0; j < navs.length; j++) {
+            if (navs[j].getAttribute('data-nav') === name) navs[j].classList.add('active');
+            else navs[j].classList.remove('active');
+          }
+
+          /* 捲到頂 */
+          try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+          catch (e) { window.scrollTo(0, 0); }
+        }
+
+        function startScan() {
+          switchTab('scanning');
+          setTimeout(function () {
+            addPoints(10);
+            switchTab('quest');
+          }, 1800);
+        }
+
+        /* 探索：分類篩選 */
+        function filterCategory(el, cat) {
+          var chips = document.querySelectorAll('.chip');
+          for (var i = 0; i < chips.length; i++) chips[i].classList.remove('active');
+          if (el) el.classList.add('active');
+
+          var cards = document.querySelectorAll('#spot-list .card');
+          for (var j = 0; j < cards.length; j++) {
+            var c = cards[j].getAttribute('data-cat');
+            if (cat === 'all' || c === cat) cards[j].style.display = '';
+            else cards[j].style.display = 'none';
+          }
+        }
+
+        /* 探索：點擊景點 */
+        function showSpot(name) {
+          alert('前往「' + name + '」的引導');
+        }
+
+        /* 逐字 */
         function unwrapChars(screen) {
           var chars = screen.querySelectorAll('.ch');
           for (var i = 0; i < chars.length; i++) {
             var ch = chars[i];
             var txt = ch.textContent === '\u00A0' ? ' ' : ch.textContent;
-            var parent = ch.parentNode;
-            if (parent) parent.replaceChild(document.createTextNode(txt), ch);
+            if (ch.parentNode) ch.parentNode.replaceChild(document.createTextNode(txt), ch);
           }
         }
-
         function isExcluded(node) {
           var p = node.parentNode;
           if (!p) return true;
           if (p.getAttribute && p.getAttribute('data-no-type') !== null) return true;
           var tag = p.tagName ? p.tagName.toLowerCase() : '';
-          if (tag === 'script' || tag === 'style' || tag === 'svg') return true;
-
-          var el = p; var depth = 0;
+          if (tag === 'script' || tag === 'style' || tag === 'svg' || tag === 'input' || tag === 'button') return true;
+          var el = p, depth = 0;
           while (el && depth < 14) {
             if (el.nodeType === 1) {
               var t = el.tagName ? el.tagName.toLowerCase() : '';
               var cls = el.className && typeof el.className === 'string' ? el.className : '';
-              if (t === 'button') return true;
+              if (t === 'button' || t === 'input') return true;
               if (cls.indexOf('btn') !== -1) return true;
-              if (cls.indexOf('skip') !== -1) return true;
               if (cls.indexOf('tag') !== -1) return true;
               if (cls.indexOf('status') !== -1) return true;
               if (cls.indexOf('site-header') !== -1) return true;
               if (cls.indexOf('site-nav') !== -1) return true;
               if (cls.indexOf('site-brand') !== -1) return true;
-              if (cls.indexOf('meta-bar') !== -1) return true;
               if (cls.indexOf('eyebrow') !== -1) return true;
               if (cls.indexOf('map-') !== -1) return true;
               if (cls.indexOf('metro-') !== -1) return true;
-              if (cls.indexOf('step-num') !== -1) return true;
-              if (cls.indexOf('guide-card-head') !== -1) return true;
-              if (cls.indexOf('guide-icon') !== -1) return true;
+              if (cls.indexOf('card') !== -1) return true;
+              if (cls.indexOf('chip') !== -1) return true;
+              if (cls.indexOf('nav-tab') !== -1) return true;
+              if (cls.indexOf('bottom-nav') !== -1) return true;
+              if (cls.indexOf('badge') !== -1) return true;
+              if (cls.indexOf('points-') !== -1) return true;
+              if (cls.indexOf('quick-') !== -1) return true;
+              if (cls.indexOf('reco-') !== -1) return true;
+              if (cls.indexOf('hero-') !== -1) return true;
+              if (cls.indexOf('qr-') !== -1) return true;
               if (cls.indexOf('smart-route') !== -1) return true;
-              if (cls.indexOf('exit-number') !== -1) return true;
-              if (cls.indexOf('exit-label') !== -1) return true;
-              if (cls.indexOf('exit-name') !== -1) return true;
               if (cls.indexOf('route-step') !== -1) return true;
+              if (cls.indexOf('exit-') !== -1) return true;
+              if (cls.indexOf('guide-') !== -1) return true;
+              if (cls.indexOf('me-item') !== -1) return true;
+              if (cls.indexOf('step-num') !== -1) return true;
+              if (cls.indexOf('status-inline') !== -1) return true;
+              if (cls.indexOf('notice') !== -1) return true;
               if (el.getAttribute && el.getAttribute('data-no-type') !== null) return true;
             }
             el = el.parentNode;
@@ -1337,33 +1462,23 @@
           }
           return false;
         }
-
         function splitText(screen) {
           unwrapChars(screen);
           if (!document.createTreeWalker) return;
-
-          var walker = document.createTreeWalker(
-            screen, NodeFilter.SHOW_TEXT,
-            {
-              acceptNode: function (node) {
-                if (isExcluded(node)) return NodeFilter.FILTER_REJECT;
-                if (node.textContent.replace(/\s/g, '') === '') return NodeFilter.FILTER_REJECT;
-                return NodeFilter.FILTER_ACCEPT;
-              }
+          var walker = document.createTreeWalker(screen, NodeFilter.SHOW_TEXT, {
+            acceptNode: function (node) {
+              if (isExcluded(node)) return NodeFilter.FILTER_REJECT;
+              if (node.textContent.replace(/\s/g, '') === '') return NodeFilter.FILTER_REJECT;
+              return NodeFilter.FILTER_ACCEPT;
             }
-          );
-
-          var nodes = []; var n;
+          });
+          var nodes = [], n;
           while ((n = walker.nextNode())) nodes.push(n);
           if (nodes.length === 0) return;
-
           var total = 0;
           for (var i = 0; i < nodes.length; i++) total += nodes[i].textContent.length;
-
           var perChar = Math.max(0.01, Math.min(0.045, 4 / Math.max(total, 1)));
-          var startDelay = 0.1;
           var idx = 0;
-
           for (var j = 0; j < nodes.length; j++) {
             var node = nodes[j];
             var chars = node.textContent.split('');
@@ -1374,8 +1489,7 @@
               span.className = 'ch';
               if (ch === ' ') span.innerHTML = '&nbsp;';
               else span.textContent = ch;
-              var delay = (startDelay + idx * perChar).toFixed(3) + 's';
-              span.style.animationDelay = delay;
+              span.style.animationDelay = (0.1 + idx * perChar).toFixed(3) + 's';
               idx++;
               frag.appendChild(span);
             }
@@ -1383,268 +1497,25 @@
           }
         }
 
-        /* ============================================================
-           畫面切換
-           ============================================================ */
-        var currentScreen = 1;
-        function goTo(n) {
-          var screens = document.querySelectorAll('.screen');
-          for (var i = 0; i < screens.length; i++) {
-            if (screens[i].classList) screens[i].classList.remove('active');
-            else screens[i].className = screens[i].className.replace(/\bactive\b/g, '');
-          }
-
-          var target = document.querySelector('[data-screen="' + n + '"]');
-          if (target) {
-            if (target.classList) target.classList.add('active');
-            else target.className = target.className + ' active';
-            void target.offsetWidth;
-            /* 智慧路徑畫面由 showSmartRoute 自行繪製，不再逐字 */
-            if (n !== 'smart') splitText(target);
-          }
-          currentScreen = n;
-
-          var num = parseInt(n, 10);
-          var dots = document.querySelectorAll('#progress span');
-          for (var m = 0; m < dots.length; m++) {
-            var on = (num && m === num - 1);
-            if (dots[m].classList) {
-              if (on) dots[m].classList.add('active');
-              else dots[m].classList.remove('active');
-            }
-          }
-
-          if (window.innerWidth <= 640) {
-            try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-            catch (e) { window.scrollTo(0, 0); }
-          }
-        }
-
-        /* ============================================================
-           行程標籤
-           ============================================================ */
-        function addSpot() {
-          var input = $('custom');
-          if (!input) return;
-          var v = input.value.replace(/^\s+|\s+$/g, '');
-          if (!v) return;
-          addSpotToTags(v);
-          input.value = '';
-        }
-
-        function addSpotToTags(v) {
-          var spots = $('spots');
-          if (!spots) return;
-          var existing = spots.querySelectorAll('.tag');
-          for (var i = 0; i < existing.length; i++) {
-            if (existing[i].textContent.replace(/×\s*$/, '').replace(/^\s+|\s+$/g, '') === v) return;
-          }
-          var tag = document.createElement('span');
-          tag.className = 'tag removable';
-          tag.textContent = v;
-          tag.onclick = function () { removeSpot(tag); };
-          spots.appendChild(tag);
-        }
-
-        function removeSpot(el) {
-          if (!el || !el.parentNode) return;
-          el.parentNode.removeChild(el);
-        }
-
-        /* ============================================================
-           地圖選擇
-           ============================================================ */
-        var mapSelected = {};
-        function toggleMapPin(el) {
-          var spot = el.getAttribute('data-spot');
-          if (!spot) return;
-          if (el.classList && el.classList.contains('selected')) {
-            el.classList.remove('selected'); delete mapSelected[spot];
-          } else {
-            if (el.classList) el.classList.add('selected');
-            mapSelected[spot] = true;
-          }
-          renderMapSelection();
-        }
-        function renderMapSelection() {
-          var wrap = $('map-selection-tags');
-          if (!wrap) return;
-          wrap.innerHTML = '';
-          var keys = [];
-          for (var k in mapSelected) if (mapSelected.hasOwnProperty(k)) keys.push(k);
-          if (keys.length === 0) {
-            var empty = document.createElement('span');
-            empty.className = 'empty';
-            empty.textContent = '尚未選擇任何地點';
-            wrap.appendChild(empty); return;
-          }
-          for (var i = 0; i < keys.length; i++) {
-            var tag = document.createElement('span');
-            tag.className = 'tag';
-            tag.textContent = keys[i];
-            wrap.appendChild(tag);
-          }
-        }
-        function confirmMapSelection() {
-          var keys = [];
-          for (var k in mapSelected) if (mapSelected.hasOwnProperty(k)) keys.push(k);
-          if (keys.length === 0) { goTo(2); return; }
-          for (var i = 0; i < keys.length; i++) addSpotToTags(keys[i]);
-          mapSelected = {};
-          var pins = document.querySelectorAll('.map-pin.selected');
-          for (var j = 0; j < pins.length; j++) pins[j].classList.remove('selected');
-          renderMapSelection();
-          goTo(2);
-        }
-
-        /* ============================================================
-           捷運站選擇
-           ============================================================ */
-        var stationSelected = {};
-        function selectStation(el) {
-          var s = el.getAttribute('data-station');
-          if (!s) return;
-          /* 只能選一個 */
-          var all = document.querySelectorAll('.metro-station.selected');
-          for (var i = 0; i < all.length; i++) {
-            if (all[i] !== el) all[i].classList.remove('selected');
-          }
-          stationSelected = {};
-          if (el.classList && el.classList.contains('selected')) {
-            el.classList.remove('selected');
-          } else {
-            if (el.classList) el.classList.add('selected');
-            stationSelected[s] = true;
-          }
-          renderStationSelection();
-        }
-        function renderStationSelection() {
-          var wrap = $('station-selection');
-          if (!wrap) return;
-          wrap.innerHTML = '';
-          var keys = [];
-          for (var k in stationSelected) if (stationSelected.hasOwnProperty(k)) keys.push(k);
-          if (keys.length === 0) {
-            var empty = document.createElement('span');
-            empty.className = 'empty';
-            empty.textContent = '尚未選擇任何站點';
-            wrap.appendChild(empty); return;
-          }
-          for (var i = 0; i < keys.length; i++) {
-            var tag = document.createElement('span');
-            tag.className = 'tag';
-            tag.textContent = keys[i];
-            wrap.appendChild(tag);
-          }
-        }
-
-        /* ============================================================
-           顯示智慧路徑
-           ============================================================ */
-        function showSmartRoute() {
-          var keys = [];
-          for (var k in stationSelected) if (stationSelected.hasOwnProperty(k)) keys.push(k);
-          var stationName = keys.length > 0 ? keys[0] : '中正紀念堂';
-
-          /* 判斷目的地：從行程標籤中，找出與捷運站不同的景點 */
-          var spots = document.querySelectorAll('#spots .tag');
-          var destination = '中正紀念堂';
-          if (spots.length > 0) {
-            var lastSpot = spots[spots.length - 1].textContent.replace(/×\s*$/, '').replace(/^\s+|\s+$/g, '');
-            /* 若最後一個景點在 smartRoutes 中，優先用它 */
-            if (smartRoutes[lastSpot]) destination = lastSpot;
-            else {
-              for (var i = 0; i < spots.length; i++) {
-                var name = spots[i].textContent.replace(/×\s*$/, '').replace(/^\s+|\s+$/g, '');
-                if (smartRoutes[name]) { destination = name; break; }
-              }
-            }
-          }
-
-          renderSmartRoute(destination);
-
-          var titleEl = $('smart-title');
-          var leadEl = $('smart-lead');
-          if (titleEl) titleEl.textContent = '前往「' + destination + '」的最佳路徑';
-          if (leadEl) leadEl.textContent = '系統已為您計算從「' + stationName + '」站出發的站內路徑。請依序操作。';
-
-          /* 切到 smart 畫面 */
-          var screens = document.querySelectorAll('.screen');
-          for (var j = 0; j < screens.length; j++) screens[j].classList.remove('active');
-          var target = document.querySelector('[data-screen="smart"]');
-          if (target) target.classList.add('active');
-          currentScreen = 'smart';
-
-          var dots = document.querySelectorAll('#progress span');
-          for (var m = 0; m < dots.length; m++) {
-            if (m === 5) dots[m].classList.add('active');
-            else dots[m].classList.remove('active');
-          }
-
-          if (window.innerWidth <= 640) {
-            try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-            catch (e) { window.scrollTo(0, 0); }
-          }
-        }
-
-        /* ============================================================
-           重新開始
-           ============================================================ */
-        function restart() {
-          var spots = $('spots');
-          if (spots) {
-            spots.innerHTML = '';
-            var defaults = ['迪化街', '中正紀念堂', '總統府', '世貿', '101'];
-            for (var i = 0; i < defaults.length; i++) {
-              (function (name) {
-                var tag = document.createElement('span');
-                tag.className = 'tag removable';
-                tag.textContent = name;
-                tag.onclick = function () { removeSpot(tag); };
-                spots.appendChild(tag);
-              })(defaults[i]);
-            }
-          }
-          mapSelected = {}; stationSelected = {};
-          var pins = document.querySelectorAll('.map-pin.selected, .metro-station.selected');
-          for (var j = 0; j < pins.length; j++) pins[j].classList.remove('selected');
-          renderMapSelection(); renderStationSelection();
-          goTo(1);
-        }
-
-        document.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.keyCode === 13) {
-            var inp = $('custom');
-            if (document.activeElement === inp) addSpot();
-          }
-        });
-
         function boot() {
           var g = $('greeting');
           if (g) g.textContent = getGreeting();
           tick();
           setInterval(tick, 1000);
-          var first = document.querySelector('[data-screen="1"]');
+          var first = document.querySelector('[data-tab="home"]');
           if (first) splitText(first);
         }
-
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
           setTimeout(boot, 1);
         } else if (document.addEventListener) {
           document.addEventListener('DOMContentLoaded', boot, false);
           window.addEventListener('load', boot, false);
-        } else if (window.attachEvent) {
-          window.attachEvent('onload', boot);
         }
 
-        window.goTo = goTo;
-        window.addSpot = addSpot;
-        window.removeSpot = removeSpot;
-        window.toggleMapPin = toggleMapPin;
-        window.confirmMapSelection = confirmMapSelection;
-        window.selectStation = selectStation;
-        window.showSmartRoute = showSmartRoute;
-        window.restart = restart;
+        window.switchTab = switchTab;
+        window.startScan = startScan;
+        window.filterCategory = filterCategory;
+        window.showSpot = showSpot;
       })();
     </script>
   </body>
