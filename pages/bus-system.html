@@ -4,33 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light only" />
-    <meta name="supported-color-schemes" content="light only" />
     <meta name="theme-color" content="#f7f3ec" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta name="site-nav-title" content="台北公車" />
+    <meta name="site-nav-title" content="智慧遊台北" />
     <meta name="site-nav-order" content="40" />
     <meta name="site-nav-visible" content="true" />
 
-    <title>台北公車 — Nash Pages</title>
+    <title>智慧遊台北 — Nash Pages</title>
     <link rel="stylesheet" href="../assets/css/site.css" />
 
     <style>
-      html {
-        color-scheme: light only !important;
-        -webkit-text-size-adjust: 100%;
-        text-size-adjust: 100%;
-      }
+      html { color-scheme: light only !important; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       :root { forced-color-adjust: none; }
-
       * { box-sizing: border-box; -webkit-box-sizing: border-box; }
-      *:before, *:after { box-sizing: border-box; -webkit-box-sizing: border-box; }
       html, body { margin: 0; padding: 0; }
 
       body {
         background: #f7f3ec !important;
-        background-color: #f7f3ec !important;
         color: #1f1a16 !important;
         font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
         font-size: 15px;
@@ -39,967 +29,563 @@
         min-height: 100vh;
         letter-spacing: 0.01em;
         -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        forced-color-adjust: none;
-        -webkit-forced-color-adjust: none;
       }
       @media (prefers-color-scheme: dark) {
-        html, body {
-          background: #f7f3ec !important;
-          background-color: #f7f3ec !important;
-          color: #1f1a16 !important;
-        }
-      }
-      @media (forced-colors: active) {
-        body { background: #f7f3ec !important; color: #1f1a16 !important; }
+        html, body { background: #f7f3ec !important; color: #1f1a16 !important; }
       }
 
-      body p, body span, body div, body section, body article,
-      body h1, body h2, body h3, body h4, body h5, body h6,
-      body a, body li, body button, body label, body strong, body em {
-        color: inherit;
-      }
-
-      /* 按鈕文字一律直接顯示，不參與逐字動畫 */
-      .btn, .btn *, .skip, .skip *, .tag, .tag *,
-      .site-header, .site-header *, .status, .status *,
-      .meta-bar, .meta-bar *, .eyebrow, .eyebrow *,
-      .map-wrap, .map-wrap * {
-        animation: none;
-      }
-
-      /* ============================================================
-         導覽列
-         ============================================================ */
+      /* 導覽列 */
       .site-header {
-        position: fixed !important;
-        top: 0; left: 0;
-        width: 100%;
-        z-index: 100;
+        position: fixed !important; top: 0; left: 0; width: 100%; z-index: 100;
         background: rgba(247, 243, 236, 0.92) !important;
         border-bottom: 1px solid #e8e0d4 !important;
         padding: 0.7rem 2rem;
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
+        display: flex; align-items: center; justify-content: center;
         -webkit-backdrop-filter: saturate(180%) blur(20px);
         backdrop-filter: saturate(180%) blur(20px);
       }
-      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-        .site-header { background: rgba(247, 243, 236, 0.98) !important; }
-      }
       .site-brand {
-        position: absolute;
-        left: 2rem;
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        gap: 0.55rem;
-        text-decoration: none;
-        color: #1f1a16 !important;
-        font-weight: 600;
-        font-size: 0.92rem;
+        position: absolute; left: 2rem;
+        display: flex; align-items: center; gap: 0.55rem;
+        text-decoration: none; color: #1f1a16 !important;
+        font-weight: 600; font-size: 0.92rem;
       }
       .site-brand-avatar {
-        width: 32px; height: 32px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 1px solid #d8cdbc;
+        width: 32px; height: 32px; border-radius: 50%;
+        object-fit: cover; border: 1px solid #d8cdbc;
       }
       .site-brand-text { white-space: nowrap; color: #1f1a16 !important; }
-      .site-nav {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        gap: 0.1rem;
-        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
-        -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
-      }
+      .site-nav { display: flex; align-items: center; gap: 0.1rem; flex-wrap: wrap; justify-content: center; }
       .site-nav a {
-        color: #5c534a !important;
-        text-decoration: none;
-        padding: 0.4rem 0.75rem;
-        font-size: 0.85rem;
-        border-radius: 8px;
+        color: #5c534a !important; text-decoration: none;
+        padding: 0.4rem 0.75rem; font-size: 0.85rem; border-radius: 8px;
         transition: color 0.2s, background 0.2s;
       }
-      .site-nav a:hover,
-      .site-nav a[aria-current="page"] {
-        color: #b2562a !important;
-        background: #f2e5d8 !important;
+      .site-nav a:hover, .site-nav a[aria-current="page"] {
+        color: #b2562a !important; background: #f2e5d8 !important;
       }
       .site-status {
-        position: absolute;
-        right: 2rem;
-        color: #9c9188 !important;
-        font-size: 0.7rem;
-        letter-spacing: 0.15em;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+        position: absolute; right: 2rem;
+        color: #9c9188 !important; font-size: 0.7rem; letter-spacing: 0.15em;
+        font-family: "SF Mono", ui-monospace, monospace;
       }
 
-      /* ============================================================
-         主容器
-         ============================================================ */
-      .app {
-        max-width: 640px;
-        margin: 0 auto;
-        padding: 6.5rem 1.25rem 4rem;
-      }
+      .app { max-width: 640px; margin: 0 auto; padding: 6.5rem 1.25rem 4rem; }
 
       .status {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;
-        padding: 0.75rem 0 1.5rem;
-        border-bottom: 1px solid #e8e0d4;
-        margin-bottom: 2rem;
-        font-size: 0.75rem;
-        letter-spacing: 0.08em;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.75rem 0 1.5rem; border-bottom: 1px solid #e8e0d4;
+        margin-bottom: 2rem; font-size: 0.75rem; letter-spacing: 0.08em;
         color: #9c9188 !important;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+        font-family: "SF Mono", ui-monospace, monospace;
       }
-      .status-time {
-        color: #1f1a16 !important;
-        font-weight: 500;
-        font-variant-numeric: tabular-nums;
-      }
-      .status-loc {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        gap: 0.4rem;
-      }
+      .status-time { color: #1f1a16 !important; font-weight: 500; font-variant-numeric: tabular-nums; }
+      .status-loc { display: flex; align-items: center; gap: 0.4rem; }
       .status-loc span { color: #9c9188 !important; }
       .status-dot {
-        width: 6px; height: 6px;
-        border-radius: 50%;
-        background: #5c6b4f;
+        width: 6px; height: 6px; border-radius: 50%; background: #5c6b4f;
         animation: pulse 2.4s ease-in-out infinite;
-        -webkit-animation: pulse 2.4s ease-in-out infinite;
       }
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.35; }
-      }
-      @-webkit-keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.35; }
-      }
+      @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
 
-      /* ============================================================
-         畫面切換
-         ============================================================ */
       .screen { display: none; }
-      .screen.active {
-        display: block;
-        animation: fadeUp 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
-        -webkit-animation: fadeUp 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
-      }
-      @keyframes fadeUp {
-        from { opacity: 0; -webkit-transform: translateY(8px); transform: translateY(8px); }
-        to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
-      }
-      @-webkit-keyframes fadeUp {
-        from { opacity: 0; -webkit-transform: translateY(8px); }
-        to { opacity: 1; -webkit-transform: translateY(0); }
+      .screen.active { display: block; animation: fadeUp 0.55s cubic-bezier(0.2, 0.7, 0.3, 1); }
+      @keyframes fadeUp { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+
+      .ch { display: inline-block; opacity: 0; animation: chIn 0.4s cubic-bezier(0.2, 0.7, 0.3, 1) forwards; }
+      @keyframes chIn { from{opacity:0;transform:translateY(4px);} to{opacity:1;transform:translateY(0);} }
+
+      .btn, .btn *, .skip, .skip *, .tag, .tag *,
+      .site-header, .site-header *, .status, .status *,
+      .meta-bar, .meta-bar *, .eyebrow, .eyebrow *,
+      .map-wrap, .map-wrap *, .metro-map, .metro-map *,
+      .step-num, .step-num *, .guide-card-head, .guide-card-head *,
+      .exit-number, .exit-number *, .route-badge, .route-badge * {
+        animation: none !important;
       }
 
-      /* ============================================================
-         逐字浮現（僅限非互動文字）
-         ============================================================ */
-      .ch {
-        display: inline-block;
-        opacity: 0;
-        animation: chIn 0.4s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
-        -webkit-animation: chIn 0.4s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
-      }
-      @keyframes chIn {
-        from { opacity: 0; -webkit-transform: translateY(4px); transform: translateY(4px); }
-        to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
-      }
-      @-webkit-keyframes chIn {
-        from { opacity: 0; -webkit-transform: translateY(4px); }
-        to { opacity: 1; -webkit-transform: translateY(0); }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .ch { animation: none !important; -webkit-animation: none !important; opacity: 1 !important; }
-        .screen.active, .status-dot, .scan-line, .icon-wrap { animation: none !important; -webkit-animation: none !important; }
-      }
-
-      /* ============================================================
-         標籤 / 標題
-         ============================================================ */
       .eyebrow {
-        display: block;
-        font-size: 0.7rem;
-        letter-spacing: 0.22em;
-        color: #9c9188 !important;
-        text-transform: uppercase;
+        display: block; font-size: 0.7rem; letter-spacing: 0.22em;
+        color: #9c9188 !important; text-transform: uppercase;
         margin-bottom: 0.6rem;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+        font-family: "SF Mono", ui-monospace, monospace;
       }
       .eyebrow .idx { color: #b2562a !important; font-weight: 500; }
 
       h2.title {
-        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
-        font-size: 1.55rem;
-        font-weight: 500;
-        line-height: 1.5;
-        color: #1f1a16 !important;
-        margin: 0 0 1.5rem;
+        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", serif;
+        font-size: 1.55rem; font-weight: 500; line-height: 1.5;
+        color: #1f1a16 !important; margin: 0 0 1.5rem;
       }
-      p.lead {
-        color: #5c534a !important;
-        font-size: 0.95rem;
-        margin: 0 0 1.25rem;
-        line-height: 1.85;
-      }
+      p.lead { color: #5c534a !important; font-size: 0.95rem; margin: 0 0 1.25rem; line-height: 1.85; }
 
-      /* ============================================================
-         按鈕（文字直接顯示，無逐字）
-         ============================================================ */
       .btn {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;
-        gap: 0.75rem;
-        width: 100%;
-        padding: 1rem 1.25rem;
-        background: #1f1a16 !important;
-        color: #f7f3ec !important;
-        border: none;
-        border-radius: 14px;
-        font-family: inherit;
-        font-size: 0.95rem;
-        font-weight: 500;
-        letter-spacing: 0.05em;
-        cursor: pointer;
-        transition: background 0.25s, -webkit-transform 0.15s, transform 0.15s;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 0.75rem; width: 100%; padding: 1rem 1.25rem;
+        background: #1f1a16 !important; color: #f7f3ec !important;
+        border: none; border-radius: 14px;
+        font-family: inherit; font-size: 0.95rem; font-weight: 500;
+        letter-spacing: 0.05em; cursor: pointer;
+        transition: background 0.25s, transform 0.15s;
         -webkit-tap-highlight-color: transparent;
-        text-decoration: none;
-        text-align: left;
+        text-decoration: none; text-align: left;
       }
       .btn span { color: inherit !important; }
       .btn:hover { background: #33291f !important; }
-      .btn:active { -webkit-transform: scale(0.985); transform: scale(0.985); }
-      .btn .arrow {
-        display: inline-block;
-        transition: -webkit-transform 0.25s, transform 0.25s;
-        color: inherit !important;
-      }
-      .btn:hover .arrow { -webkit-transform: translateX(3px); transform: translateX(3px); }
+      .btn:active { transform: scale(0.985); }
+      .btn .arrow { display: inline-block; transition: transform 0.25s; }
+      .btn:hover .arrow { transform: translateX(3px); }
 
       .btn.ghost {
-        background: transparent !important;
-        color: #1f1a16 !important;
+        background: transparent !important; color: #1f1a16 !important;
         border: 1px solid #d8cdbc;
       }
       .btn.ghost:hover { background: #ffffff !important; border-color: #9c9188; }
-
-      .btn.accent {
-        background: #b2562a !important;
-        color: #ffffff !important;
-      }
+      .btn.accent { background: #b2562a !important; color: #ffffff !important; }
       .btn.accent:hover { background: #9c4823 !important; }
-
+      .btn.metro { background: #1f3a5f !important; color: #ffffff !important; }
+      .btn.metro:hover { background: #162a45 !important; }
       .btn.map-trigger {
-        background: #ffffff !important;
-        color: #1f1a16 !important;
-        border: 1px solid #d8cdbc;
-        margin-bottom: 1rem;
+        background: #ffffff !important; color: #1f1a16 !important;
+        border: 1px solid #d8cdbc; margin-bottom: 1rem;
         justify-content: flex-start;
-        gap: 0.75rem;
       }
-      .btn.map-trigger:hover {
-        background: #ffffff !important;
-        border-color: #b2562a;
-        box-shadow: 0 4px 16px rgba(178, 86, 42, 0.08);
+      .btn.map-trigger .hint { margin-left: auto; font-size: 0.75rem; color: #9c9188 !important; }
+      .btn-row { display: flex; gap: 0.65rem; margin-top: 1.5rem; }
+      .btn-row .btn { flex: 1; }
+
+      .icon { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+      .icon-lg { width: 40px; height: 40px; stroke-width: 1.25; }
+
+      .welcome { padding: 1.5rem 0 0.5rem; }
+      .welcome-mark { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem; color: #b2562a !important; }
+      .welcome-mark .rule { height: 1px; width: 40px; background: #b2562a; opacity: 0.6; }
+      .welcome-mark .label {
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.68rem; letter-spacing: 0.28em;
+        text-transform: uppercase; color: #b2562a !important;
       }
-      .btn.map-trigger .label { color: #1f1a16 !important; font-weight: 500; }
-      .btn.map-trigger .hint {
-        margin-left: auto;
-        font-size: 0.75rem;
-        color: #9c9188 !important;
+      .welcome-time {
+        font-family: "Noto Serif TC", "Songti TC", serif;
+        font-size: 2.2rem; font-weight: 500; line-height: 1.45;
+        color: #1f1a16 !important; margin: 0 0 1.75rem;
+      }
+      .welcome-time .period { color: #b2562a !important; margin-left: 0.25em; }
+      .welcome-greet {
+        font-family: "Noto Serif TC", serif;
+        font-size: 1.12rem; line-height: 1.9; color: #5c534a !important;
+        margin: 0 0 2.5rem;
+      }
+      .welcome-greet .origin {
+        color: #b2562a !important; font-weight: 500;
+        border-bottom: 1px solid #c98868; padding-bottom: 1px;
+      }
+      .welcome-meta {
+        padding-top: 1.75rem; border-top: 1px solid #e8e0d4;
+        font-size: 0.8rem; color: #9c9188 !important; line-height: 1.9;
+        font-family: "SF Mono", ui-monospace, monospace;
+      }
+
+      /* ============ 智慧路徑卡 ============ */
+      .smart-route {
+        background: linear-gradient(135deg, #ffffff 0%, #fbf8f3 100%);
+        border: 2px solid #1f3a5f;
+        border-radius: 22px;
+        padding: 0;
+        margin-bottom: 1.75rem;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 8px 32px rgba(31, 58, 95, 0.12);
+      }
+
+      .smart-route-header {
+        background: #1f3a5f;
+        color: #ffffff;
+        padding: 0.9rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+      .smart-route-header .h-label {
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.68rem; letter-spacing: 0.25em;
+        text-transform: uppercase; color: #b8c8dc;
+      }
+      .smart-route-header .h-title {
+        font-family: "Noto Serif TC", serif;
+        font-size: 1.05rem; font-weight: 500;
+        color: #ffffff;
         letter-spacing: 0.05em;
       }
 
-      .btn-row {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        gap: 0.65rem;
-        margin-top: 1.5rem;
-      }
-      .btn-row .btn { -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; }
+      .smart-route-body { padding: 1.75rem 1.5rem 1.5rem; }
 
-      /* ============================================================
-         圖示
-         ============================================================ */
-      .icon {
-        width: 20px; height: 20px;
-        stroke: currentColor;
-        stroke-width: 1.5;
-        fill: none;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        -webkit-flex-shrink: 0; flex-shrink: 0;
-      }
-      .icon-lg { width: 40px; height: 40px; stroke-width: 1.25; }
-
-      /* ============================================================
-         歡迎區
-         ============================================================ */
-      .welcome { padding: 1.5rem 0 0.5rem; }
-
-      .welcome-mark {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 2.5rem;
-        color: #b2562a !important;
-      }
-      .welcome-mark .rule {
-        height: 1px;
-        width: 40px;
-        background: #b2562a;
-        opacity: 0.6;
-      }
-      .welcome-mark .label {
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        font-size: 0.68rem;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: #b2562a !important;
-      }
-
-      .welcome-time {
-        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
-        font-size: 2.2rem;
-        font-weight: 500;
-        line-height: 1.45;
-        color: #1f1a16 !important;
-        margin: 0 0 1.75rem;
-      }
-      .welcome-time .time-now {
-        color: #1f1a16 !important;
-        font-variant-numeric: tabular-nums;
-        letter-spacing: 0.02em;
-      }
-      .welcome-time .period {
-        color: #b2562a !important;
-        margin-left: 0.25em;
-      }
-      .welcome-time .location { color: #1f1a16 !important; }
-
-      .welcome-greet {
-        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
-        font-size: 1.12rem;
-        font-weight: 400;
-        line-height: 1.9;
-        color: #5c534a !important;
-        margin: 0 0 2.5rem;
-      }
-      .welcome-greet .em { color: #1f1a16 !important; font-weight: 500; }
-      .welcome-greet .origin {
-        color: #b2562a !important;
-        font-weight: 500;
-        border-bottom: 1px solid #c98868;
-        padding-bottom: 1px;
-      }
-
-      .welcome-meta {
-        padding-top: 1.75rem;
-        border-top: 1px solid #e8e0d4;
-        font-size: 0.8rem;
-        color: #9c9188 !important;
-        letter-spacing: 0.03em;
-        line-height: 1.9;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-      }
-
-      /* ============================================================
-         路線
-         ============================================================ */
-      .list { display: block; }
-
-      .route {
-        padding: 1.25rem 0;
-        border-bottom: 1px solid #e8e0d4;
-      }
-      .route:last-of-type { border-bottom: none; }
-
-      .route-head {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: baseline; -webkit-align-items: baseline; -ms-flex-align: baseline; align-items: baseline;
-        gap: 1rem;
-        margin-bottom: 0.5rem;
-        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
-      }
-      .route-no {
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        font-size: 1.4rem;
-        font-weight: 600;
-        color: #1f1a16 !important;
-      }
-      .route-eta {
-        font-size: 0.78rem;
-        color: #b2562a !important;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-      }
-      .route-name {
-        font-size: 0.92rem;
-        color: #5c534a !important;
-        margin: 0 0 0.6rem;
-        line-height: 1.6;
-      }
-      .route-meta {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        gap: 1rem;
-        font-size: 0.72rem;
-        color: #9c9188 !important;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
-      }
-      .route-meta span { color: #9c9188 !important; }
-
-      .group-label {
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        font-size: 0.7rem;
-        letter-spacing: 0.2em;
-        color: #9c9188 !important;
-        text-transform: uppercase;
-        margin: 2rem 0 0.5rem;
-        padding-bottom: 0.5rem;
-      }
-
-      /* ============================================================
-         標籤（直接顯示，無逐字）
-         ============================================================ */
-      .tags {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
-        gap: 0.5rem;
+      /* 出口大字 */
+      .exit-block {
+        text-align: center;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px dashed #d8cdbc;
         margin-bottom: 1.5rem;
       }
-      .tag {
-        padding: 0.5rem 0.9rem;
-        background: #ffffff !important;
-        border: 1px solid #e8e0d4;
-        border-radius: 999px;
-        font-size: 0.85rem;
+      .exit-block .exit-label {
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.7rem; letter-spacing: 0.3em;
+        color: #9c9188 !important; text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+      .exit-block .exit-number {
+        font-family: "Noto Serif TC", serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #1f3a5f;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        margin-bottom: 0.5rem;
+      }
+      .exit-block .exit-number .unit {
+        font-size: 1.5rem;
+        color: #b2562a;
+        font-weight: 500;
+        margin-left: 0.25rem;
+      }
+      .exit-block .exit-name {
+        font-size: 0.95rem;
         color: #5c534a !important;
+        line-height: 1.6;
+      }
+
+      /* 步驟序列 */
+      .route-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        counter-reset: step;
+      }
+      .route-step {
+        display: flex;
+        gap: 1rem;
+        padding: 0.9rem 0;
+        position: relative;
+      }
+      .route-step::before {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 2.6rem;
+        bottom: -0.5rem;
+        width: 1px;
+        background: #d8cdbc;
+      }
+      .route-step:last-child::before { display: none; }
+      .route-step-icon {
+        flex-shrink: 0;
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        background: #f2e5d8;
+        color: #b2562a;
+        display: flex; align-items: center; justify-content: center;
+        position: relative;
+        z-index: 1;
+        border: 2px solid #ffffff;
+      }
+      .route-step-icon svg {
+        width: 16px; height: 16px;
+        stroke: currentColor; stroke-width: 2; fill: none;
+        stroke-linecap: round; stroke-linejoin: round;
+      }
+      .route-step-body { flex: 1; min-width: 0; padding-top: 0.15rem; }
+      .route-step-body .step-label {
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.68rem; letter-spacing: 0.15em;
+        color: #b2562a !important; text-transform: uppercase;
+        margin-bottom: 0.15rem;
+      }
+      .route-step-body .step-main {
+        font-size: 0.98rem;
+        color: #1f1a16 !important;
+        font-weight: 500;
+        line-height: 1.55;
+        margin-bottom: 0.15rem;
+      }
+      .route-step-body .step-sub {
+        font-size: 0.82rem;
+        color: #5c534a !important;
+        line-height: 1.7;
+      }
+
+      /* 提示列 */
+      .smart-route-tip {
+        margin-top: 1.25rem;
+        padding: 0.85rem 1rem;
+        background: #f2e5d8;
+        border-radius: 12px;
+        font-size: 0.82rem;
+        color: #5c534a !important;
+        line-height: 1.7;
+        display: flex;
+        gap: 0.6rem;
+        align-items: flex-start;
+      }
+      .smart-route-tip .tip-icon {
+        flex-shrink: 0;
+        width: 18px; height: 18px;
+        margin-top: 2px;
+        color: #b2562a;
+      }
+      .smart-route-tip .tip-icon svg {
+        width: 100%; height: 100%;
+        stroke: currentColor; stroke-width: 2; fill: none;
+        stroke-linecap: round; stroke-linejoin: round;
+      }
+      .smart-route-tip strong { color: #b2562a; }
+
+      /* ============ 通用 ============ */
+      .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+      .tag {
+        padding: 0.5rem 0.9rem; background: #ffffff !important;
+        border: 1px solid #e8e0d4; border-radius: 999px;
+        font-size: 0.85rem; color: #5c534a !important;
         transition: all 0.2s;
       }
       .tag:hover { border-color: #c98868; color: #b2562a !important; }
-
-      .tag.removable {
-        cursor: pointer;
-        padding-right: 0.6rem;
-      }
+      .tag.removable { cursor: pointer; padding-right: 0.6rem; }
       .tag.removable::after {
-        content: "×";
-        margin-left: 0.5rem;
-        color: #9c9188;
-        font-size: 1rem;
-        line-height: 1;
-        vertical-align: middle;
+        content: "×"; margin-left: 0.5rem;
+        color: #9c9188; font-size: 1rem; vertical-align: middle;
       }
-      .tag.removable:hover::after { color: #b2562a; }
 
-      /* ============================================================
-         輸入
-         ============================================================ */
-      .input-row {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        gap: 0.5rem;
-        margin-bottom: 1.75rem;
-      }
+      .input-row { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; }
       .input-row input {
-        -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1;
-        min-width: 0;
+        flex: 1; min-width: 0;
         background: #ffffff !important;
-        border: 1px solid #e8e0d4;
-        border-radius: 14px;
-        padding: 0.85rem 1rem;
-        font-family: inherit;
-        font-size: 0.9rem;
-        color: #1f1a16 !important;
-        outline: none;
-        transition: border-color 0.2s;
-        -webkit-appearance: none;
-        appearance: none;
+        border: 1px solid #e8e0d4; border-radius: 14px;
+        padding: 0.85rem 1rem; font-family: inherit; font-size: 0.9rem;
+        color: #1f1a16 !important; outline: none;
+        -webkit-appearance: none; appearance: none;
       }
       .input-row input:focus { border-color: #9c9188; }
-      .input-row input::-webkit-input-placeholder { color: #9c9188 !important; opacity: 1; }
-      .input-row input::-moz-placeholder { color: #9c9188 !important; opacity: 1; }
-      .input-row input:-ms-input-placeholder { color: #9c9188 !important; }
       .input-row input::placeholder { color: #9c9188 !important; opacity: 1; }
       .input-row button {
         padding: 0.85rem 1.1rem;
         background: transparent !important;
-        border: 1px solid #d8cdbc;
-        border-radius: 14px;
-        font-family: inherit;
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: #1f1a16 !important;
-        cursor: pointer;
-        transition: all 0.2s;
-        white-space: nowrap;
+        border: 1px solid #d8cdbc; border-radius: 14px;
+        font-family: inherit; font-size: 0.9rem; font-weight: 500;
+        color: #1f1a16 !important; cursor: pointer;
+        transition: all 0.2s; white-space: nowrap;
       }
-      .input-row button:hover { border-color: #1f1a16; background: #ffffff !important; }
 
-      /* ============================================================
-         地圖
-         ============================================================ */
+      /* 地圖 */
       .map-wrap {
-        background: #ffffff;
-        border: 1px solid #e8e0d4;
-        border-radius: 20px;
-        overflow: hidden;
-        margin-bottom: 1.5rem;
-        position: relative;
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 20px; overflow: hidden;
+        margin-bottom: 1.5rem; position: relative;
       }
-      .map-svg {
-        display: block;
-        width: 100%;
-        height: auto;
-        background: #fbf8f3;
-      }
+      .map-svg { display: block; width: 100%; height: auto; background: #fbf8f3; }
       .map-pin { cursor: pointer; }
-      .map-pin .pin-dot {
-        fill: #ffffff;
-        stroke: #b2562a;
-        stroke-width: 2.5;
-        transition: all 0.25s;
-      }
-      .map-pin .pin-dot-inner {
-        fill: #b2562a;
-        transition: all 0.25s;
-      }
+      .map-pin .pin-dot { fill: #ffffff; stroke: #b2562a; stroke-width: 2.5; transition: all 0.25s; }
+      .map-pin .pin-dot-inner { fill: #b2562a; transition: all 0.25s; }
       .map-pin .pin-label {
-        fill: #1f1a16;
-        font-family: "Noto Sans TC", sans-serif;
-        font-size: 13px;
-        font-weight: 500;
-        text-anchor: middle;
-        pointer-events: none;
-        transition: all 0.25s;
+        fill: #1f1a16; font-family: "Noto Sans TC", sans-serif;
+        font-size: 13px; font-weight: 500;
+        text-anchor: middle; pointer-events: none;
       }
-      .map-pin:hover .pin-dot { stroke-width: 3; r: 10; }
-      .map-pin.selected .pin-dot {
-        fill: #b2562a;
-        stroke: #ffffff;
-        stroke-width: 3;
-      }
+      .map-pin.selected .pin-dot { fill: #b2562a; stroke: #ffffff; stroke-width: 3; }
       .map-pin.selected .pin-dot-inner { fill: #ffffff; }
       .map-pin.selected .pin-label { fill: #b2562a; font-weight: 700; }
 
       .map-hint {
-        position: absolute;
-        top: 0.75rem;
-        left: 0.75rem;
+        position: absolute; top: 0.75rem; left: 0.75rem;
         padding: 0.3rem 0.7rem;
         background: rgba(255, 255, 255, 0.92);
-        border: 1px solid #e8e0d4;
-        border-radius: 999px;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        font-size: 0.68rem;
-        letter-spacing: 0.12em;
-        color: #9c9188 !important;
-        text-transform: uppercase;
+        border: 1px solid #e8e0d4; border-radius: 999px;
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.68rem; letter-spacing: 0.12em;
+        color: #9c9188 !important; text-transform: uppercase;
       }
-
       .map-selection {
         padding: 1rem 0 0.5rem;
-        border-top: 1px solid #e8e0d4;
-        margin-top: 0.5rem;
+        border-top: 1px solid #e8e0d4; margin-top: 0.5rem;
       }
       .map-selection-label {
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        font-size: 0.68rem;
-        letter-spacing: 0.2em;
-        color: #9c9188 !important;
-        text-transform: uppercase;
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.68rem; letter-spacing: 0.2em;
+        color: #9c9188 !important; text-transform: uppercase;
         margin-bottom: 0.6rem;
       }
-      .map-selection-tags {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
-        gap: 0.4rem;
-        min-height: 2rem;
+      .map-selection-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; min-height: 2rem; }
+      .map-selection-tags .empty { font-size: 0.85rem; color: #9c9188 !important; font-style: italic; }
+
+      /* 捷運圖 */
+      .metro-map {
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 20px; padding: 1.25rem;
+        margin-bottom: 1.5rem; overflow: hidden;
       }
-      .map-selection-tags .empty {
-        font-size: 0.85rem;
-        color: #9c9188 !important;
-        font-style: italic;
+      .metro-line-svg { display: block; width: 100%; height: auto; }
+      .metro-station { cursor: pointer; }
+      .metro-station .st-dot {
+        fill: #ffffff; stroke: #1f3a5f; stroke-width: 3;
+        transition: all 0.25s;
+      }
+      .metro-station .st-label {
+        fill: #1f1a16; font-family: "Noto Sans TC", sans-serif;
+        font-size: 12px; font-weight: 500;
+        pointer-events: none; transition: all 0.25s;
+      }
+      .metro-station.selected .st-dot { fill: #1f3a5f; stroke: #ffffff; stroke-width: 3; }
+      .metro-station.selected .st-label { fill: #1f3a5f; font-weight: 700; }
+
+      .route { padding: 1.25rem 0; border-bottom: 1px solid #e8e0d4; }
+      .route:last-of-type { border-bottom: none; }
+      .route-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+      .route-no { font-family: "SF Mono", ui-monospace, monospace; font-size: 1.4rem; font-weight: 600; color: #1f1a16 !important; }
+      .route-eta { font-size: 0.78rem; color: #b2562a !important; font-family: "SF Mono", ui-monospace, monospace; }
+      .route-name { font-size: 0.92rem; color: #5c534a !important; margin: 0 0 0.6rem; line-height: 1.6; }
+      .route-meta { display: flex; gap: 1rem; font-size: 0.72rem; color: #9c9188 !important; font-family: "SF Mono", ui-monospace, monospace; flex-wrap: wrap; }
+      .route-meta span { color: #9c9188 !important; }
+
+      .group-label {
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.7rem; letter-spacing: 0.2em;
+        color: #9c9188 !important; text-transform: uppercase;
+        margin: 2rem 0 0.5rem; padding-bottom: 0.5rem;
       }
 
-      /* ============================================================
-         中央訊息
-         ============================================================ */
-      .center-msg { text-align: center; padding: 2.5rem 0; }
-      .icon-wrap {
-        display: -webkit-inline-box; display: -webkit-inline-flex; display: -ms-inline-flexbox; display: inline-flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
-        width: 72px; height: 72px;
-        border-radius: 50%;
-        background: #ffffff !important;
-        border: 1px solid #e8e0d4;
+      .place { padding: 1.2rem 0; border-bottom: 1px solid #e8e0d4; }
+      .place:last-child { border-bottom: none; }
+      .place-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
+      .place .name { font-size: 1rem; font-weight: 500; color: #1f1a16 !important; }
+      .place .district { font-family: "SF Mono", ui-monospace, monospace; font-size: 0.72rem; color: #9c9188 !important; }
+      .place .desc { font-size: 0.85rem; color: #5c534a !important; line-height: 1.75; }
+
+      .guide-cards { display: grid; gap: 1rem; margin-bottom: 1.75rem; }
+      .guide-card {
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 16px; padding: 1.25rem;
+        display: flex; gap: 1rem; align-items: flex-start;
+        transition: border-color 0.25s;
+      }
+      .guide-card:hover { border-color: #b2562a; }
+      .guide-icon {
+        flex-shrink: 0; width: 48px; height: 48px;
+        border-radius: 12px; background: #f2e5d8;
+        display: flex; align-items: center; justify-content: center;
+        color: #b2562a;
+      }
+      .guide-icon svg {
+        width: 26px; height: 26px;
+        stroke: currentColor; stroke-width: 1.5; fill: none;
+        stroke-linecap: round; stroke-linejoin: round;
+      }
+      .guide-body { flex: 1; min-width: 0; }
+      .guide-card-head { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.4rem; }
+      .step-num {
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.7rem; letter-spacing: 0.15em;
         color: #b2562a !important;
-        margin-bottom: 1.75rem;
-        animation: softFloat 3s ease-in-out infinite;
-        -webkit-animation: softFloat 3s ease-in-out infinite;
       }
-      @keyframes softFloat {
-        0%, 100% { -webkit-transform: translateY(0); transform: translateY(0); }
-        50% { -webkit-transform: translateY(-4px); transform: translateY(-4px); }
-      }
-      @-webkit-keyframes softFloat {
-        0%, 100% { -webkit-transform: translateY(0); }
-        50% { -webkit-transform: translateY(-4px); }
+      .guide-card-head .title-sm { font-size: 0.98rem; font-weight: 600; color: #1f1a16 !important; }
+      .guide-card p { font-size: 0.86rem; color: #5c534a !important; line-height: 1.8; margin: 0; }
+      .guide-card .tip {
+        display: inline-block; margin-top: 0.5rem;
+        padding: 0.2rem 0.6rem; background: #f2e5d8; border-radius: 999px;
+        font-size: 0.72rem; color: #b2562a !important;
+        font-family: "SF Mono", ui-monospace, monospace;
       }
 
-      .center-msg h3 {
-        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: #1f1a16 !important;
-        margin: 0 0 0.6rem;
-      }
-      .center-msg p {
-        color: #5c534a !important;
-        font-size: 0.9rem;
-        line-height: 1.85;
-        max-width: 320px;
-        margin: 0 auto;
-      }
-
-      .scan {
-        width: 180px; height: 180px;
-        margin: 0 auto 1.75rem;
-        border: 1px solid #d8cdbc;
-        border-radius: 14px;
-        position: relative;
-        overflow: hidden;
-        background: #ffffff !important;
-      }
-      .scan:before, .scan:after {
-        content: "";
-        position: absolute;
-        width: 20px; height: 20px;
-        border: 2px solid #b2562a;
-      }
-      .scan:before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-      .scan:after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
-      .scan-line {
-        position: absolute;
-        left: 0; width: 100%;
-        height: 1.5px;
-        background: #b2562a;
-        opacity: 0.7;
-        animation: scanMove 1.8s ease-in-out infinite;
-        -webkit-animation: scanMove 1.8s ease-in-out infinite;
-      }
-      @keyframes scanMove {
-        0% { top: 8%; opacity: 0.4; }
-        50% { top: 92%; opacity: 1; }
-        100% { top: 8%; opacity: 0.4; }
-      }
-      @-webkit-keyframes scanMove {
-        0% { top: 8%; opacity: 0.4; }
-        50% { top: 92%; opacity: 1; }
-        100% { top: 8%; opacity: 0.4; }
-      }
-
-      .scan-text {
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        font-size: 0.75rem;
-        letter-spacing: 0.25em;
-        color: #b2562a !important;
-        text-transform: uppercase;
-      }
-
-      /* ============================================================
-         收據
-         ============================================================ */
-      .receipt {
-        background: #ffffff !important;
-        border: 1px solid #e8e0d4;
-        border-radius: 20px;
-        padding: 2rem 1.75rem;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-      .receipt:before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 3px;
-        background: #b2562a;
-      }
-      .receipt .check {
-        display: -webkit-inline-box; display: -webkit-inline-flex; display: -ms-inline-flexbox; display: inline-flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
-        width: 56px; height: 56px;
-        border-radius: 50%;
-        background: #f2e5d8 !important;
-        color: #b2562a !important;
-        margin-bottom: 1.25rem;
-        animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        -webkit-animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-      @keyframes scaleIn {
-        from { -webkit-transform: scale(0); transform: scale(0); opacity: 0; }
-        to { -webkit-transform: scale(1); transform: scale(1); opacity: 1; }
-      }
-      @-webkit-keyframes scaleIn {
-        from { -webkit-transform: scale(0); opacity: 0; }
-        to { -webkit-transform: scale(1); opacity: 1; }
-      }
-
-      .receipt h3 {
-        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
-        font-size: 1.15rem;
-        font-weight: 500;
-        color: #1f1a16 !important;
-        margin: 0 0 0.9rem;
-      }
-      .receipt .info {
-        font-size: 0.9rem;
-        color: #5c534a !important;
-        line-height: 2;
-      }
-      .receipt .info .em {
-        color: #1f1a16 !important;
-        font-weight: 600;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        padding: 0 2px;
-      }
-
-      /* ============================================================
-         Meta bar
-         ============================================================ */
       .meta-bar {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;
-        padding: 0.75rem 0;
-        margin-bottom: 1.5rem;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.75rem 0; margin-bottom: 1.5rem;
         font-size: 0.72rem;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+        font-family: "SF Mono", ui-monospace, monospace;
         letter-spacing: 0.12em;
-        color: #9c9188 !important;
-        text-transform: uppercase;
+        color: #9c9188 !important; text-transform: uppercase;
         border-bottom: 1px solid #e8e0d4;
       }
-      .meta-bar .live {
-        display: -webkit-inline-box; display: -webkit-inline-flex; display: -ms-inline-flexbox; display: inline-flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        gap: 0.5rem;
-        color: #5c6b4f !important;
-      }
-      .meta-bar .live:before {
-        content: "";
-        width: 6px; height: 6px;
-        border-radius: 50%;
-        background: #5c6b4f;
+      .meta-bar .live { display: inline-flex; align-items: center; gap: 0.5rem; color: #5c6b4f !important; }
+      .meta-bar .live::before {
+        content: ""; width: 6px; height: 6px; border-radius: 50%; background: #5c6b4f;
         animation: pulse 2s ease-in-out infinite;
-        -webkit-animation: pulse 2s ease-in-out infinite;
       }
 
-      /* ============================================================
-         到站
-         ============================================================ */
-      .arrival-mark {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
-        color: #5c6b4f !important;
-      }
+      .arrival-mark { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; color: #5c6b4f !important; }
       .arrival-mark .rule { height: 1px; width: 32px; background: #5c6b4f; opacity: 0.6; }
       .arrival-mark .label {
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        font-size: 0.68rem;
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
-        color: #5c6b4f !important;
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.68rem; letter-spacing: 0.25em;
+        text-transform: uppercase; color: #5c6b4f !important;
       }
-
       .prose {
-        background: #ffffff !important;
-        border: 1px solid #e8e0d4;
-        border-radius: 20px;
-        padding: 1.5rem;
-        color: #5c534a !important;
-        font-size: 0.92rem;
-        line-height: 2.05;
-        letter-spacing: 0.02em;
-        margin-bottom: 1.5rem;
+        background: #ffffff !important; border: 1px solid #e8e0d4;
+        border-radius: 20px; padding: 1.5rem;
+        color: #5c534a !important; font-size: 0.92rem;
+        line-height: 2.05; margin-bottom: 1.5rem;
       }
 
-      /* ============================================================
-         地點
-         ============================================================ */
-      .place {
-        padding: 1.2rem 0;
-        border-bottom: 1px solid #e8e0d4;
-      }
-      .place:last-child { border-bottom: none; }
-
-      .place-head {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-align: baseline; -webkit-align-items: baseline; -ms-flex-align: baseline; align-items: baseline;
-        -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;
-        gap: 1rem;
-        margin-bottom: 0.4rem;
-        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
-      }
-      .place .name {
-        font-size: 1rem;
-        font-weight: 500;
-        color: #1f1a16 !important;
-      }
-      .place .district {
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        font-size: 0.72rem;
-        color: #9c9188 !important;
-        letter-spacing: 0.1em;
-      }
-      .place .desc {
-        font-size: 0.85rem;
-        color: #5c534a !important;
-        line-height: 1.75;
-      }
-
-      /* ============================================================
-         結尾
-         ============================================================ */
       .closing {
-        text-align: center;
-        padding: 2.5rem 1rem;
-        border-top: 1px solid #e8e0d4;
-        margin-top: 2rem;
+        text-align: center; padding: 2.5rem 1rem;
+        border-top: 1px solid #e8e0d4; margin-top: 2rem;
       }
       .closing .title-cn {
-        font-family: "Noto Serif TC", "Songti TC", "PingFang TC", "Microsoft JhengHei", serif;
-        font-size: 1.4rem;
-        font-weight: 500;
-        color: #1f1a16 !important;
-        letter-spacing: 0.15em;
+        font-family: "Noto Serif TC", serif;
+        font-size: 1.4rem; font-weight: 500;
+        color: #1f1a16 !important; letter-spacing: 0.15em;
         margin-bottom: 0.75rem;
       }
       .closing .sub {
-        font-size: 0.85rem;
-        color: #9c9188 !important;
-        letter-spacing: 0.05em;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+        font-size: 0.85rem; color: #9c9188 !important;
+        font-family: "SF Mono", ui-monospace, monospace;
       }
 
-      /* ============================================================
-         進度
-         ============================================================ */
       .progress {
-        display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
-        -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
-        gap: 0.4rem;
-        margin-top: 2rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid #e8e0d4;
-        -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
+        display: flex; justify-content: center; gap: 0.4rem;
+        margin-top: 2rem; padding-top: 1.5rem;
+        border-top: 1px solid #e8e0d4; flex-wrap: wrap;
       }
       .progress span {
-        width: 5px; height: 5px;
-        border-radius: 50%;
-        background: #d8cdbc;
-        transition: all 0.3s;
+        width: 5px; height: 5px; border-radius: 50%;
+        background: #d8cdbc; transition: all 0.3s;
       }
-      .progress span.active {
-        background: #b2562a;
-        width: 18px;
-        border-radius: 3px;
-      }
+      .progress span.active { background: #b2562a; width: 18px; border-radius: 3px; }
 
-      /* ============================================================
-         快進
-         ============================================================ */
       .skip {
-        display: block;
-        margin: 1.75rem auto 0;
+        display: block; margin: 1.75rem auto 0;
         padding: 0.55rem 1.25rem;
         background: transparent !important;
-        border: 1px solid #d8cdbc;
-        border-radius: 999px;
-        font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
-        font-size: 0.72rem;
-        letter-spacing: 0.15em;
-        color: #9c9188 !important;
-        cursor: pointer;
-        transition: all 0.2s;
-        text-transform: uppercase;
-        -webkit-appearance: none;
-        appearance: none;
+        border: 1px solid #d8cdbc; border-radius: 999px;
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.72rem; letter-spacing: 0.15em;
+        color: #9c9188 !important; cursor: pointer;
+        transition: all 0.2s; text-transform: uppercase;
       }
       .skip:hover { color: #b2562a !important; border-color: #c98868; }
 
-      /* ============================================================
-         響應式
-         ============================================================ */
       @media (max-width: 640px) {
-        .site-header {
-          -webkit-box-orient: vertical; -webkit-box-direction: normal;
-          -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
-          padding: 0.6rem 1rem 0.5rem;
-          height: auto;
-          gap: 0.4rem;
-        }
+        .site-header { flex-direction: column; padding: 0.6rem 1rem 0.5rem; height: auto; gap: 0.4rem; }
         .site-brand { position: static; font-size: 0.85rem; }
-        .site-brand-avatar { width: 28px; height: 28px; }
         .site-status { display: none; }
-        .site-nav { width: 100%; gap: 0.1rem; }
+        .site-nav { width: 100%; }
         .site-nav a { padding: 0.32rem 0.55rem; font-size: 0.78rem; }
-
         .app { padding: 7rem 1.1rem 3rem; }
         h2.title { font-size: 1.35rem; }
         .welcome-time { font-size: 1.75rem; }
-        .welcome-greet { font-size: 1.02rem; }
-
         .btn { padding: 0.95rem 1.1rem; font-size: 0.92rem; }
-        .btn-row {
-          -webkit-box-orient: vertical; -webkit-box-direction: normal;
-          -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
-        }
+        .btn-row { flex-direction: column; }
         .btn-row .btn { width: 100%; }
-
-        .input-row {
-          -webkit-box-orient: vertical; -webkit-box-direction: normal;
-          -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
-        }
+        .input-row { flex-direction: column; }
         .input-row button { width: 100%; }
-
-        .route-no { font-size: 1.25rem; }
-        .receipt { padding: 1.75rem 1.35rem; }
-        .prose { padding: 1.35rem 1.2rem; font-size: 0.88rem; line-height: 1.95; }
-        .scan { width: 160px; height: 160px; }
-        .center-msg { padding: 2rem 0; }
-        .map-pin .pin-label { font-size: 11px; }
+        .exit-block .exit-number { font-size: 3rem; }
+        .smart-route-body { padding: 1.5rem 1.15rem 1.25rem; }
+        .route-step-icon { width: 28px; height: 28px; }
+        .route-step::before { left: 13px; }
+        .guide-card { padding: 1rem; gap: 0.8rem; }
       }
-
-      @media (max-width: 380px) {
-        .app { padding: 6.8rem 0.9rem 2rem; }
-        .btn { padding: 0.9rem 1rem; font-size: 0.88rem; }
-        .welcome-time { font-size: 1.5rem; }
-        .map-pin .pin-label { font-size: 10px; }
-      }
-
       @media (hover: none) {
         .btn:hover { background: #1f1a16 !important; }
         .btn.accent:hover { background: #b2562a !important; }
+        .btn.metro:hover { background: #1f3a5f !important; }
         .btn.ghost:hover { background: transparent !important; }
-        .btn.map-trigger:hover { background: #ffffff !important; box-shadow: none; }
-        .tag:hover { transform: none; }
-        .map-pin:hover .pin-dot { stroke-width: 2.5; r: 9; }
       }
     </style>
   </head>
@@ -1011,7 +597,7 @@
         <span class="site-brand-text">宋嵐緒個人頁面</span>
       </a>
       <nav class="site-nav" aria-label="網站導覽" data-navigation-list></nav>
-      <span class="site-status">TAIPEI · TRANSIT</span>
+      <span class="site-status">SMART TAIPEI</span>
     </header>
 
     <main class="app">
@@ -1023,7 +609,9 @@
         </div>
       </div>
 
-      <!-- 1. 歡迎 -->
+      <!-- ============================================================
+           1. 歡迎
+           ============================================================ -->
       <section class="screen active" data-screen="1">
         <div class="welcome">
           <div class="welcome-mark">
@@ -1032,18 +620,18 @@
           </div>
 
           <h1 class="welcome-time">
-            <span class="location">台北市 · 大同區</span><br>
+            台北市 · 大同區<br>
             現在是 <span class="time-now" data-no-type id="now-time">--:--</span>
             <span class="period" id="greeting">晚安</span>
           </h1>
 
           <p class="welcome-greet">
             尊敬的 <span class="origin" id="origin">日本</span> 旅客，
-            歡迎使用台北公車智慧導覽系統。今天，我們將陪您走過一段屬於這座城市的行程。
+            歡迎使用智慧遊台北系統。我們會告訴您該走哪個樓梯、哪個出口，以及台北特有的搭乘默契。
           </p>
 
           <div class="welcome-meta">
-            TAIPEI TRANSIT GUIDE · v2.4<br>
+            SMART TAIPEI GUIDE · v3.1<br>
             SESSION INITIALIZED · <span data-no-type id="init-time">--:--</span>
           </div>
         </div>
@@ -1054,7 +642,9 @@
         </button>
       </section>
 
-      <!-- 2. 行程規劃 -->
+      <!-- ============================================================
+           2. 行程規劃
+           ============================================================ -->
       <section class="screen" data-screen="2">
         <span class="eyebrow"><span class="idx">01</span> · 行程規劃</span>
         <h2 class="title">今日，想去哪裡走走？</h2>
@@ -1086,28 +676,25 @@
         </div>
 
         <button type="button" class="btn" onclick="goTo(3)">
-          <span>查詢適合的公車</span>
+          <span>選擇交通方式</span>
           <span class="arrow">→</span>
         </button>
       </section>
 
-      <!-- 2-map. 地圖選擇 -->
+      <!-- ============================================================
+           2-map. 地圖
+           ============================================================ -->
       <section class="screen" data-screen="map">
         <span class="eyebrow"><span class="idx">01</span> · 地圖選擇</span>
         <h2 class="title">點選地圖上的地點</h2>
-
-        <p class="lead">
-          點一下標記即可加入行程。再次點擊可取消。
-        </p>
+        <p class="lead">點一下標記即可加入行程。再次點擊可取消。</p>
 
         <div class="map-wrap">
           <div class="map-hint">TAIPEI · MAP</div>
           <svg class="map-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" aria-label="台北市簡圖">
             <rect width="800" height="600" fill="#fbf8f3"/>
-            <path d="M 0 260 Q 120 250 220 210 Q 300 180 360 160 L 360 120"
-                  stroke="#b8d2dd" stroke-width="26" fill="none" stroke-linecap="round" opacity="0.55"/>
-            <path d="M 360 120 Q 460 100 580 80 Q 700 60 800 50"
-                  stroke="#b8d2dd" stroke-width="22" fill="none" stroke-linecap="round" opacity="0.55"/>
+            <path d="M 0 260 Q 120 250 220 210 Q 300 180 360 160 L 360 120" stroke="#b8d2dd" stroke-width="26" fill="none" stroke-linecap="round" opacity="0.55"/>
+            <path d="M 360 120 Q 460 100 580 80 Q 700 60 800 50" stroke="#b8d2dd" stroke-width="22" fill="none" stroke-linecap="round" opacity="0.55"/>
             <g stroke="#e8e0d4" stroke-width="4" fill="none">
               <line x1="120" y1="0" x2="120" y2="600"/>
               <line x1="280" y1="0" x2="280" y2="600"/>
@@ -1118,44 +705,28 @@
               <line x1="0" y1="460" x2="800" y2="460"/>
               <line x1="0" y1="560" x2="800" y2="560"/>
             </g>
-            <g stroke="#f0e9dd" stroke-width="2" fill="none">
-              <line x1="200" y1="0" x2="200" y2="600"/>
-              <line x1="380" y1="0" x2="380" y2="600"/>
-              <line x1="540" y1="0" x2="540" y2="600"/>
-              <line x1="720" y1="0" x2="720" y2="600"/>
-              <line x1="0" y1="80" x2="800" y2="80"/>
-              <line x1="0" y1="250" x2="800" y2="250"/>
-              <line x1="0" y1="390" x2="800" y2="390"/>
-              <line x1="0" y1="520" x2="800" y2="520"/>
-            </g>
-            <text x="400" y="35" text-anchor="middle" fill="#9c9188"
-                  font-family="Noto Sans TC, sans-serif" font-size="13" letter-spacing="6"
-                  style="pointer-events:none;">TAIPEI CITY</text>
+            <text x="400" y="35" text-anchor="middle" fill="#9c9188" font-family="Noto Sans TC, sans-serif" font-size="13" letter-spacing="6" style="pointer-events:none;">TAIPEI CITY</text>
 
             <g class="map-pin" data-spot="迪化街" onclick="toggleMapPin(this)">
               <circle class="pin-dot" cx="180" cy="170" r="9"/>
               <circle class="pin-dot-inner" cx="180" cy="170" r="4"/>
               <text class="pin-label" x="180" y="200">迪化街</text>
             </g>
-
             <g class="map-pin" data-spot="總統府" onclick="toggleMapPin(this)">
               <circle class="pin-dot" cx="350" cy="330" r="9"/>
               <circle class="pin-dot-inner" cx="350" cy="330" r="4"/>
               <text class="pin-label" x="350" y="360">總統府</text>
             </g>
-
             <g class="map-pin" data-spot="中正紀念堂" onclick="toggleMapPin(this)">
               <circle class="pin-dot" cx="420" cy="410" r="9"/>
               <circle class="pin-dot-inner" cx="420" cy="410" r="4"/>
               <text class="pin-label" x="420" y="440">中正紀念堂</text>
             </g>
-
             <g class="map-pin" data-spot="世貿" onclick="toggleMapPin(this)">
               <circle class="pin-dot" cx="600" cy="430" r="9"/>
               <circle class="pin-dot-inner" cx="600" cy="430" r="4"/>
               <text class="pin-label" x="600" y="460">世貿</text>
             </g>
-
             <g class="map-pin" data-spot="101" onclick="toggleMapPin(this)">
               <circle class="pin-dot" cx="650" cy="490" r="9"/>
               <circle class="pin-dot-inner" cx="650" cy="490" r="4"/>
@@ -1177,14 +748,40 @@
         </div>
       </section>
 
-      <!-- 3. 路線 -->
+      <!-- ============================================================
+           3. 交通方式
+           ============================================================ -->
       <section class="screen" data-screen="3">
+        <span class="eyebrow"><span class="idx">02</span> · 交通方式</span>
+        <h2 class="title">想用哪一種方式前進？</h2>
+        <p class="lead">公車能看見城市的街道，捷運能快速穿越城市。也可以兩者搭配。</p>
+
+        <div class="list">
+          <button type="button" class="btn" style="margin-bottom: 0.75rem;" onclick="goTo(4)">
+            <span>搭公車　公車路線查詢</span>
+            <span class="arrow">→</span>
+          </button>
+          <button type="button" class="btn metro" style="margin-bottom: 0.75rem;" onclick="goTo(5)">
+            <span>搭捷運　站點與站內導引</span>
+            <span class="arrow">→</span>
+          </button>
+          <button type="button" class="btn ghost" onclick="goTo(4)">
+            <span>公車 + 捷運　混合規劃</span>
+            <span class="arrow">→</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           4. 公車路線
+           ============================================================ -->
+      <section class="screen" data-screen="4">
         <div class="meta-bar">
-          <span class="live">即時查詢中</span>
+          <span class="live">公車 · 即時查詢</span>
           <span data-no-type id="route-time">--:--</span>
         </div>
 
-        <span class="eyebrow"><span class="idx">02</span> · 路線建議</span>
+        <span class="eyebrow"><span class="idx">03</span> · 公車路線</span>
         <h2 class="title">依您的行程「迪化街 → 中正紀念堂」<br>建議搭乘以下路線</h2>
 
         <div class="route">
@@ -1193,11 +790,7 @@
             <span class="route-eta">約 3 分鐘後到站</span>
           </div>
           <div class="route-name">迪化街 → 捷運中正紀念堂站</div>
-          <div class="route-meta">
-            <span>首班 05:30</span>
-            <span>末班 22:30</span>
-            <span>間隔 10–15 分</span>
-          </div>
+          <div class="route-meta"><span>首班 05:30</span><span>末班 22:30</span><span>間隔 10–15 分</span></div>
         </div>
 
         <div class="route">
@@ -1206,11 +799,7 @@
             <span class="route-eta">約 8 分鐘後到站</span>
           </div>
           <div class="route-name">大龍峒 → 中正紀念堂</div>
-          <div class="route-meta">
-            <span>首班 05:40</span>
-            <span>末班 23:00</span>
-            <span>間隔 15–20 分</span>
-          </div>
+          <div class="route-meta"><span>首班 05:40</span><span>末班 23:00</span><span>間隔 15–20 分</span></div>
         </div>
 
         <div class="route">
@@ -1219,126 +808,225 @@
             <span class="route-eta">約 12 分鐘後到站</span>
           </div>
           <div class="route-name">迪化街 → 台北車站 → 中正紀念堂</div>
-          <div class="route-meta">
-            <span>首班 06:00</span>
-            <span>末班 22:00</span>
-            <span>間隔 20–30 分</span>
-          </div>
+          <div class="route-meta"><span>首班 06:00</span><span>末班 22:00</span><span>間隔 20–30 分</span></div>
         </div>
 
-        <div class="group-label">不同時段班次</div>
-
-        <div class="route">
-          <div class="route-head">
-            <span class="route-no" style="font-size: 0.95rem;">05:30 – 11:00</span>
-            <span class="route-eta">班次密集</span>
-          </div>
-          <div class="route-meta"><span>206 / 304 / 639 / 660</span></div>
-        </div>
-
-        <div class="route">
-          <div class="route-head">
-            <span class="route-no" style="font-size: 0.95rem;">11:00 – 17:00</span>
-            <span class="route-eta">班次正常</span>
-          </div>
-          <div class="route-meta"><span>206 / 304 / 639</span></div>
-        </div>
-
-        <div class="route">
-          <div class="route-head">
-            <span class="route-no" style="font-size: 0.95rem;">17:00 – 23:00</span>
-            <span class="route-eta">班次較少</span>
-          </div>
-          <div class="route-meta"><span>304 / 639</span></div>
-        </div>
-
-        <button type="button" class="btn accent" style="margin-top: 1.75rem;" onclick="goTo(4)">
+        <button type="button" class="btn accent" style="margin-top: 1.75rem;" onclick="goTo(6)">
           <span>開始行程</span>
           <span class="arrow">→</span>
         </button>
       </section>
 
-      <!-- 4. 藍牙 -->
-      <section class="screen" data-screen="4">
-        <div class="center-msg">
-          <div class="icon-wrap">
-            <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 7l10 10-5 5V2l5 5L7 17"/>
-            </svg>
-          </div>
-          <h3>正在連結公車藍牙</h3>
-          <p>請掃描座位前方或刷卡機上的 QR code，以完成連線。</p>
+      <!-- ============================================================
+           5. 捷運站點地圖
+           ============================================================ -->
+      <section class="screen" data-screen="5">
+        <span class="eyebrow"><span class="idx">04</span> · 捷運系統</span>
+        <h2 class="title">選擇您要前往的捷運站</h2>
+        <p class="lead">點選站點即可查看站內智慧引導。</p>
+
+        <div class="metro-map">
+          <svg class="metro-line-svg" viewBox="0 0 800 340" preserveAspectRatio="xMidYMid meet" aria-label="台北捷運淡水信義線簡圖">
+            <line x1="40" y1="180" x2="760" y2="180" stroke="#1f3a5f" stroke-width="8" stroke-linecap="round"/>
+            <text x="40" y="140" fill="#1f3a5f" font-family="Noto Sans TC, sans-serif" font-size="12" letter-spacing="4">淡水信義線 · TAMSUI–XINYI</text>
+
+            <g class="metro-station" data-station="士林" onclick="selectStation(this)">
+              <circle class="st-dot" cx="90" cy="180" r="8"/>
+              <text class="st-label" x="90" y="215" text-anchor="middle">士林</text>
+            </g>
+            <g class="metro-station" data-station="中山" onclick="selectStation(this)">
+              <circle class="st-dot" cx="280" cy="180" r="8"/>
+              <text class="st-label" x="280" y="215" text-anchor="middle">中山</text>
+            </g>
+            <g class="metro-station" data-station="台北車站" onclick="selectStation(this)">
+              <circle class="st-dot" cx="380" cy="180" r="8"/>
+              <text class="st-label" x="380" y="215" text-anchor="middle">台北車站</text>
+            </g>
+            <g class="metro-station" data-station="中正紀念堂" onclick="selectStation(this)">
+              <circle class="st-dot" cx="480" cy="180" r="8"/>
+              <text class="st-label" x="480" y="215" text-anchor="middle">中正紀念堂</text>
+            </g>
+            <g class="metro-station" data-station="大安森林公園" onclick="selectStation(this)">
+              <circle class="st-dot" cx="580" cy="180" r="8"/>
+              <text class="st-label" x="580" y="215" text-anchor="middle">大安森林公園</text>
+            </g>
+            <g class="metro-station" data-station="台北101/世貿" onclick="selectStation(this)">
+              <circle class="st-dot" cx="700" cy="180" r="8"/>
+              <text class="st-label" x="700" y="215" text-anchor="middle">台北101/世貿</text>
+            </g>
+
+            <line x1="40" y1="270" x2="760" y2="270" stroke="#e8e0d4" stroke-width="1"/>
+            <text x="400" y="300" text-anchor="middle" fill="#9c9188" font-family="Noto Sans TC, sans-serif" font-size="11" letter-spacing="3">點選站點查看智慧引導</text>
+          </svg>
         </div>
 
-        <button type="button" class="btn" style="margin-top: 1rem;" onclick="startScan()">
-          <span>開始掃描 QR code</span>
+        <div class="map-selection">
+          <div class="map-selection-label">已選擇的站點</div>
+          <div class="map-selection-tags" id="station-selection">
+            <span class="empty">尚未選擇任何站點</span>
+          </div>
+        </div>
+
+        <div class="btn-row" style="margin-top: 1.75rem;">
+          <button type="button" class="btn ghost" onclick="goTo(3)">返回</button>
+          <button type="button" class="btn metro" onclick="showSmartRoute()">查看智慧引導</button>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           6. 智慧路徑（依目的地計算）
+           ============================================================ -->
+      <section class="screen" data-screen="smart">
+        <div class="meta-bar">
+          <span class="live">智慧路徑計算中</span>
+          <span data-no-type id="smart-time">--:--</span>
+        </div>
+
+        <span class="eyebrow"><span class="idx">05</span> · 站內智慧引導</span>
+        <h2 class="title" id="smart-title">為您計算出的最佳路徑</h2>
+
+        <p class="lead" id="smart-lead">
+          系統已根據您的目的地，計算出站內最短路徑。請依序操作。
+        </p>
+
+        <div class="smart-route" id="smart-route">
+          <!-- 由 JS 動態填入 -->
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn ghost" onclick="goTo(5)">重新選擇站點</button>
+          <button type="button" class="btn metro" onclick="goTo(7)">
+            <span>我懂了，開始走</span>
+            <span class="arrow">→</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           7. 站內規則 6 卡
+           ============================================================ -->
+      <section class="screen" data-screen="7">
+        <div class="meta-bar">
+          <span class="live">捷運站內默契</span>
+          <span>6 GUIDES</span>
+        </div>
+
+        <span class="eyebrow"><span class="idx">06</span> · 使用引導</span>
+        <h2 class="title">進站之後，這些事值得知道</h2>
+
+        <p class="lead">
+          台北捷運有幾個不成文的默契。懂了，就能走得更順，也讓別人更舒服。
+        </p>
+
+        <div class="guide-cards">
+          <div class="guide-card">
+            <div class="guide-icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <path d="M14 14h3v3M20 14v.01M14 20h.01M17 20h3v-3"/>
+              </svg>
+            </div>
+            <div class="guide-body">
+              <div class="guide-card-head">
+                <span class="step-num">GUIDE · 01</span>
+                <span class="title-sm">先掃站點地圖</span>
+              </div>
+              <p>進站後，先掃描牆上的站點地圖 QR code。台北許多站名是音譯，光看漢字不容易對應實際位置。</p>
+            </div>
+          </div>
+
+          <div class="guide-card">
+            <div class="guide-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 20h4v-4h4v-4h4V8h4V4"/></svg>
+            </div>
+            <div class="guide-body">
+              <div class="guide-card-head">
+                <span class="step-num">GUIDE · 02</span>
+                <span class="title-sm">走樓梯前，先看月台方向</span>
+              </div>
+              <p>樓梯口上方會標示「往 ○○ 方向」。請確認您的列車方向，再決定走哪一道樓梯。走錯了，往往要多繞一層樓。</p>
+            </div>
+          </div>
+
+          <div class="guide-card">
+            <div class="guide-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 17l4-4 4 2 4-6 6-4"/>
+                <circle cx="18" cy="5" r="1.5"/>
+                <circle cx="6" cy="19" r="1.5"/>
+              </svg>
+            </div>
+            <div class="guide-body">
+              <div class="guide-card-head">
+                <span class="step-num">GUIDE · 03</span>
+                <span class="title-sm">電扶梯靠右站</span>
+              </div>
+              <p>在台北，電扶梯有一個潛規則：<strong>靠右站、左側通行</strong>。趕時間的人會從左邊走過去。這是城市裡對彼此的一份體貼。</p>
+            </div>
+          </div>
+
+          <div class="guide-card">
+            <div class="guide-icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="9" cy="8" r="3"/>
+                <circle cx="17" cy="10" r="2.5"/>
+                <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+              </svg>
+            </div>
+            <div class="guide-body">
+              <div class="guide-card-head">
+                <span class="step-num">GUIDE · 04</span>
+                <span class="title-sm">月台排隊，照地上的線站</span>
+              </div>
+              <p>月台地上畫有排隊線與「等候區」。請站在線後，讓下車的人先走出來，再依序上車。沒有線的站，也請排在門的兩側。</p>
+            </div>
+          </div>
+
+          <div class="guide-card">
+            <div class="guide-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3v18"/>
+                <path d="M7 8l5-5 5 5"/>
+                <path d="M7 16l5 5 5-5"/>
+              </svg>
+            </div>
+            <div class="guide-body">
+              <div class="guide-card-head">
+                <span class="step-num">GUIDE · 05</span>
+                <span class="title-sm">先出後進</span>
+              </div>
+              <p>車門打開時，先讓裡面的人下車。這是台北捷運最基本、也最重要的一個默契。站在門邊的人，請側身讓出一條通道。</p>
+            </div>
+          </div>
+
+          <div class="guide-card">
+            <div class="guide-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 4h8v5H8z"/>
+                <path d="M8 9c-2 0-3 2-3 4v5c0 1.5 1 3 3 3h8c2 0 3-1.5 3-3v-5c0-2-1-4-3-4"/>
+              </svg>
+            </div>
+            <div class="guide-body">
+              <div class="guide-card-head">
+                <span class="step-num">GUIDE · 06</span>
+                <span class="title-sm">書包建議前背</span>
+              </div>
+              <p>車廂擁擠時，請把背包或書包改背在胸前。這樣可以少佔一些空間，也不會在轉身時不小心撞到別人。</p>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn metro" onclick="goTo(8)">
+          <span>我懂了，前往目的地</span>
           <span class="arrow">→</span>
         </button>
       </section>
 
-      <!-- 5. 掃描 -->
-      <section class="screen" data-screen="5">
-        <div class="center-msg" style="padding: 3rem 0;">
-          <div class="scan">
-            <div class="scan-line"></div>
-          </div>
-          <div class="scan-text">掃描中</div>
-        </div>
-      </section>
-
-      <!-- 6. 成功 -->
-      <section class="screen" data-screen="6">
-        <div class="receipt">
-          <div class="check">
-            <svg class="icon" viewBox="0 0 24 24" style="width: 24px; height: 24px;" aria-hidden="true">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
-          </div>
-          <h3>連線成功</h3>
-          <div class="info">
-            歡迎乘坐 <span class="em">403</span> 號公車<br>
-            將帶您前往 <span class="em">中正紀念堂站</span><br>
-            預估時間約 <span class="em">五分鐘</span><br>
-            到站前會提醒您，可以小憩片刻。
-          </div>
-        </div>
-
-        <div style="padding: 1.5rem 0; text-align: center;">
-          <p style="color: #5c534a !important; font-size: 0.9rem; margin: 0 0 1.25rem;">
-            是否開啟自動按鈴服務？
-          </p>
-          <div class="btn-row">
-            <button type="button" class="btn ghost" onclick="goTo(7)">稍後再說</button>
-            <button type="button" class="btn accent" onclick="goTo(7)">開啟服務</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- 7. 行進中 -->
-      <section class="screen" data-screen="7">
-        <div class="meta-bar">
-          <span class="live">403 號公車行進中</span>
-          <span data-no-type id="ride-timer">00:00</span>
-        </div>
-
-        <div class="receipt" style="background: #fbf8f3 !important;">
-          <div class="info" style="text-align: center;">
-            自動按鈴服務已開啟<br>
-            到站前 300 公尺將為您按鈴<br>
-            <span class="em">請安心休息</span>
-          </div>
-        </div>
-
-        <p style="text-align: center; color: #9c9188 !important; font-size: 0.85rem; margin: 1.75rem 0; font-family: 'SF Mono', ui-monospace, monospace; letter-spacing: 0.1em;">
-          ETA · 5 MIN · 中正紀念堂
-        </p>
-
-        <button type="button" class="skip" onclick="goTo(8)">
-          快進 · 抵達中正紀念堂
-        </button>
-      </section>
-
-      <!-- 8. 到站 -->
+      <!-- ============================================================
+           8. 抵達
+           ============================================================ -->
       <section class="screen" data-screen="8">
         <div class="arrival-mark">
           <span class="rule"></span>
@@ -1346,131 +1034,94 @@
         </div>
 
         <h2 class="title">歡迎來到 中正紀念堂</h2>
-
-        <p class="lead">
-          請掃描 QR code，讓隨身導覽為您介紹這座建築與它背後的故事。
-        </p>
+        <p class="lead">請掃描 QR code，讓隨身導覽為您介紹這座建築與它背後的故事。</p>
 
         <div class="prose">
           中正紀念堂建於 1976 年，為紀念先總統　蔣公而建。主體建築高 70 公尺，藍瓦白牆，象徵自由與平等。屋頂倣天壇造型，八角形則寓意「八德」。堂內設有銅像、文物展示區與藝文空間；園區另有國家戲劇院與國家音樂廳，皆為仿古宮殿式建築。漫步其間，可感受建築與歷史交織的時光厚度。
         </div>
 
-        <button type="button" class="skip" style="margin-top: 1rem;" onclick="goTo(9)">
+        <button type="button" class="skip" onclick="goTo(9)">
           快進 · 準備用餐
         </button>
       </section>
 
-      <!-- 9. 美食 -->
+      <!-- ============================================================
+           9. 美食
+           ============================================================ -->
       <section class="screen" data-screen="9">
-        <span class="eyebrow"><span class="idx">03</span> · 午餐提案</span>
+        <span class="eyebrow"><span class="idx">07</span> · 午餐提案</span>
         <h2 class="title">準備好要吃什麼了嗎？</h2>
-
         <p class="lead">為您推薦中正紀念堂周邊，幾處值得一嚐的地方。</p>
 
         <div class="list">
           <div class="place">
-            <div class="place-head">
-              <span class="name">金峰滷肉飯</span>
-              <span class="district">羅斯福路一段</span>
-            </div>
+            <div class="place-head"><span class="name">金峰滷肉飯</span><span class="district">羅斯福路一段</span></div>
             <div class="desc">台北經典滷肉飯，肥瘦適中，配滷蛋與筍絲。</div>
           </div>
-
           <div class="place">
-            <div class="place-head">
-              <span class="name">盛園絲瓜小籠湯包</span>
-              <span class="district">杭州南路二段</span>
-            </div>
+            <div class="place-head"><span class="name">盛園絲瓜小籠湯包</span><span class="district">杭州南路二段</span></div>
             <div class="desc">絲瓜清甜，湯汁飽滿，皮薄餡多。</div>
           </div>
-
           <div class="place">
-            <div class="place-head">
-              <span class="name">合興糕餅 · 南門市場</span>
-              <span class="district">南門市場</span>
-            </div>
+            <div class="place-head"><span class="name">合興糕餅 · 南門市場</span><span class="district">南門市場</span></div>
             <div class="desc">在地老字號，各式傳統糕餅與熟食，適合外帶。</div>
           </div>
-
           <div class="place">
-            <div class="place-head">
-              <span class="name">桃源街牛肉麵</span>
-              <span class="district">西門町</span>
-            </div>
+            <div class="place-head"><span class="name">桃源街牛肉麵</span><span class="district">西門町</span></div>
             <div class="desc">紅燒湯頭濃郁，牛肉軟嫩，老台北人的記憶。</div>
           </div>
         </div>
-
-        <p style="text-align: center; color: #9c9188 !important; font-size: 0.85rem; margin: 1.75rem 0 0;">
-          吃飽，讓下午的行程充滿戰鬥力。
-        </p>
 
         <button type="button" class="skip" style="margin-top: 1.75rem;" onclick="goTo(10)">
           快進 · 前往 101
         </button>
       </section>
 
-      <!-- 10. 101 -->
+      <!-- ============================================================
+           10. 101 逛完
+           ============================================================ -->
       <section class="screen" data-screen="10">
         <div style="text-align: center; padding: 2rem 0;">
-          <div class="icon-wrap" style="display: inline-flex; margin-bottom: 1.75rem;">
-            <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-          </div>
-
           <h2 class="title" style="text-align: center; font-size: 1.35rem;">101 逛完了</h2>
-
           <p class="lead" style="text-align: center; max-width: 340px; margin: 0 auto 2rem;">
             這是今天最後的行程。接下來，要為您尋找落腳的地方嗎？希望您能有一個平安的休息。
           </p>
         </div>
 
         <div style="padding-top: 1.5rem; border-top: 1px solid #e8e0d4; text-align: center;">
-          <p style="color: #5c534a !important; font-size: 0.9rem; margin: 0 0 1.25rem;">
-            為您搜尋附近的住宿？
-          </p>
+          <p style="color: #5c534a !important; font-size: 0.9rem; margin: 0 0 1.25rem;">為您搜尋附近的住宿？</p>
           <div class="btn-row">
             <button type="button" class="btn ghost" onclick="restart()">重新開始</button>
-            <button type="button" class="btn accent" onclick="finishTrip()">為我推薦</button>
+            <button type="button" class="btn accent" onclick="goTo(11)">為我推薦</button>
           </div>
         </div>
       </section>
 
-      <!-- 11. 住宿 -->
+      <!-- ============================================================
+           11. 住宿
+           ============================================================ -->
       <section class="screen" data-screen="11">
-        <span class="eyebrow"><span class="idx">04</span> · 落腳之處</span>
+        <span class="eyebrow"><span class="idx">08</span> · 落腳之處</span>
         <h2 class="title">為您推薦附近住宿</h2>
 
         <div class="list">
           <div class="place">
-            <div class="place-head">
-              <span class="name">台北君悅酒店</span>
-              <span class="district">信義區</span>
-            </div>
+            <div class="place-head"><span class="name">台北君悅酒店</span><span class="district">信義區</span></div>
             <div class="desc">緊鄰 101，步行約 3 分鐘。</div>
           </div>
-
           <div class="place">
-            <div class="place-head">
-              <span class="name">寒舍艾美酒店</span>
-              <span class="district">信義區</span>
-            </div>
+            <div class="place-head"><span class="name">寒舍艾美酒店</span><span class="district">信義區</span></div>
             <div class="desc">精品設計，鄰近世貿。</div>
           </div>
-
           <div class="place">
-            <div class="place-head">
-              <span class="name">誠品行旅</span>
-              <span class="district">松菸文創園區</span>
-            </div>
+            <div class="place-head"><span class="name">誠品行旅</span><span class="district">松菸文創園區</span></div>
             <div class="desc">書香與設計的結合。</div>
           </div>
         </div>
 
         <div class="closing">
           <div class="title-cn">祝您有一個平安的休息</div>
-          <div class="sub">TAIPEI TRANSIT GUIDE · END OF SESSION</div>
+          <div class="sub">SMART TAIPEI GUIDE · END OF SESSION</div>
         </div>
 
         <button type="button" class="btn ghost" style="margin-top: 1.5rem;" onclick="restart()">
@@ -1483,7 +1134,7 @@
         <span class="active"></span>
         <span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span>
-        <span></span><span></span>
+        <span></span>
       </div>
     </main>
 
@@ -1492,7 +1143,6 @@
     <script>
       (function () {
         'use strict';
-
         function $(id) { return document.getElementById(id); }
 
         function getGreeting() {
@@ -1501,29 +1151,142 @@
           if (h >= 12 && h < 18) return '午安';
           return '晚安';
         }
-
         function pad2(n) { return n < 10 ? '0' + n : '' + n; }
 
         function tick() {
           var d = new Date();
-          var hh = pad2(d.getHours());
-          var mm = pad2(d.getMinutes());
-          var ss = pad2(d.getSeconds());
-
-          var clock = $('clock');
-          var rt = $('route-time');
-          var it = $('init-time');
-          var nt = $('now-time');
-
+          var hh = pad2(d.getHours()); var mm = pad2(d.getMinutes()); var ss = pad2(d.getSeconds());
+          var clock = $('clock'); var rt = $('route-time');
+          var it = $('init-time'); var nt = $('now-time');
+          var st = $('smart-time');
           if (clock) clock.textContent = hh + ':' + mm + ':' + ss;
           if (rt) rt.textContent = hh + ':' + mm;
           if (it && it.textContent === '--:--') it.textContent = hh + ':' + mm;
           if (nt) nt.textContent = hh + ':' + mm;
+          if (st) st.textContent = hh + ':' + mm;
         }
 
         /* ============================================================
-           逐字浮現（僅限敘述性文字）
-           排除：按鈕、標籤、快進、狀態列、導覽列、meta 列、地圖、SVG、已標記 data-no-type
+           智慧路徑資料：每個目的地的具體引導
+           ============================================================ */
+        var smartRoutes = {
+          '迪化街': {
+            exit: '1',
+            exitName: '1 號出口 · 民生西路方向',
+            destination: '迪化街',
+            steps: [
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台中央方向走', sub: '避開兩側人潮，中間動線最快' },
+              { icon: 'stairs', label: 'STEP 02', main: '走中央樓梯上 1 樓大廳', sub: '樓梯口標示「往 1 號出口 · 民生西路」' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往左手邊走', sub: '沿著指示牌往 1 號出口' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭左側電扶梯上地面', sub: '靠右站，左側通行' },
+              { icon: 'exit', label: 'STEP 05', main: '從 1 號出口出站', sub: '出站後向右走約 5 分鐘抵達迪化街' }
+            ],
+            tip: '<strong>在地提醒：</strong>迪化街是南北向街道，出站後沿民生西路直走，看到永樂市場就是迪化街入口。'
+          },
+          '中正紀念堂': {
+            exit: '5',
+            exitName: '5 號出口 · 中正紀念堂方向',
+            destination: '中正紀念堂',
+            steps: [
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台右側方向走', sub: '5 號出口的電扶梯在車廂右前方' },
+              { icon: 'stairs', label: 'STEP 02', main: '走右側樓梯或搭電扶梯上大廳', sub: '樓梯口標示「往 5 號出口 · 中正紀念堂」' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後，直走到底', sub: '沿著指標往 5 號出口' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭電扶梯上地面', sub: '靠右站，左側留給趕時間的人' },
+              { icon: 'exit', label: 'STEP 05', main: '從 5 號出口出站', sub: '對面即是中正紀念堂園區入口' }
+            ],
+            tip: '<strong>在地提醒：</strong>5 號出口正對中正紀念堂主體建築，出站後過馬路即可進入園區。往國家音樂廳請改走 1 號出口。'
+          },
+          '總統府': {
+            exit: '1',
+            exitName: '1 號出口 · 凱達格蘭大道方向',
+            destination: '總統府',
+            steps: [
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台左側方向走', sub: '1 號出口的電扶梯在車廂左前方' },
+              { icon: 'stairs', label: 'STEP 02', main: '走左側樓梯上大廳', sub: '樓梯口標示「往 1 號出口 · 凱道」' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往左手邊走', sub: '沿著指示牌往 1 號出口' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭左側電扶梯上地面', sub: '靠右站，左側通行' },
+              { icon: 'exit', label: 'STEP 05', main: '從 1 號出口出站', sub: '出站後步行約 8 分鐘，總統府在右手邊' }
+            ],
+            tip: '<strong>在地提醒：</strong>總統府參觀需事先預約，平日不對外開放。外圍博愛特區可自由參觀，安檢較嚴格。'
+          },
+          '世貿': {
+            exit: '2',
+            exitName: '2 號出口 · 世貿一館方向',
+            destination: '世貿',
+            steps: [
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台中央方向走', sub: '往 2 號出口的動線在月台中央' },
+              { icon: 'stairs', label: 'STEP 02', main: '走中央樓梯上 1 樓大廳', sub: '樓梯口標示「往 2 號出口 · 世貿」' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往前直走', sub: '沿著指標往 2 號出口' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭電扶梯上地面', sub: '靠右站，左側通行' },
+              { icon: 'exit', label: 'STEP 05', main: '從 2 號出口出站', sub: '出站即是世貿一館，對面是 101' }
+            ],
+            tip: '<strong>在地提醒：</strong>世貿展覽期間人潮眾多，建議提早 20 分鐘出站。2 號出口有無障礙電梯。'
+          },
+          '101': {
+            exit: '4',
+            exitName: '4 號出口 · 台北 101 方向',
+            destination: '台北 101',
+            steps: [
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台右側方向走', sub: '往 4 號出口的動線在月台右側' },
+              { icon: 'stairs', label: 'STEP 02', main: '走右側樓梯上 1 樓大廳', sub: '樓梯口標示「往 4 號出口 · 101」' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往右手邊走', sub: '沿著指示牌往 4 號出口' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭右側電扶梯上地面', sub: '靠右站，左側通行' },
+              { icon: 'exit', label: 'STEP 05', main: '從 4 號出口出站', sub: '出站即見 101，步行約 3 分鐘' }
+            ],
+            tip: '<strong>在地提醒：</strong>4 號出口有直達 101 購物中心的連通道。若要去觀景台，請從 101 購物中心 5 樓購票。'
+          }
+        };
+
+        /* 圖示 SVG */
+        var stepIcons = {
+          walk: '<path d="M13 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M10 21l2-5-2-3V8l3-1 3 4 3 1"/><path d="M5 12l3-3"/>',
+          stairs: '<path d="M3 20h4v-4h4v-4h4V8h4V4"/>',
+          gate: '<rect x="3" y="6" width="18" height="14" rx="1"/><path d="M8 20V6M12 12h4"/>',
+          escalator: '<path d="M3 17l4-4 4 2 4-6 6-4"/><circle cx="18" cy="5" r="1.5"/><circle cx="6" cy="19" r="1.5"/>',
+          exit: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/>'
+        };
+
+        function renderSmartRoute(stationName) {
+          var data = smartRoutes[stationName] || smartRoutes['中正紀念堂'];
+          var wrap = $('smart-route');
+          if (!wrap) return;
+
+          var stepsHTML = '';
+          for (var i = 0; i < data.steps.length; i++) {
+            var s = data.steps[i];
+            var iconPath = stepIcons[s.icon] || stepIcons.walk;
+            stepsHTML +=
+              '<div class="route-step">' +
+                '<div class="route-step-icon"><svg viewBox="0 0 24 24">' + iconPath + '</svg></div>' +
+                '<div class="route-step-body">' +
+                  '<div class="step-label">' + s.label + '</div>' +
+                  '<div class="step-main">' + s.main + '</div>' +
+                  '<div class="step-sub">' + s.sub + '</div>' +
+                '</div>' +
+              '</div>';
+          }
+
+          wrap.innerHTML =
+            '<div class="smart-route-header">' +
+              '<span class="h-label">SMART · ROUTE</span>' +
+              '<span class="h-title">前往 ' + data.destination + '</span>' +
+            '</div>' +
+            '<div class="smart-route-body">' +
+              '<div class="exit-block">' +
+                '<div class="exit-label">請從此出口出站</div>' +
+                '<div class="exit-number">' + data.exit + '<span class="unit">號出口</span></div>' +
+                '<div class="exit-name">' + data.exitName + '</div>' +
+              '</div>' +
+              '<div class="route-steps">' + stepsHTML + '</div>' +
+              '<div class="smart-route-tip">' +
+                '<div class="tip-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></div>' +
+                '<div>' + data.tip + '</div>' +
+              '</div>' +
+            '</div>';
+        }
+
+        /* ============================================================
+           逐字浮現
            ============================================================ */
         function unwrapChars(screen) {
           var chars = screen.querySelectorAll('.ch');
@@ -1535,32 +1298,22 @@
           }
         }
 
-        /* 檢查某個節點是否位於不需逐字的容器內 */
         function isExcluded(node) {
           var p = node.parentNode;
           if (!p) return true;
-
-          /* data-no-type */
           if (p.getAttribute && p.getAttribute('data-no-type') !== null) return true;
-
           var tag = p.tagName ? p.tagName.toLowerCase() : '';
           if (tag === 'script' || tag === 'style' || tag === 'svg') return true;
 
-          /* 往上找祖先 */
-          var el = p;
-          var depth = 0;
-          while (el && depth < 12) {
+          var el = p; var depth = 0;
+          while (el && depth < 14) {
             if (el.nodeType === 1) {
               var t = el.tagName ? el.tagName.toLowerCase() : '';
               var cls = el.className && typeof el.className === 'string' ? el.className : '';
-
-              /* 按鈕 */
               if (t === 'button') return true;
               if (cls.indexOf('btn') !== -1) return true;
               if (cls.indexOf('skip') !== -1) return true;
               if (cls.indexOf('tag') !== -1) return true;
-
-              /* 狀態列 / 導覽 / meta / 地圖 / eyebrow */
               if (cls.indexOf('status') !== -1) return true;
               if (cls.indexOf('site-header') !== -1) return true;
               if (cls.indexOf('site-nav') !== -1) return true;
@@ -1568,8 +1321,15 @@
               if (cls.indexOf('meta-bar') !== -1) return true;
               if (cls.indexOf('eyebrow') !== -1) return true;
               if (cls.indexOf('map-') !== -1) return true;
-
-              /* 屬性標記 */
+              if (cls.indexOf('metro-') !== -1) return true;
+              if (cls.indexOf('step-num') !== -1) return true;
+              if (cls.indexOf('guide-card-head') !== -1) return true;
+              if (cls.indexOf('guide-icon') !== -1) return true;
+              if (cls.indexOf('smart-route') !== -1) return true;
+              if (cls.indexOf('exit-number') !== -1) return true;
+              if (cls.indexOf('exit-label') !== -1) return true;
+              if (cls.indexOf('exit-name') !== -1) return true;
+              if (cls.indexOf('route-step') !== -1) return true;
               if (el.getAttribute && el.getAttribute('data-no-type') !== null) return true;
             }
             el = el.parentNode;
@@ -1583,8 +1343,7 @@
           if (!document.createTreeWalker) return;
 
           var walker = document.createTreeWalker(
-            screen,
-            NodeFilter.SHOW_TEXT,
+            screen, NodeFilter.SHOW_TEXT,
             {
               acceptNode: function (node) {
                 if (isExcluded(node)) return NodeFilter.FILTER_REJECT;
@@ -1594,27 +1353,21 @@
             }
           );
 
-          var nodes = [];
-          var n;
+          var nodes = []; var n;
           while ((n = walker.nextNode())) nodes.push(n);
           if (nodes.length === 0) return;
 
           var total = 0;
-          for (var i = 0; i < nodes.length; i++) {
-            total += nodes[i].textContent.length;
-          }
+          for (var i = 0; i < nodes.length; i++) total += nodes[i].textContent.length;
 
-          var target = 3.8;
-          var perChar = Math.max(0.01, Math.min(0.042, target / Math.max(total, 1)));
+          var perChar = Math.max(0.01, Math.min(0.045, 4 / Math.max(total, 1)));
           var startDelay = 0.1;
           var idx = 0;
 
           for (var j = 0; j < nodes.length; j++) {
             var node = nodes[j];
-            var text = node.textContent;
-            var chars = text.split('');
+            var chars = node.textContent.split('');
             var frag = document.createDocumentFragment();
-
             for (var k = 0; k < chars.length; k++) {
               var ch = chars[k];
               var span = document.createElement('span');
@@ -1622,7 +1375,6 @@
               if (ch === ' ') span.innerHTML = '&nbsp;';
               else span.textContent = ch;
               var delay = (startDelay + idx * perChar).toFixed(3) + 's';
-              span.style.webkitAnimationDelay = delay;
               span.style.animationDelay = delay;
               idx++;
               frag.appendChild(span);
@@ -1635,7 +1387,6 @@
            畫面切換
            ============================================================ */
         var currentScreen = 1;
-
         function goTo(n) {
           var screens = document.querySelectorAll('.screen');
           for (var i = 0; i < screens.length; i++) {
@@ -1648,7 +1399,8 @@
             if (target.classList) target.classList.add('active');
             else target.className = target.className + ' active';
             void target.offsetWidth;
-            splitText(target);
+            /* 智慧路徑畫面由 showSmartRoute 自行繪製，不再逐字 */
+            if (n !== 'smart') splitText(target);
           }
           currentScreen = n;
 
@@ -1659,24 +1411,13 @@
             if (dots[m].classList) {
               if (on) dots[m].classList.add('active');
               else dots[m].classList.remove('active');
-            } else {
-              if (on) dots[m].className = dots[m].className + ' active';
-              else dots[m].className = dots[m].className.replace(/\bactive\b/g, '');
             }
           }
 
           if (window.innerWidth <= 640) {
-            try {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            } catch (e) {
-              window.scrollTo(0, 0);
-            }
+            try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+            catch (e) { window.scrollTo(0, 0); }
           }
-        }
-
-        function startScan() {
-          goTo(5);
-          setTimeout(function () { goTo(6); }, 1400);
         }
 
         /* ============================================================
@@ -1696,9 +1437,7 @@
           if (!spots) return;
           var existing = spots.querySelectorAll('.tag');
           for (var i = 0; i < existing.length; i++) {
-            if (existing[i].textContent.replace(/×\s*$/, '').replace(/^\s+|\s+$/g, '') === v) {
-              return;
-            }
+            if (existing[i].textContent.replace(/×\s*$/, '').replace(/^\s+|\s+$/g, '') === v) return;
           }
           var tag = document.createElement('span');
           tag.className = 'tag removable';
@@ -1716,40 +1455,81 @@
            地圖選擇
            ============================================================ */
         var mapSelected = {};
-
         function toggleMapPin(el) {
           var spot = el.getAttribute('data-spot');
           if (!spot) return;
-
           if (el.classList && el.classList.contains('selected')) {
-            el.classList.remove('selected');
-            delete mapSelected[spot];
+            el.classList.remove('selected'); delete mapSelected[spot];
           } else {
             if (el.classList) el.classList.add('selected');
             mapSelected[spot] = true;
           }
-
           renderMapSelection();
         }
-
         function renderMapSelection() {
           var wrap = $('map-selection-tags');
           if (!wrap) return;
           wrap.innerHTML = '';
-
           var keys = [];
-          for (var k in mapSelected) {
-            if (mapSelected.hasOwnProperty(k)) keys.push(k);
-          }
-
+          for (var k in mapSelected) if (mapSelected.hasOwnProperty(k)) keys.push(k);
           if (keys.length === 0) {
             var empty = document.createElement('span');
             empty.className = 'empty';
             empty.textContent = '尚未選擇任何地點';
-            wrap.appendChild(empty);
-            return;
+            wrap.appendChild(empty); return;
           }
+          for (var i = 0; i < keys.length; i++) {
+            var tag = document.createElement('span');
+            tag.className = 'tag';
+            tag.textContent = keys[i];
+            wrap.appendChild(tag);
+          }
+        }
+        function confirmMapSelection() {
+          var keys = [];
+          for (var k in mapSelected) if (mapSelected.hasOwnProperty(k)) keys.push(k);
+          if (keys.length === 0) { goTo(2); return; }
+          for (var i = 0; i < keys.length; i++) addSpotToTags(keys[i]);
+          mapSelected = {};
+          var pins = document.querySelectorAll('.map-pin.selected');
+          for (var j = 0; j < pins.length; j++) pins[j].classList.remove('selected');
+          renderMapSelection();
+          goTo(2);
+        }
 
+        /* ============================================================
+           捷運站選擇
+           ============================================================ */
+        var stationSelected = {};
+        function selectStation(el) {
+          var s = el.getAttribute('data-station');
+          if (!s) return;
+          /* 只能選一個 */
+          var all = document.querySelectorAll('.metro-station.selected');
+          for (var i = 0; i < all.length; i++) {
+            if (all[i] !== el) all[i].classList.remove('selected');
+          }
+          stationSelected = {};
+          if (el.classList && el.classList.contains('selected')) {
+            el.classList.remove('selected');
+          } else {
+            if (el.classList) el.classList.add('selected');
+            stationSelected[s] = true;
+          }
+          renderStationSelection();
+        }
+        function renderStationSelection() {
+          var wrap = $('station-selection');
+          if (!wrap) return;
+          wrap.innerHTML = '';
+          var keys = [];
+          for (var k in stationSelected) if (stationSelected.hasOwnProperty(k)) keys.push(k);
+          if (keys.length === 0) {
+            var empty = document.createElement('span');
+            empty.className = 'empty';
+            empty.textContent = '尚未選擇任何站點';
+            wrap.appendChild(empty); return;
+          }
           for (var i = 0; i < keys.length; i++) {
             var tag = document.createElement('span');
             tag.className = 'tag';
@@ -1758,32 +1538,58 @@
           }
         }
 
-        function confirmMapSelection() {
+        /* ============================================================
+           顯示智慧路徑
+           ============================================================ */
+        function showSmartRoute() {
           var keys = [];
-          for (var k in mapSelected) {
-            if (mapSelected.hasOwnProperty(k)) keys.push(k);
+          for (var k in stationSelected) if (stationSelected.hasOwnProperty(k)) keys.push(k);
+          var stationName = keys.length > 0 ? keys[0] : '中正紀念堂';
+
+          /* 判斷目的地：從行程標籤中，找出與捷運站不同的景點 */
+          var spots = document.querySelectorAll('#spots .tag');
+          var destination = '中正紀念堂';
+          if (spots.length > 0) {
+            var lastSpot = spots[spots.length - 1].textContent.replace(/×\s*$/, '').replace(/^\s+|\s+$/g, '');
+            /* 若最後一個景點在 smartRoutes 中，優先用它 */
+            if (smartRoutes[lastSpot]) destination = lastSpot;
+            else {
+              for (var i = 0; i < spots.length; i++) {
+                var name = spots[i].textContent.replace(/×\s*$/, '').replace(/^\s+|\s+$/g, '');
+                if (smartRoutes[name]) { destination = name; break; }
+              }
+            }
           }
-          if (keys.length === 0) {
-            goTo(2);
-            return;
+
+          renderSmartRoute(destination);
+
+          var titleEl = $('smart-title');
+          var leadEl = $('smart-lead');
+          if (titleEl) titleEl.textContent = '前往「' + destination + '」的最佳路徑';
+          if (leadEl) leadEl.textContent = '系統已為您計算從「' + stationName + '」站出發的站內路徑。請依序操作。';
+
+          /* 切到 smart 畫面 */
+          var screens = document.querySelectorAll('.screen');
+          for (var j = 0; j < screens.length; j++) screens[j].classList.remove('active');
+          var target = document.querySelector('[data-screen="smart"]');
+          if (target) target.classList.add('active');
+          currentScreen = 'smart';
+
+          var dots = document.querySelectorAll('#progress span');
+          for (var m = 0; m < dots.length; m++) {
+            if (m === 5) dots[m].classList.add('active');
+            else dots[m].classList.remove('active');
           }
-          for (var i = 0; i < keys.length; i++) {
-            addSpotToTags(keys[i]);
+
+          if (window.innerWidth <= 640) {
+            try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+            catch (e) { window.scrollTo(0, 0); }
           }
-          mapSelected = {};
-          var pins = document.querySelectorAll('.map-pin.selected');
-          for (var j = 0; j < pins.length; j++) {
-            pins[j].classList.remove('selected');
-          }
-          renderMapSelection();
-          goTo(2);
         }
 
         /* ============================================================
-           其他
+           重新開始
            ============================================================ */
-        function finishTrip() { goTo(11); }
-
         function restart() {
           var spots = $('spots');
           if (spots) {
@@ -1799,41 +1605,12 @@
               })(defaults[i]);
             }
           }
-          mapSelected = {};
-          var pins = document.querySelectorAll('.map-pin.selected');
-          for (var j = 0; j < pins.length; j++) {
-            pins[j].classList.remove('selected');
-          }
-          renderMapSelection();
+          mapSelected = {}; stationSelected = {};
+          var pins = document.querySelectorAll('.map-pin.selected, .metro-station.selected');
+          for (var j = 0; j < pins.length; j++) pins[j].classList.remove('selected');
+          renderMapSelection(); renderStationSelection();
           goTo(1);
         }
-
-        /* ============================================================
-           行進計時
-           ============================================================ */
-        var rideSec = 0;
-        var rideTimer = null;
-
-        function startTimer() {
-          rideSec = 0;
-          if (rideTimer) clearInterval(rideTimer);
-          rideTimer = setInterval(function () {
-            rideSec++;
-            var m = pad2(Math.floor(rideSec / 60));
-            var s = pad2(rideSec % 60);
-            var el = $('ride-timer');
-            if (el) el.textContent = m + ':' + s;
-          }, 1000);
-        }
-
-        var lastScreen = 1;
-        setInterval(function () {
-          if (currentScreen === 7 && lastScreen !== 7) startTimer();
-          if (currentScreen !== 7 && lastScreen === 7) {
-            if (rideTimer) { clearInterval(rideTimer); rideTimer = null; }
-          }
-          lastScreen = currentScreen;
-        }, 300);
 
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Enter' || e.keyCode === 13) {
@@ -1842,16 +1619,11 @@
           }
         });
 
-        /* ============================================================
-           初始化
-           ============================================================ */
         function boot() {
           var g = $('greeting');
           if (g) g.textContent = getGreeting();
-
           tick();
           setInterval(tick, 1000);
-
           var first = document.querySelector('[data-screen="1"]');
           if (first) splitText(first);
         }
@@ -1866,12 +1638,12 @@
         }
 
         window.goTo = goTo;
-        window.startScan = startScan;
         window.addSpot = addSpot;
         window.removeSpot = removeSpot;
         window.toggleMapPin = toggleMapPin;
         window.confirmMapSelection = confirmMapSelection;
-        window.finishTrip = finishTrip;
+        window.selectStation = selectStation;
+        window.showSmartRoute = showSmartRoute;
         window.restart = restart;
       })();
     </script>
