@@ -144,12 +144,14 @@ body {
 }
 
 /* ========================================
-   文字顏色（核心修正：所有文字高亮度）
+   文字顏色
+   核心修正：繼承 body 的顏色，不強制白色
+   這樣深色底的頁面可以自行設定 body 顏色
    ======================================== */
 h1, h2, h3, h4, h5, h6,
 p, span, li, div, a,
 label, strong, em, blockquote {
-  color: var(--text-bright);
+  color: inherit;
 }
 
 .page-kicker {
