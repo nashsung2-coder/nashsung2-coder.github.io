@@ -15,26 +15,22 @@
         --bg-deep: #050510;
         --border-glow: rgba(0, 240, 255, 0.35);
       }
-      * { box-sizing: border-box; margin: 0; padding: 0; }
+      * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
-
       body {
+        margin: 0;
         background: var(--bg-deep);
-        color: #fff;
+        color: #ffffff;
         font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", sans-serif;
         line-height: 1.8;
         overflow-x: hidden;
         position: relative;
       }
-
-      /* 粒子畫布 */
       #particle-canvas {
         position: fixed; top: 0; left: 0;
         width: 100%; height: 100%;
         z-index: 0; pointer-events: none;
       }
-
-      /* 掃描線 */
       body::before {
         content: "";
         position: fixed; top: 0; left: 0;
@@ -42,8 +38,6 @@
         background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
         z-index: 1; pointer-events: none;
       }
-
-      /* 星雲光暈 */
       body::after {
         content: "";
         position: fixed; top: -50%; left: -50%;
@@ -52,21 +46,20 @@
                     radial-gradient(ellipse at 80% 20%, rgba(255,45,149,0.05) 0%, transparent 60%),
                     radial-gradient(ellipse at 50% 80%, rgba(185,103,255,0.04) 0%, transparent 60%);
         z-index: 0; pointer-events: none;
-        animation: nebula 25s ease-in-out infinite alternate;
+        animation: nebula-drift 30s ease-in-out infinite alternate;
       }
-      @keyframes nebula {
+      @keyframes nebula-drift {
         0% { transform: translate(0,0) scale(1); }
-        50% { transform: translate(2%,-1%) scale(1.06); }
-        100% { transform: translate(-1%,1%) scale(1.02); }
+        33% { transform: translate(-2%,1.5%) scale(1.05); }
+        66% { transform: translate(1.5%,-1%) scale(0.95); }
+        100% { transform: translate(-1%,-2%) scale(1.02); }
       }
-
-      /* 導覽列 */
       .site-header {
-        position: fixed; top: 0; left: 0;
-        width: 100%; z-index: 100;
-        background: rgba(5,5,16,0.85);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
+        position: fixed !important; top: 0; left: 0; width: 100%;
+        z-index: 100;
+        background: rgba(5,5,16,0.85) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border-glow);
         padding: 0.6rem 2rem;
         display: flex; align-items: center; justify-content: center;
@@ -75,9 +68,9 @@
         position: absolute; left: 2rem;
         display: flex; align-items: center; gap: 0.6rem;
         text-decoration: none;
-        color: var(--neon-cyan);
+        color: var(--neon-cyan) !important;
         font-weight: 700; letter-spacing: 2px; font-size: 1rem;
-        text-shadow: 0 0 8px var(--neon-cyan), 0 0 20px rgba(0,240,255,0.4);
+        text-shadow: 0 0 8px var(--neon-cyan);
       }
       .site-brand-avatar {
         width: 38px; height: 38px;
@@ -85,276 +78,337 @@
         border: 2px solid var(--neon-cyan);
         box-shadow: 0 0 10px rgba(0,240,255,0.5);
       }
+      .site-brand-text { white-space: nowrap; color: var(--neon-cyan) !important; }
       .site-nav {
-        display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap; justify-content: center;
+        display: flex; align-items: center;
+        gap: 0.2rem; flex-wrap: wrap; justify-content: center;
       }
       .site-nav a {
-        color: #fff; text-decoration: none;
-        padding: 0.35rem 0.9rem; letter-spacing: 1px; font-size: 0.9rem;
-        border-radius: 20px; border: 1px solid transparent;
+        color: #ffffff !important;
+        text-decoration: none;
+        padding: 0.4rem 0.8rem;
+        letter-spacing: 1px; font-size: 0.9rem;
         transition: all 0.3s;
+        border: 1px solid transparent;
       }
-      .site-nav a:hover,
-      .site-nav a[aria-current="page"] {
-        color: var(--neon-cyan); border-color: var(--neon-cyan);
+      .site-nav a:hover, .site-nav a.active {
+        color: var(--neon-cyan) !important;
+        border-color: var(--neon-cyan);
         text-shadow: 0 0 6px var(--neon-cyan);
         background: rgba(0,240,255,0.1);
       }
       .site-status {
         position: absolute; right: 2rem;
-        color: var(--neon-green); font-size: 0.7rem;
-        letter-spacing: 3px; animation: pulse 2s infinite;
+        color: var(--neon-green) !important;
+        font-size: 0.7rem; letter-spacing: 3px;
+        animation: pulse-status 2s ease-in-out infinite;
+        white-space: nowrap;
       }
-      @keyframes pulse {
-        0%,100% { opacity: 1; text-shadow: 0 0 4px var(--neon-green); }
-        50% { opacity: 0.4; }
+      @keyframes pulse-status {
+        0%,100% { opacity:1; text-shadow:0 0 4px var(--neon-green); }
+        50% { opacity:0.5; text-shadow:none; }
       }
-
-      /* 主容器 */
-      .main-container {
+      .page-content {
         position: relative; z-index: 2;
-        max-width: 900px; margin: 0 auto;
-        padding: 8rem 2rem 4rem;
+        max-width: 860px; margin: 0 auto;
+        padding: 7rem 2rem 5rem;
+        background: rgba(5,5,16,0.6);
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
       }
-
-      /* Hero 區域：圖片左側 + 文字右側 */
-      .hero {
-        display: flex; align-items: center; gap: 2.5rem;
-        margin-bottom: 4rem;
-        padding: 2rem;
-        background: rgba(5,5,16,0.5);
-        border: 1px solid rgba(0,240,255,0.2);
-        border-radius: 20px;
-        box-shadow: 0 0 40px rgba(0,240,255,0.08);
-        backdrop-filter: blur(6px);
-      }
-      .hero-image {
-        flex-shrink: 0;
-        width: 170px; height: 170px;
-        border-radius: 18px; overflow: hidden;
-        border: 2px solid rgba(0,240,255,0.5);
-        box-shadow: 0 0 25px rgba(0,240,255,0.3), 0 0 60px rgba(185,103,255,0.15);
-        opacity: 0.55;
-        transition: opacity 0.5s, transform 0.5s, box-shadow 0.5s;
-      }
-      .hero-image:hover {
-        opacity: 0.8; transform: scale(1.03);
-        box-shadow: 0 0 35px rgba(0,240,255,0.5), 0 0 80px rgba(185,103,255,0.25);
-      }
-      .hero-image img {
-        width: 100%; height: 100%; object-fit: cover;
-      }
-      .hero-text { flex: 1; min-width: 0; }
-
-      .greeting {
-        display: inline-block;
-        padding: 0.35rem 1.3rem;
-        border: 1px solid rgba(0,240,255,0.4);
-        border-radius: 30px;
-        background: rgba(0,240,255,0.05);
-        color: var(--neon-cyan);
-        font-size: 0.9rem; letter-spacing: 2px;
-        text-shadow: 0 0 8px rgba(0,240,255,0.5);
+      .page-kicker {
+        color: var(--neon-magenta) !important;
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        border-left: 2px solid var(--neon-magenta);
+        padding-left: 0.8rem;
+        text-shadow: 0 0 6px rgba(255,45,149,0.7);
+        font-weight: 600;
         margin-bottom: 1rem;
       }
+      .greeting-box {
+        margin-bottom: 2rem;
+        padding: 1.2rem 1.8rem;
+        border: 1px solid rgba(0,240,255,0.4);
+        border-radius: 50px;
+        background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(185,103,255,0.05));
+        color: var(--neon-cyan) !important;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(0,240,255,0.2);
+        position: relative;
+        overflow: hidden;
+      }
+      .greeting-box::before {
+        content: "";
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: radial-gradient(circle, rgba(0,240,255,0.1) 0%, transparent 70%);
+        animation: glow-rotate 8s linear infinite;
+      }
+      @keyframes glow-rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
       h1 {
-        font-size: clamp(2.2rem, 5vw, 3.2rem);
-        font-weight: 900; letter-spacing: 2px;
-        background: linear-gradient(120deg, #fff, #7ef9ff, #d4a5ff);
-        -webkit-background-clip: text; background-clip: text;
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        font-weight: 900;
+        letter-spacing: 2px;
+        background: linear-gradient(120deg, #ffffff, var(--neon-cyan), var(--neon-purple));
+        -webkit-background-clip: text;
+        background-clip: text;
         color: transparent;
-        filter: drop-shadow(0 0 20px rgba(0,240,255,0.5));
-        animation: titleGlow 4s ease-in-out infinite alternate;
-        line-height: 1.3; margin-bottom: 0.5rem;
+        filter: drop-shadow(0 0 15px rgba(0,240,255,0.5));
+        animation: title-glow 4s ease-in-out infinite alternate;
+        margin: 1rem 0 0.5rem;
       }
-      @keyframes titleGlow {
+      @keyframes title-glow {
         0% { filter: drop-shadow(0 0 10px rgba(0,240,255,0.5)); }
-        100% { filter: drop-shadow(0 0 30px rgba(185,103,255,0.7)); }
+        100% { filter: drop-shadow(0 0 25px rgba(185,103,255,0.7)); }
       }
-      .subtitle {
-        font-size: 1.2rem; color: rgba(255,255,255,0.9);
+      .lead {
+        font-size: 1.25rem;
+        color: var(--neon-cyan) !important;
+        border-bottom: 1px dashed rgba(0,240,255,0.5);
+        padding-bottom: 1rem;
         letter-spacing: 1px;
+        font-weight: 500;
+        text-shadow: 0 0 10px rgba(0,240,255,0.3);
+        margin-bottom: 2rem;
       }
-
-      /* 章節 */
-      .section { margin-bottom: 3.5rem; }
       .section-title {
-        display: flex; align-items: center; gap: 0.8rem;
-        font-size: 1.6rem; font-weight: 700; letter-spacing: 2px;
-        color: #fff;
+        position: relative;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: #ffffff !important;
         text-shadow: 0 0 12px rgba(255,255,255,0.3);
-        margin-bottom: 1.5rem; padding-bottom: 0.5rem;
-        border-bottom: 1px dashed rgba(0,240,255,0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
       }
       .section-title::before {
         content: "▸";
-        color: var(--neon-cyan);
-        text-shadow: 0 0 8px var(--neon-cyan);
+        color: var(--neon-cyan) !important;
+        font-size: 1.4rem;
       }
-      .section p {
-        color: rgba(255,255,255,0.88);
-        text-shadow: 0 0 6px rgba(255,255,255,0.15);
-        margin-bottom: 1.2rem;
+      .section-title::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(0,240,255,0.7), rgba(185,103,255,0.3), transparent);
+        box-shadow: 0 0 8px rgba(0,240,255,0.5);
       }
-      .highlight {
-        color: var(--neon-cyan); font-weight: 700;
-        text-shadow: 0 0 10px rgba(0,240,255,0.6);
-      }
-
-      /* 專案卡片 */
       .project-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 1.5rem; margin-top: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
       }
       .project-card {
         background: rgba(10,10,30,0.5);
         border: 1px solid rgba(0,240,255,0.25);
-        border-radius: 14px; padding: 1.4rem;
-        transition: all 0.4s;
-        position: relative; overflow: hidden;
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(4px);
       }
       .project-card::before {
         content: "";
         position: absolute; top: 0; left: 0;
         width: 100%; height: 2px;
         background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-        opacity: 0; transition: opacity 0.4s;
+        opacity: 0;
+        transition: opacity 0.4s;
+      }
+      .project-card::after {
+        content: "";
+        position: absolute; top: 0; right: 0;
+        width: 100%; height: 100%;
+        background: radial-gradient(circle at top right, rgba(0,240,255,0.1), transparent 70%);
+        opacity: 0;
+        transition: opacity 0.4s;
       }
       .project-card:hover {
         border-color: rgba(0,240,255,0.7);
-        box-shadow: 0 0 25px rgba(0,240,255,0.25), 0 0 50px rgba(185,103,255,0.12);
+        box-shadow: 0 0 25px rgba(0,240,255,0.3), 0 0 50px rgba(185,103,255,0.15);
         transform: translateY(-5px);
       }
-      .project-card:hover::before { opacity: 1; }
+      .project-card:hover::before,
+      .project-card:hover::after { opacity: 1; }
       .project-card h3 {
-        color: #fff; font-size: 1.1rem;
-        margin-bottom: 0.4rem; letter-spacing: 1px;
+        margin: 0 0 0.5rem;
+        font-size: 1.2rem;
+        color: #ffffff !important;
+        letter-spacing: 1px;
+        position: relative; z-index: 1;
       }
       .project-card p {
-        color: rgba(255,255,255,0.8); font-size: 0.9rem;
-        margin-bottom: 0.7rem;
+        margin: 0 0 0.5rem;
+        color: #ffffff !important;
+        font-size: 0.95rem;
+        position: relative; z-index: 1;
       }
       .project-card a {
-        color: var(--neon-cyan); text-decoration: none; font-size: 0.85rem;
+        color: var(--neon-cyan) !important;
+        text-decoration: none;
         border-bottom: 1px dotted rgba(0,240,255,0.5);
+        transition: all 0.3s;
+        font-size: 0.9rem;
+        position: relative; z-index: 1;
+      }
+      .project-card a:hover {
+        color: #ffffff !important;
+        text-shadow: 0 0 8px var(--neon-cyan);
       }
       .badge {
         display: inline-block;
-        padding: 0.1rem 0.6rem;
-        border-radius: 20px; font-size: 0.7rem; font-weight: 600;
+        padding: 0.15rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-left: 0.5rem;
+        vertical-align: middle;
         background: rgba(255,45,149,0.2);
-        color: #ff6bb8;
+        color: var(--neon-magenta) !important;
         border: 1px solid rgba(255,45,149,0.5);
-        margin-left: 0.4rem;
         text-shadow: 0 0 4px rgba(255,45,149,0.5);
       }
-
-      /* 凌極世界專區 */
-      .callout {
-        margin: 3rem 0;
-        padding: 3rem 2rem;
-        border: 1px solid rgba(0,240,255,0.5);
-        border-radius: 20px;
+      .highlight {
+        color: var(--neon-cyan) !important;
+        font-weight: 700;
+        text-shadow: 0 0 8px rgba(0,240,255,0.5);
+        border-bottom: 1px dotted rgba(0,240,255,0.4);
+      }
+      .about-highlight {
+        background: linear-gradient(135deg, rgba(255,45,149,0.05), rgba(0,240,255,0.05));
+        border-left: 3px solid var(--neon-magenta);
+        padding: 1.2rem 1.5rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1.5rem 0;
+        box-shadow: 0 0 15px rgba(255,45,149,0.1);
+      }
+      .crestylon-callout {
+        margin-top: 3rem;
+        padding: 2.5rem 2rem;
+        border: 1px solid rgba(0,240,255,0.6);
+        border-radius: 16px;
         background: linear-gradient(145deg, rgba(0,240,255,0.08), rgba(185,103,255,0.05));
         text-align: center;
-        position: relative; overflow: hidden;
-        box-shadow: 0 0 40px rgba(0,240,255,0.12);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(0,240,255,0.15);
       }
-      .callout::before {
+      .crestylon-callout::before {
         content: "";
-        position: absolute; top: -50%; left: -50%;
+        position: absolute;
+        top: -50%; left: -50%;
         width: 200%; height: 200%;
-        background: conic-gradient(from 0deg, transparent, rgba(0,240,255,0.08), transparent, rgba(185,103,255,0.08), transparent);
-        animation: spin 12s linear infinite;
+        background: conic-gradient(from 0deg, transparent, rgba(0,240,255,0.1), transparent, rgba(185,103,255,0.1), transparent);
+        animation: rotate-conic 10s linear infinite;
       }
-      @keyframes spin {
+      @keyframes rotate-conic {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
-      .callout h2 {
-        font-size: 2rem;
-        background: linear-gradient(120deg, #fff, #7ef9ff, #d4a5ff);
-        -webkit-background-clip: text; background-clip: text;
-        color: transparent;
+      .callout-label {
+        color: var(--neon-magenta) !important;
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        font-weight: 600;
         margin-bottom: 0.5rem;
         position: relative; z-index: 1;
       }
-      .callout p {
-        color: rgba(255,255,255,0.85);
-        margin-bottom: 1.8rem;
+      .callout-title {
+        font-size: 1.8rem;
+        font-weight: 900;
+        background: linear-gradient(120deg, #fff, var(--neon-cyan), var(--neon-purple));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin: 0 0 0.5rem;
         position: relative; z-index: 1;
       }
-      .callout .btn {
+      .callout-text {
+        color: #ffffff !important;
+        margin-bottom: 1.5rem;
+        position: relative; z-index: 1;
+      }
+      .callout-button {
         display: inline-block;
-        padding: 0.8rem 2.2rem;
-        border-radius: 30px;
+        padding: 0.8rem 2rem;
         border: 1px solid var(--neon-cyan);
-        color: var(--neon-cyan);
-        text-decoration: none; letter-spacing: 2px;
+        border-radius: 50px;
+        color: var(--neon-cyan) !important;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-decoration: none;
         transition: all 0.4s;
         position: relative; z-index: 1;
         background: rgba(0,0,0,0.3);
         box-shadow: 0 0 15px rgba(0,240,255,0.2);
       }
-      .callout .btn:hover {
+      .callout-button:hover {
         background: rgba(0,240,255,0.15);
-        color: #fff;
+        color: #ffffff !important;
         box-shadow: 0 0 30px rgba(0,240,255,0.5);
         transform: scale(1.05);
       }
-
-      /* 關於我區塊 */
-      .about-block {
-        background: linear-gradient(135deg, rgba(255,45,149,0.06), rgba(0,240,255,0.04));
-        border-left: 3px solid var(--neon-magenta);
-        padding: 1.5rem 2rem;
-        border-radius: 0 12px 12px 0;
-        margin: 1.5rem 0;
-        box-shadow: 0 0 20px rgba(255,45,149,0.08);
-      }
-
-      /* 頁尾 */
       .site-footer {
-        text-align: center; padding: 2rem;
-        color: rgba(255,255,255,0.5); font-size: 0.8rem;
+        position: relative; z-index: 2;
+        text-align: center;
+        padding: 2rem;
+        color: #ffffff !important;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
         border-top: 1px solid rgba(0,240,255,0.2);
+        margin-top: 2rem;
       }
-
-      /* 淡入動畫 */
-      .fade-up {
-        opacity: 0; transform: translateY(30px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
+      #cursor-glow {
+        position: fixed;
+        width: 300px; height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0,240,255,0.08) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+        transform: translate(-50%,-50%);
+        transition: opacity 0.3s;
       }
-      .fade-up.visible {
-        opacity: 1; transform: translateY(0);
-      }
-
-      /* 手機版 */
       @media (max-width: 600px) {
         .site-header {
-          flex-direction: column; padding: 0.8rem 1rem;
+          position: relative;
+          flex-direction: column;
+          align-items: center;
+          padding: 0.5rem 1rem;
+          height: auto;
         }
-        .site-brand { position: static; margin-bottom: 0.5rem; }
-        .site-status { display: none; }
-        .site-nav { width: 100%; gap: 0.2rem; }
-        .site-nav a { padding: 0.3rem 0.7rem; font-size: 0.8rem; }
-        .main-container { padding: 7rem 1.2rem 3rem; }
-        .hero {
-          flex-direction: column; text-align: center;
-          gap: 1.5rem; padding: 1.5rem;
+        .site-brand { position: static; margin-bottom: 0.3rem; }
+        .site-nav {
+          width: 100%; justify-content: center;
+          flex-wrap: wrap; gap: 0.2rem;
         }
-        .hero-image {
-          width: 140px; height: 140px;
-          border-radius: 16px;
+        .site-nav a { padding: 0.3rem 0.6rem; font-size: 0.8rem; margin: 0; }
+        .site-status { position: static; margin-top: 0.3rem; }
+        .page-content {
+          padding: 6rem 1.2rem 3rem;
+          background: rgba(5,5,16,0.8);
         }
-        .section-title { font-size: 1.4rem; }
         .project-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
+
   <body>
     <canvas id="particle-canvas"></canvas>
+    <div id="cursor-glow"></div>
 
     <header class="site-header" data-site-navigation>
       <a class="site-brand" href="/" aria-label="宋嵐緒個人頁面首頁">
@@ -365,101 +419,92 @@
       <span class="site-status">STATIC INDEX</span>
     </header>
 
-    <main class="main-container">
-      <!-- Hero：圖片在左，文字在右 -->
-      <section class="hero">
-        <div class="hero-image fade-up visible">
-          <img src="assets/images/hero-banner.png" alt="宋嵐緒的圖片" />
-        </div>
-        <div class="hero-text">
-          <div class="greeting fade-up visible" id="greeting">載入中...</div>
-          <h1 class="fade-up visible">歡迎來到<br>宋嵐緒的個人網站</h1>
-          <p class="subtitle fade-up visible">很高興你來。我是宋嵐緒。</p>
-        </div>
-      </section>
+    <main class="page-content content-text">
+      <p class="page-kicker reveal visible">HOME / 00</p>
 
-      <!-- 自我介紹 -->
-      <section class="section fade-up">
-        <p>
-          我是個高一學生，喜歡把腦袋裡的奇怪想法做出來。這裡是我的小角落，放著我正在做的事、正在想的問題，還有一些想跟你說的話。
-        </p>
-        <p>
-          你可能會覺得這裡的內容有點嚴肅，但我保證我本人沒那麼嚴肅。我只是覺得，有些事情現在不說，以後就來不及了。
-        </p>
-      </section>
+      <div class="greeting-box reveal visible" id="greeting">載入中...</div>
 
-      <!-- 我在做什麼 -->
-      <section class="section fade-up">
-        <h2 class="section-title">我在做什麼</h2>
-        <p>
-          簡單說，我在做一個叫做<span class="highlight">凌極世界</span>的計畫。它聽起來很宏大，但其實核心很簡單：<span class="highlight">每個人都應該有選擇的權利</span>，而不是被迫走同一條路。
-        </p>
-        <div class="project-grid">
-          <div class="project-card">
-            <h3>INN 星際新聞網</h3>
-            <p>雙語新聞平台，用地圖選新聞，順便練英文。</p>
-            <a href="https://inn.crestylon.org" target="_blank" rel="noreferrer">inn.crestylon.org</a>
-          </div>
-          <div class="project-card">
-            <h3>Cool English 星辰啟航 <span class="badge">Demo</span></h3>
-            <p>幫英文學習平台做的遊戲化入口原型（未獲採用）。</p>
-            <a href="https://cool-english-cosmos.pages.dev" target="_blank" rel="noreferrer">cool-english-cosmos.pages.dev</a>
-          </div>
-          <div class="project-card">
-            <h3>均一學習宇宙 <span class="badge">Demo</span></h3>
-            <p>幫均一平台設計的學習入口概念（未獲採用）。</p>
-            <a href="https://junyi-english-cosmos.pages.dev" target="_blank" rel="noreferrer">junyi-english-cosmos.pages.dev</a>
-          </div>
-          <div class="project-card">
-            <h3>白皮書</h3>
-            <p>凌極世界的制度框架，想深入了解可以看。</p>
-            <a href="https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view" target="_blank" rel="noreferrer">查看白皮書</a>
-          </div>
+      <h1 class="reveal visible">歡迎來到<br>宋嵐緒的個人網站</h1>
+      <p class="lead reveal visible">很高興你來。我是宋嵐緒。</p>
+
+      <p class="reveal reveal-delay-1">
+        我是個高一學生，喜歡把腦袋裡的奇怪想法做出來。這裡是我的小角落，放著我正在做的事、正在想的問題，還有一些想跟你說的話。
+      </p>
+      <p class="reveal reveal-delay-2">
+        你可能會覺得這裡的內容有點嚴肅，但我保證我本人沒那麼嚴肅。我只是覺得，有些事情現在不說，以後就來不及了。
+      </p>
+
+      <h2 class="section-title reveal">我在做什麼</h2>
+      <p class="reveal reveal-delay-1">
+        簡單說，我在做一個叫做<span class="highlight">凌極世界</span>的計畫。它聽起來很宏大，但其實核心很簡單：<span class="highlight">每個人都應該有選擇的權利</span>，而不是被迫走同一條路。
+      </p>
+
+      <div class="project-grid">
+        <div class="project-card reveal reveal-delay-1">
+          <h3>INN 星際新聞網</h3>
+          <p>雙語新聞平台，用地圖選新聞，順便練英文。</p>
+          <a href="https://inn.crestylon.org" target="_blank" rel="noreferrer">inn.crestylon.org</a>
         </div>
-        <p style="margin-top: 1.5rem;">
-          這些東西可能還很粗糙，但我想證明一件事：<span class="highlight">高中生也可以試著解決那些看起來很遠、但其實離我們很近的問題</span>。
-        </p>
-      </section>
+        <div class="project-card reveal reveal-delay-1">
+          <h3>Cool English 星辰啟航 <span class="badge">Demo</span></h3>
+          <p>幫英文學習平台做的遊戲化入口原型（未獲採用）。</p>
+          <a href="https://cool-english-cosmos.pages.dev" target="_blank" rel="noreferrer">cool-english-cosmos.pages.dev</a>
+        </div>
+        <div class="project-card reveal reveal-delay-2">
+          <h3>均一學習宇宙 <span class="badge">Demo</span></h3>
+          <p>幫均一平台設計的學習入口概念（未獲採用）。</p>
+          <a href="https://junyi-english-cosmos.pages.dev" target="_blank" rel="noreferrer">junyi-english-cosmos.pages.dev</a>
+        </div>
+        <div class="project-card reveal reveal-delay-2">
+          <h3>智慧遊台北 <span class="badge">Demo</span></h3>
+          <p>為外國旅客設計的台北交通導引系統，包含站內動線、QR 尋寶與文化禮儀。</p>
+          <a href="pages/bus-system.html">開啟智慧遊台北 →</a>
+        </div>
+        <div class="project-card reveal reveal-delay-2">
+          <h3>白皮書</h3>
+          <p>凌極世界的制度框架，想深入了解可以看。</p>
+          <a href="https://drive.google.com/file/d/1BlAY-MZT3m6V2fi6ZN6QS2MGVLwHD58V/view" target="_blank" rel="noreferrer">查看白皮書</a>
+        </div>
+      </div>
 
-      <!-- 凌極世界 -->
-      <section class="callout fade-up">
-        <h2>凌極世界</h2>
-        <p>
+      <p class="reveal reveal-delay-3">
+        這些東西可能還很粗糙，但我想證明一件事：<span class="highlight">高中生也可以試著解決那些看起來很遠、但其實離我們很近的問題</span>。
+      </p>
+
+      <div class="crestylon-callout reveal reveal-delay-2">
+        <p class="callout-label">CORE PROJECT</p>
+        <h2 class="callout-title">凌極世界</h2>
+        <p class="callout-text">
           如果你也覺得現在的路走起來不太對，但不知道能怎麼辦，歡迎來看看。這不是教學，是<span class="highlight">邀請</span>。
         </p>
-        <a class="btn" href="pages/crestylon.html">閱讀完整理念 →</a>
-      </section>
+        <a class="callout-button" href="pages/crestylon.html">閱讀完整理念 →</a>
+      </div>
 
-      <!-- 關於我 -->
-      <section class="section fade-up">
-        <h2 class="section-title">關於我這個人</h2>
-        <div class="about-block">
-          <p style="margin:0;">
-            除了弄這些看起來很嚴肅的東西，我也是個普通高中生。我彈吉他、游泳、打木箱鼓，偶爾畫點東西。我生日是 9 月 28 日，如果你剛好也是這天，那我們還挺有緣的。
-          </p>
-        </div>
-        <p>想更認識我的話，可以看看我的<a href="pages/experience.html" style="color:var(--neon-cyan);">個人經歷</a>。</p>
-      </section>
+      <h2 class="section-title reveal">關於我這個人</h2>
+      <div class="about-highlight reveal reveal-delay-1">
+        <p style="margin:0;">
+          除了弄這些看起來很嚴肅的東西，我也是個普通高中生。我彈吉他、游泳、打木箱鼓，偶爾畫點東西。我生日是 9 月 28 日，如果你剛好也是這天，那我們還挺有緣的。
+        </p>
+      </div>
+      <p class="reveal reveal-delay-2">
+        想更認識我的話，可以看看我的<a href="pages/experience.html">個人經歷</a>。
+      </p>
 
-      <!-- 想說的話 -->
-      <section class="section fade-up">
-        <h2 class="section-title">想說的話</h2>
-        <p>
-          很多人的人生，最後都停在<span class="highlight">「妥協」</span>兩個字。我想試試看，讓人生可以有<span class="highlight">「選擇」</span>。
-        </p>
-        <p>
-          如果你也有一直想做的事，但因為<span class="highlight">「沒人允許」</span>所以沒動手，歡迎寫信給我。我們可以一起把它做出來。
-        </p>
-        <p style="font-style: italic; color: var(--neon-cyan);">
-          網站還在慢慢長。謝謝你來。
-        </p>
-      </section>
+      <h2 class="section-title reveal">想說的話</h2>
+      <p class="reveal reveal-delay-1">
+        很多人的人生，最後都停在<span class="highlight">「妥協」</span>兩個字。我想試試看，讓人生可以有<span class="highlight">「選擇」</span>。
+      </p>
+      <p class="reveal reveal-delay-2">
+        如果你也有一直想做的事，但因為<span class="highlight">「沒人允許」</span>所以沒動手，歡迎寫信給我。我們可以一起把它做出來。
+      </p>
+      <p class="reveal reveal-delay-3" style="font-style: italic; color: var(--neon-cyan) !important;">
+        網站還在慢慢長。謝謝你來。
+      </p>
 
-      <!-- 聯絡 -->
-      <section class="section fade-up">
-        <h2 class="section-title">聯絡我</h2>
-        <p>信箱：<a href="mailto:nashsung2@gmail.com" style="color:var(--neon-cyan);">nashsung2@gmail.com</a></p>
-      </section>
+      <h2 class="section-title reveal">聯絡我</h2>
+      <p class="reveal reveal-delay-1">
+        信箱：<a href="mailto:nashsung2@gmail.com">nashsung2@gmail.com</a>
+      </p>
     </main>
 
     <footer class="site-footer">
@@ -467,74 +512,172 @@
     </footer>
 
     <script src="assets/js/nav.js"></script>
+
     <script>
       (function () {
-        // 問候語
-        const el = document.getElementById('greeting');
-        if (el) {
-          const h = new Date().getHours();
-          let t = '';
-          if (h >= 5 && h < 12) t = '早安，歡迎你來。';
-          else if (h >= 12 && h < 18) t = '午安，歡迎你來。';
-          else if (h >= 18 && h < 23) t = '晚安，歡迎你來。';
-          else t = '凌晨好，歡迎你來。';
-          el.textContent = t;
+        const greetingBox = document.getElementById("greeting");
+        if (greetingBox) {
+          const hour = new Date().getHours();
+          let greetingText = "";
+          if (hour >= 5 && hour < 12) greetingText = "早安，歡迎你來。";
+          else if (hour >= 12 && hour < 18) greetingText = "午安，歡迎你來。";
+          else if (hour >= 18 && hour < 23) greetingText = "晚安，歡迎你來。";
+          else greetingText = "凌晨好，歡迎你來。";
+          greetingBox.textContent = greetingText;
         }
 
-        // 粒子背景
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let w, h, particles = [];
+        const canvas = document.getElementById("particle-canvas");
+        const ctx = canvas.getContext("2d");
+        let width, height;
+        let particles = [];
+        let mouseX = -9999, mouseY = -9999;
+        let scrollY = window.scrollY;
+        let targetScrollY = scrollY;
+        let smoothScrollY = scrollY;
+
         function resize() {
-          w = canvas.width = innerWidth;
-          h = canvas.height = innerHeight;
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
         }
         resize();
-        addEventListener('resize', resize);
-        const colors = ['0,240,255','255,45,149','185,103,255','255,255,255','57,255,20'];
-        for (let i = 0; i < 150; i++) {
-          particles.push({
-            x: Math.random() * w,
-            y: Math.random() * h,
-            r: Math.random() * 2 + 0.5,
-            speedY: Math.random() * 0.3 + 0.08,
-            speedX: (Math.random() - 0.5) * 0.15,
-            color: colors[Math.floor(Math.random() * colors.length)],
-            phase: Math.random() * Math.PI * 2
-          });
-        }
-        function drawParticles() {
-          ctx.clearRect(0, 0, w, h);
-          particles.forEach(p => {
-            p.y -= p.speedY;
-            p.x += p.speedX;
-            if (p.y < -5) { p.y = h + 5; p.x = Math.random() * w; }
-            if (p.x < -5) p.x = w + 5;
-            if (p.x > w + 5) p.x = -5;
-            const alpha = 0.35 + 0.35 * Math.sin(p.phase);
+        window.addEventListener("resize", resize);
+
+        const COLORS = [
+          "rgba(0, 240, 255,",
+          "rgba(255, 45, 149,",
+          "rgba(185, 103, 255,",
+          "rgba(255, 255, 255,",
+          "rgba(57, 255, 20,",
+        ];
+
+        class Particle {
+          constructor() { this.reset(); this.z = Math.random(); }
+          reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.3;
+            this.speedY = (Math.random() - 0.5) * 0.2 - 0.05;
+            this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+            this.opacity = Math.random() * 0.6 + 0.2;
+            this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+            this.twinklePhase = Math.random() * Math.PI * 2;
+          }
+          update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.twinklePhase += this.twinkleSpeed;
+            if (this.x < -10 || this.x > width + 10 || this.y < -10 || this.y > height + 10) this.reset();
+          }
+          draw() {
+            const twinkle = Math.sin(this.twinklePhase) * 0.3 + 0.7;
+            const alpha = this.opacity * twinkle;
+            const size = this.size * twinkle + 0.3;
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${p.color},${alpha})`;
+            ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color + alpha + ")";
             ctx.fill();
-            // 大顆粒子加光暈
-            if (p.r > 1.5) {
+            if (this.size > 1.2) {
               ctx.beginPath();
-              ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
-              ctx.fillStyle = `rgba(${p.color},${alpha * 0.15})`;
+              ctx.arc(this.x, this.y, size * 2.5, 0, Math.PI * 2);
+              ctx.fillStyle = this.color + alpha * 0.2 + ")";
               ctx.fill();
             }
-          });
-          requestAnimationFrame(drawParticles);
+          }
         }
-        drawParticles();
 
-        // 滾動動畫
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
+        class ShootingStar {
+          constructor() { this.spawn(); }
+          spawn() {
+            this.x = Math.random() * width * 1.2 - width * 0.1;
+            this.y = Math.random() * height * 0.4;
+            this.length = Math.random() * 80 + 40;
+            this.speed = Math.random() * 4 + 3;
+            this.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.3;
+            this.opacity = Math.random() * 0.7 + 0.3;
+            this.life = 0;
+            this.maxLife = 60 + Math.random() * 40;
+            this.color = Math.random() > 0.5 ? "0, 240, 255" : "255, 45, 149";
+          }
+          update() {
+            this.x += Math.cos(this.angle) * this.speed;
+            this.y += Math.sin(this.angle) * this.speed;
+            this.life++;
+            if (this.life > this.maxLife || this.x > width + 100 || this.y > height + 100) this.spawn();
+          }
+          draw() {
+            const fade = this.life < 15 ? this.life / 15 : 1 - (this.life - 15) / this.maxLife;
+            const gradient = ctx.createLinearGradient(
+              this.x, this.y,
+              this.x - Math.cos(this.angle) * this.length,
+              this.y - Math.sin(this.angle) * this.length
+            );
+            gradient.addColorStop(0, "rgba(" + this.color + ", " + this.opacity * fade + ")");
+            gradient.addColorStop(1, "rgba(" + this.color + ", 0)");
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x - Math.cos(this.angle) * this.length, this.y - Math.sin(this.angle) * this.length);
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          }
+        }
+
+        const particleCount = Math.min(180, Math.floor(window.innerWidth / 6));
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+        const shootingStars = [];
+        for (let i = 0; i < 3; i++) shootingStars.push(new ShootingStar());
+
+        document.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          const glow = document.getElementById("cursor-glow");
+          if (glow) {
+            glow.style.left = mouseX + "px";
+            glow.style.top = mouseY + "px";
+          }
+        });
+
+        window.addEventListener("scroll", () => { targetScrollY = window.scrollY; });
+
+        function animate() {
+          smoothScrollY += (targetScrollY - smoothScrollY) * 0.08;
+          scrollY = smoothScrollY;
+          ctx.clearRect(0, 0, width, height);
+          particles.forEach((p) => {
+            p.update();
+            const parallaxY = p.y - scrollY * p.z * 0.15;
+            const drawY = ((parallaxY % height) + height) % height;
+            const originalY = p.y;
+            p.y = drawY;
+            p.draw();
+            p.y = originalY;
           });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+          shootingStars.forEach((s) => { s.update(); s.draw(); });
+          if (mouseX > -9999) {
+            particles.forEach((p) => {
+              const dx = p.x - mouseX;
+              const dy = p.y - mouseY;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 120) {
+                const force = ((120 - dist) / 120) * 0.5;
+                p.x += (dx / dist) * force;
+                p.y += (dy / dist) * force;
+              }
+            });
+          }
+          requestAnimationFrame(animate);
+        }
+        animate();
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+        document.querySelectorAll(".reveal").forEach((el) => {
+          if (!el.classList.contains("visible")) observer.observe(el);
+        });
       })();
     </script>
   </body>
