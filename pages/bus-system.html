@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light only" />
     <meta name="theme-color" content="#f7f3ec" />
-    <meta name="site-nav-title" content="智慧遊台北" />
-    <meta name="site-nav-order" content="40" />
-    <meta name="site-nav-visible" content="true" />
     <title>智慧遊台北 — Nash Pages</title>
     <link rel="stylesheet" href="../assets/css/site.css" />
     <style>
@@ -25,7 +22,7 @@
         html, body { background: #f7f3ec !important; color: #1f1a16 !important; }
       }
 
-      /* ============ 導覽列 ============ */
+      /* 導覽列（保留主網站 header） */
       .site-header {
         position: fixed !important; top: 0; left: 0; width: 100%; z-index: 100;
         background: rgba(247,243,236,0.92) !important;
@@ -44,14 +41,14 @@
       .site-brand-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #d8cdbc; }
       .site-brand-text { white-space: nowrap; color: #1f1a16 !important; }
       .site-nav { display: flex; align-items: center; gap: 0.1rem; flex-wrap: wrap; justify-content: center; }
-      .site-nav a { color: #5c534a !important; text-decoration: none; padding: 0.4rem 0.75rem; font-size: 0.85rem; border-radius: 8px; transition: all 0.2s; }
+      .site-nav a { color: #5c534a !important; text-decoration: none; padding: 0.4rem 0.75rem; font-size: 0.85rem; border-radius: 8px; }
       .site-nav a:hover, .site-nav a[aria-current="page"] { color: #b2562a !important; background: #f2e5d8 !important; }
       .site-status { position: absolute; right: 2rem; color: #9c9188 !important; font-size: 0.7rem; letter-spacing: 0.15em; font-family: "SF Mono", monospace; }
 
-      /* ============ 主容器 ============ */
-      .app { max-width: 640px; margin: 0 auto; padding: 6.5rem 1.25rem 7rem; }
+      /* 主容器 */
+      .app { max-width: 640px; margin: 0 auto; padding: 6.5rem 1.25rem 7rem; position: relative; }
 
-      /* ============ 狀態列 ============ */
+      /* 狀態列 */
       .status {
         display: flex; align-items: center; justify-content: space-between;
         padding: 0.75rem 0 1.5rem; border-bottom: 1px solid #e8e0d4; margin-bottom: 2rem;
@@ -64,26 +61,47 @@
       .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #5c6b4f; animation: pulse 2.4s ease-in-out infinite; }
       @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
 
-      /* ============ 分頁 ============ */
-      .tab { display: none; }
-      .tab.active { display: block; animation: fadeUp 0.45s cubic-bezier(0.2,0.7,0.3,1); }
-      @keyframes fadeUp { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+      /* 畫面 */
+      .screen { display: none; }
+      .screen.active { display: block; animation: screenIn 0.4s cubic-bezier(0.2,0.7,0.3,1); }
+      @keyframes screenIn { from{opacity:0;transform:translateX(12px);} to{opacity:1;transform:translateX(0);} }
 
-      /* ============ 逐字 ============ */
+      /* 子頁面標題 */
+      .sub-header {
+        display: flex; align-items: center; gap: 0.75rem;
+        padding: 0.5rem 0 1.5rem; margin-bottom: 1.5rem;
+        border-bottom: 1px solid #e8e0d4;
+      }
+      .back-btn {
+        flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+        background: #ffffff; border: 1px solid #e8e0d4;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; transition: all 0.2s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .back-btn:hover { border-color: #b2562a; }
+      .back-btn svg { width: 18px; height: 18px; stroke: #1f1a16; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .sub-header .sub-title-text {
+        font-family: "Noto Serif TC", serif;
+        font-size: 1.1rem; font-weight: 500;
+        color: #1f1a16; flex: 1;
+      }
+
+      /* 逐字 */
       .ch { display: inline-block; opacity: 0; animation: chIn 0.4s cubic-bezier(0.2,0.7,0.3,1) forwards; }
       @keyframes chIn { from{opacity:0;transform:translateY(4px);} to{opacity:1;transform:translateY(0);} }
 
-      /* 按鈕與互動元素不逐字 */
       .btn, .btn *, .skip, .skip *, .tag, .tag *,
-      .site-header *, .status *, .meta-bar *, .eyebrow *,
-      .map-wrap *, .metro-map *, .qr-box *, .nav-tab, .nav-tab *,
-      .step-num, .step-num *, .route-step *, .guide-icon *,
-      .card, .card *, .chip, .chip *, .exit-number, .exit-number *,
-      .badge, .badge *, .points-bar * {
+      .site-header *, .status *, .eyebrow *,
+      .map-wrap *, .metro-map *, .qr-box *, .nav-tab,
+      .step-num, .route-step *, .guide-icon *,
+      .card *, .chip, .chip *, .exit-number *,
+      .badge *, .points-bar *, .back-btn *,
+      .sub-header *, .me-item * {
         animation: none !important;
       }
 
-      /* ============ 標籤 / 標題 ============ */
+      /* 標題 */
       .eyebrow {
         display: block; font-size: 0.7rem; letter-spacing: 0.22em;
         color: #9c9188 !important; text-transform: uppercase;
@@ -102,7 +120,7 @@
       }
       p.lead { color: #5c534a !important; font-size: 0.95rem; margin: 0 0 1.25rem; line-height: 1.85; }
 
-      /* ============ 按鈕 ============ */
+      /* 按鈕 */
       .btn {
         display: flex; align-items: center; justify-content: space-between;
         gap: 0.75rem; width: 100%; padding: 1rem 1.25rem;
@@ -119,7 +137,7 @@
       .btn .arrow { display: inline-block; transition: transform 0.25s; }
       .btn:hover .arrow { transform: translateX(3px); }
       .btn.ghost { background: transparent !important; color: #1f1a16 !important; border: 1px solid #d8cdbc; }
-      .btn.ghost:hover { background: #ffffff !important; border-color: #9c9188; }
+      .btn.ghost:hover { background: #ffffff !important; }
       .btn.accent { background: #b2562a !important; color: #ffffff !important; }
       .btn.accent:hover { background: #9c4823 !important; }
       .btn.metro { background: #1f3a5f !important; color: #ffffff !important; }
@@ -127,27 +145,9 @@
       .btn-row { display: flex; gap: 0.65rem; margin-top: 1.5rem; }
       .btn-row .btn { flex: 1; }
 
-      /* ============ 圖示 ============ */
       .icon { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-      .icon-lg { width: 40px; height: 40px; stroke-width: 1.25; }
 
-      /* ============ 首頁歡迎 ============ */
-      .welcome-mark { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; color: #b2562a !important; }
-      .welcome-mark .rule { height: 1px; width: 40px; background: #b2562a; opacity: 0.6; }
-      .welcome-mark .label { font-family: "SF Mono", monospace; font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: #b2562a !important; }
-      .welcome-time {
-        font-family: "Noto Serif TC", serif;
-        font-size: 1.9rem; font-weight: 500; line-height: 1.45;
-        color: #1f1a16 !important; margin: 0 0 1.5rem;
-      }
-      .welcome-time .period { color: #b2562a !important; margin-left: 0.25em; }
-      .welcome-greet {
-        font-family: "Noto Serif TC", serif; font-size: 1.05rem; line-height: 1.9;
-        color: #5c534a !important; margin: 0 0 2rem;
-      }
-      .welcome-greet .origin { color: #b2562a !important; font-weight: 500; }
-
-      /* ============ 首頁大按鈕 ============ */
+      /* 首頁大按鈕 */
       .hero-action {
         background: linear-gradient(135deg, #1f3a5f 0%, #162a45 100%);
         color: #ffffff; border-radius: 20px;
@@ -159,7 +159,6 @@
         transition: transform 0.2s;
       }
       .hero-action:hover { transform: translateY(-2px); }
-      .hero-action:active { transform: translateY(0); }
       .hero-action::before {
         content: ""; position: absolute; top: -50%; right: -20%;
         width: 200px; height: 200px; border-radius: 50%;
@@ -168,30 +167,22 @@
       .hero-action .ha-label {
         font-family: "SF Mono", monospace; font-size: 0.65rem;
         letter-spacing: 0.28em; text-transform: uppercase;
-        color: #b8c8dc; margin-bottom: 0.5rem;
-        position: relative;
+        color: #b8c8dc; margin-bottom: 0.5rem; position: relative;
       }
       .hero-action .ha-title {
         font-family: "Noto Serif TC", serif;
         font-size: 1.35rem; font-weight: 600; color: #ffffff;
-        margin-bottom: 0.35rem; letter-spacing: 0.02em;
-        position: relative;
+        margin-bottom: 0.35rem; position: relative;
       }
-      .hero-action .ha-sub {
-        font-size: 0.85rem; color: #d8e2ef; line-height: 1.7;
-        position: relative;
-      }
+      .hero-action .ha-sub { font-size: 0.85rem; color: #d8e2ef; line-height: 1.7; position: relative; }
       .hero-action .ha-icon {
         position: absolute; top: 1.75rem; right: 1.5rem;
         width: 44px; height: 44px; color: #ffffff; opacity: 0.9;
       }
       .hero-action .ha-icon svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 1.2; fill: none; }
 
-      /* ============ 首頁快速入口 ============ */
-      .quick-grid {
-        display: grid; grid-template-columns: 1fr 1fr;
-        gap: 0.75rem; margin-bottom: 2rem;
-      }
+      /* 快速入口 */
+      .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 2rem; }
       .quick-card {
         background: #ffffff; border: 1px solid #e8e0d4;
         border-radius: 16px; padding: 1.25rem 1rem;
@@ -206,17 +197,10 @@
         display: flex; align-items: center; justify-content: center;
       }
       .quick-card .qc-icon svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-      .quick-card .qc-label {
-        font-family: "SF Mono", monospace; font-size: 0.62rem;
-        letter-spacing: 0.15em; text-transform: uppercase;
-        color: #9c9188;
-      }
-      .quick-card .qc-title {
-        font-size: 0.95rem; font-weight: 500;
-        color: #1f1a16; line-height: 1.4;
-      }
+      .quick-card .qc-label { font-family: "SF Mono", monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: #9c9188; }
+      .quick-card .qc-title { font-size: 0.95rem; font-weight: 500; color: #1f1a16; line-height: 1.4; }
 
-      /* ============ 首頁推薦卡 ============ */
+      /* 推薦卡 */
       .reco-card {
         background: #ffffff; border: 1px solid #e8e0d4;
         border-radius: 16px; padding: 1.25rem;
@@ -226,42 +210,28 @@
       }
       .reco-card:hover { border-color: #b2562a; }
       .reco-card .rc-badge {
-        flex-shrink: 0; padding: 0.2rem 0.55rem;
-        background: #f2e5d8; border-radius: 999px;
+        padding: 0.2rem 0.55rem; background: #f2e5d8; border-radius: 999px;
         font-family: "SF Mono", monospace; font-size: 0.62rem;
         letter-spacing: 0.1em; color: #b2562a;
         text-transform: uppercase; margin-bottom: 0.4rem;
         display: inline-block;
       }
       .reco-card .rc-body { flex: 1; min-width: 0; }
-      .reco-card .rc-title {
-        font-size: 0.98rem; font-weight: 500;
-        color: #1f1a16; margin-bottom: 0.25rem;
-      }
-      .reco-card .rc-desc {
-        font-size: 0.83rem; color: #5c534a; line-height: 1.7;
-      }
-      .reco-card .rc-points {
-        flex-shrink: 0; font-family: "Noto Serif TC", serif;
-        font-size: 1.15rem; font-weight: 700;
-        color: #b2562a;
-      }
+      .reco-card .rc-title { font-size: 0.98rem; font-weight: 500; color: #1f1a16; margin-bottom: 0.25rem; }
+      .reco-card .rc-desc { font-size: 0.83rem; color: #5c534a; line-height: 1.7; }
+      .reco-card .rc-points { font-family: "Noto Serif TC", serif; font-size: 1.15rem; font-weight: 700; color: #b2562a; flex-shrink: 0; }
       .reco-card .rc-points::after { content: "P"; font-size: 0.7rem; margin-left: 1px; color: #9c9188; }
 
-      /* ============ 探索：地圖 / 列表 ============ */
+      /* 地圖 */
       .map-wrap {
         background: #ffffff; border: 1px solid #e8e0d4;
-        border-radius: 20px; overflow: hidden; margin-bottom: 1.5rem;
-        position: relative;
+        border-radius: 20px; overflow: hidden; margin-bottom: 1.5rem; position: relative;
       }
       .map-svg { display: block; width: 100%; height: auto; background: #fbf8f3; }
       .map-pin { cursor: pointer; }
       .map-pin .pin-dot { fill: #ffffff; stroke: #b2562a; stroke-width: 2.5; transition: all 0.25s; }
       .map-pin .pin-dot-inner { fill: #b2562a; transition: all 0.25s; }
       .map-pin .pin-label { fill: #1f1a16; font-family: "Noto Sans TC", sans-serif; font-size: 13px; font-weight: 500; text-anchor: middle; pointer-events: none; }
-      .map-pin.selected .pin-dot { fill: #b2562a; stroke: #ffffff; stroke-width: 3; }
-      .map-pin.selected .pin-dot-inner { fill: #ffffff; }
-      .map-pin.selected .pin-label { fill: #b2562a; font-weight: 700; }
       .map-hint {
         position: absolute; top: 0.75rem; left: 0.75rem;
         padding: 0.3rem 0.7rem; background: rgba(255,255,255,0.92);
@@ -270,51 +240,44 @@
         letter-spacing: 0.12em; color: #9c9188 !important; text-transform: uppercase;
       }
 
-      /* ============ 探索：分類 chips ============ */
+      /* chips */
       .chips {
         display: flex; gap: 0.5rem; overflow-x: auto;
         padding-bottom: 0.75rem; margin-bottom: 1.5rem;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none;
       }
       .chips::-webkit-scrollbar { display: none; }
       .chip {
-        flex-shrink: 0;
-        padding: 0.5rem 1rem;
+        flex-shrink: 0; padding: 0.5rem 1rem;
         background: #ffffff; border: 1px solid #e8e0d4;
         border-radius: 999px; font-family: inherit;
         font-size: 0.85rem; color: #5c534a;
-        cursor: pointer; transition: all 0.2s;
-        white-space: nowrap;
+        cursor: pointer; transition: all 0.2s; white-space: nowrap;
       }
-      .chip:hover { border-color: #b2562a; color: #b2562a; }
       .chip.active { background: #1f1a16; color: #f7f3ec; border-color: #1f1a16; }
 
-      /* ============ 通用卡片 ============ */
+      /* 卡片 */
       .card {
         background: #ffffff; border: 1px solid #e8e0d4;
         border-radius: 16px; padding: 1.25rem;
-        margin-bottom: 0.75rem;
-        transition: all 0.2s;
+        margin-bottom: 0.75rem; transition: all 0.2s;
+        cursor: pointer;
       }
+      .card:hover { border-color: #b2562a; }
       .card-head {
         display: flex; align-items: baseline; justify-content: space-between;
         gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;
       }
       .card-head .name { font-size: 1rem; font-weight: 500; color: #1f1a16; }
-      .card-head .district {
-        font-family: "SF Mono", monospace; font-size: 0.72rem;
-        color: #9c9188;
-      }
+      .card-head .district { font-family: "SF Mono", monospace; font-size: 0.72rem; color: #9c9188; }
       .card .desc { font-size: 0.85rem; color: #5c534a; line-height: 1.75; }
       .card .meta {
         display: flex; gap: 1rem; margin-top: 0.6rem;
         font-size: 0.72rem; color: #9c9188;
-        font-family: "SF Mono", monospace;
-        flex-wrap: wrap;
+        font-family: "SF Mono", monospace; flex-wrap: wrap;
       }
 
-      /* ============ 尋寶：點數 + 徽章 ============ */
+      /* 點數 */
       .points-hero {
         background: linear-gradient(135deg, #b2562a 0%, #9c4823 100%);
         color: #ffffff; border-radius: 20px;
@@ -330,33 +293,22 @@
       .points-hero .ph-label {
         font-family: "SF Mono", monospace; font-size: 0.68rem;
         letter-spacing: 0.28em; text-transform: uppercase;
-        color: #ffe0d0; margin-bottom: 0.4rem;
-        position: relative;
+        color: #ffe0d0; margin-bottom: 0.4rem; position: relative;
       }
       .points-hero .ph-value {
         font-family: "Noto Serif TC", serif;
-        font-size: 3.2rem; font-weight: 700;
-        line-height: 1; color: #ffffff;
-        font-variant-numeric: tabular-nums;
-        position: relative;
+        font-size: 3.2rem; font-weight: 700; line-height: 1;
+        color: #ffffff; font-variant-numeric: tabular-nums; position: relative;
       }
-      .points-hero .ph-value::after {
-        content: "P"; font-size: 1.2rem; margin-left: 0.3rem;
-        color: #ffe0d0; font-weight: 500;
-      }
-      .points-hero .ph-sub {
-        font-size: 0.82rem; color: #ffe0d0;
-        margin-top: 0.5rem; position: relative;
-      }
+      .points-hero .ph-value::after { content: "P"; font-size: 1.2rem; margin-left: 0.3rem; color: #ffe0d0; font-weight: 500; }
+      .points-hero .ph-sub { font-size: 0.82rem; color: #ffe0d0; margin-top: 0.5rem; position: relative; }
 
-      .badge-grid {
-        display: grid; grid-template-columns: repeat(3, 1fr);
-        gap: 0.75rem; margin-bottom: 1.75rem;
-      }
+      /* 徽章 */
+      .badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.75rem; }
       .badge {
         background: #ffffff; border: 1px solid #e8e0d4;
         border-radius: 14px; padding: 1rem 0.5rem;
-        text-align: center; transition: all 0.2s;
+        text-align: center; transition: all 0.2s; cursor: pointer;
       }
       .badge.locked { opacity: 0.4; }
       .badge.unlocked { border-color: #b2562a; }
@@ -368,13 +320,10 @@
       }
       .badge.locked .badge-icon { background: #e8e0d4; color: #9c9188; }
       .badge .badge-icon svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-      .badge .badge-name {
-        font-size: 0.75rem; color: #1f1a16;
-        font-weight: 500; line-height: 1.3;
-      }
+      .badge .badge-name { font-size: 0.75rem; color: #1f1a16; font-weight: 500; line-height: 1.3; }
       .badge.locked .badge-name { color: #9c9188; }
 
-      /* ============ QR 掃描 ============ */
+      /* QR */
       .qr-box {
         background: #ffffff; border: 1px solid #e8e0d4;
         border-radius: 20px; padding: 2rem 1.5rem;
@@ -383,8 +332,7 @@
       .qr-frame {
         width: 180px; height: 180px; margin: 0 auto 1.5rem;
         border: 2px solid #b2562a; border-radius: 16px;
-        position: relative; overflow: hidden;
-        background: #fbf8f3;
+        position: relative; overflow: hidden; background: #fbf8f3;
         display: flex; align-items: center; justify-content: center;
       }
       .qr-frame::before, .qr-frame::after {
@@ -410,7 +358,7 @@
       }
       .qr-sub { font-size: 0.88rem; color: #5c534a !important; line-height: 1.75; }
 
-      /* ============ 智慧路徑卡 ============ */
+      /* 智慧路徑 */
       .smart-route {
         background: linear-gradient(135deg, #ffffff 0%, #fbf8f3 100%);
         border: 2px solid #1f3a5f; border-radius: 22px;
@@ -477,13 +425,15 @@
       .smart-route-tip .tip-icon { flex-shrink: 0; width: 18px; height: 18px; margin-top: 2px; color: #b2562a; }
       .smart-route-tip .tip-icon svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 2; fill: none; }
 
-      /* ============ 禮儀卡 ============ */
+      /* 禮儀卡 */
       .guide-cards { display: grid; gap: 1rem; margin-bottom: 1.75rem; }
       .guide-card {
         background: #ffffff; border: 1px solid #e8e0d4;
         border-radius: 16px; padding: 1.25rem;
         display: flex; gap: 1rem; align-items: flex-start;
+        cursor: pointer; transition: all 0.2s;
       }
+      .guide-card:hover { border-color: #b2562a; }
       .guide-icon {
         flex-shrink: 0; width: 48px; height: 48px;
         border-radius: 12px; background: #f2e5d8;
@@ -496,7 +446,7 @@
       .guide-card-head .title-sm { font-size: 0.98rem; font-weight: 600; color: #1f1a16 !important; }
       .guide-card p { font-size: 0.86rem; color: #5c534a !important; line-height: 1.8; margin: 0; }
 
-      /* ============ 我的：列表 ============ */
+      /* 我的 */
       .me-list { display: flex; flex-direction: column; gap: 0; }
       .me-item {
         display: flex; align-items: center; gap: 1rem;
@@ -514,27 +464,18 @@
       }
       .me-item-icon svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
       .me-item-body { flex: 1; min-width: 0; }
-      .me-item-body .mi-title {
-        font-size: 0.95rem; color: #1f1a16; font-weight: 500;
-        margin-bottom: 0.15rem;
-      }
+      .me-item-body .mi-title { font-size: 0.95rem; color: #1f1a16; font-weight: 500; margin-bottom: 0.15rem; }
       .me-item-body .mi-desc { font-size: 0.8rem; color: #9c9188; }
-      .me-item .mi-arrow {
-        flex-shrink: 0; color: #9c9188; font-size: 0.9rem;
-      }
+      .me-item .mi-arrow { flex-shrink: 0; color: #9c9188; font-size: 0.9rem; }
 
-      /* ============ 底部 Tab 導覽 ============ */
+      /* 底部 Tab */
       .bottom-nav {
-        position: fixed; bottom: 0; left: 0; right: 0;
-        z-index: 100;
+        position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
         background: rgba(247,243,236,0.96);
         border-top: 1px solid #e8e0d4;
         -webkit-backdrop-filter: saturate(180%) blur(20px);
         backdrop-filter: saturate(180%) blur(20px);
         padding: 0.5rem 0 max(0.5rem, env(safe-area-inset-bottom));
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
       }
       .bottom-nav-inner {
         max-width: 640px; width: 100%; margin: 0 auto;
@@ -548,46 +489,59 @@
         display: flex; flex-direction: column;
         align-items: center; gap: 0.2rem;
         cursor: pointer; font-family: inherit;
-        color: #9c9188;
-        transition: color 0.2s;
+        color: #9c9188; transition: color 0.2s;
         -webkit-tap-highlight-color: transparent;
       }
-      .nav-tab svg {
-        width: 22px; height: 22px;
-        stroke: currentColor; stroke-width: 1.5; fill: none;
-        stroke-linecap: round; stroke-linejoin: round;
-      }
-      .nav-tab .nav-label {
-        font-size: 0.68rem;
-        font-family: "SF Mono", monospace;
-        letter-spacing: 0.05em;
-      }
+      .nav-tab svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .nav-tab .nav-label { font-size: 0.68rem; font-family: "SF Mono", monospace; letter-spacing: 0.05em; }
       .nav-tab.active { color: #b2562a; }
 
-      /* ============ 首頁專屬 ============ */
-      .status-inline {
-        display: flex; align-items: center; gap: 0.4rem;
-        font-family: "SF Mono", monospace; font-size: 0.72rem;
-        color: #9c9188; letter-spacing: 0.08em;
-        margin-bottom: 1.5rem;
+      /* 資訊列表 */
+      .info-list { display: flex; flex-direction: column; gap: 0; }
+      .info-row {
+        display: flex; justify-content: space-between; gap: 1rem;
+        padding: 0.9rem 0; border-bottom: 1px solid #e8e0d4;
+        font-size: 0.9rem;
+      }
+      .info-row:last-child { border-bottom: none; }
+      .info-row .k { color: #9c9188; flex-shrink: 0; }
+      .info-row .v { color: #1f1a16; text-align: right; font-weight: 500; }
+
+      .prose {
+        background: #ffffff !important; border: 1px solid #e8e0d4;
+        border-radius: 20px; padding: 1.5rem;
+        color: #5c534a !important; font-size: 0.92rem;
+        line-height: 2.05; margin-bottom: 1.5rem;
       }
 
-      /* ============ 通知條 ============ */
-      .notice {
-        display: flex; align-items: flex-start; gap: 0.6rem;
-        padding: 0.85rem 1rem;
-        background: #f2e5d8; border-radius: 12px;
-        font-size: 0.82rem; color: #5c534a;
-        line-height: 1.7; margin-bottom: 1.5rem;
+      .tip-list { display: flex; flex-direction: column; gap: 0.75rem; }
+      .tip-item {
+        display: flex; gap: 0.75rem; align-items: flex-start;
+        padding: 0.9rem 1rem;
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 12px;
       }
-      .notice svg {
-        flex-shrink: 0; width: 18px; height: 18px;
-        margin-top: 2px; color: #b2562a;
-        stroke: currentColor; stroke-width: 2; fill: none;
+      .tip-item .tip-bullet {
+        flex-shrink: 0; width: 22px; height: 22px;
+        border-radius: 50%; background: #f2e5d8; color: #b2562a;
+        display: flex; align-items: center; justify-content: center;
+        font-family: "SF Mono", monospace; font-size: 0.7rem;
+        font-weight: 600; margin-top: 2px;
       }
-      .notice strong { color: #b2562a; }
+      .tip-item .tip-text { flex: 1; font-size: 0.88rem; color: #5c534a; line-height: 1.7; }
+      .tip-item .tip-text strong { color: #b2562a; }
 
-      /* ============ 響應式 ============ */
+      .photo-block {
+        background: linear-gradient(135deg, #f2e5d8, #fbf8f3);
+        border-radius: 16px; padding: 3rem 1.5rem;
+        text-align: center; margin-bottom: 1.25rem;
+        color: #9c9188;
+        font-family: "SF Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
       @media (max-width: 640px) {
         .site-header { flex-direction: column; padding: 0.6rem 1rem 0.5rem; height: auto; gap: 0.4rem; }
         .site-brand { position: static; font-size: 0.85rem; }
@@ -596,19 +550,14 @@
         .site-nav a { padding: 0.32rem 0.55rem; font-size: 0.78rem; }
         .app { padding: 7rem 1.1rem 7.5rem; }
         h2.title { font-size: 1.35rem; }
-        .welcome-time { font-size: 1.55rem; }
-        .hero-action { padding: 1.5rem 1.25rem; }
-        .hero-action .ha-title { font-size: 1.15rem; }
-        .hero-action .ha-icon { width: 36px; height: 36px; top: 1.4rem; right: 1.15rem; }
-        .quick-grid { grid-template-columns: 1fr; }
         .btn-row { flex-direction: column; }
         .btn-row .btn { width: 100%; }
         .points-hero .ph-value { font-size: 2.6rem; }
-        .badge-grid { grid-template-columns: repeat(3, 1fr); }
         .exit-block .exit-number { font-size: 2.8rem; }
         .smart-route-body { padding: 1.5rem 1.15rem 1.25rem; }
         .qr-frame { width: 160px; height: 160px; }
         .qr-frame svg { width: 110px; height: 110px; }
+        .quick-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -623,711 +572,24 @@
       <span class="site-status">SMART TAIPEI</span>
     </header>
 
-    <main class="app">
+    <main class="app" id="app"></main>
 
-      <!-- ============================================================
-           首頁 HOME
-           ============================================================ -->
-      <section class="tab active" data-tab="home">
-        <div class="welcome-mark">
-          <span class="rule"></span>
-          <span class="label">Welcome</span>
-        </div>
-
-        <h1 class="welcome-time">
-          <span data-no-type id="now-time">--:--</span>
-          <span class="period" id="greeting">晚安</span>
-        </h1>
-
-        <p class="welcome-greet">
-          尊敬的 <span class="origin" id="origin">日本</span> 旅客，
-          歡迎使用智慧遊台北。今天想去哪裡？
-        </p>
-
-        <div class="status-inline">
-          <span class="status-dot"></span>
-          <span>台北市 · 大同區</span>
-          <span style="margin-left: auto;" data-no-type id="clock">--:--:--</span>
-        </div>
-
-        <!-- 主要動作：掃 QR 尋寶 -->
-        <button class="hero-action" onclick="switchTab('quest')">
-          <div class="ha-label">Start Quest</div>
-          <div class="ha-title">掃描 QR code 開始尋寶</div>
-          <div class="ha-sub">在捷運站裡收集關卡，累積點數</div>
-          <div class="ha-icon">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="3" width="7" height="7" rx="1"/>
-              <rect x="14" y="3" width="7" height="7" rx="1"/>
-              <rect x="3" y="14" width="7" height="7" rx="1"/>
-              <path d="M14 14h3v3M20 14v.01M14 20h.01M17 20h3v-3"/>
-            </svg>
-          </div>
-        </button>
-
-        <!-- 快速入口 -->
-        <div class="quick-grid">
-          <button class="quick-card" onclick="switchTab('explore')">
-            <div class="qc-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-            </div>
-            <div class="qc-label">Explore</div>
-            <div class="qc-title">探索附近</div>
-          </button>
-
-          <button class="quick-card" onclick="switchTab('route')">
-            <div class="qc-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M3 6h18M3 12h18M3 18h12"/>
-                <circle cx="18" cy="18" r="2"/>
-              </svg>
-            </div>
-            <div class="qc-label">Route</div>
-            <div class="qc-title">查詢路線</div>
-          </button>
-
-          <button class="quick-card" onclick="switchTab('guide')">
-            <div class="qc-icon">
-              <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="9"/>
-                <path d="M12 8v5M12 16h.01"/>
-              </svg>
-            </div>
-            <div class="qc-label">Guide</div>
-            <div class="qc-title">站內默契</div>
-          </button>
-
-          <button class="quick-card" onclick="switchTab('me')">
-            <div class="qc-icon">
-              <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="8" r="4"/>
-                <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
-              </svg>
-            </div>
-            <div class="qc-label">Me</div>
-            <div class="qc-title">我的旅程</div>
-          </button>
-        </div>
-
-        <!-- 附近關卡推薦 -->
-        <h3 class="sub-title">附近的關卡</h3>
-        <p class="lead">這些是您目前位置附近的 QR 關卡。</p>
-
-        <div class="reco-card" onclick="switchTab('quest')">
-          <div class="rc-body">
-            <span class="rc-badge">中正紀念堂站</span>
-            <div class="rc-title">入口關卡</div>
-            <div class="rc-desc">解鎖車站故事與站內動線，第一次完成可獲得「初探者」徽章。</div>
-          </div>
-          <div class="rc-points">10</div>
-        </div>
-
-        <div class="reco-card" onclick="switchTab('quest')">
-          <div class="rc-body">
-            <span class="rc-badge">中正紀念堂站</span>
-            <div class="rc-title">月台關卡</div>
-            <div class="rc-desc">學習車廂位置與月台方向，適合第一次來台北的旅客。</div>
-          </div>
-          <div class="rc-points">15</div>
-        </div>
-
-        <div class="reco-card" onclick="switchTab('guide')">
-          <div class="rc-body">
-            <span class="rc-badge">站內默契</span>
-            <div class="rc-title">電扶梯靠右站</div>
-            <div class="rc-desc">台北捷運最有名的一個潛規則。為什麼要這樣做？</div>
-          </div>
-          <div class="rc-points">10</div>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           探索 EXPLORE
-           ============================================================ -->
-      <section class="tab" data-tab="explore">
-        <span class="eyebrow"><span class="idx">01</span> · 探索</span>
-        <h2 class="title">台北的角落，慢慢走</h2>
-        <p class="lead">點地圖上的標記，或往下滑看看分類。</p>
-
-        <div class="map-wrap">
-          <div class="map-hint">TAIPEI · MAP</div>
-          <svg class="map-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
-            <rect width="800" height="600" fill="#fbf8f3"/>
-            <path d="M 0 260 Q 120 250 220 210 Q 300 180 360 160 L 360 120" stroke="#b8d2dd" stroke-width="26" fill="none" stroke-linecap="round" opacity="0.55"/>
-            <path d="M 360 120 Q 460 100 580 80 Q 700 60 800 50" stroke="#b8d2dd" stroke-width="22" fill="none" stroke-linecap="round" opacity="0.55"/>
-            <g stroke="#e8e0d4" stroke-width="4" fill="none">
-              <line x1="120" y1="0" x2="120" y2="600"/>
-              <line x1="280" y1="0" x2="280" y2="600"/>
-              <line x1="460" y1="0" x2="460" y2="600"/>
-              <line x1="640" y1="0" x2="640" y2="600"/>
-              <line x1="0" y1="180" x2="800" y2="180"/>
-              <line x1="0" y1="320" x2="800" y2="320"/>
-              <line x1="0" y1="460" x2="800" y2="460"/>
-              <line x1="0" y1="560" x2="800" y2="560"/>
-            </g>
-            <text x="400" y="35" text-anchor="middle" fill="#9c9188" font-family="Noto Sans TC, sans-serif" font-size="13" letter-spacing="6">TAIPEI CITY</text>
-
-            <g class="map-pin" onclick="showSpot('迪化街')">
-              <circle class="pin-dot" cx="180" cy="170" r="9"/><circle class="pin-dot-inner" cx="180" cy="170" r="4"/>
-              <text class="pin-label" x="180" y="200">迪化街</text>
-            </g>
-            <g class="map-pin" onclick="showSpot('中正紀念堂')">
-              <circle class="pin-dot" cx="420" cy="410" r="9"/><circle class="pin-dot-inner" cx="420" cy="410" r="4"/>
-              <text class="pin-label" x="420" y="440">中正紀念堂</text>
-            </g>
-            <g class="map-pin" onclick="showSpot('總統府')">
-              <circle class="pin-dot" cx="350" cy="330" r="9"/><circle class="pin-dot-inner" cx="350" cy="330" r="4"/>
-              <text class="pin-label" x="350" y="360">總統府</text>
-            </g>
-            <g class="map-pin" onclick="showSpot('世貿')">
-              <circle class="pin-dot" cx="600" cy="430" r="9"/><circle class="pin-dot-inner" cx="600" cy="430" r="4"/>
-              <text class="pin-label" x="600" y="460">世貿</text>
-            </g>
-            <g class="map-pin" onclick="showSpot('101')">
-              <circle class="pin-dot" cx="650" cy="490" r="9"/><circle class="pin-dot-inner" cx="650" cy="490" r="4"/>
-              <text class="pin-label" x="650" y="520">101</text>
-            </g>
-          </svg>
-        </div>
-
-        <div class="chips">
-          <button class="chip active" onclick="filterCategory(this, 'all')">全部</button>
-          <button class="chip" onclick="filterCategory(this, 'temple')">寺廟</button>
-          <button class="chip" onclick="filterCategory(this, 'history')">歷史</button>
-          <button class="chip" onclick="filterCategory(this, 'modern')">現代</button>
-          <button class="chip" onclick="filterCategory(this, 'museum')">博物館</button>
-          <button class="chip" onclick="filterCategory(this, 'night')">夜市</button>
-          <button class="chip" onclick="filterCategory(this, 'nature')">自然</button>
-        </div>
-
-        <div id="spot-list">
-          <div class="card" data-cat="history">
-            <div class="card-head"><span class="name">中正紀念堂</span><span class="district">中正區</span></div>
-            <div class="desc">藍瓦白牆，象徵自由與平等。屋頂仿天壇，八角形寓意八德。整點有儀隊交接。</div>
-            <div class="meta"><span>捷運 5 號出口</span><span>步行 1 分</span></div>
-          </div>
-          <div class="card" data-cat="history">
-            <div class="card-head"><span class="name">總統府</span><span class="district">中正區</span></div>
-            <div class="desc">1919 年建成，原為日本總督府。外圍博愛特區可自由參觀，安檢較嚴格。</div>
-            <div class="meta"><span>捷運 1 號出口</span><span>步行 8 分</span></div>
-          </div>
-          <div class="card" data-cat="history">
-            <div class="card-head"><span class="name">迪化街</span><span class="district">大同區</span></div>
-            <div class="desc">台北最老的老街，南北貨、中藥、布匹。清代與日治時期的建築，每棟都有故事。</div>
-            <div class="meta"><span>捷運 1 號出口</span><span>步行 5 分</span></div>
-          </div>
-          <div class="card" data-cat="modern">
-            <div class="card-head"><span class="name">台北 101</span><span class="district">信義區</span></div>
-            <div class="desc">2004 年完工，曾是世界第一高樓。89 樓室內、91 樓戶外觀景台。電梯 37 秒直達。</div>
-            <div class="meta"><span>捷運 4 號出口</span><span>連通道直達</span></div>
-          </div>
-          <div class="card" data-cat="modern">
-            <div class="card-head"><span class="name">台北表演藝術中心</span><span class="district">士林區</span></div>
-            <div class="desc">2022 年開幕，銀色球體建築。晚上打燈最漂亮。</div>
-            <div class="meta"><span>捷運劍潭站 3 號出口</span><span>步行 3 分</span></div>
-          </div>
-          <div class="card" data-cat="temple">
-            <div class="card-head"><span class="name">龍山寺</span><span class="district">萬華區</span></div>
-            <div class="desc">1738 年創建，台北最古老的寺廟之一。拜拜順序：天公爐 → 主神 → 配祀神。</div>
-            <div class="meta"><span>捷運龍山寺站 1 號出口</span><span>步行 1 分</span></div>
-          </div>
-          <div class="card" data-cat="temple">
-            <div class="card-head"><span class="name">霞海城隍廟</span><span class="district">大同區</span></div>
-            <div class="desc">求姻緣最有名的廟。拜月老要帶紅線、喜糖，說清楚自己的條件。</div>
-            <div class="meta"><span>捷運 1 號出口</span><span>步行 5 分</span></div>
-          </div>
-          <div class="card" data-cat="nature">
-            <div class="card-head"><span class="name">象山</span><span class="district">信義區</span></div>
-            <div class="desc">看 101 最近的地方。爬 20 分鐘到六巨石，是拍 101 最經典的角度。</div>
-            <div class="meta"><span>捷運象山站 2 號出口</span><span>步行 5 分</span></div>
-          </div>
-          <div class="card" data-cat="nature">
-            <div class="card-head"><span class="name">淡水</span><span class="district">淡水區</span></div>
-            <div class="desc">看夕陽、逛老街、坐渡輪。傍晚 4 點到，找個河邊的位置坐下來。</div>
-            <div class="meta"><span>捷運淡水站</span><span>終點站</span></div>
-          </div>
-          <div class="card" data-cat="night">
-            <div class="card-head"><span class="name">士林夜市</span><span class="district">士林區</span></div>
-            <div class="desc">豪大大雞排、蚵仔煎、大腸包小腸。先逛地下美食街，再逛地面攤位。</div>
-            <div class="meta"><span>捷運劍潭站 1 號出口</span><span>步行 1 分</span></div>
-          </div>
-          <div class="card" data-cat="night">
-            <div class="card-head"><span class="name">饒河街夜市</span><span class="district">松山區</span></div>
-            <div class="desc">胡椒餅、藥燉排骨、東發號蚵仔麵線。整條街直直走到底，不會迷路。</div>
-            <div class="meta"><span>捷運松山站 1 號出口</span><span>步行 3 分</span></div>
-          </div>
-          <div class="card" data-cat="museum">
-            <div class="card-head"><span class="name">故宮博物院</span><span class="district">士林區</span></div>
-            <div class="desc">必看三寶：翠玉白菜、肉形石、毛公鼎。建議從 3 樓開始往下逛。</div>
-            <div class="meta"><span>捷運士林站 1 號出口</span><span>轉紅 30 公車</span></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           路線 ROUTE
-           ============================================================ -->
-      <section class="tab" data-tab="route">
-        <span class="eyebrow"><span class="idx">02</span> · 路線</span>
-        <h2 class="title">想從哪裡，去哪裡？</h2>
-        <p class="lead">輸入起點與終點，系統會告訴您怎麼走。</p>
-
-        <div style="background: #ffffff; border: 1px solid #e8e0d4; border-radius: 16px; padding: 1.25rem; margin-bottom: 1.5rem;">
-          <div style="margin-bottom: 1rem;">
-            <div style="font-family: 'SF Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: #9c9188; text-transform: uppercase; margin-bottom: 0.5rem;">從</div>
-            <input type="text" value="迪化街" style="width: 100%; padding: 0.75rem 0; border: none; border-bottom: 1px solid #e8e0d4; font-family: inherit; font-size: 1rem; color: #1f1a16; outline: none; background: transparent;" />
-          </div>
-          <div>
-            <div style="font-family: 'SF Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: #9c9188; text-transform: uppercase; margin-bottom: 0.5rem;">到</div>
-            <input type="text" value="中正紀念堂" style="width: 100%; padding: 0.75rem 0; border: none; border-bottom: 1px solid #e8e0d4; font-family: inherit; font-size: 1rem; color: #1f1a16; outline: none; background: transparent;" />
-          </div>
-        </div>
-
-        <h3 class="sub-title">公車路線</h3>
-        <div class="card">
-          <div class="card-head"><span class="name" style="font-family: 'SF Mono', monospace; font-size: 1.3rem; font-weight: 600;">206</span><span class="district" style="color: #b2562a;">約 3 分鐘</span></div>
-          <div class="desc">迪化街 → 捷運中正紀念堂站</div>
-          <div class="meta"><span>首班 05:30</span><span>末班 22:30</span><span>間隔 10–15 分</span></div>
-        </div>
-        <div class="card">
-          <div class="card-head"><span class="name" style="font-family: 'SF Mono', monospace; font-size: 1.3rem; font-weight: 600;">304</span><span class="district" style="color: #b2562a;">約 8 分鐘</span></div>
-          <div class="desc">大龍峒 → 中正紀念堂</div>
-          <div class="meta"><span>首班 05:40</span><span>末班 23:00</span><span>間隔 15–20 分</span></div>
-        </div>
-
-        <h3 class="sub-title">捷運路線</h3>
-        <p class="lead" style="font-size: 0.88rem;">淡水信義線 · 3 站</p>
-
-        <div class="card" style="display: flex; align-items: center; gap: 1rem;">
-          <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #1f3a5f;"></div>
-          <div style="flex: 1;">
-            <div style="font-size: 0.95rem; font-weight: 500;">中山站</div>
-            <div style="font-size: 0.78rem; color: #9c9188;">上車 · 往象山方向</div>
-          </div>
-        </div>
-        <div style="margin-left: 0.35rem; width: 1px; height: 24px; background: #1f3a5f;"></div>
-        <div class="card" style="display: flex; align-items: center; gap: 1rem;">
-          <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #1f3a5f;"></div>
-          <div style="flex: 1;">
-            <div style="font-size: 0.95rem; font-weight: 500;">台北車站</div>
-            <div style="font-size: 0.78rem; color: #9c9188;">經過</div>
-          </div>
-        </div>
-        <div style="margin-left: 0.35rem; width: 1px; height: 24px; background: #1f3a5f;"></div>
-        <div class="card" style="display: flex; align-items: center; gap: 1rem; border-color: #b2562a;">
-          <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #b2562a;"></div>
-          <div style="flex: 1;">
-            <div style="font-size: 0.95rem; font-weight: 500;">中正紀念堂站</div>
-            <div style="font-size: 0.78rem; color: #9c9188;">下車 · 5 號出口</div>
-          </div>
-        </div>
-
-        <button class="btn metro" style="margin-top: 1.5rem;" onclick="switchTab('smart')">
-          <span>查看站內智慧引導</span>
-          <span class="arrow">→</span>
-        </button>
-      </section>
-
-      <!-- ============================================================
-           智慧路徑 SMART
-           ============================================================ -->
-      <section class="tab" data-tab="smart">
-        <span class="eyebrow"><span class="idx">03</span> · 站內智慧引導</span>
-        <h2 class="title">為您計算出的最佳路徑</h2>
-        <p class="lead">系統已根據您的目的地，計算出站內最短路徑。請依序操作。</p>
-
-        <div class="smart-route" id="smart-route">
-          <div class="smart-route-header">
-            <span class="h-label">SMART · ROUTE</span>
-            <span class="h-title">前往 中正紀念堂</span>
-          </div>
-          <div class="smart-route-body">
-            <div class="exit-block">
-              <div class="exit-label">請從此出口出站</div>
-              <div class="exit-number">5<span class="unit">號出口</span></div>
-              <div class="exit-name">5 號出口 · 中正紀念堂方向</div>
-            </div>
-            <div class="route-steps">
-              <div class="route-step">
-                <div class="route-step-icon">
-                  <svg viewBox="0 0 24 24"><path d="M13 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M10 21l2-5-2-3V8l3-1 3 4 3 1"/><path d="M5 12l3-3"/></svg>
-                </div>
-                <div class="route-step-body">
-                  <div class="step-label">STEP 01</div>
-                  <div class="step-main">下車後，往月台右側方向走</div>
-                  <div class="step-sub">5 號出口的電扶梯在車廂右前方</div>
-                </div>
-              </div>
-              <div class="route-step">
-                <div class="route-step-icon">
-                  <svg viewBox="0 0 24 24"><path d="M3 20h4v-4h4v-4h4V8h4V4"/></svg>
-                </div>
-                <div class="route-step-body">
-                  <div class="step-label">STEP 02</div>
-                  <div class="step-main">走右側樓梯或搭電扶梯上大廳</div>
-                  <div class="step-sub">樓梯口標示「往 5 號出口 · 中正紀念堂」</div>
-                </div>
-              </div>
-              <div class="route-step">
-                <div class="route-step-icon">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="1"/><path d="M8 20V6M12 12h4"/></svg>
-                </div>
-                <div class="route-step-body">
-                  <div class="step-label">STEP 03</div>
-                  <div class="step-main">出閘門後，直走到底</div>
-                  <div class="step-sub">沿著指標往 5 號出口</div>
-                </div>
-              </div>
-              <div class="route-step">
-                <div class="route-step-icon">
-                  <svg viewBox="0 0 24 24"><path d="M3 17l4-4 4 2 4-6 6-4"/><circle cx="18" cy="5" r="1.5"/><circle cx="6" cy="19" r="1.5"/></svg>
-                </div>
-                <div class="route-step-body">
-                  <div class="step-label">STEP 04</div>
-                  <div class="step-main">搭電扶梯上地面</div>
-                  <div class="step-sub">靠右站，左側留給趕時間的人</div>
-                </div>
-              </div>
-              <div class="route-step">
-                <div class="route-step-icon">
-                  <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
-                </div>
-                <div class="route-step-body">
-                  <div class="step-label">STEP 05</div>
-                  <div class="step-main">從 5 號出口出站</div>
-                  <div class="step-sub">對面即是中正紀念堂園區入口</div>
-                </div>
-              </div>
-            </div>
-            <div class="smart-route-tip">
-              <div class="tip-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
-              </div>
-              <div><strong style="color: #b2562a;">在地提醒：</strong>5 號出口正對中正紀念堂主體建築，出站後過馬路即可進入園區。往國家音樂廳請改走 1 號出口。</div>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn ghost" onclick="switchTab('route')">
-          <span>返回修改路線</span>
-          <span class="arrow">→</span>
-        </button>
-      </section>
-
-      <!-- ============================================================
-           尋寶 QUEST
-           ============================================================ -->
-      <section class="tab" data-tab="quest">
-        <span class="eyebrow"><span class="idx">04</span> · 尋寶</span>
-        <h2 class="title">掃描 QR code，解鎖關卡</h2>
-        <p class="lead">台北的捷運站裡藏著很多小關卡。掃描牆上的 QR code，就能解鎖這一站的故事與引導。</p>
-
-        <div class="points-hero">
-          <div class="ph-label">Total Points</div>
-          <div class="ph-value" data-no-type id="points-display">0</div>
-          <div class="ph-sub">已收集 0 個關卡 · 0 個徽章</div>
-        </div>
-
-        <div class="qr-box">
-          <div class="qr-frame">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <rect x="10" y="10" width="20" height="20" fill="none" stroke="#1f1a16" stroke-width="3"/>
-              <rect x="15" y="15" width="10" height="10" fill="#1f1a16"/>
-              <rect x="70" y="10" width="20" height="20" fill="none" stroke="#1f1a16" stroke-width="3"/>
-              <rect x="75" y="15" width="10" height="10" fill="#1f1a16"/>
-              <rect x="10" y="70" width="20" height="20" fill="none" stroke="#1f1a16" stroke-width="3"/>
-              <rect x="15" y="75" width="10" height="10" fill="#1f1a16"/>
-              <rect x="40" y="15" width="5" height="5" fill="#1f1a16"/>
-              <rect x="50" y="20" width="5" height="5" fill="#1f1a16"/>
-              <rect x="40" y="40" width="5" height="5" fill="#1f1a16"/>
-              <rect x="50" y="50" width="5" height="5" fill="#1f1a16"/>
-              <rect x="60" y="40" width="5" height="5" fill="#1f1a16"/>
-              <rect x="70" y="50" width="5" height="5" fill="#1f1a16"/>
-              <rect x="80" y="45" width="5" height="5" fill="#1f1a16"/>
-              <rect x="40" y="70" width="5" height="5" fill="#1f1a16"/>
-              <rect x="55" y="75" width="5" height="5" fill="#1f1a16"/>
-              <rect x="70" y="70" width="5" height="5" fill="#1f1a16"/>
-              <rect x="80" y="80" width="5" height="5" fill="#1f1a16"/>
-            </svg>
-            <div class="qr-line"></div>
-          </div>
-          <div class="qr-title">對準牆上的 QR code</div>
-          <div class="qr-sub">在捷運站的入口、月台、樓梯、出口都有關卡。</div>
-        </div>
-
-        <button class="btn metro" onclick="startScan()">
-          <span>開始掃描</span>
-          <span class="arrow">→</span>
-        </button>
-
-        <h3 class="sub-title">我的徽章</h3>
-        <div class="badge-grid" id="badge-grid">
-          <div class="badge unlocked">
-            <div class="badge-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg>
-            </div>
-            <div class="badge-name">初探者</div>
-          </div>
-          <div class="badge locked">
-            <div class="badge-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-            </div>
-            <div class="badge-name">站長</div>
-          </div>
-          <div class="badge locked">
-            <div class="badge-icon">
-              <svg viewBox="0 0 24 24"><path d="M3 20h4v-4h4v-4h4V8h4V4"/></svg>
-            </div>
-            <div class="badge-name">電扶梯達人</div>
-          </div>
-          <div class="badge locked">
-            <div class="badge-icon">
-              <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
-            </div>
-            <div class="badge-name">出口獵人</div>
-          </div>
-          <div class="badge locked">
-            <div class="badge-icon">
-              <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            </div>
-            <div class="badge-name">夜行者</div>
-          </div>
-          <div class="badge locked">
-            <div class="badge-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-            </div>
-            <div class="badge-name">台北通</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           掃描中 SCANNING
-           ============================================================ -->
-      <section class="tab" data-tab="scanning">
-        <div class="qr-box" style="padding: 3rem 1.5rem;">
-          <div class="qr-frame" style="width: 160px; height: 160px;">
-            <div class="qr-line"></div>
-          </div>
-          <div class="qr-title" style="margin-top: 1rem;">正在辨識 QR code…</div>
-          <div class="qr-sub">請將手機對準牆上的 QR code</div>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           站內默契 GUIDE
-           ============================================================ -->
-      <section class="tab" data-tab="guide">
-        <span class="eyebrow"><span class="idx">05</span> · 站內默契</span>
-        <h2 class="title">進站之後，這些事值得知道</h2>
-        <p class="lead">台北捷運有幾個不成文的默契。懂了，就能走得更順，也讓別人更舒服。</p>
-
-        <div class="guide-cards">
-          <div class="guide-card">
-            <div class="guide-icon">
-              <svg viewBox="0 0 24 24">
-                <rect x="3" y="3" width="7" height="7" rx="1"/>
-                <rect x="14" y="3" width="7" height="7" rx="1"/>
-                <rect x="3" y="14" width="7" height="7" rx="1"/>
-                <path d="M14 14h3v3M20 14v.01M14 20h.01M17 20h3v-3"/>
-              </svg>
-            </div>
-            <div class="guide-body">
-              <div class="guide-card-head">
-                <span class="step-num">GUIDE · 01</span>
-                <span class="title-sm">先掃站點地圖</span>
-              </div>
-              <p>進站後，先掃描牆上的站點地圖 QR code。台北許多站名是音譯，光看漢字不容易對應實際位置。</p>
-            </div>
-          </div>
-
-          <div class="guide-card">
-            <div class="guide-icon">
-              <svg viewBox="0 0 24 24"><path d="M3 20h4v-4h4v-4h4V8h4V4"/></svg>
-            </div>
-            <div class="guide-body">
-              <div class="guide-card-head">
-                <span class="step-num">GUIDE · 02</span>
-                <span class="title-sm">走樓梯前，先看月台方向</span>
-              </div>
-              <p>樓梯口上方會標示「往 ○○ 方向」。請確認您的列車方向，再決定走哪一道樓梯。走錯了，往往要多繞一層樓。</p>
-            </div>
-          </div>
-
-          <div class="guide-card">
-            <div class="guide-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M3 17l4-4 4 2 4-6 6-4"/>
-                <circle cx="18" cy="5" r="1.5"/>
-                <circle cx="6" cy="19" r="1.5"/>
-              </svg>
-            </div>
-            <div class="guide-body">
-              <div class="guide-card-head">
-                <span class="step-num">GUIDE · 03</span>
-                <span class="title-sm">電扶梯靠右站</span>
-              </div>
-              <p>在台北，電扶梯有一個潛規則：<strong>靠右站、左側通行</strong>。趕時間的人會從左邊走過去。這是城市裡對彼此的一份體貼。</p>
-            </div>
-          </div>
-
-          <div class="guide-card">
-            <div class="guide-icon">
-              <svg viewBox="0 0 24 24">
-                <circle cx="9" cy="8" r="3"/>
-                <circle cx="17" cy="10" r="2.5"/>
-                <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
-              </svg>
-            </div>
-            <div class="guide-body">
-              <div class="guide-card-head">
-                <span class="step-num">GUIDE · 04</span>
-                <span class="title-sm">月台排隊，照地上的線站</span>
-              </div>
-              <p>月台地上畫有排隊線與「等候區」。請站在線後，讓下車的人先走出來，再依序上車。沒有線的站，也請排在門的兩側。</p>
-            </div>
-          </div>
-
-          <div class="guide-card">
-            <div class="guide-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 3v18"/>
-                <path d="M7 8l5-5 5 5"/>
-                <path d="M7 16l5 5 5-5"/>
-              </svg>
-            </div>
-            <div class="guide-body">
-              <div class="guide-card-head">
-                <span class="step-num">GUIDE · 05</span>
-                <span class="title-sm">先出後進</span>
-              </div>
-              <p>車門打開時，先讓裡面的人下車。這是台北捷運最基本、也最重要的一個默契。站在門邊的人，請側身讓出一條通道。</p>
-            </div>
-          </div>
-
-          <div class="guide-card">
-            <div class="guide-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M8 4h8v5H8z"/>
-                <path d="M8 9c-2 0-3 2-3 4v5c0 1.5 1 3 3 3h8c2 0 3-1.5 3-3v-5c0-2-1-4-3-4"/>
-              </svg>
-            </div>
-            <div class="guide-body">
-              <div class="guide-card-head">
-                <span class="step-num">GUIDE · 06</span>
-                <span class="title-sm">書包建議前背</span>
-              </div>
-              <p>車廂擁擠時，請把背包或書包改背在胸前。這樣可以少佔一些空間，也不會在轉身時不小心撞到別人。</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================================
-           我的 ME
-           ============================================================ -->
-      <section class="tab" data-tab="me">
-        <span class="eyebrow"><span class="idx">06</span> · 我的</span>
-        <h2 class="title">我的旅程</h2>
-
-        <div class="points-hero">
-          <div class="ph-label">Total Points</div>
-          <div class="ph-value" data-no-type id="points-display-2">0</div>
-          <div class="ph-sub">繼續探索，累積更多點數</div>
-        </div>
-
-        <div class="me-list">
-          <button class="me-item" onclick="switchTab('quest')">
-            <div class="me-item-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg>
-            </div>
-            <div class="me-item-body">
-              <div class="mi-title">我的徽章</div>
-              <div class="mi-desc">1 個徽章已解鎖</div>
-            </div>
-            <span class="mi-arrow">→</span>
-          </button>
-
-          <button class="me-item" onclick="switchTab('route')">
-            <div class="me-item-icon">
-              <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
-            </div>
-            <div class="me-item-body">
-              <div class="mi-title">我的行程</div>
-              <div class="mi-desc">尚無儲存的行程</div>
-            </div>
-            <span class="mi-arrow">→</span>
-          </button>
-
-          <button class="me-item" onclick="switchTab('explore')">
-            <div class="me-item-icon">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div class="me-item-body">
-              <div class="mi-title">我的最愛</div>
-              <div class="mi-desc">3 個景點</div>
-            </div>
-            <span class="mi-arrow">→</span>
-          </button>
-
-          <button class="me-item">
-            <div class="me-item-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
-            </div>
-            <div class="me-item-body">
-              <div class="mi-title">語言設定</div>
-              <div class="mi-desc">日本語</div>
-            </div>
-            <span class="mi-arrow">→</span>
-          </button>
-
-          <button class="me-item">
-            <div class="me-item-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
-            </div>
-            <div class="me-item-body">
-              <div class="mi-title">關於智慧遊台北</div>
-              <div class="mi-desc">v4.0</div>
-            </div>
-            <span class="mi-arrow">→</span>
-          </button>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- ============================================================
-         底部 Tab 導覽
-         ============================================================ -->
     <nav class="bottom-nav" aria-label="主要導覽">
-      <div class="bottom-nav-inner">
-        <button class="nav-tab active" data-nav="home" onclick="switchTab('home')">
-          <svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2z"/></svg>
-          <span class="nav-label">首頁</span>
-        </button>
-        <button class="nav-tab" data-nav="explore" onclick="switchTab('explore')">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M16 8l-2 6-6 2 2-6z"/></svg>
-          <span class="nav-label">探索</span>
-        </button>
-        <button class="nav-tab" data-nav="quest" onclick="switchTab('quest')">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M20 14v.01M14 20h.01M17 20h3v-3"/></svg>
-          <span class="nav-label">尋寶</span>
-        </button>
-        <button class="nav-tab" data-nav="me" onclick="switchTab('me')">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          <span class="nav-label">我的</span>
-        </button>
-      </div>
+      <div class="bottom-nav-inner" id="bottom-nav"></div>
     </nav>
 
     <script src="../assets/js/nav.js"></script>
     <script>
       (function () {
         'use strict';
-        function $(id) { return document.getElementById(id); }
+
+        var state = {
+          stack: ['home'],
+          points: 0,
+          language: 'ja',
+          badges: { '初探者': true }
+        };
+        var currentTab = 'home';
 
         function getGreeting() {
           var h = new Date().getHours();
@@ -1336,59 +598,797 @@
           return '晚安';
         }
         function pad2(n) { return n < 10 ? '0' + n : '' + n; }
-
-        var points = 0;
-
-        function tick() {
+        function getTime() {
           var d = new Date();
-          var hh = pad2(d.getHours()), mm = pad2(d.getMinutes()), ss = pad2(d.getSeconds());
-          var c = $('clock'); var nt = $('now-time');
-          if (c) c.textContent = hh + ':' + mm + ':' + ss;
-          if (nt) nt.textContent = hh + ':' + mm;
+          return { hh: pad2(d.getHours()), mm: pad2(d.getMinutes()), ss: pad2(d.getSeconds()) };
         }
 
-        function addPoints(n) {
-          points += n;
-          var d1 = $('points-display');
-          var d2 = $('points-display-2');
-          if (d1) d1.textContent = points;
-          if (d2) d2.textContent = points;
-        }
-
-        /* Tab 切換 */
-        var currentTab = 'home';
-        function switchTab(name) {
-          var tabs = document.querySelectorAll('.tab');
-          for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
-          var target = document.querySelector('[data-tab="' + name + '"]');
-          if (target) {
-            target.classList.add('active');
-            void target.offsetWidth;
-            splitText(target);
+        /* ============ 資料 ============ */
+        var SPOTS = [
+          { id: 'dihua', name: '迪化街', cat: 'history', district: '大同區',
+            desc: '台北最老的老街，南北貨、中藥、布匹。清代與日治時期的建築，每棟都有故事。',
+            meta: ['捷運 1 號出口', '步行 5 分'],
+            story: '1850 年代，迪化街因為淡水河航運而興起，成為台北最重要的商業街。當時的茶葉、布料、藥材都從這裡進出。現在走在街上，還能看到清代與日治時期留下來的建築，每一棟都有自己的故事。',
+            tips: [
+              '從永樂市場進去，會看到最熱鬧的一段',
+              '霞海城隍廟在附近，求姻緣很有名',
+              '週末有市集，但人多',
+              '很多老店中午休息，下午再開'
+            ]
+          },
+          { id: 'cks', name: '中正紀念堂', cat: 'history', district: '中正區',
+            desc: '藍瓦白牆，象徵自由與平等。屋頂仿天壇，八角形寓意八德。整點有儀隊交接。',
+            meta: ['捷運 5 號出口', '步行 1 分'],
+            story: '1976 年動工，1980 年完工。主體建築高 70 公尺，藍瓦白牆，屋頂仿天壇，八角形則寓意「八德」。園區內另有國家戲劇院與國家音樂廳，皆為仿古宮殿式建築。',
+            tips: [
+              '整點有儀隊交接，提前 10 分鐘到',
+              '傍晚來最舒服，夕陽照在藍瓦上會變金色',
+              '兩廳院在左右兩側，中間是廣場',
+              '從自由廣場牌樓往主體拍，可以看到完整對稱'
+            ]
+          },
+          { id: 'president', name: '總統府', cat: 'history', district: '中正區',
+            desc: '1919 年建成，原為日本總督府。外圍博愛特區可自由參觀，安檢較嚴格。',
+            meta: ['捷運 1 號出口', '步行 8 分'],
+            story: '1919 年完工，當時是日本統治時期的總督府。戰後成為中華民國總統府。建築採用文藝復興式風格，中央塔樓高 60 公尺。',
+            tips: [
+              '平日不對外開放，要參觀請事先預約',
+              '外圍博愛特區可以自由走',
+              '從凱達格蘭大道正對總統府拍，是最經典的角度',
+              '安檢比較嚴格，記得帶證件'
+            ]
+          },
+          { id: 'taipei101', name: '台北 101', cat: 'modern', district: '信義區',
+            desc: '2004 年完工，曾是世界第一高樓。89 樓室內、91 樓戶外觀景台。電梯 37 秒直達。',
+            meta: ['捷運 4 號出口', '連通道直達'],
+            story: '2004 年完工，樓高 508 公尺，地上 101 層。2004 至 2010 年間是世界第一高樓。建築設計融入竹子意象，象徵節節高升。87 樓有一顆 660 噸的金色風阻尼器，是防地震用的。',
+            tips: [
+              '傍晚 5 點上去，可以看到白天、夕陽、夜景三種風景',
+              '電梯是世界最快，37 秒直達 89 樓',
+              '4 號出口有連通道直達 101 購物中心 B1',
+              'B1 到 5 樓是購物中心，有美食街和伴手禮'
+            ]
+          },
+          { id: 'longshan', name: '龍山寺', cat: 'temple', district: '萬華區',
+            desc: '1738 年創建，台北最古老的寺廟之一。拜拜順序：天公爐 → 主神 → 配祀神。',
+            meta: ['捷運龍山寺站 1 號出口', '步行 1 分'],
+            story: '1738 年創建，是台北最古老的寺廟之一。主祀觀世音菩薩。建築為傳統閩南式，有精緻的石雕、木雕與彩繪。',
+            tips: [
+              '從右邊的門進去，左邊的門出來',
+              '先拜天公爐（面向廟門外），再拜主神',
+              '求籤要先擲筊，一正一反叫聖筊',
+              '廟裡有解籤處，也有 QR code 可以掃'
+            ]
+          },
+          { id: 'xiangshan', name: '象山', cat: 'nature', district: '信義區',
+            desc: '看 101 最近的地方。爬 20 分鐘到六巨石，是拍 101 最經典的角度。',
+            meta: ['捷運象山站 2 號出口', '步行 5 分'],
+            story: '象山是台北盆地東南側的四獸山之一。因為山形像象頭而得名。步道全長約 1.5 公里，爬升約 200 公尺。',
+            tips: [
+              '傍晚 5 點上山，看夕陽和夜景',
+              '階梯多，穿好走的鞋',
+              '山頂有六巨石，是拍 101 最經典的角度',
+              '人多要排隊，耐心等'
+            ]
+          },
+          { id: 'tamsui', name: '淡水', cat: 'nature', district: '淡水區',
+            desc: '看夕陽、逛老街、坐渡輪。傍晚 4 點到，找個河邊的位置坐下來。',
+            meta: ['捷運淡水站', '終點站'],
+            story: '淡水是北台灣最早開發的港口之一。西班牙人、荷蘭人、清朝、日本都曾在這裡留下痕跡。現在是看夕陽、逛老街的熱門景點。',
+            tips: [
+              '傍晚 4 點到，逛老街，5 點看夕陽',
+              '阿給、魚丸湯、鐵蛋、酸梅湯是必吃',
+              '可以坐渡輪到對岸八里',
+              '夕陽是台北最美的風景之一'
+            ]
+          },
+          { id: 'shilin', name: '士林夜市', cat: 'night', district: '士林區',
+            desc: '豪大大雞排、蚵仔煎、大腸包小腸。先逛地下美食街，再逛地面攤位。',
+            meta: ['捷運劍潭站 1 號出口', '步行 1 分'],
+            story: '台北最大的夜市之一，從 1909 年就開始有市集。現在分為地下美食街和地面攤位兩部分。',
+            tips: [
+              '先逛地下美食街，再逛地面攤位',
+              '看到排隊就跟著排，通常不會錯',
+              '大部分攤位收現金',
+              '垃圾要拿去夜市外圍的垃圾桶丟'
+            ]
+          },
+          { id: 'gugong', name: '故宮博物院', cat: 'museum', district: '士林區',
+            desc: '必看三寶：翠玉白菜、肉形石、毛公鼎。建議從 3 樓開始往下逛。',
+            meta: ['捷運士林站 1 號出口', '轉紅 30 公車'],
+            story: '1965 年開幕，收藏近 70 萬件中華文物。是世界上最著名的博物館之一。',
+            tips: [
+              '必看三寶，但常出國展覽，出發前先查',
+              '建議從 3 樓開始往下逛，人比較少',
+              '現場可租語音導覽，也有 App',
+              '平日早上 9 點剛開門時人最少'
+            ]
           }
-          currentTab = name;
+        ];
+
+        var SMART_ROUTES = {
+          '迪化街': {
+            exit: '1', exitName: '1 號出口 · 民生西路方向', destination: '迪化街',
+            steps: [
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台中央方向走', sub: '避開兩側人潮，中間動線最快' },
+              { icon: 'stairs', label: 'STEP 02', main: '走中央樓梯上 1 樓大廳', sub: '樓梯口標示「往 1 號出口」' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往左手邊走', sub: '沿著指示牌往 1 號出口' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭左側電扶梯上地面', sub: '靠右站，左側通行' },
+              { icon: 'exit', label: 'STEP 05', main: '從 1 號出口出站', sub: '出站後向右走約 5 分鐘抵達迪化街' }
+            ],
+            tip: '<strong>在地提醒：</strong>迪化街是南北向街道，出站後沿民生西路直走，看到永樂市場就是迪化街入口。'
+          },
+          '中正紀念堂': {
+            exit: '5', exitName: '5 號出口 · 中正紀念堂方向', destination: '中正紀念堂',
+            steps: [
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台右側方向走', sub: '5 號出口的電扶梯在車廂右前方' },
+              { icon: 'stairs', label: 'STEP 02', main: '走右側樓梯或搭電扶梯上大廳', sub: '樓梯口標示「往 5 號出口」' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後，直走到底', sub: '沿著指標往 5 號出口' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭電扶梯上地面', sub: '靠右站，左側留給趕時間的人' },
+              { icon: 'exit', label: 'STEP 05', main: '從 5 號出口出站', sub: '對面即是中正紀念堂園區入口' }
+            ],
+            tip: '<strong>在地提醒：</strong>5 號出口正對中正紀念堂主體建築，出站後過馬路即可進入園區。往國家音樂廳請改走 1 號出口。'
+          },
+          '總統府': {
+            exit: '1', exitName: '1 號出口 · 凱達格蘭大道方向', destination: '總統府',
+            steps: [
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台左側方向走', sub: '1 號出口的電扶梯在車廂左前方' },
+              { icon: 'stairs', label: 'STEP 02', main: '走左側樓梯上大廳', sub: '樓梯口標示「往 1 號出口」' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往左手邊走', sub: '沿著指示牌往 1 號出口' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭左側電扶梯上地面', sub: '靠右站' },
+              { icon: 'exit', label: 'STEP 05', main: '從 1 號出口出站', sub: '出站後步行約 8 分鐘' }
+            ],
+            tip: '<strong>在地提醒：</strong>總統府參觀需事先預約，平日不對外開放。'
+          },
+          '台北 101': {
+            exit: '4', exitName: '4 號出口 · 台北 101 方向', destination: '台北 101',
+            steps: [
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台右側方向走', sub: '往 4 號出口的動線在月台右側' },
+              { icon: 'stairs', label: 'STEP 02', main: '走右側樓梯上 1 樓大廳', sub: '樓梯口標示「往 4 號出口」' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往右手邊走', sub: '沿著指示牌往 4 號出口' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭右側電扶梯上地面', sub: '靠右站' },
+              { icon: 'exit', label: 'STEP 05', main: '從 4 號出口出站', sub: '出站即見 101' }
+            ],
+            tip: '<strong>在地提醒：</strong>4 號出口有直達 101 購物中心的連通道。'
+          },
+          '象山': {
+            exit: '2', exitName: '2 號出口 · 象山步道方向', destination: '象山',
+            steps: [
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台左側方向走', sub: '2 號出口在月台左側' },
+              { icon: 'stairs', label: 'STEP 02', main: '走左側樓梯上大廳', sub: '樓梯口標示「往 2 號出口」' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後往左走', sub: '往 2 號出口' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭電扶梯上地面', sub: '靠右站' },
+              { icon: 'exit', label: 'STEP 05', main: '從 2 號出口出站', sub: '沿中強公園走到底就是象山步道入口' }
+            ],
+            tip: '<strong>在地提醒：</strong>象山步道有數條路線，最簡單是從靈雲宮旁的階梯上山。'
+          }
+        };
+
+        var STEP_ICONS = {
+          walk: '<path d="M13 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M10 21l2-5-2-3V8l3-1 3 4 3 1"/><path d="M5 12l3-3"/>',
+          stairs: '<path d="M3 20h4v-4h4v-4h4V8h4V4"/>',
+          gate: '<rect x="3" y="6" width="18" height="14" rx="1"/><path d="M8 20V6M12 12h4"/>',
+          escalator: '<path d="M3 17l4-4 4 2 4-6 6-4"/><circle cx="18" cy="5" r="1.5"/><circle cx="6" cy="19" r="1.5"/>',
+          exit: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/>'
+        };
+
+        /* ============ 模板 ============ */
+        function html(strings) {
+          var result = '';
+          for (var i = 0; i < strings.length; i++) {
+            result += strings[i];
+            if (i < arguments.length - 1) result += arguments[i + 1];
+          }
+          return result;
+        }
+
+        function statusBar() {
+          return '<div class="status">' +
+            '<div class="status-time" data-no-type id="clock">--:--:--</div>' +
+            '<div class="status-loc"><span class="status-dot"></span><span>台北市 · 大同區</span></div>' +
+          '</div>';
+        }
+
+        function subHeader(title) {
+          return '<div class="sub-header">' +
+            '<button class="back-btn" onclick="back()" aria-label="返回">' +
+              '<svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>' +
+            '</button>' +
+            '<span class="sub-title-text">' + title + '</span>' +
+          '</div>';
+        }
+
+        /* ============ 畫面：首頁 ============ */
+        function viewHome() {
+          return html`
+            ${statusBar()}
+            <div class="welcome-mark">
+              <span class="rule"></span>
+              <span class="label">Welcome</span>
+            </div>
+
+            <h1 style="font-family: 'Noto Serif TC', serif; font-size: 1.9rem; font-weight: 500; line-height: 1.45; color: #1f1a16; margin: 0 0 1.5rem;">
+              <span data-no-type id="now-time">--:--</span>
+              <span style="color: #b2562a; margin-left: 0.25em;" id="greeting">晚安</span>
+            </h1>
+
+            <p class="lead" style="font-family: 'Noto Serif TC', serif; font-size: 1.05rem; line-height: 1.9; color: #5c534a; margin-bottom: 2rem;">
+              尊敬的 <span style="color: #b2562a; font-weight: 500;">日本</span> 旅客，
+              歡迎使用智慧遊台北。今天想去哪裡？
+            </p>
+
+            <button class="hero-action" onclick="switchTab('quest')">
+              <div class="ha-label">Start Quest</div>
+              <div class="ha-title">掃描 QR code 開始尋寶</div>
+              <div class="ha-sub">在捷運站裡收集關卡，累積點數</div>
+              <div class="ha-icon">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="7" height="7" rx="1"/>
+                  <rect x="14" y="3" width="7" height="7" rx="1"/>
+                  <rect x="3" y="14" width="7" height="7" rx="1"/>
+                  <path d="M14 14h3v3M20 14v.01M14 20h.01M17 20h3v-3"/>
+                </svg>
+              </div>
+            </button>
+
+            <div class="quick-grid">
+              <button class="quick-card" onclick="switchTab('explore')">
+                <div class="qc-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                <div class="qc-label">Explore</div>
+                <div class="qc-title">探索附近</div>
+              </button>
+              <button class="quick-card" onclick="switchTab('route')">
+                <div class="qc-icon"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h12"/><circle cx="18" cy="18" r="2"/></svg></div>
+                <div class="qc-label">Route</div>
+                <div class="qc-title">查詢路線</div>
+              </button>
+              <button class="quick-card" onclick="switchTab('guide')">
+                <div class="qc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></div>
+                <div class="qc-label">Guide</div>
+                <div class="qc-title">站內默契</div>
+              </button>
+              <button class="quick-card" onclick="switchTab('me')">
+                <div class="qc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+                <div class="qc-label">Me</div>
+                <div class="qc-title">我的旅程</div>
+              </button>
+            </div>
+
+            <h3 class="sub-title">附近的關卡</h3>
+            <p class="lead">這些是您目前位置附近的 QR 關卡。</p>
+
+            <div class="reco-card" onclick="switchTab('quest')">
+              <div class="rc-body">
+                <span class="rc-badge">中正紀念堂站</span>
+                <div class="rc-title">入口關卡</div>
+                <div class="rc-desc">解鎖車站故事與站內動線，第一次完成可獲得「初探者」徽章。</div>
+              </div>
+              <div class="rc-points">10</div>
+            </div>
+
+            <div class="reco-card" onclick="switchTab('quest')">
+              <div class="rc-body">
+                <span class="rc-badge">中正紀念堂站</span>
+                <div class="rc-title">月台關卡</div>
+                <div class="rc-desc">學習車廂位置與月台方向，適合第一次來台北的旅客。</div>
+              </div>
+              <div class="rc-points">15</div>
+            </div>
+
+            <div class="reco-card" onclick="switchTab('guide')">
+              <div class="rc-body">
+                <span class="rc-badge">站內默契</span>
+                <div class="rc-title">電扶梯靠右站</div>
+                <div class="rc-desc">台北捷運最有名的一個潛規則。為什麼要這樣做？</div>
+              </div>
+              <div class="rc-points">10</div>
+            </div>
+          `;
+        }
+
+        /* ============ 畫面：探索 ============ */
+        function viewExplore() {
+          var cats = [
+            { id: 'all', label: '全部' },
+            { id: 'temple', label: '寺廟' },
+            { id: 'history', label: '歷史' },
+            { id: 'modern', label: '現代' },
+            { id: 'museum', label: '博物館' },
+            { id: 'night', label: '夜市' },
+            { id: 'nature', label: '自然' }
+          ];
+          var chipsHtml = '';
+          for (var i = 0; i < cats.length; i++) {
+            chipsHtml += '<button class="chip' + (cats[i].id === 'all' ? ' active' : '') + '" onclick="filterCategory(this, \'' + cats[i].id + '\')">' + cats[i].label + '</button>';
+          }
+
+          var spotsHtml = '';
+          for (var j = 0; j < SPOTS.length; j++) {
+            var s = SPOTS[j];
+            var metaHtml = '';
+            for (var k = 0; k < s.meta.length; k++) metaHtml += '<span>' + s.meta[k] + '</span>';
+            spotsHtml += '<div class="card" data-cat="' + s.cat + '" onclick="openSpot(\'' + s.id + '\')">' +
+              '<div class="card-head"><span class="name">' + s.name + '</span><span class="district">' + s.district + '</span></div>' +
+              '<div class="desc">' + s.desc + '</div>' +
+              '<div class="meta">' + metaHtml + '</div>' +
+            '</div>';
+          }
+
+          return html`
+            ${statusBar()}
+            <span class="eyebrow"><span class="idx">01</span> · 探索</span>
+            <h2 class="title">台北的角落，慢慢走</h2>
+            <p class="lead">點地圖上的標記，或往下滑看看分類。</p>
+
+            <div class="map-wrap">
+              <div class="map-hint">TAIPEI · MAP</div>
+              <svg class="map-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
+                <rect width="800" height="600" fill="#fbf8f3"/>
+                <path d="M 0 260 Q 120 250 220 210 Q 300 180 360 160 L 360 120" stroke="#b8d2dd" stroke-width="26" fill="none" stroke-linecap="round" opacity="0.55"/>
+                <path d="M 360 120 Q 460 100 580 80 Q 700 60 800 50" stroke="#b8d2dd" stroke-width="22" fill="none" stroke-linecap="round" opacity="0.55"/>
+                <g stroke="#e8e0d4" stroke-width="4" fill="none">
+                  <line x1="120" y1="0" x2="120" y2="600"/>
+                  <line x1="280" y1="0" x2="280" y2="600"/>
+                  <line x1="460" y1="0" x2="460" y2="600"/>
+                  <line x1="640" y1="0" x2="640" y2="600"/>
+                  <line x1="0" y1="180" x2="800" y2="180"/>
+                  <line x1="0" y1="320" x2="800" y2="320"/>
+                  <line x1="0" y1="460" x2="800" y2="460"/>
+                </g>
+                <text x="400" y="35" text-anchor="middle" fill="#9c9188" font-family="Noto Sans TC, sans-serif" font-size="13" letter-spacing="6">TAIPEI CITY</text>
+
+                <g class="map-pin" onclick="openSpot('dihua')">
+                  <circle class="pin-dot" cx="180" cy="170" r="9"/><circle class="pin-dot-inner" cx="180" cy="170" r="4"/>
+                  <text class="pin-label" x="180" y="200">迪化街</text>
+                </g>
+                <g class="map-pin" onclick="openSpot('cks')">
+                  <circle class="pin-dot" cx="420" cy="410" r="9"/><circle class="pin-dot-inner" cx="420" cy="410" r="4"/>
+                  <text class="pin-label" x="420" y="440">中正紀念堂</text>
+                </g>
+                <g class="map-pin" onclick="openSpot('president')">
+                  <circle class="pin-dot" cx="350" cy="330" r="9"/><circle class="pin-dot-inner" cx="350" cy="330" r="4"/>
+                  <text class="pin-label" x="350" y="360">總統府</text>
+                </g>
+                <g class="map-pin" onclick="openSpot('taipei101')">
+                  <circle class="pin-dot" cx="650" cy="490" r="9"/><circle class="pin-dot-inner" cx="650" cy="490" r="4"/>
+                  <text class="pin-label" x="650" y="520">101</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="chips">${chipsHtml}</div>
+            <div id="spot-list">${spotsHtml}</div>
+          `;
+        }
+
+        /* ============ 畫面：景點詳情 ============ */
+        function viewSpot(id) {
+          var s = null;
+          for (var i = 0; i < SPOTS.length; i++) {
+            if (SPOTS[i].id === id) { s = SPOTS[i]; break; }
+          }
+          if (!s) return '<div class="prose">找不到這個景點。</div>';
+
+          var tipsHtml = '';
+          for (var j = 0; j < s.tips.length; j++) {
+            tipsHtml += '<div class="tip-item">' +
+              '<div class="tip-bullet">' + (j + 1) + '</div>' +
+              '<div class="tip-text">' + s.tips[j] + '</div>' +
+            '</div>';
+          }
+
+          return html`
+            ${subHeader(s.name)}
+            <span class="eyebrow"><span class="idx">景點</span> · ${s.district}</span>
+            <h2 class="title">${s.name}</h2>
+            <p class="lead">${s.desc}</p>
+
+            <div class="photo-block">${s.name} · PHOTO</div>
+
+            <h3 class="sub-title">它的故事</h3>
+            <div class="prose">${s.story}</div>
+
+            <h3 class="sub-title">參觀小提醒</h3>
+            <div class="tip-list">${tipsHtml}</div>
+
+            <button class="btn metro" style="margin-top: 1.5rem;" onclick="switchTab('route')">
+              <span>查看前往路線</span>
+              <span class="arrow">→</span>
+            </button>
+          `;
+        }
+
+        /* ============ 畫面：路線 ============ */
+        function viewRoute() {
+          return html`
+            ${statusBar()}
+            <span class="eyebrow"><span class="idx">02</span> · 路線</span>
+            <h2 class="title">想從哪裡，去哪裡？</h2>
+            <p class="lead">輸入起點與終點，系統會告訴您怎麼走。</p>
+
+            <div style="background: #ffffff; border: 1px solid #e8e0d4; border-radius: 16px; padding: 1.25rem; margin-bottom: 1.5rem;">
+              <div style="margin-bottom: 1rem;">
+                <div style="font-family: 'SF Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: #9c9188; text-transform: uppercase; margin-bottom: 0.5rem;">從</div>
+                <input type="text" value="迪化街" style="width: 100%; padding: 0.75rem 0; border: none; border-bottom: 1px solid #e8e0d4; font-family: inherit; font-size: 1rem; color: #1f1a16; outline: none; background: transparent;" />
+              </div>
+              <div>
+                <div style="font-family: 'SF Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: #9c9188; text-transform: uppercase; margin-bottom: 0.5rem;">到</div>
+                <input type="text" value="中正紀念堂" style="width: 100%; padding: 0.75rem 0; border: none; border-bottom: 1px solid #e8e0d4; font-family: inherit; font-size: 1rem; color: #1f1a16; outline: none; background: transparent;" />
+              </div>
+            </div>
+
+            <h3 class="sub-title">公車路線</h3>
+            <div class="card">
+              <div class="card-head"><span class="name" style="font-family: 'SF Mono', monospace; font-size: 1.3rem; font-weight: 600;">206</span><span class="district" style="color: #b2562a;">約 3 分鐘</span></div>
+              <div class="desc">迪化街 → 捷運中正紀念堂站</div>
+              <div class="meta"><span>首班 05:30</span><span>末班 22:30</span><span>間隔 10–15 分</span></div>
+            </div>
+            <div class="card">
+              <div class="card-head"><span class="name" style="font-family: 'SF Mono', monospace; font-size: 1.3rem; font-weight: 600;">304</span><span class="district" style="color: #b2562a;">約 8 分鐘</span></div>
+              <div class="desc">大龍峒 → 中正紀念堂</div>
+              <div class="meta"><span>首班 05:40</span><span>末班 23:00</span><span>間隔 15–20 分</span></div>
+            </div>
+
+            <h3 class="sub-title">捷運路線</h3>
+            <p class="lead" style="font-size: 0.88rem;">淡水信義線 · 3 站</p>
+
+            <div class="card" style="cursor: default; display: flex; align-items: center; gap: 1rem;">
+              <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #1f3a5f;"></div>
+              <div style="flex: 1;">
+                <div style="font-size: 0.95rem; font-weight: 500; color: #1f1a16;">中山站</div>
+                <div style="font-size: 0.78rem; color: #9c9188;">上車 · 往象山方向</div>
+              </div>
+            </div>
+            <div class="card" style="cursor: default; display: flex; align-items: center; gap: 1rem;">
+              <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #1f3a5f;"></div>
+              <div style="flex: 1;">
+                <div style="font-size: 0.95rem; font-weight: 500; color: #1f1a16;">台北車站</div>
+                <div style="font-size: 0.78rem; color: #9c9188;">經過</div>
+              </div>
+            </div>
+            <div class="card" style="cursor: default; display: flex; align-items: center; gap: 1rem; border-color: #b2562a;">
+              <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #b2562a;"></div>
+              <div style="flex: 1;">
+                <div style="font-size: 0.95rem; font-weight: 500; color: #1f1a16;">中正紀念堂站</div>
+                <div style="font-size: 0.78rem; color: #9c9188;">下車 · 5 號出口</div>
+              </div>
+            </div>
+
+            <button class="btn metro" style="margin-top: 1.5rem;" onclick="push('smart')">
+              <span>查看站內智慧引導</span>
+              <span class="arrow">→</span>
+            </button>
+          `;
+        }
+
+        /* ============ 畫面：智慧路徑 ============ */
+        function viewSmart() {
+          var data = SMART_ROUTES['中正紀念堂'];
+          var stepsHtml = '';
+          for (var i = 0; i < data.steps.length; i++) {
+            var s = data.steps[i];
+            var iconPath = STEP_ICONS[s.icon] || STEP_ICONS.walk;
+            stepsHtml += '<div class="route-step">' +
+              '<div class="route-step-icon"><svg viewBox="0 0 24 24">' + iconPath + '</svg></div>' +
+              '<div class="route-step-body">' +
+                '<div class="step-label">' + s.label + '</div>' +
+                '<div class="step-main">' + s.main + '</div>' +
+                '<div class="step-sub">' + s.sub + '</div>' +
+              '</div>' +
+            '</div>';
+          }
+
+          return html`
+            ${subHeader('站內智慧引導')}
+            <span class="eyebrow"><span class="idx">03</span> · 站內智慧引導</span>
+            <h2 class="title">為您計算出的最佳路徑</h2>
+            <p class="lead">系統已根據您的目的地，計算出站內最短路徑。請依序操作。</p>
+
+            <div class="smart-route">
+              <div class="smart-route-header">
+                <span class="h-label">SMART · ROUTE</span>
+                <span class="h-title">前往 ${data.destination}</span>
+              </div>
+              <div class="smart-route-body">
+                <div class="exit-block">
+                  <div class="exit-label">請從此出口出站</div>
+                  <div class="exit-number">${data.exit}<span class="unit">號出口</span></div>
+                  <div class="exit-name">${data.exitName}</div>
+                </div>
+                <div class="route-steps">${stepsHtml}</div>
+                <div class="smart-route-tip">
+                  <div class="tip-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></div>
+                  <div>${data.tip}</div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn ghost" onclick="back()">
+              <span>返回</span>
+              <span class="arrow">→</span>
+            </button>
+          `;
+        }
+
+        /* ============ 畫面：尋寶 ============ */
+        function viewQuest() {
+          return html`
+            ${statusBar()}
+            <span class="eyebrow"><span class="idx">04</span> · 尋寶</span>
+            <h2 class="title">掃描 QR code，解鎖關卡</h2>
+            <p class="lead">台北的捷運站裡藏著很多小關卡。掃描牆上的 QR code，就能解鎖這一站的故事與引導。</p>
+
+            <div class="points-hero">
+              <div class="ph-label">Total Points</div>
+              <div class="ph-value" data-no-type id="points-display">0</div>
+              <div class="ph-sub">已收集 0 個關卡 · 1 個徽章</div>
+            </div>
+
+            <div class="qr-box">
+              <div class="qr-frame">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                  <rect x="10" y="10" width="20" height="20" fill="none" stroke="#1f1a16" stroke-width="3"/>
+                  <rect x="15" y="15" width="10" height="10" fill="#1f1a16"/>
+                  <rect x="70" y="10" width="20" height="20" fill="none" stroke="#1f1a16" stroke-width="3"/>
+                  <rect x="75" y="15" width="10" height="10" fill="#1f1a16"/>
+                  <rect x="10" y="70" width="20" height="20" fill="none" stroke="#1f1a16" stroke-width="3"/>
+                  <rect x="15" y="75" width="10" height="10" fill="#1f1a16"/>
+                  <rect x="40" y="15" width="5" height="5" fill="#1f1a16"/>
+                  <rect x="50" y="20" width="5" height="5" fill="#1f1a16"/>
+                  <rect x="40" y="40" width="5" height="5" fill="#1f1a16"/>
+                  <rect x="50" y="50" width="5" height="5" fill="#1f1a16"/>
+                  <rect x="60" y="40" width="5" height="5" fill="#1f1a16"/>
+                  <rect x="70" y="50" width="5" height="5" fill="#1f1a16"/>
+                  <rect x="80" y="45" width="5" height="5" fill="#1f1a16"/>
+                  <rect x="40" y="70" width="5" height="5" fill="#1f1a16"/>
+                  <rect x="55" y="75" width="5" height="5" fill="#1f1a16"/>
+                  <rect x="70" y="70" width="5" height="5" fill="#1f1a16"/>
+                  <rect x="80" y="80" width="5" height="5" fill="#1f1a16"/>
+                </svg>
+                <div class="qr-line"></div>
+              </div>
+              <div class="qr-title">對準牆上的 QR code</div>
+              <div class="qr-sub">在捷運站的入口、月台、樓梯、出口都有關卡。</div>
+            </div>
+
+            <button class="btn metro" onclick="startScan()">
+              <span>開始掃描</span>
+              <span class="arrow">→</span>
+            </button>
+
+            <h3 class="sub-title">我的徽章</h3>
+            <div class="badge-grid">
+              <div class="badge unlocked">
+                <div class="badge-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg></div>
+                <div class="badge-name">初探者</div>
+              </div>
+              <div class="badge locked">
+                <div class="badge-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+                <div class="badge-name">站長</div>
+              </div>
+              <div class="badge locked">
+                <div class="badge-icon"><svg viewBox="0 0 24 24"><path d="M3 20h4v-4h4v-4h4V8h4V4"/></svg></div>
+                <div class="badge-name">電扶梯達人</div>
+              </div>
+              <div class="badge locked">
+                <div class="badge-icon"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg></div>
+                <div class="badge-name">出口獵人</div>
+              </div>
+              <div class="badge locked">
+                <div class="badge-icon"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+                <div class="badge-name">夜行者</div>
+              </div>
+              <div class="badge locked">
+                <div class="badge-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+                <div class="badge-name">台北通</div>
+              </div>
+            </div>
+          `;
+        }
+
+        /* ============ 畫面：掃描中 ============ */
+        function viewScanning() {
+          return html`
+            ${statusBar()}
+            <div class="qr-box" style="padding: 3rem 1.5rem;">
+              <div class="qr-frame" style="width: 160px; height: 160px;">
+                <div class="qr-line"></div>
+              </div>
+              <div class="qr-title" style="margin-top: 1rem;">正在辨識 QR code…</div>
+              <div class="qr-sub">請將手機對準牆上的 QR code</div>
+            </div>
+          `;
+        }
+
+        /* ============ 畫面：默契 ============ */
+        function viewGuide() {
+          return html`
+            ${statusBar()}
+            <span class="eyebrow"><span class="idx">05</span> · 站內默契</span>
+            <h2 class="title">進站之後，這些事值得知道</h2>
+            <p class="lead">台北捷運有幾個不成文的默契。懂了，就能走得更順，也讓別人更舒服。</p>
+
+            <div class="guide-cards">
+              <div class="guide-card">
+                <div class="guide-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M20 14v.01M14 20h.01M17 20h3v-3"/></svg></div>
+                <div class="guide-body">
+                  <div class="guide-card-head"><span class="step-num">GUIDE · 01</span><span class="title-sm">先掃站點地圖</span></div>
+                  <p>進站後，先掃描牆上的站點地圖 QR code。台北許多站名是音譯，光看漢字不容易對應實際位置。</p>
+                </div>
+              </div>
+
+              <div class="guide-card">
+                <div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M3 20h4v-4h4v-4h4V8h4V4"/></svg></div>
+                <div class="guide-body">
+                  <div class="guide-card-head"><span class="step-num">GUIDE · 02</span><span class="title-sm">走樓梯前，先看月台方向</span></div>
+                  <p>樓梯口上方會標示「往 ○○ 方向」。請確認您的列車方向，再決定走哪一道樓梯。走錯了，往往要多繞一層樓。</p>
+                </div>
+              </div>
+
+              <div class="guide-card">
+                <div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M3 17l4-4 4 2 4-6 6-4"/><circle cx="18" cy="5" r="1.5"/><circle cx="6" cy="19" r="1.5"/></svg></div>
+                <div class="guide-body">
+                  <div class="guide-card-head"><span class="step-num">GUIDE · 03</span><span class="title-sm">電扶梯靠右站</span></div>
+                  <p>在台北，電扶梯有一個潛規則：<strong>靠右站、左側通行</strong>。趕時間的人會從左邊走過去。這是城市裡對彼此的一份體貼。</p>
+                </div>
+              </div>
+
+              <div class="guide-card">
+                <div class="guide-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+                <div class="guide-body">
+                  <div class="guide-card-head"><span class="step-num">GUIDE · 04</span><span class="title-sm">月台排隊，照地上的線站</span></div>
+                  <p>月台地上畫有排隊線與「等候區」。請站在線後，讓下車的人先走出來，再依序上車。</p>
+                </div>
+              </div>
+
+              <div class="guide-card">
+                <div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M7 8l5-5 5 5"/><path d="M7 16l5 5 5-5"/></svg></div>
+                <div class="guide-body">
+                  <div class="guide-card-head"><span class="step-num">GUIDE · 05</span><span class="title-sm">先出後進</span></div>
+                  <p>車門打開時，先讓裡面的人下車。這是台北捷運最基本、也最重要的一個默契。</p>
+                </div>
+              </div>
+
+              <div class="guide-card">
+                <div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8v5H8z"/><path d="M8 9c-2 0-3 2-3 4v5c0 1.5 1 3 3 3h8c2 0 3-1.5 3-3v-5c0-2-1-4-3-4"/></svg></div>
+                <div class="guide-body">
+                  <div class="guide-card-head"><span class="step-num">GUIDE · 06</span><span class="title-sm">書包建議前背</span></div>
+                  <p>車廂擁擠時，請把背包或書包改背在胸前。這樣可以少佔一些空間，也不會在轉身時不小心撞到別人。</p>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        /* ============ 畫面：我的 ============ */
+        function viewMe() {
+          return html`
+            ${statusBar()}
+            <span class="eyebrow"><span class="idx">06</span> · 我的</span>
+            <h2 class="title">我的旅程</h2>
+
+            <div class="points-hero">
+              <div class="ph-label">Total Points</div>
+              <div class="ph-value" data-no-type id="points-display-2">0</div>
+              <div class="ph-sub">繼續探索，累積更多點數</div>
+            </div>
+
+            <div class="me-list">
+              <button class="me-item" onclick="switchTab('quest')">
+                <div class="me-item-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg></div>
+                <div class="me-item-body">
+                  <div class="mi-title">我的徽章</div>
+                  <div class="mi-desc">1 個徽章已解鎖</div>
+                </div>
+                <span class="mi-arrow">→</span>
+              </button>
+
+              <button class="me-item" onclick="switchTab('route')">
+                <div class="me-item-icon"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h12"/></svg></div>
+                <div class="me-item-body">
+                  <div class="mi-title">我的行程</div>
+                  <div class="mi-desc">尚無儲存的行程</div>
+                </div>
+                <span class="mi-arrow">→</span>
+              </button>
+
+              <button class="me-item" onclick="switchTab('explore')">
+                <div class="me-item-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                <div class="me-item-body">
+                  <div class="mi-title">我的最愛</div>
+                  <div class="mi-desc">3 個景點</div>
+                </div>
+                <span class="mi-arrow">→</span>
+              </button>
+
+              <button class="me-item">
+                <div class="me-item-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
+                <div class="me-item-body">
+                  <div class="mi-title">語言設定</div>
+                  <div class="mi-desc">日本語</div>
+                </div>
+                <span class="mi-arrow">→</span>
+              </button>
+
+              <button class="me-item">
+                <div class="me-item-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></div>
+                <div class="me-item-body">
+                  <div class="mi-title">關於智慧遊台北</div>
+                  <div class="mi-desc">v4.0</div>
+                </div>
+                <span class="mi-arrow">→</span>
+              </button>
+            </div>
+          `;
+        }
+
+        /* ============ 渲染 ============ */
+        function render() {
+          var view = currentView();
+          var app = document.getElementById('app');
+          var content = '';
+
+          switch (view.page) {
+            case 'home': content = viewHome(); break;
+            case 'explore': content = viewExplore(); break;
+            case 'spot': content = viewSpot(view.params.id); break;
+            case 'route': content = viewRoute(); break;
+            case 'smart': content = viewSmart(); break;
+            case 'quest': content = viewQuest(); break;
+            case 'scanning': content = viewScanning(); break;
+            case 'guide': content = viewGuide(); break;
+            case 'me': content = viewMe(); break;
+            default: content = viewHome();
+          }
+
+          app.innerHTML = content;
 
           /* 更新底部 tab */
-          var navs = document.querySelectorAll('.nav-tab');
-          for (var j = 0; j < navs.length; j++) {
-            if (navs[j].getAttribute('data-nav') === name) navs[j].classList.add('active');
-            else navs[j].classList.remove('active');
+          var navHtml = '';
+          var tabs = [
+            { id: 'home', label: '首頁', icon: '<path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2z"/>' },
+            { id: 'explore', label: '探索', icon: '<circle cx="12" cy="12" r="9"/><path d="M16 8l-2 6-6 2 2-6z"/>' },
+            { id: 'quest', label: '尋寶', icon: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M20 14v.01M14 20h.01M17 20h3v-3"/>' },
+            { id: 'me', label: '我的', icon: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>' }
+          ];
+          for (var i = 0; i < tabs.length; i++) {
+            var t = tabs[i];
+            var isActive = currentTab === t.id ? ' active' : '';
+            navHtml += '<button class="nav-tab' + isActive + '" onclick="switchTab(\'' + t.id + '\')">' +
+              '<svg viewBox="0 0 24 24">' + t.icon + '</svg>' +
+              '<span class="nav-label">' + t.label + '</span>' +
+            '</button>';
           }
+          document.getElementById('bottom-nav').innerHTML = navHtml;
 
-          /* 捲到頂 */
-          try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-          catch (e) { window.scrollTo(0, 0); }
+          /* 更新時鐘 */
+          tick();
         }
 
-        function startScan() {
-          switchTab('scanning');
-          setTimeout(function () {
-            addPoints(10);
-            switchTab('quest');
-          }, 1800);
+        /* ============ 導航 ============ */
+        function switchTab(name) {
+          currentTab = name;
+          state.stack = [name];
+          render();
+          scrollToTop();
         }
 
-        /* 探索：分類篩選 */
+        function push(page, params) {
+          state.stack.push({ page: page, params: params || {} });
+          render();
+          scrollToTop();
+        }
+
+        function back() {
+          if (state.stack.length > 1) state.stack.pop();
+          render();
+          scrollToTop();
+        }
+
+        function openSpot(id) {
+          push('spot', { id: id });
+        }
+
         function filterCategory(el, cat) {
           var chips = document.querySelectorAll('.chip');
           for (var i = 0; i < chips.length; i++) chips[i].classList.remove('active');
@@ -1402,109 +1402,45 @@
           }
         }
 
-        /* 探索：點擊景點 */
-        function showSpot(name) {
-          alert('前往「' + name + '」的引導');
+        function startScan() {
+          state.stack.push({ page: 'scanning', params: {} });
+          render();
+          setTimeout(function () {
+            state.points += 10;
+            state.stack.pop();
+            render();
+          }, 1800);
         }
 
-        /* 逐字 */
-        function unwrapChars(screen) {
-          var chars = screen.querySelectorAll('.ch');
-          for (var i = 0; i < chars.length; i++) {
-            var ch = chars[i];
-            var txt = ch.textContent === '\u00A0' ? ' ' : ch.textContent;
-            if (ch.parentNode) ch.parentNode.replaceChild(document.createTextNode(txt), ch);
-          }
-        }
-        function isExcluded(node) {
-          var p = node.parentNode;
-          if (!p) return true;
-          if (p.getAttribute && p.getAttribute('data-no-type') !== null) return true;
-          var tag = p.tagName ? p.tagName.toLowerCase() : '';
-          if (tag === 'script' || tag === 'style' || tag === 'svg' || tag === 'input' || tag === 'button') return true;
-          var el = p, depth = 0;
-          while (el && depth < 14) {
-            if (el.nodeType === 1) {
-              var t = el.tagName ? el.tagName.toLowerCase() : '';
-              var cls = el.className && typeof el.className === 'string' ? el.className : '';
-              if (t === 'button' || t === 'input') return true;
-              if (cls.indexOf('btn') !== -1) return true;
-              if (cls.indexOf('tag') !== -1) return true;
-              if (cls.indexOf('status') !== -1) return true;
-              if (cls.indexOf('site-header') !== -1) return true;
-              if (cls.indexOf('site-nav') !== -1) return true;
-              if (cls.indexOf('site-brand') !== -1) return true;
-              if (cls.indexOf('eyebrow') !== -1) return true;
-              if (cls.indexOf('map-') !== -1) return true;
-              if (cls.indexOf('metro-') !== -1) return true;
-              if (cls.indexOf('card') !== -1) return true;
-              if (cls.indexOf('chip') !== -1) return true;
-              if (cls.indexOf('nav-tab') !== -1) return true;
-              if (cls.indexOf('bottom-nav') !== -1) return true;
-              if (cls.indexOf('badge') !== -1) return true;
-              if (cls.indexOf('points-') !== -1) return true;
-              if (cls.indexOf('quick-') !== -1) return true;
-              if (cls.indexOf('reco-') !== -1) return true;
-              if (cls.indexOf('hero-') !== -1) return true;
-              if (cls.indexOf('qr-') !== -1) return true;
-              if (cls.indexOf('smart-route') !== -1) return true;
-              if (cls.indexOf('route-step') !== -1) return true;
-              if (cls.indexOf('exit-') !== -1) return true;
-              if (cls.indexOf('guide-') !== -1) return true;
-              if (cls.indexOf('me-item') !== -1) return true;
-              if (cls.indexOf('step-num') !== -1) return true;
-              if (cls.indexOf('status-inline') !== -1) return true;
-              if (cls.indexOf('notice') !== -1) return true;
-              if (el.getAttribute && el.getAttribute('data-no-type') !== null) return true;
-            }
-            el = el.parentNode;
-            depth++;
-          }
-          return false;
-        }
-        function splitText(screen) {
-          unwrapChars(screen);
-          if (!document.createTreeWalker) return;
-          var walker = document.createTreeWalker(screen, NodeFilter.SHOW_TEXT, {
-            acceptNode: function (node) {
-              if (isExcluded(node)) return NodeFilter.FILTER_REJECT;
-              if (node.textContent.replace(/\s/g, '') === '') return NodeFilter.FILTER_REJECT;
-              return NodeFilter.FILTER_ACCEPT;
-            }
-          });
-          var nodes = [], n;
-          while ((n = walker.nextNode())) nodes.push(n);
-          if (nodes.length === 0) return;
-          var total = 0;
-          for (var i = 0; i < nodes.length; i++) total += nodes[i].textContent.length;
-          var perChar = Math.max(0.01, Math.min(0.045, 4 / Math.max(total, 1)));
-          var idx = 0;
-          for (var j = 0; j < nodes.length; j++) {
-            var node = nodes[j];
-            var chars = node.textContent.split('');
-            var frag = document.createDocumentFragment();
-            for (var k = 0; k < chars.length; k++) {
-              var ch = chars[k];
-              var span = document.createElement('span');
-              span.className = 'ch';
-              if (ch === ' ') span.innerHTML = '&nbsp;';
-              else span.textContent = ch;
-              span.style.animationDelay = (0.1 + idx * perChar).toFixed(3) + 's';
-              idx++;
-              frag.appendChild(span);
-            }
-            if (node.parentNode) node.parentNode.replaceChild(frag, node);
-          }
-        }
-
-        function boot() {
-          var g = $('greeting');
+        function tick() {
+          var t = getTime();
+          var clock = document.getElementById('clock');
+          var nt = document.getElementById('now-time');
+          var pd = document.getElementById('points-display');
+          var pd2 = document.getElementById('points-display-2');
+          var g = document.getElementById('greeting');
+          if (clock) clock.textContent = t.hh + ':' + t.mm + ':' + t.ss;
+          if (nt) nt.textContent = t.hh + ':' + t.mm;
+          if (pd) pd.textContent = state.points;
+          if (pd2) pd2.textContent = state.points;
           if (g) g.textContent = getGreeting();
-          tick();
-          setInterval(tick, 1000);
-          var first = document.querySelector('[data-tab="home"]');
-          if (first) splitText(first);
         }
+
+        function scrollToTop() {
+          try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+          catch (e) { window.scrollTo(0, 0); }
+        }
+
+        function currentView() {
+          return state.stack[state.stack.length - 1];
+        }
+
+        /* ============ 啟動 ============ */
+        function boot() {
+          render();
+          setInterval(tick, 1000);
+        }
+
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
           setTimeout(boot, 1);
         } else if (document.addEventListener) {
@@ -1513,9 +1449,11 @@
         }
 
         window.switchTab = switchTab;
-        window.startScan = startScan;
+        window.push = push;
+        window.back = back;
+        window.openSpot = openSpot;
         window.filterCategory = filterCategory;
-        window.showSpot = showSpot;
+        window.startScan = startScan;
       })();
     </script>
   </body>
