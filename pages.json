@@ -18,12 +18,6 @@
       "title": "想說的話",
       "order": 30,
       "visible": true
-    },
-    {
-      "path": "/pages/bus-system.html",
-      "title": "智慧遊台北",
-      "order": 40,
-      "visible": true
     }
   ]
 }
