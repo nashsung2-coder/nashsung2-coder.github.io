@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light only" />
     <meta name="theme-color" content="#f7f3ec" />
-    <title>智慧遊台北 — Nash Pages</title>
+    <title>智慧遊台北 · 積分商城與接龍</title>
     <link rel="stylesheet" href="../assets/css/site.css" />
     <style>
       html { color-scheme: light only !important; -webkit-text-size-adjust: 100%; }
@@ -22,31 +22,8 @@
         html, body { background: #f7f3ec !important; color: #1f1a16 !important; }
       }
 
-      /* 導覽列（保留主網站 header） */
-      .site-header {
-        position: fixed !important; top: 0; left: 0; width: 100%; z-index: 100;
-        background: rgba(247,243,236,0.92) !important;
-        border-bottom: 1px solid #e8e0d4 !important;
-        padding: 0.7rem 2rem;
-        display: flex; align-items: center; justify-content: center;
-        -webkit-backdrop-filter: saturate(180%) blur(20px);
-        backdrop-filter: saturate(180%) blur(20px);
-      }
-      .site-brand {
-        position: absolute; left: 2rem;
-        display: flex; align-items: center; gap: 0.55rem;
-        text-decoration: none; color: #1f1a16 !important;
-        font-weight: 600; font-size: 0.92rem;
-      }
-      .site-brand-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #d8cdbc; }
-      .site-brand-text { white-space: nowrap; color: #1f1a16 !important; }
-      .site-nav { display: flex; align-items: center; gap: 0.1rem; flex-wrap: wrap; justify-content: center; }
-      .site-nav a { color: #5c534a !important; text-decoration: none; padding: 0.4rem 0.75rem; font-size: 0.85rem; border-radius: 8px; }
-      .site-nav a:hover, .site-nav a[aria-current="page"] { color: #b2562a !important; background: #f2e5d8 !important; }
-      .site-status { position: absolute; right: 2rem; color: #9c9188 !important; font-size: 0.7rem; letter-spacing: 0.15em; font-family: "SF Mono", monospace; }
-
-      /* 主容器 */
-      .app { max-width: 640px; margin: 0 auto; padding: 6.5rem 1.25rem 7rem; position: relative; }
+      /* 主容器（已移除上導覽列） */
+      .app { max-width: 640px; margin: 0 auto; padding: 1.5rem 1.25rem 7rem; position: relative; }
 
       /* 狀態列 */
       .status {
@@ -92,7 +69,7 @@
       @keyframes chIn { from{opacity:0;transform:translateY(4px);} to{opacity:1;transform:translateY(0);} }
 
       .btn, .btn *, .skip, .skip *, .tag, .tag *,
-      .site-header *, .status *, .eyebrow *,
+      .status *, .eyebrow *,
       .map-wrap *, .metro-map *, .qr-box *, .nav-tab,
       .step-num, .route-step *, .guide-icon *,
       .card *, .chip, .chip *, .exit-number *,
@@ -542,13 +519,73 @@
         text-transform: uppercase;
       }
 
+      /* 商城 */
+      .shop-item {
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 16px; padding: 1.15rem 1.25rem;
+        margin-bottom: 0.75rem; display: flex; gap: 1rem;
+        align-items: center; transition: all 0.2s;
+      }
+      .shop-item:hover { border-color: #b2562a; }
+      .shop-item .si-icon {
+        flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px;
+        background: #f2e5d8; color: #b2562a;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.4rem;
+      }
+      .shop-item .si-body { flex: 1; min-width: 0; }
+      .shop-item .si-name { font-size: 0.98rem; font-weight: 500; color: #1f1a16; margin-bottom: 0.2rem; }
+      .shop-item .si-desc { font-size: 0.8rem; color: #5c534a; line-height: 1.5; }
+      .shop-item .si-cost {
+        flex-shrink: 0; font-family: "Noto Serif TC", serif;
+        font-size: 1.15rem; font-weight: 700; color: #b2562a;
+        text-align: right;
+      }
+      .shop-item .si-cost span { font-size: 0.7rem; color: #9c9188; margin-left: 1px; }
+      .shop-item.redeemed { opacity: 0.55; }
+      .shop-item .si-btn {
+        margin-top: 0.4rem; padding: 0.35rem 0.85rem;
+        background: #1f1a16; color: #f7f3ec; border: none;
+        border-radius: 999px; font-size: 0.78rem; cursor: pointer;
+        font-family: inherit;
+      }
+      .shop-item .si-btn:disabled { background: #d8cdbc; cursor: not-allowed; }
+
+      /* 接龍留言 */
+      .chain-box {
+        background: #ffffff; border: 1px solid #e8e0d4;
+        border-radius: 16px; padding: 1.25rem; margin-bottom: 1rem;
+      }
+      .chain-msg {
+        padding: 0.85rem 1rem; background: #fbf8f3;
+        border-radius: 12px; margin-bottom: 0.65rem;
+        border-left: 3px solid #b2562a;
+      }
+      .chain-msg .cm-meta {
+        font-family: "SF Mono", monospace; font-size: 0.68rem;
+        color: #9c9188; letter-spacing: 0.08em; margin-bottom: 0.3rem;
+      }
+      .chain-msg .cm-text { font-size: 0.9rem; color: #1f1a16; line-height: 1.7; }
+      .chain-input {
+        width: 100%; padding: 0.85rem 1rem; border: 1px solid #e8e0d4;
+        border-radius: 12px; font-family: inherit; font-size: 0.92rem;
+        color: #1f1a16; background: #ffffff; outline: none;
+        resize: none; min-height: 80px; margin-bottom: 0.75rem;
+      }
+      .chain-input:focus { border-color: #b2562a; }
+      .chain-draw {
+        background: linear-gradient(135deg, #1f3a5f 0%, #162a45 100%);
+        color: #ffffff; border-radius: 16px; padding: 1.25rem;
+        margin-bottom: 1rem; text-align: center;
+      }
+      .chain-draw .cd-label {
+        font-family: "SF Mono", monospace; font-size: 0.68rem;
+        letter-spacing: 0.2em; color: #b8c8dc; margin-bottom: 0.4rem;
+      }
+      .chain-draw .cd-text { font-size: 1rem; font-weight: 500; line-height: 1.7; }
+
       @media (max-width: 640px) {
-        .site-header { flex-direction: column; padding: 0.6rem 1rem 0.5rem; height: auto; gap: 0.4rem; }
-        .site-brand { position: static; font-size: 0.85rem; }
-        .site-status { display: none; }
-        .site-nav { width: 100%; }
-        .site-nav a { padding: 0.32rem 0.55rem; font-size: 0.78rem; }
-        .app { padding: 7rem 1.1rem 7.5rem; }
+        .app { padding: 1.25rem 1.1rem 7.5rem; }
         h2.title { font-size: 1.35rem; }
         .btn-row { flex-direction: column; }
         .btn-row .btn { width: 100%; }
@@ -563,33 +600,41 @@
   </head>
 
   <body>
-    <header class="site-header" data-site-navigation>
-      <a class="site-brand" href="/" aria-label="宋嵐緒個人頁面首頁">
-        <img class="site-brand-avatar" src="../assets/images/avatar-circle.png" alt="宋嵐緒" />
-        <span class="site-brand-text">宋嵐緒個人頁面</span>
-      </a>
-      <nav class="site-nav" aria-label="網站導覽" data-navigation-list></nav>
-      <span class="site-status">SMART TAIPEI</span>
-    </header>
-
     <main class="app" id="app"></main>
 
     <nav class="bottom-nav" aria-label="主要導覽">
       <div class="bottom-nav-inner" id="bottom-nav"></div>
     </nav>
 
-    <script src="../assets/js/nav.js"></script>
     <script>
       (function () {
         'use strict';
 
         var state = {
           stack: ['home'],
-          points: 0,
+          points: 120,
           language: 'ja',
-          badges: { '初探者': true }
+          badges: { '初探者': true },
+          redeemed: {},
+          chainMessages: {
+            'dihua': [
+              { user: '旅人 A', time: '昨天 14:32', text: '霞海城隍廟的姻緣很靈！今天求到聖筊了 🙏' },
+              { user: '旅人 B', time: '今天 09:15', text: '十連棟的老房子好有味道，推薦慢慢走。' }
+            ],
+            'ximen': [
+              { user: '旅人 C', time: '昨天 20:10', text: '西門町晚上超熱鬧，紅樓附近很好拍！' }
+            ],
+            'daan': [
+              { user: '旅人 D', time: '今天 08:40', text: '大安森林公園早上很舒服，適合散步。' }
+            ],
+            'taipei101': [
+              { user: '旅人 E', time: '昨天 17:50', text: '傍晚上觀景台，夕陽配夜景太美了。' }
+            ]
+          },
+          lastDrawn: null
         };
         var currentTab = 'home';
+        var currentScanSpot = null;
 
         function getGreeting() {
           var h = new Date().getHours();
@@ -606,109 +651,67 @@
         /* ============ 資料 ============ */
         var SPOTS = [
           { id: 'dihua', name: '迪化街', cat: 'history', district: '大同區',
-            desc: '台北最老的老街，南北貨、中藥、布匹。清代與日治時期的建築，每棟都有故事。',
-            meta: ['捷運 1 號出口', '步行 5 分'],
-            story: '1850 年代，迪化街因為淡水河航運而興起，成為台北最重要的商業街。當時的茶葉、布料、藥材都從這裡進出。現在走在街上，還能看到清代與日治時期留下來的建築，每一棟都有自己的故事。',
+            desc: '台北最老的老街。霞海城隍廟求姻緣、十連棟老屋群、南北貨與中藥香。',
+            meta: ['捷運大橋頭站 1 號出口', '步行 5 分'],
+            story: '1850 年代因淡水河航運興起，成為台北最重要的商業街。霞海城隍廟香火鼎盛，尤其以求姻緣聞名；十連棟則是保存完整的清代連棟街屋，走在其中彷彿穿越時空。',
             tips: [
-              '從永樂市場進去，會看到最熱鬧的一段',
-              '霞海城隍廟在附近，求姻緣很有名',
-              '週末有市集，但人多',
+              '從永樂市場進入，最熱鬧的一段',
+              '霞海城隍廟求姻緣很有名，記得先擲筊',
+              '十連棟在迪化街一段，適合慢慢散步拍照',
               '很多老店中午休息，下午再開'
-            ]
+            ],
+            chainSpot: true
           },
-          { id: 'cks', name: '中正紀念堂', cat: 'history', district: '中正區',
-            desc: '藍瓦白牆，象徵自由與平等。屋頂仿天壇，八角形寓意八德。整點有儀隊交接。',
-            meta: ['捷運 5 號出口', '步行 1 分'],
-            story: '1976 年動工，1980 年完工。主體建築高 70 公尺，藍瓦白牆，屋頂仿天壇，八角形則寓意「八德」。園區內另有國家戲劇院與國家音樂廳，皆為仿古宮殿式建築。',
+          { id: 'ximen', name: '西門町', cat: 'modern', district: '萬華區',
+            desc: '台北的時尚與次文化中心。電影街、紅樓、夜市小吃與街頭表演一次滿足。',
+            meta: ['捷運西門站 6 號出口', '步行 1 分'],
+            story: '西門町從日治時期的娛樂區發展至今，是年輕人聚集的潮流地標。紅樓劇場、電影街、成都路商圈與各種街頭表演，構成台北最具活力的街區之一。',
             tips: [
-              '整點有儀隊交接，提前 10 分鐘到',
-              '傍晚來最舒服，夕陽照在藍瓦上會變金色',
-              '兩廳院在左右兩側，中間是廣場',
-              '從自由廣場牌樓往主體拍，可以看到完整對稱'
-            ]
+              '紅樓劇場與電影街是經典打卡點',
+              '晚上最熱鬧，街頭藝人與夜市小吃齊聚',
+              '附近有很多文創小店與潮牌',
+              '捷運 6 號出口出站即到'
+            ],
+            chainSpot: true
           },
-          { id: 'president', name: '總統府', cat: 'history', district: '中正區',
-            desc: '1919 年建成，原為日本總督府。外圍博愛特區可自由參觀，安檢較嚴格。',
-            meta: ['捷運 1 號出口', '步行 8 分'],
-            story: '1919 年完工，當時是日本統治時期的總督府。戰後成為中華民國總統府。建築採用文藝復興式風格，中央塔樓高 60 公尺。',
+          { id: 'daan', name: '大安森林公園', cat: 'nature', district: '大安區',
+            desc: '台北市中心的綠肺。26 公頃都市森林，適合散步、野餐與看展。',
+            meta: ['捷運大安森林公園站', '直達'],
+            story: '1994 年啟用，是台北市區最大的森林公園。園內有音樂台、生態池與多條步道，被稱為台北的「都市綠肺」。四季皆適合前來放鬆。',
             tips: [
-              '平日不對外開放，要參觀請事先預約',
-              '外圍博愛特區可以自由走',
-              '從凱達格蘭大道正對總統府拍，是最經典的角度',
-              '安檢比較嚴格，記得帶證件'
-            ]
+              '早上空氣最好，適合慢跑或散步',
+              '週末常有市集與戶外表演',
+              '園區內有咖啡廳與餐車',
+              '捷運站出站即進入公園'
+            ],
+            chainSpot: true
           },
           { id: 'taipei101', name: '台北 101', cat: 'modern', district: '信義區',
             desc: '2004 年完工，曾是世界第一高樓。89 樓室內、91 樓戶外觀景台。電梯 37 秒直達。',
-            meta: ['捷運 4 號出口', '連通道直達'],
-            story: '2004 年完工，樓高 508 公尺，地上 101 層。2004 至 2010 年間是世界第一高樓。建築設計融入竹子意象，象徵節節高升。87 樓有一顆 660 噸的金色風阻尼器，是防地震用的。',
+            meta: ['捷運台北 101 / 世貿站 4 號出口', '連通道直達'],
+            story: '樓高 508 公尺，地上 101 層。建築融入竹子意象，象徵節節高升。87 樓有 660 噸金色風阻尼器，是防震重要設施。',
             tips: [
-              '傍晚 5 點上去，可以看到白天、夕陽、夜景三種風景',
-              '電梯是世界最快，37 秒直達 89 樓',
-              '4 號出口有連通道直達 101 購物中心 B1',
-              'B1 到 5 樓是購物中心，有美食街和伴手禮'
-            ]
-          },
-          { id: 'longshan', name: '龍山寺', cat: 'temple', district: '萬華區',
-            desc: '1738 年創建，台北最古老的寺廟之一。拜拜順序：天公爐 → 主神 → 配祀神。',
-            meta: ['捷運龍山寺站 1 號出口', '步行 1 分'],
-            story: '1738 年創建，是台北最古老的寺廟之一。主祀觀世音菩薩。建築為傳統閩南式，有精緻的石雕、木雕與彩繪。',
-            tips: [
-              '從右邊的門進去，左邊的門出來',
-              '先拜天公爐（面向廟門外），再拜主神',
-              '求籤要先擲筊，一正一反叫聖筊',
-              '廟裡有解籤處，也有 QR code 可以掃'
-            ]
-          },
-          { id: 'xiangshan', name: '象山', cat: 'nature', district: '信義區',
-            desc: '看 101 最近的地方。爬 20 分鐘到六巨石，是拍 101 最經典的角度。',
-            meta: ['捷運象山站 2 號出口', '步行 5 分'],
-            story: '象山是台北盆地東南側的四獸山之一。因為山形像象頭而得名。步道全長約 1.5 公里，爬升約 200 公尺。',
-            tips: [
-              '傍晚 5 點上山，看夕陽和夜景',
-              '階梯多，穿好走的鞋',
-              '山頂有六巨石，是拍 101 最經典的角度',
-              '人多要排隊，耐心等'
-            ]
-          },
-          { id: 'tamsui', name: '淡水', cat: 'nature', district: '淡水區',
-            desc: '看夕陽、逛老街、坐渡輪。傍晚 4 點到，找個河邊的位置坐下來。',
-            meta: ['捷運淡水站', '終點站'],
-            story: '淡水是北台灣最早開發的港口之一。西班牙人、荷蘭人、清朝、日本都曾在這裡留下痕跡。現在是看夕陽、逛老街的熱門景點。',
-            tips: [
-              '傍晚 4 點到，逛老街，5 點看夕陽',
-              '阿給、魚丸湯、鐵蛋、酸梅湯是必吃',
-              '可以坐渡輪到對岸八里',
-              '夕陽是台北最美的風景之一'
-            ]
-          },
-          { id: 'shilin', name: '士林夜市', cat: 'night', district: '士林區',
-            desc: '豪大大雞排、蚵仔煎、大腸包小腸。先逛地下美食街，再逛地面攤位。',
-            meta: ['捷運劍潭站 1 號出口', '步行 1 分'],
-            story: '台北最大的夜市之一，從 1909 年就開始有市集。現在分為地下美食街和地面攤位兩部分。',
-            tips: [
-              '先逛地下美食街，再逛地面攤位',
-              '看到排隊就跟著排，通常不會錯',
-              '大部分攤位收現金',
-              '垃圾要拿去夜市外圍的垃圾桶丟'
-            ]
-          },
-          { id: 'gugong', name: '故宮博物院', cat: 'museum', district: '士林區',
-            desc: '必看三寶：翠玉白菜、肉形石、毛公鼎。建議從 3 樓開始往下逛。',
-            meta: ['捷運士林站 1 號出口', '轉紅 30 公車'],
-            story: '1965 年開幕，收藏近 70 萬件中華文物。是世界上最著名的博物館之一。',
-            tips: [
-              '必看三寶，但常出國展覽，出發前先查',
-              '建議從 3 樓開始往下逛，人比較少',
-              '現場可租語音導覽，也有 App',
-              '平日早上 9 點剛開門時人最少'
-            ]
+              '傍晚 5 點上去，可同時看白天、夕陽與夜景',
+              '電梯是世界最快之一，37 秒直達 89 樓',
+              '4 號出口有連通道直達購物中心 B1',
+              'B1 到 5 樓有美食街與伴手禮'
+            ],
+            chainSpot: true
           }
+        ];
+
+        var SHOP_ITEMS = [
+          { id: 'pineapple', name: '鳳梨酥禮盒', desc: '台灣經典伴手禮，土鳳梨內餡', cost: 80, icon: '🍍' },
+          { id: 'oolong', name: '高山烏龍茶', desc: '梨山或阿里山高冷茶', cost: 120, icon: '🍵' },
+          { id: 'nougat', name: '牛軋糖', desc: '花生牛軋糖，香甜不黏牙', cost: 50, icon: '🍬' },
+          { id: 'sunbiscuit', name: '太陽餅', desc: '台中名產，麥芽糖內餡', cost: 60, icon: '☀️' },
+          { id: 'a-gei', name: '淡水阿給禮盒', desc: '經典小吃真空包裝', cost: 70, icon: '🍜' },
+          { id: 'magnet', name: '台北地標磁鐵組', desc: '101、城隍廟、西門紅樓', cost: 30, icon: '🧲' }
         ];
 
         var SMART_ROUTES = {
           '迪化街': {
-            exit: '1', exitName: '1 號出口 · 民生西路方向', destination: '迪化街',
+            exit: '1', exitName: '1 號出口 · 大橋頭站', destination: '迪化街',
             steps: [
               { icon: 'walk', label: 'STEP 01', main: '下車後，往月台中央方向走', sub: '避開兩側人潮，中間動線最快' },
               { icon: 'stairs', label: 'STEP 02', main: '走中央樓梯上 1 樓大廳', sub: '樓梯口標示「往 1 號出口」' },
@@ -716,29 +719,29 @@
               { icon: 'escalator', label: 'STEP 04', main: '搭左側電扶梯上地面', sub: '靠右站，左側通行' },
               { icon: 'exit', label: 'STEP 05', main: '從 1 號出口出站', sub: '出站後向右走約 5 分鐘抵達迪化街' }
             ],
-            tip: '<strong>在地提醒：</strong>迪化街是南北向街道，出站後沿民生西路直走，看到永樂市場就是迪化街入口。'
+            tip: '<strong>在地提醒：</strong>出站後沿民生西路直走，看到永樂市場就是迪化街入口。霞海城隍廟與十連棟都在附近。'
           },
-          '中正紀念堂': {
-            exit: '5', exitName: '5 號出口 · 中正紀念堂方向', destination: '中正紀念堂',
+          '西門町': {
+            exit: '6', exitName: '6 號出口 · 西門站', destination: '西門町',
             steps: [
-              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台右側方向走', sub: '5 號出口的電扶梯在車廂右前方' },
-              { icon: 'stairs', label: 'STEP 02', main: '走右側樓梯或搭電扶梯上大廳', sub: '樓梯口標示「往 5 號出口」' },
-              { icon: 'gate', label: 'STEP 03', main: '出閘門後，直走到底', sub: '沿著指標往 5 號出口' },
-              { icon: 'escalator', label: 'STEP 04', main: '搭電扶梯上地面', sub: '靠右站，左側留給趕時間的人' },
-              { icon: 'exit', label: 'STEP 05', main: '從 5 號出口出站', sub: '對面即是中正紀念堂園區入口' }
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台指示「往 6 號出口」方向走', sub: '西門站出口較多，請跟著指示牌' },
+              { icon: 'stairs', label: 'STEP 02', main: '搭電扶梯或走樓梯上大廳', sub: '往 6 號出口' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後直走', sub: '沿著指示牌' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭電扶梯上地面', sub: '靠右站' },
+              { icon: 'exit', label: 'STEP 05', main: '從 6 號出口出站', sub: '出站即進入西門町商圈' }
             ],
-            tip: '<strong>在地提醒：</strong>5 號出口正對中正紀念堂主體建築，出站後過馬路即可進入園區。往國家音樂廳請改走 1 號出口。'
+            tip: '<strong>在地提醒：</strong>6 號出口最靠近紅樓與電影街，晚上最熱鬧。'
           },
-          '總統府': {
-            exit: '1', exitName: '1 號出口 · 凱達格蘭大道方向', destination: '總統府',
+          '大安森林公園': {
+            exit: '5', exitName: '5 號出口 · 大安森林公園站', destination: '大安森林公園',
             steps: [
-              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台左側方向走', sub: '1 號出口的電扶梯在車廂左前方' },
-              { icon: 'stairs', label: 'STEP 02', main: '走左側樓梯上大廳', sub: '樓梯口標示「往 1 號出口」' },
-              { icon: 'gate', label: 'STEP 03', main: '出閘門後，往左手邊走', sub: '沿著指示牌往 1 號出口' },
-              { icon: 'escalator', label: 'STEP 04', main: '搭左側電扶梯上地面', sub: '靠右站' },
-              { icon: 'exit', label: 'STEP 05', main: '從 1 號出口出站', sub: '出站後步行約 8 分鐘' }
+              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台指示方向走', sub: '往公園出口' },
+              { icon: 'stairs', label: 'STEP 02', main: '搭電扶梯上大廳', sub: '往 5 號出口' },
+              { icon: 'gate', label: 'STEP 03', main: '出閘門後直走', sub: '沿著指示牌' },
+              { icon: 'escalator', label: 'STEP 04', main: '搭電扶梯上地面', sub: '靠右站' },
+              { icon: 'exit', label: 'STEP 05', main: '從 5 號出口出站', sub: '出站即進入大安森林公園' }
             ],
-            tip: '<strong>在地提醒：</strong>總統府參觀需事先預約，平日不對外開放。'
+            tip: '<strong>在地提醒：</strong>捷運站與公園幾乎無縫接軌，出站就能開始散步。'
           },
           '台北 101': {
             exit: '4', exitName: '4 號出口 · 台北 101 方向', destination: '台北 101',
@@ -750,17 +753,6 @@
               { icon: 'exit', label: 'STEP 05', main: '從 4 號出口出站', sub: '出站即見 101' }
             ],
             tip: '<strong>在地提醒：</strong>4 號出口有直達 101 購物中心的連通道。'
-          },
-          '象山': {
-            exit: '2', exitName: '2 號出口 · 象山步道方向', destination: '象山',
-            steps: [
-              { icon: 'walk', label: 'STEP 01', main: '下車後，往月台左側方向走', sub: '2 號出口在月台左側' },
-              { icon: 'stairs', label: 'STEP 02', main: '走左側樓梯上大廳', sub: '樓梯口標示「往 2 號出口」' },
-              { icon: 'gate', label: 'STEP 03', main: '出閘門後往左走', sub: '往 2 號出口' },
-              { icon: 'escalator', label: 'STEP 04', main: '搭電扶梯上地面', sub: '靠右站' },
-              { icon: 'exit', label: 'STEP 05', main: '從 2 號出口出站', sub: '沿中強公園走到底就是象山步道入口' }
-            ],
-            tip: '<strong>在地提醒：</strong>象山步道有數條路線，最簡單是從靈雲宮旁的階梯上山。'
           }
         };
 
@@ -855,33 +847,33 @@
             </div>
 
             <h3 class="sub-title">附近的關卡</h3>
-            <p class="lead">這些是您目前位置附近的 QR 關卡。</p>
+            <p class="lead">掃描這些景點的 QR code，可獲得點數並參與留言接龍。</p>
 
-            <div class="reco-card" onclick="switchTab('quest')">
+            <div class="reco-card" onclick="startScan('dihua')">
               <div class="rc-body">
-                <span class="rc-badge">中正紀念堂站</span>
-                <div class="rc-title">入口關卡</div>
-                <div class="rc-desc">解鎖車站故事與站內動線，第一次完成可獲得「初探者」徽章。</div>
-              </div>
-              <div class="rc-points">10</div>
-            </div>
-
-            <div class="reco-card" onclick="switchTab('quest')">
-              <div class="rc-body">
-                <span class="rc-badge">中正紀念堂站</span>
-                <div class="rc-title">月台關卡</div>
-                <div class="rc-desc">學習車廂位置與月台方向，適合第一次來台北的旅客。</div>
+                <span class="rc-badge">迪化街</span>
+                <div class="rc-title">城隍廟 · 十連棟</div>
+                <div class="rc-desc">掃描定點 QR，解鎖故事並留下接龍留言給下一位旅人。</div>
               </div>
               <div class="rc-points">15</div>
             </div>
 
-            <div class="reco-card" onclick="switchTab('guide')">
+            <div class="reco-card" onclick="startScan('ximen')">
               <div class="rc-body">
-                <span class="rc-badge">站內默契</span>
-                <div class="rc-title">電扶梯靠右站</div>
-                <div class="rc-desc">台北捷運最有名的一個潛規則。為什麼要這樣做？</div>
+                <span class="rc-badge">西門町</span>
+                <div class="rc-title">紅樓 · 電影街</div>
+                <div class="rc-desc">潮流街區定點掃描，累積點數可兌換伴手禮。</div>
               </div>
-              <div class="rc-points">10</div>
+              <div class="rc-points">15</div>
+            </div>
+
+            <div class="reco-card" onclick="push('shop')">
+              <div class="rc-body">
+                <span class="rc-badge">積分商城</span>
+                <div class="rc-title">兌換台灣特產</div>
+                <div class="rc-desc">鳳梨酥、高山烏龍、牛軋糖…用點數換紀念品。</div>
+              </div>
+              <div class="rc-points">→</div>
             </div>
           `;
         }
@@ -890,11 +882,8 @@
         function viewExplore() {
           var cats = [
             { id: 'all', label: '全部' },
-            { id: 'temple', label: '寺廟' },
             { id: 'history', label: '歷史' },
             { id: 'modern', label: '現代' },
-            { id: 'museum', label: '博物館' },
-            { id: 'night', label: '夜市' },
             { id: 'nature', label: '自然' }
           ];
           var chipsHtml = '';
@@ -941,13 +930,13 @@
                   <circle class="pin-dot" cx="180" cy="170" r="9"/><circle class="pin-dot-inner" cx="180" cy="170" r="4"/>
                   <text class="pin-label" x="180" y="200">迪化街</text>
                 </g>
-                <g class="map-pin" onclick="openSpot('cks')">
-                  <circle class="pin-dot" cx="420" cy="410" r="9"/><circle class="pin-dot-inner" cx="420" cy="410" r="4"/>
-                  <text class="pin-label" x="420" y="440">中正紀念堂</text>
+                <g class="map-pin" onclick="openSpot('ximen')">
+                  <circle class="pin-dot" cx="280" cy="380" r="9"/><circle class="pin-dot-inner" cx="280" cy="380" r="4"/>
+                  <text class="pin-label" x="280" y="410">西門町</text>
                 </g>
-                <g class="map-pin" onclick="openSpot('president')">
-                  <circle class="pin-dot" cx="350" cy="330" r="9"/><circle class="pin-dot-inner" cx="350" cy="330" r="4"/>
-                  <text class="pin-label" x="350" y="360">總統府</text>
+                <g class="map-pin" onclick="openSpot('daan')">
+                  <circle class="pin-dot" cx="480" cy="420" r="9"/><circle class="pin-dot-inner" cx="480" cy="420" r="4"/>
+                  <text class="pin-label" x="480" y="450">大安森林公園</text>
                 </g>
                 <g class="map-pin" onclick="openSpot('taipei101')">
                   <circle class="pin-dot" cx="650" cy="490" r="9"/><circle class="pin-dot-inner" cx="650" cy="490" r="4"/>
@@ -1013,29 +1002,29 @@
               </div>
               <div>
                 <div style="font-family: 'SF Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: #9c9188; text-transform: uppercase; margin-bottom: 0.5rem;">到</div>
-                <input type="text" value="中正紀念堂" style="width: 100%; padding: 0.75rem 0; border: none; border-bottom: 1px solid #e8e0d4; font-family: inherit; font-size: 1rem; color: #1f1a16; outline: none; background: transparent;" />
+                <input type="text" value="台北 101" style="width: 100%; padding: 0.75rem 0; border: none; border-bottom: 1px solid #e8e0d4; font-family: inherit; font-size: 1rem; color: #1f1a16; outline: none; background: transparent;" />
               </div>
             </div>
 
             <h3 class="sub-title">公車路線</h3>
             <div class="card">
-              <div class="card-head"><span class="name" style="font-family: 'SF Mono', monospace; font-size: 1.3rem; font-weight: 600;">206</span><span class="district" style="color: #b2562a;">約 3 分鐘</span></div>
-              <div class="desc">迪化街 → 捷運中正紀念堂站</div>
+              <div class="card-head"><span class="name" style="font-family: 'SF Mono', monospace; font-size: 1.3rem; font-weight: 600;">12</span><span class="district" style="color: #b2562a;">約 25 分鐘</span></div>
+              <div class="desc">迪化街 → 台北 101</div>
               <div class="meta"><span>首班 05:30</span><span>末班 22:30</span><span>間隔 10–15 分</span></div>
             </div>
             <div class="card">
-              <div class="card-head"><span class="name" style="font-family: 'SF Mono', monospace; font-size: 1.3rem; font-weight: 600;">304</span><span class="district" style="color: #b2562a;">約 8 分鐘</span></div>
-              <div class="desc">大龍峒 → 中正紀念堂</div>
+              <div class="card-head"><span class="name" style="font-family: 'SF Mono', monospace; font-size: 1.3rem; font-weight: 600;">650</span><span class="district" style="color: #b2562a;">約 30 分鐘</span></div>
+              <div class="desc">大橋頭 → 信義區</div>
               <div class="meta"><span>首班 05:40</span><span>末班 23:00</span><span>間隔 15–20 分</span></div>
             </div>
 
             <h3 class="sub-title">捷運路線</h3>
-            <p class="lead" style="font-size: 0.88rem;">淡水信義線 · 3 站</p>
+            <p class="lead" style="font-size: 0.88rem;">淡水信義線 · 約 20 分鐘</p>
 
             <div class="card" style="cursor: default; display: flex; align-items: center; gap: 1rem;">
               <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #1f3a5f;"></div>
               <div style="flex: 1;">
-                <div style="font-size: 0.95rem; font-weight: 500; color: #1f1a16;">中山站</div>
+                <div style="font-size: 0.95rem; font-weight: 500; color: #1f1a16;">大橋頭站</div>
                 <div style="font-size: 0.78rem; color: #9c9188;">上車 · 往象山方向</div>
               </div>
             </div>
@@ -1049,8 +1038,8 @@
             <div class="card" style="cursor: default; display: flex; align-items: center; gap: 1rem; border-color: #b2562a;">
               <div style="flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #b2562a;"></div>
               <div style="flex: 1;">
-                <div style="font-size: 0.95rem; font-weight: 500; color: #1f1a16;">中正紀念堂站</div>
-                <div style="font-size: 0.78rem; color: #9c9188;">下車 · 5 號出口</div>
+                <div style="font-size: 0.95rem; font-weight: 500; color: #1f1a16;">台北 101 / 世貿站</div>
+                <div style="font-size: 0.78rem; color: #9c9188;">下車 · 4 號出口</div>
               </div>
             </div>
 
@@ -1063,7 +1052,7 @@
 
         /* ============ 畫面：智慧路徑 ============ */
         function viewSmart() {
-          var data = SMART_ROUTES['中正紀念堂'];
+          var data = SMART_ROUTES['台北 101'];
           var stepsHtml = '';
           for (var i = 0; i < data.steps.length; i++) {
             var s = data.steps[i];
@@ -1112,16 +1101,25 @@
 
         /* ============ 畫面：尋寶 ============ */
         function viewQuest() {
+          var spotsHtml = '';
+          for (var i = 0; i < SPOTS.length; i++) {
+            var s = SPOTS[i];
+            spotsHtml += '<div class="card" onclick="startScan(\'' + s.id + '\')">' +
+              '<div class="card-head"><span class="name">' + s.name + '</span><span class="district">可掃描</span></div>' +
+              '<div class="desc">掃描此地 QR code，獲得點數並參與留言接龍。</div>' +
+              '<div class="meta"><span>+15 P</span><span>接龍留言</span></div>' +
+            '</div>';
+          }
           return html`
             ${statusBar()}
             <span class="eyebrow"><span class="idx">04</span> · 尋寶</span>
-            <h2 class="title">掃描 QR code，解鎖關卡</h2>
-            <p class="lead">台北的捷運站裡藏著很多小關卡。掃描牆上的 QR code，就能解鎖這一站的故事與引導。</p>
+            <h2 class="title">掃描 QR code，解鎖關卡與接龍</h2>
+            <p class="lead">在指定景點掃描牆上的 QR code，可獲得點數，並留言給下一位旅人繼續接龍。</p>
 
             <div class="points-hero">
               <div class="ph-label">Total Points</div>
-              <div class="ph-value" data-no-type id="points-display">0</div>
-              <div class="ph-sub">已收集 0 個關卡 · 1 個徽章</div>
+              <div class="ph-value" data-no-type id="points-display">${state.points}</div>
+              <div class="ph-sub">點數可到「商城」兌換台灣特產紀念品</div>
             </div>
 
             <div class="qr-box">
@@ -1147,12 +1145,15 @@
                 </svg>
                 <div class="qr-line"></div>
               </div>
-              <div class="qr-title">對準牆上的 QR code</div>
-              <div class="qr-sub">在捷運站的入口、月台、樓梯、出口都有關卡。</div>
+              <div class="qr-title">對準景點的 QR code</div>
+              <div class="qr-sub">迪化街、西門町、大安森林公園、台北 101 皆有定點掃描。</div>
             </div>
 
-            <button class="btn metro" onclick="startScan()">
-              <span>開始掃描</span>
+            <h3 class="sub-title">可掃描景點</h3>
+            ${spotsHtml}
+
+            <button class="btn metro" style="margin-top: 0.5rem;" onclick="startScan('dihua')">
+              <span>模擬掃描（迪化街）</span>
               <span class="arrow">→</span>
             </button>
 
@@ -1168,7 +1169,7 @@
               </div>
               <div class="badge locked">
                 <div class="badge-icon"><svg viewBox="0 0 24 24"><path d="M3 20h4v-4h4v-4h4V8h4V4"/></svg></div>
-                <div class="badge-name">電扶梯達人</div>
+                <div class="badge-name">接龍達人</div>
               </div>
               <div class="badge locked">
                 <div class="badge-icon"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg></div>
@@ -1197,6 +1198,84 @@
               <div class="qr-title" style="margin-top: 1rem;">正在辨識 QR code…</div>
               <div class="qr-sub">請將手機對準牆上的 QR code</div>
             </div>
+          `;
+        }
+
+        /* ============ 畫面：接龍結果 ============ */
+        function viewChain(spotId) {
+          var spotName = '景點';
+          for (var i = 0; i < SPOTS.length; i++) {
+            if (SPOTS[i].id === spotId) { spotName = SPOTS[i].name; break; }
+          }
+          var msgs = state.chainMessages[spotId] || [];
+          var msgsHtml = '';
+          for (var j = 0; j < msgs.length; j++) {
+            var m = msgs[j];
+            msgsHtml += '<div class="chain-msg"><div class="cm-meta">' + m.user + ' · ' + m.time + '</div><div class="cm-text">' + m.text + '</div></div>';
+          }
+          if (!msgsHtml) msgsHtml = '<p class="lead">目前還沒有留言，成為第一個接龍的人吧！</p>';
+
+          var drawnHtml = '';
+          if (state.lastDrawn) {
+            drawnHtml = '<div class="chain-draw"><div class="cd-label">你抽到的留言</div><div class="cd-text">' + state.lastDrawn + '</div></div>';
+          }
+
+          return html`
+            ${subHeader(spotName + ' · 接龍')}
+            <span class="eyebrow"><span class="idx">接龍</span> · ${spotName}</span>
+            <h2 class="title">留言接龍</h2>
+            <p class="lead">掃描成功！你獲得 15 點。可閱讀前人留言、抽一則繼續接龍，或留下自己的話給下一位旅人。</p>
+
+            ${drawnHtml}
+
+            <h3 class="sub-title">這裡的接龍牆</h3>
+            <div class="chain-box">${msgsHtml}</div>
+
+            <h3 class="sub-title">留下你的話</h3>
+            <textarea class="chain-input" id="chain-input" placeholder="寫下給下一位旅人的話…（例如：今天天氣很好，城隍廟香火很旺！）"></textarea>
+            <div class="btn-row">
+              <button class="btn ghost" onclick="drawChain('${spotId}')">
+                <span>抽一則留言</span>
+              </button>
+              <button class="btn accent" onclick="submitChain('${spotId}')">
+                <span>送出留言</span>
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          `;
+        }
+
+        /* ============ 畫面：商城 ============ */
+        function viewShop() {
+          var itemsHtml = '';
+          for (var i = 0; i < SHOP_ITEMS.length; i++) {
+            var item = SHOP_ITEMS[i];
+            var redeemed = state.redeemed[item.id];
+            var canBuy = state.points >= item.cost && !redeemed;
+            itemsHtml += '<div class="shop-item' + (redeemed ? ' redeemed' : '') + '">' +
+              '<div class="si-icon">' + item.icon + '</div>' +
+              '<div class="si-body">' +
+                '<div class="si-name">' + item.name + '</div>' +
+                '<div class="si-desc">' + item.desc + '</div>' +
+                (redeemed ? '<button class="si-btn" disabled>已兌換</button>' :
+                  '<button class="si-btn" ' + (canBuy ? '' : 'disabled') + ' onclick="redeemItem(\'' + item.id + '\')">' + (canBuy ? '兌換' : '點數不足') + '</button>') +
+              '</div>' +
+              '<div class="si-cost">' + item.cost + '<span>P</span></div>' +
+            '</div>';
+          }
+          return html`
+            ${subHeader('積分商城')}
+            <span class="eyebrow"><span class="idx">商城</span> · 兌換</span>
+            <h2 class="title">用點數兌換台灣特產</h2>
+            <p class="lead">目前擁有 <strong style="color:#b2562a;">${state.points}</strong> 點。可兌換正宗台灣伴手禮與紀念品。</p>
+
+            <div class="points-hero" style="margin-bottom: 1.5rem;">
+              <div class="ph-label">Available Points</div>
+              <div class="ph-value" data-no-type id="points-display-shop">${state.points}</div>
+              <div class="ph-sub">掃描景點 QR 可獲得更多點數</div>
+            </div>
+
+            ${itemsHtml}
           `;
         }
 
@@ -1269,11 +1348,20 @@
 
             <div class="points-hero">
               <div class="ph-label">Total Points</div>
-              <div class="ph-value" data-no-type id="points-display-2">0</div>
-              <div class="ph-sub">繼續探索，累積更多點數</div>
+              <div class="ph-value" data-no-type id="points-display-2">${state.points}</div>
+              <div class="ph-sub">點數可到商城兌換台灣特產</div>
             </div>
 
             <div class="me-list">
+              <button class="me-item" onclick="push('shop')">
+                <div class="me-item-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+                <div class="me-item-body">
+                  <div class="mi-title">積分商城</div>
+                  <div class="mi-desc">兌換台灣特產與紀念品</div>
+                </div>
+                <span class="mi-arrow">→</span>
+              </button>
+
               <button class="me-item" onclick="switchTab('quest')">
                 <div class="me-item-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg></div>
                 <div class="me-item-body">
@@ -1296,7 +1384,7 @@
                 <div class="me-item-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
                 <div class="me-item-body">
                   <div class="mi-title">我的最愛</div>
-                  <div class="mi-desc">3 個景點</div>
+                  <div class="mi-desc">4 個景點</div>
                 </div>
                 <span class="mi-arrow">→</span>
               </button>
@@ -1314,7 +1402,7 @@
                 <div class="me-item-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></div>
                 <div class="me-item-body">
                   <div class="mi-title">關於智慧遊台北</div>
-                  <div class="mi-desc">v4.0</div>
+                  <div class="mi-desc">v5.0 · 商城與接龍</div>
                 </div>
                 <span class="mi-arrow">→</span>
               </button>
@@ -1336,6 +1424,8 @@
             case 'smart': content = viewSmart(); break;
             case 'quest': content = viewQuest(); break;
             case 'scanning': content = viewScanning(); break;
+            case 'chain': content = viewChain(view.params.id); break;
+            case 'shop': content = viewShop(); break;
             case 'guide': content = viewGuide(); break;
             case 'me': content = viewMe(); break;
             default: content = viewHome();
@@ -1402,14 +1492,54 @@
           }
         }
 
-        function startScan() {
+        function startScan(spotId) {
+          currentScanSpot = spotId || 'dihua';
           state.stack.push({ page: 'scanning', params: {} });
           render();
           setTimeout(function () {
-            state.points += 10;
+            state.points += 15;
+            state.lastDrawn = null;
             state.stack.pop();
+            state.stack.push({ page: 'chain', params: { id: currentScanSpot } });
             render();
-          }, 1800);
+          }, 1600);
+        }
+
+        function drawChain(spotId) {
+          var msgs = state.chainMessages[spotId] || [];
+          if (msgs.length === 0) {
+            state.lastDrawn = '目前還沒有留言，留下第一則吧！';
+          } else {
+            var idx = Math.floor(Math.random() * msgs.length);
+            state.lastDrawn = msgs[idx].text;
+          }
+          render();
+        }
+
+        function submitChain(spotId) {
+          var input = document.getElementById('chain-input');
+          var text = input ? input.value.trim() : '';
+          if (!text) return;
+          if (!state.chainMessages[spotId]) state.chainMessages[spotId] = [];
+          var now = getTime();
+          state.chainMessages[spotId].push({
+            user: '旅人 ' + String.fromCharCode(65 + Math.floor(Math.random() * 26)),
+            time: '剛剛 ' + now.hh + ':' + now.mm,
+            text: text
+          });
+          state.lastDrawn = null;
+          render();
+        }
+
+        function redeemItem(itemId) {
+          var item = null;
+          for (var i = 0; i < SHOP_ITEMS.length; i++) {
+            if (SHOP_ITEMS[i].id === itemId) { item = SHOP_ITEMS[i]; break; }
+          }
+          if (!item || state.redeemed[itemId] || state.points < item.cost) return;
+          state.points -= item.cost;
+          state.redeemed[itemId] = true;
+          render();
         }
 
         function tick() {
@@ -1418,11 +1548,13 @@
           var nt = document.getElementById('now-time');
           var pd = document.getElementById('points-display');
           var pd2 = document.getElementById('points-display-2');
+          var pdShop = document.getElementById('points-display-shop');
           var g = document.getElementById('greeting');
           if (clock) clock.textContent = t.hh + ':' + t.mm + ':' + t.ss;
           if (nt) nt.textContent = t.hh + ':' + t.mm;
           if (pd) pd.textContent = state.points;
           if (pd2) pd2.textContent = state.points;
+          if (pdShop) pdShop.textContent = state.points;
           if (g) g.textContent = getGreeting();
         }
 
@@ -1432,7 +1564,9 @@
         }
 
         function currentView() {
-          return state.stack[state.stack.length - 1];
+          var top = state.stack[state.stack.length - 1];
+          if (typeof top === 'string') return { page: top, params: {} };
+          return top;
         }
 
         /* ============ 啟動 ============ */
@@ -1454,6 +1588,9 @@
         window.openSpot = openSpot;
         window.filterCategory = filterCategory;
         window.startScan = startScan;
+        window.drawChain = drawChain;
+        window.submitChain = submitChain;
+        window.redeemItem = redeemItem;
       })();
     </script>
   </body>
