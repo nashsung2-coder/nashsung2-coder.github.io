@@ -4,12 +4,11 @@
     <meta name="site-nav-title" content="個人經歷" />
     <meta name="site-nav-order" content="20" />
     <meta name="site-nav-visible" content="true" />
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>個人經歷 — Nash Pages</title>
+    <title>個人經歷 — 宋嵐緒個人頁面</title>
+    <link rel="icon" type="image/png" href="../assets/images/avatar-circle.png" />
     <link rel="stylesheet" href="../assets/css/site.css" />
-
     <style>
       :root {
         --neon-cyan: #00f0ff;
@@ -20,9 +19,7 @@
         --border-glow: rgba(0, 240, 255, 0.35);
         --highlight-color: #7ef9ff;
       }
-
       * { box-sizing: border-box; }
-
       body {
         margin: 0;
         background: #050510;
@@ -32,7 +29,6 @@
         line-height: 1.8;
         overflow-x: hidden;
       }
-
       .site-header {
         position: fixed;
         top: 0;
@@ -48,7 +44,6 @@
         align-items: center;
         justify-content: center;
       }
-
       .site-brand {
         position: absolute;
         left: 2rem;
@@ -63,12 +58,10 @@
         text-shadow: 0 0 8px #00f0ff, 0 0 20px rgba(0, 240, 255, 0.4);
         transition: all 0.3s;
       }
-
       .site-brand:hover {
         text-shadow: 0 0 12px #00f0ff, 0 0 30px rgba(0, 240, 255, 0.7);
         color: #fff;
       }
-
       .site-brand-avatar {
         width: 38px;
         height: 38px;
@@ -78,9 +71,7 @@
         box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
         flex-shrink: 0;
       }
-
       .site-brand-text { white-space: nowrap; }
-
       .site-nav {
         display: flex;
         align-items: center;
@@ -88,7 +79,6 @@
         flex-wrap: wrap;
         justify-content: center;
       }
-
       .site-nav a {
         color: #ffffff;
         text-decoration: none;
@@ -98,7 +88,6 @@
         transition: all 0.3s;
         border: 1px solid transparent;
       }
-
       .site-nav a:hover,
       .site-nav a.active {
         color: #ffffff;
@@ -106,7 +95,6 @@
         text-shadow: 0 0 6px #00f0ff;
         background: rgba(0, 240, 255, 0.1);
       }
-
       .site-status {
         position: absolute;
         right: 2rem;
@@ -116,12 +104,10 @@
         animation: pulse-status 2s ease-in-out infinite;
         white-space: nowrap;
       }
-
       @keyframes pulse-status {
         0%, 100% { opacity: 1; text-shadow: 0 0 4px #39ff14; }
         50% { opacity: 0.5; text-shadow: none; }
       }
-
       .page-content {
         max-width: 760px;
         margin: 0 auto;
@@ -130,7 +116,6 @@
         border-radius: 12px;
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
       }
-
       .page-kicker {
         color: #ff6bb8;
         font-size: 0.75rem;
@@ -142,7 +127,6 @@
         text-shadow: 0 0 6px rgba(255, 45, 149, 0.7);
         margin-bottom: 1rem;
       }
-
       .greeting-box {
         margin-bottom: 2rem;
         padding: 1.2rem 1.8rem;
@@ -157,7 +141,6 @@
         position: relative;
         overflow: hidden;
       }
-
       .greeting-box::before {
         content: "";
         position: absolute;
@@ -168,12 +151,10 @@
         background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
         animation: glow-rotate 8s linear infinite;
       }
-
       @keyframes glow-rotate {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
-
       h1 {
         font-size: clamp(2rem, 5vw, 3rem);
         font-weight: 900;
@@ -184,7 +165,6 @@
         margin-bottom: 1rem;
         filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.5));
       }
-
       .section-title {
         position: relative;
         margin-top: 3rem;
@@ -198,13 +178,11 @@
         align-items: center;
         gap: 0.8rem;
       }
-
       .section-title::before {
         content: "▸";
         color: #00f0ff;
         font-size: 1.3rem;
       }
-
       .section-title::after {
         content: "";
         flex: 1;
@@ -212,27 +190,23 @@
         background: linear-gradient(90deg, rgba(0, 240, 255, 0.7), rgba(185, 103, 255, 0.3), transparent);
         box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
       }
-
       p {
         color: #ffffff;
         text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
         margin-bottom: 1.5rem;
       }
-
       .highlight {
         color: #7ef9ff;
         font-weight: 700;
         text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
         border-bottom: 1px dotted rgba(0, 240, 255, 0.4);
       }
-
       /* 時間軸 */
       .timeline {
         position: relative;
         margin: 2rem 0 3rem;
         padding-left: 2rem;
       }
-
       .timeline::before {
         content: "";
         position: absolute;
@@ -243,7 +217,6 @@
         background: linear-gradient(180deg, rgba(0, 240, 255, 0.6), rgba(185, 103, 255, 0.4), transparent);
         box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
       }
-
       .timeline-item {
         position: relative;
         margin-bottom: 2rem;
@@ -253,7 +226,6 @@
         border-radius: 12px;
         transition: all 0.3s;
       }
-
       .timeline-item::before {
         content: "";
         position: absolute;
@@ -265,13 +237,11 @@
         background: #00f0ff;
         box-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0, 240, 255, 0.5);
       }
-
       .timeline-item:hover {
         border-color: rgba(0, 240, 255, 0.6);
         box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
         transform: translateX(4px);
       }
-
       .timeline-item .time-label {
         font-size: 0.75rem;
         letter-spacing: 2px;
@@ -280,19 +250,25 @@
         margin-bottom: 0.3rem;
         text-shadow: 0 0 6px rgba(255, 45, 149, 0.5);
       }
-
       .timeline-item h3 {
         margin: 0 0 0.5rem;
         font-size: 1.1rem;
         color: #ffffff;
       }
-
       .timeline-item p {
         margin: 0;
         color: #ffffff;
         font-size: 0.95rem;
       }
-
+      .timeline-item .story-note {
+        margin-top: 0.6rem;
+        padding: 0.6rem 0.9rem;
+        border-left: 2px solid rgba(0, 240, 255, 0.4);
+        background: rgba(0, 240, 255, 0.05);
+        font-size: 0.88rem;
+        color: #c0e8ff;
+        font-style: italic;
+      }
       /* 專案卡片 */
       .project-grid {
         display: grid;
@@ -300,7 +276,6 @@
         gap: 1.2rem;
         margin: 2rem 0;
       }
-
       .project-card {
         background: rgba(10, 10, 30, 0.5);
         border: 1px solid rgba(0, 240, 255, 0.25);
@@ -310,7 +285,6 @@
         position: relative;
         overflow: hidden;
       }
-
       .project-card::before {
         content: "";
         position: absolute;
@@ -322,29 +296,24 @@
         opacity: 0;
         transition: opacity 0.4s;
       }
-
       .project-card:hover {
         border-color: rgba(0, 240, 255, 0.7);
         box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
         transform: translateY(-5px);
       }
-
       .project-card:hover::before {
         opacity: 1;
       }
-
       .project-card h3 {
         margin: 0 0 0.4rem;
         font-size: 1rem;
         color: #ffffff;
       }
-
       .project-card p {
         margin: 0 0 0.4rem;
         color: #ffffff;
         font-size: 0.9rem;
       }
-
       .project-card a {
         color: #7ef9ff;
         text-decoration: none;
@@ -352,12 +321,10 @@
         transition: all 0.3s;
         font-size: 0.85rem;
       }
-
       .project-card a:hover {
         color: #ffffff;
         text-shadow: 0 0 8px #00f0ff;
       }
-
       .badge {
         display: inline-block;
         padding: 0.15rem 0.5rem;
@@ -372,7 +339,6 @@
         border: 1px solid rgba(255, 45, 149, 0.5);
         text-shadow: 0 0 4px rgba(255, 45, 149, 0.5);
       }
-
       /* 技能標籤 */
       .skill-tags {
         display: flex;
@@ -380,7 +346,6 @@
         gap: 0.6rem;
         margin: 1rem 0 2rem;
       }
-
       .skill-tag {
         padding: 0.4rem 1rem;
         border-radius: 50px;
@@ -391,14 +356,12 @@
         transition: all 0.3s;
         background: rgba(0, 240, 255, 0.05);
       }
-
       .skill-tag:hover {
         border-color: #00f0ff;
         color: #ffffff;
         text-shadow: 0 0 6px #00f0ff;
         box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
       }
-
       /* 未來方向區塊 */
       .future-box {
         margin-top: 2rem;
@@ -410,7 +373,6 @@
         position: relative;
         overflow: hidden;
       }
-
       .future-box::before {
         content: "";
         position: absolute;
@@ -421,12 +383,10 @@
         background: conic-gradient(from 0deg, transparent, rgba(255, 45, 149, 0.1), transparent, rgba(0, 240, 255, 0.1), transparent);
         animation: rotate-conic 10s linear infinite;
       }
-
       @keyframes rotate-conic {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
-
       .future-box h3 {
         font-size: 1.3rem;
         color: #ffffff;
@@ -434,26 +394,22 @@
         position: relative;
         z-index: 1;
       }
-
       .future-box p {
         margin: 0;
         color: #ffffff;
         position: relative;
         z-index: 1;
       }
-
       a {
         color: #7ef9ff;
         text-decoration: none;
         border-bottom: 1px dotted rgba(126, 249, 255, 0.5);
         transition: all 0.3s;
       }
-
       a:hover {
         color: #ffffff;
         text-shadow: 0 0 8px #00f0ff;
       }
-
       @media (max-width: 600px) {
         .site-header {
           position: relative;
@@ -504,22 +460,21 @@
       <nav class="site-nav" aria-label="網站導覽" data-navigation-list></nav>
       <span class="site-status">STATIC INDEX</span>
     </header>
-
     <main class="page-content">
       <p class="page-kicker">EXPERIENCE / 20</p>
       <h1>個人經歷</h1>
-
       <div class="greeting-box" id="greeting">載入中...</div>
-
       <p>
         我走過的路，跟多數人不太一樣。沒有刻意標新立異，只是從很小的時候開始，就對<span class="highlight">「為什麼只能這樣」</span>感到好奇。
       </p>
       <p>
         從科學展覽到發明展，從四格漫畫到 AI 繪圖競賽，我一直在試不同的路。有些得獎了，有些只是試過。但每一件事，都讓我更確定一件事：<span class="highlight">我喜歡把想法變成真的</span>。
       </p>
+      <p>
+        而從 2024 開始，這條路走進了另一個層次——不是單打獨鬥的比賽，而是一群人一起試著回答「人怎麼好好活」的問題。中間有過自我感動、技術債、中途放棄與誠實面對。這份頁面記錄的，是來時路，也是還在走的未來路。
+      </p>
 
       <h2 class="section-title">成長路徑</h2>
-
       <div class="timeline">
         <div class="timeline-item">
           <p class="time-label">國小 · 日新國小</p>
@@ -528,7 +483,6 @@
             科學展覽、四格漫畫、AI 繪圖競賽，都在這個階段開始。那時候還不懂什麼是「方向」，只知道有興趣的事，就想動手做。
           </p>
         </div>
-
         <div class="timeline-item">
           <p class="time-label">國一 · 忠孝國中</p>
           <h3>第一次站上世界舞台</h3>
@@ -536,30 +490,84 @@
             2023 年，以發明作品獲得 IEYI 世界青少年發明展佳作。那是我第一次意識到，<span class="highlight">一個中學生的想法，也可以被世界看見</span>。
           </p>
         </div>
-
         <div class="timeline-item">
-          <p class="time-label">國二 · 忠孝國中</p>
-          <h3>開始建造</h3>
+          <p class="time-label">2024 · 團隊成立</p>
+          <h3>從「共乘」開始的邀請</h3>
           <p>
-            從這裡開始，我真正動手做東西。學程式、用 AI 工具、參加開發營隊，把腦中的想法一個一個變成真的。
+            一堂線上課程看到尖峰空拍圖，我在筆記本上寫下「共乘」。沒有大喊「我要做大事」，而是一個一個私下去找人：「我想做一件事，你願意一起嗎？」團隊就從那些私下的邀請開始。
+          </p>
+          <div class="story-note">那時我什麼都不是。沒有資源、背景、技術。多年以後我會說：「我那時候就是個草包。」但當時用一種非成不可的語氣，把第一批人找了進來。</div>
+        </div>
+        <div class="timeline-item">
+          <p class="time-label">2024 下半年</p>
+          <h3>Life+ 與四大身分</h3>
+          <p>
+            完成功能需求整理、Figma 草圖、技術選型。我們畫了 Map、Bloom、Nexus、Pulse——同一個使用者在不同時刻擁有不同意圖。以為畫圖就是在建造。
           </p>
         </div>
-
         <div class="timeline-item">
-          <p class="time-label">高中 · 北市數位實驗高級中學</p>
-          <h3>持續建造</h3>
+          <p class="time-label">2025 · 國二</p>
+          <h3>假頁面與中途放棄</h3>
           <p>
-            進到數位實驗高中後，環境讓我更自由地創作。參與導演營隊和程式開發營隊，也開始把小說、新聞網、學習入口這些計畫慢慢做出來。
+            完成主功能頁面 UI，但負責技術的人心裡知道：四張頁面裡有三張是假的。地圖是靜態圖、任務是寫死的資料。接著嘗試設計協作平台，卻發現參數太多、規格自己打架。
+          </p>
+          <div class="story-note">「我們在試著設計一個社會。不是一個工具。」五月，協作系統正式停掉。Life+ 也停了。花了半年多，兩個專案，結果什麼都沒有。</div>
+        </div>
+        <div class="timeline-item">
+          <p class="time-label">2025 年 9 月 · 第一次重新聚焦</p>
+          <h3>從「極凌科技」到「凌極世界」</h3>
+          <p>
+            沉寂一段時間後，我們問自己：我們想解決的問題，根本究竟來自哪？共乘、交換、住宿、協作……每一項都指向同一個更深的地方——<span class="highlight">我們的生活方式本身</span>。
+          </p>
+          <div class="story-note">極凌科技 → 凌極世界。從「如何更有效地利用」到「從最根本的生活方式重新思考」。凌極的意思變成：抵達邊界，然後跨越它。</div>
+        </div>
+        <div class="timeline-item">
+          <p class="time-label">2025 下半年</p>
+          <h3>技術債與自我欺騙</h3>
+          <p>
+            課業、考試、能力不足下的盲目堆疊。用零碎時間「繼續開發」，看起來有進度，其實在原地打轉。真正能用的東西，一個都沒有。年底勉強湊出 v0.1 Alpha，自己都心虛。
+          </p>
+        </div>
+        <div class="timeline-item">
+          <p class="time-label">2026 上半年 · 會考與閱讀</p>
+          <h3>停下來，好好想一件事</h3>
+          <p>
+            會考倒數，所有開發完全停擺。考完後沒有立刻打開專案，因為不敢。我們決定先不碰程式碼，去讀哲學、管理、歷史、人類學——想知道過去兩年做的事到底對不對。
+          </p>
+          <div class="story-note">「如果連自己在解什麼問題都不知道，那寫再多程式碼也沒用。」</div>
+        </div>
+        <div class="timeline-item">
+          <p class="time-label">2026 年 6–8 月</p>
+          <h3>言織、文明韌性主義與情感護城河</h3>
+          <p>
+            重新定位言織——制度可以自由誕生、演化、融合與消亡的底層協議。提出文明韌性主義：文明的長期存續，不取決於單一制度的成功，而取決於制度競爭的生態是否健康。
+          </p>
+          <p>
+            同時決定：如果產品還做不出來，就先做故事。創造了宋言（建造者的日記）與凌澈（審計者的報告）。這兩個角色是團隊自己的兩個面向。
+          </p>
+          <div class="story-note">「只是小說。先讓故事活起來。其他的以後再說。」宋言的工房與凌澈的檔案庫上線了——一場正在發生的建造的直播。</div>
+        </div>
+        <div class="timeline-item">
+          <p class="time-label">2026 年 9 月</p>
+          <h3>承認還沒準備好</h3>
+          <p>
+            原定發布的 v1.0 Beta 最終沒有對外發布。不是延期，是承認：現在的狀態，不該被拿出去。比起發布一個心虛的版本，我們選擇把重心移回內容與世界觀的累積。
+          </p>
+          <div class="story-note">「不是每一個開始都有結局。有些開始，只是為了讓你發現，你該從哪裡重新開始。」從這天開始，我們說自己是在累積一個故事的人。</div>
+        </div>
+        <div class="timeline-item">
+          <p class="time-label">高中 · 北市數位實驗高級中學 · 現在</p>
+          <h3>持續建造，換一種方式</h3>
+          <p>
+            進到數位實驗高中後，環境讓我更自由地創作。參與導演營隊和程式開發營隊。同時，從 2026 年 10 月起，啟動《穩定中的劇震》兩年 KPI——不追求爆紅，追求可累積的複利。
           </p>
         </div>
       </div>
 
       <h2 class="section-title">我做過的事</h2>
-
       <p>
         這些獎項不是為了炫耀，而是想讓你知道，我從很小的時候就開始<span class="highlight">嘗試用不同方式回答問題</span>。科學、發明、繪畫、漫畫，都是我的語言。
       </p>
-
       <div class="project-grid">
         <div class="project-card">
           <h3>IEYI 世界青少年發明展</h3>
@@ -582,22 +590,29 @@
           <p>用畫筆參與社會議題。</p>
         </div>
       </div>
-
       <p>
         另外，至今累積了 <span class="highlight">60 餘張市級以上獎項</span>，涵蓋科學、發明、繪畫、寫作等不同領域。
       </p>
 
       <h2 class="section-title">我的專案</h2>
-
       <p>
-        如果說獎項是「嘗試的痕跡」，那這些專案就是我真正<span class="highlight">想持續建造的事</span>。它們都圍繞著同一個核心：<span class="highlight">讓人有更多選擇</span>。
+        如果說獎項是「嘗試的痕跡」，那這些專案就是我真正<span class="highlight">想持續建造的事</span>。它們都圍繞著同一個核心：<span class="highlight">讓人有更多選擇</span>。中間有過失敗與轉向，但故事還在繼續。
       </p>
-
       <div class="project-grid">
         <div class="project-card">
           <h3>INN 星際新聞網</h3>
           <p>雙語新聞平台，用地圖選新聞，順便練英文。</p>
           <a href="https://inn.crestylon.org" target="_blank" rel="noreferrer">inn.crestylon.org</a>
+        </div>
+        <div class="project-card">
+          <h3>宋言的工房</h3>
+          <p>建造者的日記。記錄開發、思考、生活，以及一個 AI 的內心獨白。</p>
+          <a href="https://sungyan-workshop.pages.dev" target="_blank" rel="noreferrer">sungyan-workshop.pages.dev</a>
+        </div>
+        <div class="project-card">
+          <h3>凌澈的檔案庫</h3>
+          <p>審計者的報告。安全審查、制度批判、漏洞修復建議。</p>
+          <a href="https://auditors-archive.pages.dev" target="_blank" rel="noreferrer">auditors-archive.pages.dev</a>
         </div>
         <div class="project-card">
           <h3>Cool English 星辰啟航 <span class="badge">Demo</span></h3>
@@ -619,20 +634,12 @@
           <p>整個計畫的入口網站。</p>
           <a href="https://sites.google.com/view/crestylonnewworld/" target="_blank" rel="noreferrer">crestylonnewworld</a>
         </div>
-        <div class="project-card">
-          <h3>小說主角個人頁面</h3>
-          <p>故事角色的獨立網站，讓小說世界與現實連結。</p>
-          <a href="https://sungyan-workshop.pages.dev" target="_blank" rel="noreferrer">sungyan-workshop</a><br>
-          <a href="https://auditors-archive.pages.dev" target="_blank" rel="noreferrer">auditors-archive</a>
-        </div>
       </div>
 
       <h2 class="section-title">我會的東西</h2>
-
       <p>
         我不會說自己是哪一方面的專家，但我知道怎麼<span class="highlight">用工具把想法變成真的</span>。
       </p>
-
       <div class="skill-tags">
         <span class="skill-tag">HTML / CSS / JavaScript</span>
         <span class="skill-tag">Python</span>
@@ -645,31 +652,38 @@
         <span class="skill-tag">木箱鼓</span>
         <span class="skill-tag">繪圖</span>
       </div>
-
       <p>
         語言能力：中文為主。程式語言持續精進中，目前比較常使用 <span class="highlight">vibecoding</span> 的方式快速做出原型。
       </p>
 
       <h2 class="section-title">我平常在想的事</h2>
-
       <p>
         主要關注<span class="highlight">科技時事與未來趨勢</span>，也一直在思考<span class="highlight">社會問題與制度設計</span>。這兩個方向看起來很遠，但其實每天都在影響我們的生活。
       </p>
+      <p>
+        我們提出的核心主張是<span class="highlight">文明韌性主義</span>：文明的長期存續，不取決於任何單一制度的成功，而取決於制度競爭的生態是否健康。言織是那片土壤——讓制度可以自由誕生、演化、融合與消亡的底層協議。最終想說的只有一句話：<span class="highlight">讓不同的人，可以建立並生活在自己理想的世界中</span>。
+      </p>
 
       <h2 class="section-title">接下來想做的事</h2>
-
       <div class="future-box">
-        <h3>啟動我的小說，建構小說生態</h3>
+        <h3>《穩定中的劇震》· 兩年複利計畫</h3>
         <p>
-          這是我目前最想完成的事。把小說世界變成一個<span class="highlight">可以互動、可以生長的生態系</span>，讓角色有自己的網站、自己的故事，也讓讀者可以參與其中。
+          從 2026 年 10 月啟動。不追求爆紅，只追求兩年後回頭看，每一塊磚都還在。
+        </p>
+        <p style="margin-top:1rem;">
+          第一階段地基期（內容成為習慣）、第二階段連結期（從單向輸出走向雙向互動）、第三階段生態期（節點自行運作）、第四階段擴張期（系統可被複製）。核心資產是故事持續更新，不依賴單一角色。
+        </p>
+        <p style="margin-top:1rem;">
+          我目前最想完成的事，是把小說世界變成一個<span class="highlight">可以互動、可以生長的生態系</span>，讓角色有自己的網站、自己的故事，也讓讀者可以參與其中。
         </p>
       </div>
-
       <p style="margin-top: 2rem; font-style: italic; color: #ffffff; text-align: center;">
         我想讓這個頁面傳達的，就是兩個字：<span class="highlight">真誠</span>。
       </p>
+      <p style="text-align:center; font-size:0.85rem; color:#a0a0b0; margin-top:1.5rem;">
+        來時路與未來路 · 2024 — 2028
+      </p>
     </main>
-
     <script src="../assets/js/nav.js"></script>
     <script>
       (function () {
