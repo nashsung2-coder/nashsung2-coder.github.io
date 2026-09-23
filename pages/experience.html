@@ -18,14 +18,15 @@
         --bg-deep: #050510;
         --border-glow: rgba(0, 240, 255, 0.35);
         --highlight-color: #7ef9ff;
+        --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+        --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
       }
       * { box-sizing: border-box; }
       body {
         margin: 0;
         background: #050510;
         color: #ffffff;
-        font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei",
-          sans-serif;
+        font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", sans-serif;
         line-height: 1.8;
         overflow-x: hidden;
       }
@@ -56,10 +57,11 @@
         letter-spacing: 2px;
         font-size: 1rem;
         text-shadow: 0 0 8px #00f0ff, 0 0 20px rgba(0, 240, 255, 0.4);
-        transition: all 0.3s;
+        transition: color 0.45s var(--ease-out-expo),
+                    text-shadow 0.45s var(--ease-out-expo);
       }
       .site-brand:hover {
-        text-shadow: 0 0 12px #00f0ff, 0 0 30px rgba(0, 240, 255, 0.7);
+        text-shadow: 0 0 14px #00f0ff, 0 0 32px rgba(0, 240, 255, 0.65);
         color: #fff;
       }
       .site-brand-avatar {
@@ -70,6 +72,11 @@
         border: 2px solid #00f0ff;
         box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
         flex-shrink: 0;
+        transition: box-shadow 0.45s var(--ease-out-expo),
+                    border-color 0.45s var(--ease-out-expo);
+      }
+      .site-brand:hover .site-brand-avatar {
+        box-shadow: 0 0 16px rgba(0, 240, 255, 0.75);
       }
       .site-brand-text { white-space: nowrap; }
       .site-nav {
@@ -85,15 +92,18 @@
         padding: 0.4rem 0.8rem;
         letter-spacing: 1px;
         font-size: 0.9rem;
-        transition: all 0.3s;
+        transition: color 0.35s var(--ease-out-expo),
+                    border-color 0.35s var(--ease-out-expo),
+                    text-shadow 0.35s var(--ease-out-expo),
+                    background 0.35s var(--ease-out-expo);
         border: 1px solid transparent;
       }
       .site-nav a:hover,
       .site-nav a.active {
         color: #ffffff;
         border-color: #00f0ff;
-        text-shadow: 0 0 6px #00f0ff;
-        background: rgba(0, 240, 255, 0.1);
+        text-shadow: 0 0 8px #00f0ff;
+        background: rgba(0, 240, 255, 0.12);
       }
       .site-status {
         position: absolute;
@@ -101,12 +111,18 @@
         color: #39ff14;
         font-size: 0.7rem;
         letter-spacing: 3px;
-        animation: pulse-status 2s ease-in-out infinite;
+        animation: pulse-status 2.8s var(--ease-soft) infinite;
         white-space: nowrap;
       }
       @keyframes pulse-status {
-        0%, 100% { opacity: 1; text-shadow: 0 0 4px #39ff14; }
-        50% { opacity: 0.5; text-shadow: none; }
+        0%, 100% {
+          opacity: 1;
+          text-shadow: 0 0 6px #39ff14, 0 0 12px rgba(57, 255, 20, 0.4);
+        }
+        50% {
+          opacity: 0.45;
+          text-shadow: none;
+        }
       }
       .page-content {
         max-width: 760px;
@@ -127,34 +143,55 @@
         text-shadow: 0 0 6px rgba(255, 45, 149, 0.7);
         margin-bottom: 1rem;
       }
+
+      /* ===== 精緻化後的問候框 ===== */
       .greeting-box {
         margin-bottom: 2rem;
         padding: 1.2rem 1.8rem;
-        border: 1px solid rgba(0, 240, 255, 0.4);
+        border: 1px solid rgba(0, 240, 255, 0.45);
         border-radius: 50px;
-        background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(185, 103, 255, 0.05));
+        background: linear-gradient(
+          135deg,
+          rgba(0, 240, 255, 0.07) 0%,
+          rgba(10, 12, 28, 0.85) 40%,
+          rgba(185, 103, 255, 0.06) 100%
+        );
         color: #ffffff;
         font-size: 1.2rem;
         letter-spacing: 2px;
         text-align: center;
-        box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
         position: relative;
         overflow: hidden;
+        box-shadow:
+          0 0 0 1px rgba(0, 240, 255, 0.12),
+          0 0 18px rgba(0, 240, 255, 0.18),
+          0 0 40px rgba(0, 240, 255, 0.08);
+        transition: box-shadow 0.6s var(--ease-out-expo),
+                    border-color 0.6s var(--ease-out-expo);
+        animation: greeting-breathe 4.5s var(--ease-soft) infinite;
       }
-      .greeting-box::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
-        animation: glow-rotate 8s linear infinite;
+      .greeting-box:hover {
+        border-color: rgba(0, 240, 255, 0.7);
+        box-shadow:
+          0 0 0 1px rgba(0, 240, 255, 0.25),
+          0 0 24px rgba(0, 240, 255, 0.28),
+          0 0 50px rgba(0, 240, 255, 0.12);
       }
-      @keyframes glow-rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+      @keyframes greeting-breathe {
+        0%, 100% {
+          box-shadow:
+            0 0 0 1px rgba(0, 240, 255, 0.12),
+            0 0 18px rgba(0, 240, 255, 0.18),
+            0 0 40px rgba(0, 240, 255, 0.08);
+        }
+        50% {
+          box-shadow:
+            0 0 0 1px rgba(0, 240, 255, 0.22),
+            0 0 26px rgba(0, 240, 255, 0.28),
+            0 0 55px rgba(0, 240, 255, 0.14);
+        }
       }
+
       h1 {
         font-size: clamp(2rem, 5vw, 3rem);
         font-weight: 900;
@@ -224,7 +261,9 @@
         background: rgba(10, 10, 30, 0.5);
         border: 1px solid rgba(0, 240, 255, 0.2);
         border-radius: 12px;
-        transition: all 0.3s;
+        transition: border-color 0.4s var(--ease-out-expo),
+                    box-shadow 0.4s var(--ease-out-expo),
+                    transform 0.45s var(--ease-out-expo);
       }
       .timeline-item::before {
         content: "";
@@ -236,11 +275,17 @@
         border-radius: 50%;
         background: #00f0ff;
         box-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0, 240, 255, 0.5);
+        transition: box-shadow 0.4s var(--ease-out-expo),
+                    transform 0.4s var(--ease-out-expo);
       }
       .timeline-item:hover {
-        border-color: rgba(0, 240, 255, 0.6);
-        box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-        transform: translateX(4px);
+        border-color: rgba(0, 240, 255, 0.65);
+        box-shadow: 0 0 24px rgba(0, 240, 255, 0.22);
+        transform: translateX(6px);
+      }
+      .timeline-item:hover::before {
+        box-shadow: 0 0 14px #00f0ff, 0 0 28px rgba(0, 240, 255, 0.7);
+        transform: scale(1.15);
       }
       .timeline-item .time-label {
         font-size: 0.75rem;
@@ -281,7 +326,9 @@
         border: 1px solid rgba(0, 240, 255, 0.25);
         border-radius: 12px;
         padding: 1.2rem;
-        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        transition: border-color 0.45s var(--ease-out-expo),
+                    box-shadow 0.45s var(--ease-out-expo),
+                    transform 0.5s var(--ease-out-expo);
         position: relative;
         overflow: hidden;
       }
@@ -294,12 +341,12 @@
         height: 2px;
         background: linear-gradient(90deg, transparent, #00f0ff, transparent);
         opacity: 0;
-        transition: opacity 0.4s;
+        transition: opacity 0.45s var(--ease-out-expo);
       }
       .project-card:hover {
-        border-color: rgba(0, 240, 255, 0.7);
-        box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
-        transform: translateY(-5px);
+        border-color: rgba(0, 240, 255, 0.75);
+        box-shadow: 0 8px 28px rgba(0, 240, 255, 0.28);
+        transform: translateY(-6px);
       }
       .project-card:hover::before {
         opacity: 1;
@@ -318,12 +365,13 @@
         color: #7ef9ff;
         text-decoration: none;
         border-bottom: 1px dotted rgba(126, 249, 255, 0.5);
-        transition: all 0.3s;
+        transition: color 0.35s var(--ease-out-expo),
+                    text-shadow 0.35s var(--ease-out-expo);
         font-size: 0.85rem;
       }
       .project-card a:hover {
         color: #ffffff;
-        text-shadow: 0 0 8px #00f0ff;
+        text-shadow: 0 0 10px #00f0ff;
       }
       .badge {
         display: inline-block;
@@ -353,14 +401,19 @@
         color: #ffffff;
         font-size: 0.85rem;
         letter-spacing: 1px;
-        transition: all 0.3s;
+        transition: border-color 0.4s var(--ease-out-expo),
+                    color 0.4s var(--ease-out-expo),
+                    text-shadow 0.4s var(--ease-out-expo),
+                    box-shadow 0.4s var(--ease-out-expo),
+                    transform 0.4s var(--ease-out-expo);
         background: rgba(0, 240, 255, 0.05);
       }
       .skill-tag:hover {
         border-color: #00f0ff;
         color: #ffffff;
-        text-shadow: 0 0 6px #00f0ff;
-        box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        text-shadow: 0 0 8px #00f0ff;
+        box-shadow: 0 0 18px rgba(0, 240, 255, 0.25);
+        transform: translateY(-2px);
       }
       /* 未來方向區塊 */
       .future-box {
@@ -372,20 +425,23 @@
         text-align: center;
         position: relative;
         overflow: hidden;
+        box-shadow:
+          0 0 0 1px rgba(255, 45, 149, 0.1),
+          0 0 20px rgba(255, 45, 149, 0.12);
+        animation: future-breathe 5s var(--ease-soft) infinite;
       }
-      .future-box::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(from 0deg, transparent, rgba(255, 45, 149, 0.1), transparent, rgba(0, 240, 255, 0.1), transparent);
-        animation: rotate-conic 10s linear infinite;
-      }
-      @keyframes rotate-conic {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+      @keyframes future-breathe {
+        0%, 100% {
+          box-shadow:
+            0 0 0 1px rgba(255, 45, 149, 0.1),
+            0 0 20px rgba(255, 45, 149, 0.12);
+        }
+        50% {
+          box-shadow:
+            0 0 0 1px rgba(255, 45, 149, 0.2),
+            0 0 28px rgba(255, 45, 149, 0.2),
+            0 0 45px rgba(0, 240, 255, 0.08);
+        }
       }
       .future-box h3 {
         font-size: 1.3rem;
@@ -404,11 +460,12 @@
         color: #7ef9ff;
         text-decoration: none;
         border-bottom: 1px dotted rgba(126, 249, 255, 0.5);
-        transition: all 0.3s;
+        transition: color 0.35s var(--ease-out-expo),
+                    text-shadow 0.35s var(--ease-out-expo);
       }
       a:hover {
         color: #ffffff;
-        text-shadow: 0 0 8px #00f0ff;
+        text-shadow: 0 0 10px #00f0ff;
       }
       @media (max-width: 600px) {
         .site-header {
