@@ -1,2 +1,349 @@
 <!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link rel="stylesheet" href="assets/css/site.css" /><title>找不到頁面 — 你的名字</title></head><body><main><section class="contact-section" style="min-height:100vh;"><p class="eyebrow"><b>404</b> / MISSING NOTE</p><h2>這一頁還沒被<br /><em>收進檔案。</em></h2><div class="contact-links"><a href="index.html">← 回到首頁</a></div></section></main></body></html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="assets/css/site.css" />
+<title>找不到頁面 — 宋嵐緒</title>
+
+<style>
+  :root{
+    --paper:      #f2ebdf;
+    --paper-lit:  #fdfaf4;
+    --paper-deep: #e2d7c3;
+    --ink:        #1c1815;
+    --ink-soft:   #574d44;
+    --ink-faint:  rgba(28,24,21,.16);
+    --seal:       #b23a2a;
+    --serif: "Songti TC","Noto Serif TC","Source Han Serif TC","Songti SC","STSong","SimSun",Georgia,"Times New Roman",serif;
+    --mono: ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ height:100%; }
+
+  body{
+    margin:0;
+    min-height:100%;
+    color:var(--ink);
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(130% 100% at 50% -10%,
+        var(--paper-lit) 0%, var(--paper) 46%, var(--paper-deep) 100%);
+    font-family:var(--serif);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* 紙張纖維 */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none; z-index:5;
+    opacity:.45; mix-blend-mode:multiply;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(28,24,21,.045) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(28,24,21,.028) 0 1px, transparent 1px 5px);
+  }
+
+  /* 顆粒感 */
+  body::after{
+    content:"";
+    position:fixed; inset:-60%;
+    pointer-events:none; z-index:6;
+    opacity:.26; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── 版面 ───────────────────────────────── */
+  main{
+    position:relative;
+    z-index:2;
+    min-height:100vh;
+    min-height:100svh;
+    display:grid;
+    place-items:center;
+    padding:clamp(1.5rem,6vw,5rem);
+  }
+
+  /* ── 背景的巨大 404 ─────────────────────── */
+  .nf-ghost-wrap{
+    position:absolute; inset:0;
+    display:grid; place-items:center;
+    z-index:0; pointer-events:none;
+    transform:translate3d(calc(var(--px,0) * -18px), calc(var(--py,0) * -18px), 0);
+    transition:transform .9s cubic-bezier(.2,.8,.2,1);
+  }
+  .nf-ghost{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(9rem,38vw,28rem);
+    line-height:.76;
+    letter-spacing:-.05em;
+    white-space:nowrap;
+    color:rgba(28,24,21,.05);
+    -webkit-text-stroke:1px rgba(28,24,21,.10);
+    user-select:none;
+    animation:nf-ghost-in 2.6s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes nf-ghost-in{
+    from{ opacity:0; transform:translateY(30px) scale(1.05); filter:blur(16px); }
+    to  { opacity:1; transform:none;                      filter:blur(0); }
+  }
+
+  /* ── 飄浮的紙屑 ─────────────────────────── */
+  .nf-motes{
+    position:fixed; inset:0; z-index:1;
+    pointer-events:none;
+    transform:translate3d(calc(var(--px,0) * 16px), calc(var(--py,0) * 16px), 0);
+    transition:transform 1s cubic-bezier(.2,.8,.2,1);
+  }
+  .nf-motes i{
+    position:absolute;
+    left:var(--x); top:var(--y);
+    width:var(--s); height:calc(var(--s) * 1.4);
+    background:rgba(255,255,255,.72);
+    border:1px solid rgba(28,24,21,.07);
+    box-shadow:0 8px 18px rgba(28,24,21,.07);
+    transform:rotate(var(--r));
+    animation:nf-drift 15s ease-in-out infinite;
+    animation-delay:var(--t);
+    opacity:.9;
+  }
+  @keyframes nf-drift{
+    0%,100%{ transform:rotate(var(--r)) translate(0,0); }
+    50%    { transform:rotate(calc(var(--r) + 9deg)) translate(7px,-20px); }
+  }
+
+  /* ── 印章 ───────────────────────────────── */
+  .nf-stamp{
+    position:fixed;
+    top:clamp(1.5rem,7vh,5rem);
+    right:clamp(1.5rem,7vw,5rem);
+    z-index:3;
+    width:clamp(54px,8vw,78px);
+    aspect-ratio:1;
+    display:grid; place-items:center;
+    border:2px solid var(--seal);
+    border-radius:6px;
+    color:var(--seal);
+    font-size:clamp(.75rem,1.6vw,1rem);
+    line-height:1.06;
+    letter-spacing:.1em;
+    text-align:center;
+    transform:rotate(-11deg);
+    opacity:.7;
+    mix-blend-mode:multiply;
+    pointer-events:none;
+    animation:nf-stamp-in .9s cubic-bezier(.2,1.3,.3,1) .7s both;
+  }
+  @keyframes nf-stamp-in{
+    from{ opacity:0; transform:rotate(-26deg) scale(1.7); filter:blur(4px); }
+    to  { opacity:.7; transform:rotate(-11deg) scale(1);  filter:blur(0); }
+  }
+
+  /* ── 檔案編號 ───────────────────────────── */
+  .nf-catalog{
+    position:fixed;
+    left:clamp(1.5rem,7vw,5rem);
+    bottom:clamp(1.2rem,5vh,3rem);
+    z-index:3;
+    margin:0;
+    font-family:var(--mono);
+    font-size:.62rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    opacity:.5;
+    pointer-events:none;
+  }
+
+  /* ── 中央文字 ───────────────────────────── */
+  .nf-card{
+    position:relative;
+    z-index:2;
+    width:min(100%,34rem);
+    text-align:center;
+    padding:clamp(1.5rem,5vw,3rem) clamp(.75rem,4vw,2rem);
+  }
+  .nf-card > *{
+    opacity:0;
+    animation:nf-rise 1s cubic-bezier(.2,.75,.25,1) both;
+  }
+  .nf-card > *:nth-child(1){ animation-delay:.15s; }
+  .nf-card > *:nth-child(2){ animation-delay:.30s; }
+  .nf-card > *:nth-child(3){ animation-delay:.45s; }
+  .nf-card > *:nth-child(4){ animation-delay:.58s; }
+  .nf-card > *:nth-child(5){ animation-delay:.72s; }
+  @keyframes nf-rise{
+    from{ opacity:0; transform:translateY(18px); filter:blur(7px); }
+    to  { opacity:1; transform:none;              filter:blur(0); }
+  }
+
+  .nf-eyebrow{
+    margin:0 0 clamp(1rem,3vw,1.75rem);
+    font-family:var(--mono);
+    font-size:.7rem;
+    letter-spacing:.42em;
+    text-indent:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .nf-eyebrow b{
+    color:var(--seal);
+    font-weight:600;
+    letter-spacing:.26em;
+  }
+
+  .nf-card h2{
+    margin:0;
+    font-size:clamp(1.9rem,6.4vw,3.4rem);
+    font-weight:500;
+    line-height:1.3;
+    letter-spacing:.045em;
+  }
+  .nf-card h2 em{
+    position:relative;
+    font-style:italic;
+    color:var(--seal);
+    letter-spacing:.06em;
+  }
+  .nf-card h2 em::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:.02em;
+    height:1px;
+    background:currentColor;
+    opacity:.4;
+    transform:scaleX(0);
+    transform-origin:left;
+    animation:nf-underline 1.3s cubic-bezier(.2,.8,.2,1) 1.15s forwards;
+  }
+  @keyframes nf-underline{ to{ transform:scaleX(1); } }
+
+  .nf-rule{
+    position:relative;
+    width:clamp(48px,12vw,92px);
+    height:1px;
+    margin:clamp(1.5rem,4vw,2.5rem) auto;
+    background:linear-gradient(90deg,
+      transparent, var(--ink-faint) 22%, var(--ink-faint) 78%, transparent);
+  }
+  .nf-rule::after{
+    content:"";
+    position:absolute; top:50%; left:50%;
+    width:5px; height:5px; margin:-2.5px 0 0 -2.5px;
+    border-radius:50%;
+    background:var(--seal);
+    opacity:.55;
+  }
+
+  .nf-sub{
+    margin:0 0 clamp(2rem,5vw,3rem);
+    font-size:clamp(.85rem,2.4vw,1rem);
+    line-height:2.1;
+    letter-spacing:.14em;
+    color:var(--ink-soft);
+  }
+
+  .nf-back{
+    position:relative;
+    display:inline-block;
+    padding:.55rem .25rem;
+    font-family:var(--mono);
+    font-size:.78rem;
+    letter-spacing:.24em;
+    color:var(--ink);
+    text-decoration:none;
+    transition:color .45s ease;
+  }
+  .nf-back::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:.3rem;
+    height:1px;
+    background:currentColor;
+    transform:scaleX(0);
+    transform-origin:right;
+    transition:transform .55s cubic-bezier(.2,.8,.2,1);
+  }
+  .nf-back .arw{
+    display:inline-block;
+    transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .nf-back:hover,
+  .nf-back:focus-visible{ color:var(--seal); outline:none; }
+  .nf-back:hover::after,
+  .nf-back:focus-visible::after{ transform:scaleX(1); transform-origin:left; }
+  .nf-back:hover .arw,
+  .nf-back:focus-visible .arw{ transform:translateX(-7px); }
+
+  /* ── 小螢幕 ─────────────────────────────── */
+  @media (max-width:520px){
+    .nf-stamp{ opacity:.55; }
+    .nf-catalog{ letter-spacing:.2em; }
+    .nf-ghost{ font-size:clamp(8rem,52vw,14rem); }
+  }
+
+  /* ── 減少動態 ───────────────────────────── */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <!-- 飄浮紙屑 -->
+  <div class="nf-motes" aria-hidden="true">
+    <i style="--x:14%;--y:24%;--s:16px;--r:-18deg;--t:-2s"></i>
+    <i style="--x:82%;--y:31%;--s:12px;--r:26deg;--t:-6s"></i>
+    <i style="--x:22%;--y:74%;--s:19px;--r:12deg;--t:-9s"></i>
+    <i style="--x:71%;--y:83%;--s:14px;--r:-32deg;--t:-4s"></i>
+    <i style="--x:48%;--y:11%;--s:10px;--r:40deg;--t:-11s"></i>
+  </div>
+
+  <!-- 印記 -->
+  <div class="nf-stamp" aria-hidden="true">缺<br />頁</div>
+  <p class="nf-catalog" aria-hidden="true">Archive No. 404-A</p>
+
+  <main>
+    <div class="nf-ghost-wrap" aria-hidden="true">
+      <span class="nf-ghost">404</span>
+    </div>
+
+    <section class="nf-card">
+      <p class="nf-eyebrow"><b>404</b> / MISSING NOTE</p>
+
+      <h2>這一頁還沒被<br /><em>收進檔案。</em></h2>
+
+      <div class="nf-rule" aria-hidden="true"></div>
+
+      <p class="nf-sub">也許它還在抽屜深處，<br />或者從未被寫下。</p>
+
+      <a class="nf-back" href="index.html"><span class="arw">←</span> 回到首頁</a>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (reduce.matches) return;
+
+      var root = document.documentElement;
+      var raf = 0;
+
+      window.addEventListener('pointermove', function (e) {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = 0;
+          root.style.setProperty('--px', (e.clientX / window.innerWidth  - 0.5).toFixed(3));
+          root.style.setProperty('--py', (e.clientY / window.innerHeight - 0.5).toFixed(3));
+        });
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
